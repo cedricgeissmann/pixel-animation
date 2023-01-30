@@ -1,4 +1,4 @@
-import { Background, Stone } from "./game_objects.js"
+import { Background, Baumstumpf, Flower, Hoehle, Pilz, Stone, Tree, Wand } from "./game_objects.js"
 
 
 export default class Map {
@@ -18,6 +18,12 @@ export default class Map {
     // darauf plaziert werden.
     this.tiles.push( new Background(x, y) )
     if ( tileType === "s" ) { this.tiles.push( new Stone(x, y)) }
+    else if (tileType === "t" ) { this.tiles.push(new Tree(x, y)) }
+    else if ( tileType === "b") {this.tiles.push(new Baumstumpf(x, y))}
+    else if ( tileType === "h") {this.tiles.push(new Hoehle(x, y))}
+    else if ( tileType === "p") {this.tiles.push(new Pilz(x, y))}
+    else if ( tileType === "w") {this.tiles.push(new Wand(x, y))}
+    else if ( tileType === "f") {this.tiles.push(new Flower(x, y))}
   }
 
   drawMap(ctx) {
