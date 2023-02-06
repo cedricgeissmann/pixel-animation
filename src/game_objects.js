@@ -1,7 +1,11 @@
 import EventHandler from "./event_handler.js"
+import Game from "./game.js"
+import {calculatePenetration} from "./collision_detector.js"
+import { findAndRemoveFromList } from "./utils.js"
 
-export class GameObject {
+export class GameObject extends EventTarget {
   constructor(x, y, sheet) {
+    super()
     this.sheet = sheet
     this.x = x
     this.y = y
@@ -28,21 +32,9 @@ export class Background extends GameObject {
   }
 }
 
-export class Tree extends GameObject {
-    constructor(x, y) {
-      super(x, y, ground)
-      this.col = 1
-      this.row = 1
-    }
-  }
+
   
-export class Stone extends GameObject {
-    constructor(x, y) {
-      super(x, y, ground)
-      this.col = 1
-      this.row = 0
-    }
-  }
+
   
   
   
@@ -88,6 +80,35 @@ export class Flower extends GameObject {
   }
 
  
+export class Stone extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, ground)
+    this.row = 0
+    this.col = 1
+    Game.CD.layers["world"].push(this)
+  }
+  
+  destroy() {
+    findAndRemoveFromList(Game.map.tiles, this)
+    findAndRemoveFromList(Game.CD.layers["world"], this)
+  }
+}
+
+export class Tree extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, ground)
+    this.row = 1
+    this.col = 1
+    Game.CD.layers["forest"].push(this)
+  }
+  
+  destroy() {
+    findAndRemoveFromList(Game.map.tiles, this)
+    findAndRemoveFromList(Game.CD.layers["forest"], this)
+  }
+}
 
 export class Player extends GameObject {
   constructor(x, y) {
@@ -97,6 +118,17 @@ export class Player extends GameObject {
     this.col = 1
     this.speed = 3 / this.tileSize
     this.eventHandler = new EventHandler()
+    Game.CD.layers["world"].push(this)
+
+    this.addEventListener('collision', (e) => {
+      this.handleCollision(e)
+    })
+  }
+
+  handleCollision(e) {
+    console.log("collision")
+    const pen = calculatePenetration(this, e.detail)
+    // TODO: implementiere Kollisionsauflösung
   }
 
   update() {
@@ -114,6 +146,15 @@ export class Player extends GameObject {
     if (direction === "up") {
       this.y = this.y - this.speed
       this.row = 3
+    } else if (direction === "down") {
+      this.y = this.y + this.speed
+      this.row = 0
+    } else if (direction === "left") {
+      this.x = this.x - this.speed
+      this.row = 1
+    } else if (direction === "right") {
+      this.x = this.x + this.speed
+      this.row = 2
     }
     else if (direction === "down") {
       this.y = this.y + this.speed
