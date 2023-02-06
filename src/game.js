@@ -23,7 +23,7 @@ export default class Game {
   gameLoop() {
     this.player.update()
     Game.CD.checkCollision("world")
-
+    Game.CD.checkCollision("forest")
     this.ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     Game.map.drawMap(this.ctx)
