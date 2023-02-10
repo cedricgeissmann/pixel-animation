@@ -70,6 +70,8 @@ export class Mushroom extends GameObject {
   }
 }
 
+
+
 class AnimatedGameObject extends GameObject {
   constructor(x, y, sheet, layers) {
     super(x, y, sheet, layers)

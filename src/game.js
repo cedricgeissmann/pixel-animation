@@ -11,10 +11,10 @@ export default class Game {
   static map = new Map("maps/map.txt")
 
   constructor() {
-    this.tileSize = 32
+    this.tileSize = 35
     this.canvas = document.querySelector("#canvas")
-    this.canvas.width = 10 * this.tileSize
-    this.canvas.height = 15 * this.tileSize
+    this.canvas.width = 12 * this.tileSize
+    this.canvas.height = 18 * this.tileSize
     this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
