@@ -70,6 +70,19 @@ export class Mushroom extends GameObject {
   }
 }
 
+class Weapon {
+  constructor(dmg,type) {
+      this.dmg = 20 + dmg
+      this.type = type
+  }
+  
+}
+class Shield {
+  constructor(armor, type) {
+      this.armor = 8 + armor
+      this.type = type 
+  }
+}
 
 
 class AnimatedGameObject extends GameObject {
@@ -101,6 +114,7 @@ class AnimatedGameObject extends GameObject {
   }
 }
 
+
 export class Player extends AnimatedGameObject {
   constructor(x, y) {
     const img = document.querySelector("#character")
@@ -109,6 +123,7 @@ export class Player extends AnimatedGameObject {
     this.col = 1
     this.speed = 3 / this.tileSize
     this.eventHandler = new EventHandler()
+    
 
     this.addEventListener('collision', (e) => {
       this.handleCollision(e.detail)
@@ -157,3 +172,4 @@ export class Player extends AnimatedGameObject {
     }
   }
 }
+
