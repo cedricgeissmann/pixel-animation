@@ -151,13 +151,15 @@ export class Player extends AnimatedGameObject {
     })
     this.row = 0
     this.col = 1
-    this.speed = 3
+    this.speed = 15
     this.handlers = new HandlerManager([
       new EventHandler(),
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
   }
+
+  
 
   jump() {
     this.handlers.get(GravityHandler).jump(this)
@@ -190,4 +192,72 @@ export class Player extends AnimatedGameObject {
       this.row = 2
     }
   }
+}
+
+class playerattributes extends Player {
+constructor(name, hp, dmg) {
+  this.name = name
+
+        this.statsHp = 20 + hp
+        this.statsArmor = 8     
+        this.statsDmg = 4 + dmg
+        this.statsMana = 100
+        
+        this.target = null
+        
+        watchElement(this)
+}
+
+actionAttack() {
+  if (this.target == null) {
+      errorLog("Es ist kein Ziel definiert.")
+  }
+  let doDmg = this.statsDmg
+
+  if(this.weapon) {
+      doDmg = doDmg + this.weapon.dmg
+      if(this.weapon.type === "axe") {
+          doDmg = doDmg * 2
+      }
+      if(this.weapon.type === "sword") {
+          doDmg = doDmg * 1.5
+      }
+      if(this.armor.type === "Helmet") {
+          doDmg = doDmg * 0.5
+      }
+      if(this.armor.type === "Foot-Armor") {
+          doDmg = doDmg * 0.75
+      }
+      if(this.armor.type === "Chest-Armor") {
+          doDmg = doDmg *0.25
+      }
+
+  }
+  this.target.takeDamage(doDmg)
+}
+
+actionHeal() {
+  this.statsHp = this.statsHp + 100
+}
+
+
+actionDie() {
+  this.statsHp = 0
+}
+
+takeDamage(dmg) {
+  let takeDmg = dmg
+  this.statsHp = this.statsHp - takeDmg
+}
+
+actionCastfireball() {
+  if(this.statsMana >= 90){
+  this.takeDamage(20)
+  this.target.takeDamage(50)
+  this.statsMana -= 90
+  }
+  else {
+      this.takeDamage(10)
+  }
+}
 }
