@@ -194,7 +194,7 @@ export class Player extends AnimatedGameObject {
   }
 }
 
-class playerattributes extends Player {
+export class playerattributes extends Player {
 constructor(name, hp, dmg) {
   this.name = name
 

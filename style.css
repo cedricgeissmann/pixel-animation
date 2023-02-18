@@ -7,7 +7,7 @@ body {
 
 canvas {
     background-color: white;
-    width: min(70vh,100000vw);
+    width: min(70vh,100vw);
 }
 
 #player-container {

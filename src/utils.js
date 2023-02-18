@@ -7,7 +7,7 @@ export function findAndRemoveFromList(list, element) {
 
 const elementsToRender = new Set()
 
-function watchElement(obj) {
+export function watchElement(obj) {
   if (!elementsToRender.has(obj)) {
     elementsToRender.add(obj)
   }
@@ -15,15 +15,15 @@ function watchElement(obj) {
   renderAllElements()
 }
 
-function renderAllElements() {
+export function renderAllElements() {
   elementsToRender.forEach((elem) => renderPlayer(elem))
 }
 
-function capitalize(str) {
+export function capitalize(str) {
   return str[0].toUpperCase() + str.slice(1)
 }
 
-function checkPlayerContainer() {
+export function checkPlayerContainer() {
     let container = document.querySelector("#player-container")
     if (container == null) {
         container = document.createElement("div")
@@ -34,7 +34,7 @@ function checkPlayerContainer() {
 }
 
 
-function renderPlayer(obj) {
+export function renderPlayer(obj) {
 
   const playerContainer = checkPlayerContainer()
 
@@ -64,7 +64,7 @@ function renderPlayer(obj) {
   })
 
   let stats = ""
-  Object.getOwnPropertyNames(obj).forEach((prop) => {
+ Object.getOwnPropertyNames(obj).forEach((prop) => {
     if (prop.startsWith("stats")) {
       let name = capitalize(prop.substring("stats".length))
       stats = stats + `<p>${name}: ${obj[prop]}</p>`
@@ -87,7 +87,7 @@ function renderPlayer(obj) {
 
 let errorTimeout = null
 
-function errorLog(msg) {
+export function errorLog(msg) {
   let err = document.querySelector("#err-msg")
   if (err == null) {
     err = document.createElement("div")
