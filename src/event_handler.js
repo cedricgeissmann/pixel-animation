@@ -77,10 +77,8 @@ export class CollisionHandler {
         gameObject.x = gameObject.x - pen.x
       } else {
         gameObject.y = gameObject.y - pen.y
-        if (gameObject.handlers.get(GravityHandler).gravity >= 0) {
-          gameObject.isStanding = true
-        }
-        gameObject.handlers.get(GravityHandler).gravity = 0
+        
+        
       }
     }
 

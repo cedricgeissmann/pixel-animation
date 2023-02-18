@@ -95,19 +95,7 @@ export class Stone extends GameObject {
   }
 }
 
-export class FallingStone extends Stone {
-  constructor(x, y) {
-    super(x, y)
-    this.handlers = new HandlerManager([
-      new GravityHandler({
-        maxGravity: 3,
-        gravityForce: 1
-      }),
-      new CollisionHandler()
-    ])
-  }
-  
-}
+
 
 export class Tree extends GameObject {
   constructor(x, y) {
@@ -115,7 +103,7 @@ export class Tree extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["forest"]
+      collisionTags: ["world"]
     })
     this.row = 1
     this.col = 1
@@ -134,21 +122,6 @@ export class Mushroom extends GameObject {
     this.col = 2
   }
 }
-
-class Weapon {
-  constructor(dmg,type) {
-      this.dmg = 20 + dmg
-      this.type = type
-  }
-  
-}
-class Shield {
-  constructor(armor, type) {
-      this.armor = 8 + armor
-      this.type = type 
-  }
-}
-
 
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
@@ -179,12 +152,8 @@ export class Player extends AnimatedGameObject {
     this.row = 0
     this.col = 1
     this.speed = 3
-    this.handlers = new HandlerManager([     //vielleicht ändern
+    this.handlers = new HandlerManager([
       new EventHandler(),
-      new GravityHandler({ 
-        jumpForce: -10,
-        maxGravity: 5,
-        gravityForce: 1 }),
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
@@ -203,7 +172,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space") { this.jump() }
+    
   }
 
   move(direction) {
@@ -222,4 +191,3 @@ export class Player extends AnimatedGameObject {
     }
   }
 }
-
