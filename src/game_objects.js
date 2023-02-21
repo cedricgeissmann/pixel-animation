@@ -184,26 +184,18 @@ export class Player extends AnimatedGameObject {
   }
 
   handle(ev) {
-    if (ev === "KeyW") { this.move("up") }
-    if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
     if (ev === "Space") { this.jump() }
   }
 
   move(direction) {
-    if (direction === "up") {
-      this.dy = this.dy + (-1) * this.speed
-      this.row = 3
-    } else if (direction === "down") {
-      this.dy = this.dy + (1) * this.speed
+    if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed
       this.row = 0
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 1
-    } else if (direction === "right") {
-      this.dx = this.dx + (1) * this.speed
-      this.row = 2
+      this.row = 0
     }
   }
 }
