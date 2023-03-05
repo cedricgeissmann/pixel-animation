@@ -34,14 +34,15 @@ export class GameObject extends EventTarget {
   }
 }
 
-export class Background extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("deco1#")
-    super(x, y, ground, [])
-    this.row = 0
-    this.col = 0
-  }
-}
+//export class Nakedtree extends GameObject {
+  //constructor(x, y) {
+   // const ground = document.querySelector("#deco1")
+   // super(x, y, ground, ["forest"])
+   // this.row = 0
+    //this.col = 0
+  //}
+//}
+
 
 export class Background extends GameObject {
   constructor(x, y) {
