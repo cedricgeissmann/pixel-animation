@@ -167,7 +167,7 @@ export class Hole extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["foresr"]
+      collisionTags: ["forest"]
     })
     this.row = 1
     this.col = 2
