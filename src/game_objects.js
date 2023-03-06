@@ -161,6 +161,18 @@ export class Trunk extends GameObject {
   }
 }
 
+export class Hole extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 1
+    this.col = 2
+  }
+}
 
 
 class AnimatedGameObject extends GameObject {
