@@ -166,8 +166,8 @@ export class Hole extends GameObject {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
-      layer: "item",
-      collisionTags: ["pickups"]
+      layer: "world",
+      collisionTags: ["foresr"]
     })
     this.row = 1
     this.col = 2
@@ -179,8 +179,8 @@ export class Wall extends GameObject {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
-      layer: "item",
-      collisionTags: ["pickups"]
+      layer: "world",
+      collisionTags: ["forest"]
     })
     this.row = 1
     this.col = 3
