@@ -135,6 +135,59 @@ export class Mushroom extends GameObject {
   }
 }
 
+export class Flower extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 0
+    this.col = 3
+  }
+}
+
+export class Trunk extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 1
+    this.col = 0
+  }
+}
+
+export class Hole extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["forest"]
+    })
+    this.row = 1
+    this.col = 2
+  }
+}
+
+export class Wall extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["forest"]
+    })
+    this.row = 1
+    this.col = 3
+  }
+}
+
+
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
     super(x, y, options)
