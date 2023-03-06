@@ -148,6 +148,21 @@ export class Flower extends GameObject {
   }
 }
 
+export class Trunk extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 1
+    this.col = 0
+  }
+}
+
+
+
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
     super(x, y, options)
