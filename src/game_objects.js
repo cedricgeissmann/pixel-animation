@@ -174,6 +174,19 @@ export class Hole extends GameObject {
   }
 }
 
+export class Wall extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 1
+    this.col = 3
+  }
+}
+
 
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
