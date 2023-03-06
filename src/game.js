@@ -1,13 +1,17 @@
-import { Player } from "./game_objects.js"
 import Map from "./map.js"
-import CollosionDetector from "./collision_detector.js"
+import CollisionDetector from "./collision_detector.js"
+import Camera from "./camera.js"
+import TileRegistry from "./tile_registry.js"
 
 
-
+/**
+ * Diese Klasse enthält die globalen Variablen für das Spiel,
+ * sowie das GameLoop, welches das Spiel zeichnen soll.
+ */
 export default class Game {
 
-  static CD = new CollosionDetector()
   static map = new Map("maps/map.txt")
+  static player = null;
 
   constructor() {
     this.tileSize = 32
@@ -17,16 +21,55 @@ export default class Game {
     this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
-    this.player = new Player(4, 5)
+    this.camera = new Camera(this)
+
+    this.running = false
   }
 
+  /**
+   * Startet das Spiel.
+   * 
+   * Das Spiel wird gestartet indem die Animationsschleife
+   * des Spiels aufgerufen wird.
+   */
+  start() {
+    this.running = true
+    window.requestAnimationFrame(this.gameLoop.bind(this))
+  }
+
+  /**
+   * Pausiert das Spiel.
+   * 
+   * Die Animationsschleife des Spiels wird unterbrochen,
+   * dadurch wird das Spiel pausiert.
+   * 
+   * Um das Spiel weiterlaufen zu lassen, muss die Methode 
+   * `start()` aufgerufen werden.
+   */
+  pause() {
+    this.running = false
+  }
+
+  /**
+   * Berechnet jeweils das nächste Frame für das Spiel.
+   * Die Positionen der Spiel-Objekte werden neu berechnet,
+   * die Kamera wird korrekt ausgerichtet und die 
+   * Spiel-Objekte werden neu gezeichnet.
+   */
   gameLoop() {
-    this.player.update()
-    Game.CD.checkCollision("world")
+    
+    this.camera.clearScreen()
+    this.camera.nextFrame()
 
-    this.ctx.clearRect(0, 0, canvas.width, canvas.height)
+    TileRegistry.updateAllTiles()
+    CollisionDetector.checkCollision("all")
 
-    Game.map.drawMap(this.ctx)
-    this.player.draw(this.ctx)
+    this.camera.centerObject(Game.player)
+
+    TileRegistry.drawAllTiles(this.ctx)
+
+    if (this.running = true) {
+      window.requestAnimationFrame(this.gameLoop.bind(this))
+    }
   }
 }
