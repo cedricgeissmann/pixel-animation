@@ -9,7 +9,8 @@ export default class Game {
 
   static CD = new CollisionDetector()
   static map = new Map("maps/map.txt")
-
+  
+  
   constructor() {
     this.tileSize = 32
     this.canvas = document.querySelector("#canvas")
