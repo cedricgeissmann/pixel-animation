@@ -53,6 +53,15 @@ export class Background extends GameObject {
   }
 }
 
+export class Background1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Steinboden")
+    super(x, y, ground, [])
+    this.row = 5
+    this.col = 14
+  }
+}
+
 export class Tree1 extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco2")
