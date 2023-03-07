@@ -70,6 +70,8 @@ export class Mushroom extends GameObject {
   }
 }
 
+
+
 class AnimatedGameObject extends GameObject {
   constructor(x, y, sheet, layers) {
     super(x, y, sheet, layers)
@@ -137,7 +139,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space" ) {Game.map = ("maps/maparena.txt") }
+    if (ev === "Space" ) {Game.map =  new Map ("maps/maparena.txt") }
   }
 
   move(direction) {
