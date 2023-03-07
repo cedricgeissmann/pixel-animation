@@ -34,12 +34,12 @@ export class GameObject extends EventTarget {
   }
 }
 
-export class Background extends GameObject {
+export class Sbackground extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#ground")
+    const ground = document.querySelector("#Steinboden")
     super(x, y, ground, [])
-    this.row = 0
-    this.col = 0
+    this.row = 4
+    this.col = 12
   }
 }
 
@@ -69,6 +69,8 @@ export class Mushroom extends GameObject {
     this.col = 2
   }
 }
+
+
 
 
 
