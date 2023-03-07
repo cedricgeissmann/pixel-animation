@@ -1,0 +1,74 @@
+╭─━━━━━━━━━━━━─╮
+    procedure
+╰─━━━━━━━━━━━━─╯
+
+─────step-1─────
+  Map creation
+────────────────
+-Find good sprites 
+and sources
+
+-Import into the map
+editor (Tiled) and tile layering of
+the coarse overworlds
+
+website: https://www.mapeditor.org/
+
+-add trees and enlarge 
+by map details
+
+-Collisions and map boundaries
+
+-Foreground layers
+
+-export of the layers to import 
+into the programming project
+
+─────step-2─────
+ Player and Map
+  Development
+────────────────
+-create the project setup
+
+-import and render of the 
+map layers
+
+-create the chars and add movement 
+by the keys w,a,s,d
+
+-add collision detection for the
+different maps
+
+-implement foreground objects for
+every single map
+
+-add char animations
+
+-add npc's (non-player-characters), interactions
+and environment changes
+
+-implement leveling system and experience
+
+-add helpful commentaries and 
+supporting aspects
+
+
+─────step-3─────
+Battle sequences
+────────────────
+-Battle activation
+
+-add the transition from 
+the map to the battle sequence
+
+-implement the battle system
+, attacks and health bars
+
+-find good sprites and
+sources
+
+-add a fighting background and
+enlarge by additional sprites
+and battle aspects
+
+
