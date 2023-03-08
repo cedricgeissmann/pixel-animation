@@ -1,4 +1,4 @@
-import { Background, Mushroom, Stone, Tree, Tree1, Background1} from "./game_objects.js"
+import { Mushroom, Stone, Tree, Tree1, Background1} from "./game_objects.js"
 
 
 export default class Map {
