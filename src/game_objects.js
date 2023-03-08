@@ -61,6 +61,15 @@ export class Busch1 extends GameObject {
   }
 }
 
+export class Busch2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, ground, ["world"])
+    this.row = 7
+    this.col = 1
+  }
+}
+
 export class Zaun extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco2")
