@@ -1,4 +1,4 @@
-import { Mushroom, Stone, Tree, Tree1, Background1, Busch1} from "./game_objects.js"
+import { Mushroom, Stone, Tree, Tree1, Background1, Busch1, Zaun} from "./game_objects.js"
 
 
 export default class Map {
@@ -22,6 +22,7 @@ export default class Map {
     if ( tileType === "p" ) { this.tiles.push( new Mushroom(x, y)) }
     if ( tileType === "T" ) { this.tiles.push( new Tree1(x, y)) }
     if ( tileType === "B" ) { this.tiles.push( new Busch1(x, y)) }
+    if ( tileType === "Z" ) { this.tiles.push( new Zaun(x, y)) }
   }
 
   drawMap(ctx) {
