@@ -1,4 +1,4 @@
-import { Background, Mushroom, Stone, Tree, Tree1, Background1, Busch1} from "./game_objects.js"
+import { Background, Mushroom, Stone, Tree, Tree1, Background1} from "./game_objects.js"
 
 
 export default class Map {
@@ -21,7 +21,6 @@ export default class Map {
     if ( tileType === "t" ) { this.tiles.push( new Tree(x, y)) }
     if ( tileType === "p" ) { this.tiles.push( new Mushroom(x, y)) }
     if ( tileType === "T" ) { this.tiles.push( new Tree1(x, y)) }
-    if ( tileType === "B" ) { this.tiles.push( new Busch1(x, y)) }
   }
 
   drawMap(ctx) {
