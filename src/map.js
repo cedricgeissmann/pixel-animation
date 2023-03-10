@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background, FallingStone, Flower, Hole, Mushroom, Player, Stone, Tree, Trunk, Wall, Wall, Cave } from "./game_objects.js"
+import { Background, FallingStone, Flower, Hole, Mushroom, Player, Stone, Tree, Trunk, Wall, Cave } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte

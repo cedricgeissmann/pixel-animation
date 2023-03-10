@@ -96,19 +96,6 @@ export class Stone extends GameObject {
   }
 }
 
-export class Wall extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#ground")
-    super(x, y, {
-      sheet: ground,
-      layer: "world",
-      collisionTags: ["world"]
-    })
-    this.row = 1
-    this.col = 3
-  }
-}
-
 export class Cave extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
