@@ -1,5 +1,6 @@
 import { calculatePenetration } from "./collision_detector.js"
 import { Player } from "./game_objects.js"
+import Game from "./game.js"
 
 export default class EventHandler {
   constructor() {
@@ -79,12 +80,23 @@ export class CollisionHandler {
         gameObject.y = gameObject.y - pen.y
         
         
+        const gravityHandler = gameObject.handlers.get(GravityHandler)
+        if (gravityHandler != null) {
+          if (gravityHandler.gravity >= 0) {
+            gameObject.isStanding = true
+          }
+          gravityHandler.gravity = 0
+        }
       }
     }
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
+    }
+
+    if (collidingObject.collisionTags.includes("cave")) {
+      Game.loadMap("maps/map-02.txt")
     }
   }
 }
