@@ -182,14 +182,14 @@ class AnimatedGameObject extends GameObject {
 
 export class Player extends AnimatedGameObject {
   constructor(x, y) {
-    const img = document.querySelector("#character")
+    const png = document.querySelector("#character")
     super(x, y, {
-      sheet: img,
+      sheet: png,
       layer: "player",
       collisionTags: ["world", "pickups", "cave", "forest"]
     })
     this.row = 0
-    this.col = 1
+    this.col = 0
     this.speed = 3
     this.handlers = new HandlerManager([
       new EventHandler(),
