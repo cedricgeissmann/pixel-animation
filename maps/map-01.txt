@@ -5,11 +5,17 @@ psb..b.p..
 .....tt...b
 ......t...
 ......bf..
+<<<<<<< HEAD:maps/map.txt
 .ff...tt..p
 .f......s.s
 ........b.
+=======
+.ff...tt..
+.f......S.
+>>>>>>> upstream/main:maps/map-01.txt
 ........b.
+....P...b.
 ...ss.....
 ..B.......b
 .......pfp
-..........
+ssssssssss
