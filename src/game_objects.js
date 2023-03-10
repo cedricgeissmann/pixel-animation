@@ -69,15 +69,6 @@ export class GameObject {
 
 }
 
-//export class Nakedtree extends GameObject {
-  //constructor(x, y) {
-   // const ground = document.querySelector("#deco1")
-   // super(x, y, ground, ["forest"])
-   // this.row = 0
-    //this.col = 0
-  //}
-//}
-
 
 export class Background extends GameObject {
   constructor(x, y) {
@@ -90,6 +81,19 @@ export class Background extends GameObject {
 
     this.row = 0
     this.col = 0
+  }
+}
+export class Sbackground extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Steinboden")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+    this.row = 4
+    this.col = 12
+
   }
 }
 
@@ -171,6 +175,8 @@ export class Mushroom extends GameObject {
     this.col = 2
   }
 }
+
+
 
 
 
