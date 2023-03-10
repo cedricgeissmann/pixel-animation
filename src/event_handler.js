@@ -65,9 +65,19 @@ export class CollisionHandler {
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
     }
-
+    
+    let cave = 0
     if (collidingObject.collisionTags.includes("cave")) {
-      Game.loadMap("maps/map-02.txt")
+      cave++
+      if(cave = 0) {
+        Game.loadMap("maps(map-01.txt")
+      }
+      if(cave = 1) {
+        Game.loadMap("maps/map-02.txt")
+      }
+      if(cave > 1){
+        cave = 0
+      }
     }
   }
 }
