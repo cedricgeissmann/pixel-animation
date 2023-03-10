@@ -22,18 +22,12 @@ export default class Map {
     if ( tileType === "S" ) { new FallingStone(x, y) }
     if ( tileType === "t" ) { new Tree(x, y) }
     if ( tileType === "p" ) { new Mushroom(x, y) }
-<<<<<<< HEAD
     if ( tileType === "w" ) { new Wall(x, y) }
-    if ( tileType === "h" ) { new Cave(x, y) }
-    if ( tileType === "P" ) { Game.player = new Player(x, y)}
-=======
     if ( tileType === "U" ) { Game.player = new Player(x, y)}
     if ( tileType === "M" ) { Game.player2 = new Player2(x, y)}
->>>>>>> player
     if ( tileType === "f" ) { new Flower(x, y) }
     if ( tileType === "k" ) { new Trunk(x, y) }
     if ( tileType === "h" ) { new Hole(x, y) }
-    if ( tileType === "w" ) { new Wall(x, y) }
   }
 
   /**
