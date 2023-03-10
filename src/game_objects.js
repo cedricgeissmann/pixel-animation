@@ -70,16 +70,48 @@ export class GameObject {
 }
 
 
-export class Background extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#ground")
-    super(x, y, {
-      sheet: ground,
-      layer: "background",
-      collisionTags: []
-    })
 
+export class Background1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Steinboden")
+    super(x, y, ground, [])
+    this.row = 5
+    this.col = 14
+  }
+}
+
+export class Tree1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, ground, ["world"])
     this.row = 0
+    this.col = 1
+  }
+}
+
+export class Busch1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, ground, ["world"])
+    this.row = 7
+    this.col = 0
+  }
+}
+
+export class Busch2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, ground, ["world"])
+    this.row = 7
+    this.col = 1
+  }
+}
+
+export class Zaun extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, ground, ["world"])
+    this.row = 15
     this.col = 0
   }
 }
