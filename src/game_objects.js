@@ -1,4 +1,4 @@
-import EventHandler, {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
+import EventHandler, {AnimationHandler, CollisionHandler, HandlerManager} from "./event_handler.js"
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"

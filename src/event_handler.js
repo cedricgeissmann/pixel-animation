@@ -15,27 +15,6 @@ export default class EventHandler {
   }
 }
 
-export class GravityHandler {
-  constructor(options) {
-    this.gravity = 0
-    this.maxGravity = options.maxGravity
-    this.jumpForce = options.jumpForce
-    this.gravityForce = options.gravityForce || 0
-  }
-
-  jump(gameObject) {
-    if (gameObject.isStanding) {
-      this.gravity = this.jumpForce
-      gameObject.isStanding = false
-    }
-  }
-
-  _handleEvents(gameObject) {
-    gameObject.y = gameObject.y + this.gravity
-    this.gravity = Math.min(this.gravity + this.gravityForce, this.maxGravity)
-  }
-}
-
 export class HandlerManager {
   constructor(handlers) {
     this.handlers = [...handlers]
@@ -79,14 +58,6 @@ export class CollisionHandler {
       } else {
         gameObject.y = gameObject.y - pen.y
         
-        
-        const gravityHandler = gameObject.handlers.get(GravityHandler)
-        if (gravityHandler != null) {
-          if (gravityHandler.gravity >= 0) {
-            gameObject.isStanding = true
-          }
-          gravityHandler.gravity = 0
-        }
       }
     }
 
