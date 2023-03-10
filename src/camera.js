@@ -17,7 +17,7 @@ export default class Camera {
 
   centerCoordinate(x, y, tileSize) {
     this.game.ctx.setTransform(1, 0, 0, 1,
-      (-x + this.offset.x) * tileSize + this.game.canvas.width/5,
+      (-x + this.offset.x) * tileSize + this.game.canvas.width/2,
       (-y + this.offset.y) * tileSize +this.game.canvas.height / 2)
   }
 
