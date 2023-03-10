@@ -66,18 +66,15 @@ export class CollisionHandler {
       collidingObject.destroy()
     }
     
-    let cave = 0
     if (collidingObject.collisionTags.includes("cave")) {
-      cave++
-      if(cave = 0) {
-        Game.loadMap("maps(map-01.txt")
-      }
-      if(cave = 1) {
+      if(Game.worldNumber === 1){
         Game.loadMap("maps/map-02.txt")
+        Game.worldNumber = 2
+      } else if(Game.worldNumber === 2) {
+        Game.loadMap("maps/map-01.txt")
+        Game.worldNumber = 1
       }
-      if(cave > 1){
-        cave = 0
-      }
+      
     }
   }
 }
