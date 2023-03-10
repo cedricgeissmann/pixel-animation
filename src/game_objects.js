@@ -135,7 +135,7 @@ export class Player extends AnimatedGameObject {
 
   jump() {
     if (this.isStanding ) {
-      this.gravity = -16 / this.tileSize
+      this.gravity = -8/ this.tileSize
       this.isStanding = false
     }
   }
