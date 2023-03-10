@@ -69,6 +69,7 @@ export class GameObject {
 
 }
 
+
 export class Background extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -80,6 +81,19 @@ export class Background extends GameObject {
 
     this.row = 0
     this.col = 0
+  }
+}
+export class Sbackground extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Steinboden")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+    this.row = 4
+    this.col = 12
+
   }
 }
 
@@ -162,6 +176,10 @@ export class Mushroom extends GameObject {
   }
 }
 
+
+
+
+
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
     super(x, y, options)
@@ -212,7 +230,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
     if (ev === "Space") { 
-      Game.loadMap("maps/map-02.txt")
+      Game.loadMap("maps/maparena.txt")
     }
   }
 
