@@ -194,7 +194,7 @@ export class Player extends AnimatedGameObject {
     this.handlers = new HandlerManager([
       new EventHandler(),
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
+      new AnimationHandler({ framesPerAnimation: 30, numberOfFrames: 4})
     ])
   }
 
