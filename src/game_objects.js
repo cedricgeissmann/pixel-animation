@@ -2,6 +2,7 @@ import EventHandler, {AnimationHandler, CollisionHandler, GravityHandler, Handle
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
+import Game from "./game.js"
 
 
 /**
@@ -95,6 +96,32 @@ export class Stone extends GameObject {
   }
 }
 
+export class Wall extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 3
+  }
+}
+
+export class Cave extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["cave"]
+    })
+    this.row = 1
+    this.col = 2
+  }
+}
+
 export class FallingStone extends Stone {
   constructor(x, y) {
     super(x, y)
@@ -159,17 +186,13 @@ export class Player extends AnimatedGameObject {
     super(x, y, {
       sheet: img,
       layer: "player",
-      collisionTags: ["world", "pickups"]
+      collisionTags: ["world", "pickups", "cave", "forest"]
     })
     this.row = 0
     this.col = 1
     this.speed = 3
     this.handlers = new HandlerManager([
       new EventHandler(),
-      new GravityHandler({ 
-        jumpForce: -10,
-        maxGravity: 5,
-        gravityForce: 1 }),
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
@@ -186,7 +209,9 @@ export class Player extends AnimatedGameObject {
   handle(ev) {
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space") { this.jump() }
+    if (ev === "Space") { 
+      Game.loadMap("maps/map-02.txt")
+    }
   }
 
   move(direction) {

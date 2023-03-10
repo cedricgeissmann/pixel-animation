@@ -10,8 +10,9 @@ import TileRegistry from "./tile_registry.js"
  */
 export default class Game {
 
-  static map = new Map("maps/map.txt")
+  static map = null;
   static player = null;
+  static running = false;
 
   constructor() {
     this.tileSize = 32
@@ -21,9 +22,12 @@ export default class Game {
     this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
+    Game.loadMap("maps/map-01.txt")
+
     this.camera = new Camera(this)
 
-    this.running = false
+    Game.running = false
+    window.requestAnimationFrame(this.gameLoop.bind(this))
   }
 
   /**
@@ -32,9 +36,8 @@ export default class Game {
    * Das Spiel wird gestartet indem die Animationsschleife
    * des Spiels aufgerufen wird.
    */
-  start() {
-    this.running = true
-    window.requestAnimationFrame(this.gameLoop.bind(this))
+  static start() {
+    Game.running = true
   }
 
   /**
@@ -46,8 +49,16 @@ export default class Game {
    * Um das Spiel weiterlaufen zu lassen, muss die Methode 
    * `start()` aufgerufen werden.
    */
-  pause() {
-    this.running = false
+  static pause() {
+    Game.running = false
+  }
+
+  static loadMap(mapfile) {
+      TileRegistry.clear()
+      CollisionDetector.clear()
+      Game.player = null
+      Game.map = new Map(mapfile)
+
   }
 
   /**
@@ -68,7 +79,7 @@ export default class Game {
 
     TileRegistry.drawAllTiles(this.ctx)
 
-    if (this.running = true) {
+    if (Game.running === true) {
       window.requestAnimationFrame(this.gameLoop.bind(this))
     }
   }

@@ -5,8 +5,8 @@ export default class TileRegistry {
   static layers = {
       background: [],
       item: [],
-      player: [],
       world: [],
+      player: [],
     }
 
   /**
@@ -32,4 +32,15 @@ export default class TileRegistry {
       })
     })
   }
+
+  static clear() {
+    TileRegistry.layers = {
+      background: [],
+      item: [],
+      player: [],
+      world: [],
+    }
+  }
+
+
 }
