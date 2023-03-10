@@ -1,37 +1,72 @@
-import EventHandler from "./event_handler.js"
-import Game from "./game.js"
-import {calculatePenetration} from "./collision_detector.js"
+import EventHandler, {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
 import { findAndRemoveFromList } from "./utils.js"
+import TileRegistry from "./tile_registry.js"
+import CollisionDetector from "./collision_detector.js"
+import Game from "./game.js"
 
-export class GameObject extends EventTarget {
-  constructor(x, y, sheet, layers) {
-    super()
-    this.sheet = sheet
-    this.x = x
-    this.y = y
+
+/**
+ * Dies ist die Basisklasse für alle Spiel-Objekte.
+ * 
+ * Wenn ein spezialisiertes Spiel-Objekt erzeugt wird, dann soll es 
+ * immer diese Klasse erweitern. Wenn die Funktionen von der Basisklasse
+ * überschrieben werden, sollten diese immer zuerst mit `super.function()` 
+ * aufgerufen werden, so das die eigentliche Funktionalität der Spiel-Objekte
+ * erhalten bleibt.
+ */
+export class GameObject {
+  constructor(x, y, options = {sheet, layer: "background", collisionTags: []}) {
+    this.sheet = options.sheet
     this.tileSize = 32
+    this.x = x * this.tileSize
+    this.y = y * this.tileSize
     this.col = 0
     this.row = 0
-    this.layers = layers
-    this.layers.forEach(layer => {
-      Game.CD.layers[layer].push(this)
+    this.layer = options.layer
+    this.handlers = new HandlerManager([])
+    TileRegistry.layers[this.layer].push(this)
+    this.collisionTags = options.collisionTags
+    this.collisionTags.forEach(tag => {
+      CollisionDetector.layers[tag].push(this)
     })
   }
 
+  /**
+   * Zeichnet das Spiel-Objekt auf das Canvas. Das Spiel-Objekt
+   * kennt dabei seine Position und welches Bild gezeichnet werden soll.
+   * @param {CanvasRenderingContext2D} ctx Das Canvas, worauf das Spiel-Objekt gezeichnet werden soll.
+   */
   draw(ctx) {
     ctx.drawImage(
       this.sheet,
       this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize,
-      this.x * this.tileSize, this.y * this.tileSize, this.tileSize, this.tileSize
+      this.x, this.y, this.tileSize, this.tileSize
     )
   }
 
+  /**
+   * Zerstört das Spiel-Objekt und entfernt es aus dem Spiel.
+   */
   destroy() {
-    findAndRemoveFromList(Game.map.tiles, this)
-    this.layers.forEach(layer => {
-      findAndRemoveFromList(Game.CD.layers[layer], this)
+    findAndRemoveFromList(TileRegistry.layers[this.layer], this)
+    this.collisionTags.forEach(tag => {
+      findAndRemoveFromList(CollisionDetector.layers[tag], this)
     })
   }
+
+  /**
+   * Berechne die Position und andere Eigenschaften des 
+   * Spiel-Objekts neu. Wie das gemacht wird, wird in den 
+   * verschieden Handlers angegeben. Ein Spiel-Objekt kann
+   * z.B. einen Gravitations-Handler haben, dieser fügt dann
+   * Gravitation für dieses Spiel-Objekt hinzu und berechnet die 
+   * y-Position des Spiel-Objekts neu.
+   */
+  update(){
+    this.handlers && this.handlers.runAll(this)
+  }
+
+
 }
 
 //export class Nakedtree extends GameObject {
@@ -47,7 +82,12 @@ export class GameObject extends EventTarget {
 export class Background extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
-    super(x, y, ground, [])
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+
     this.row = 0
     this.col = 0
   }
@@ -56,16 +96,64 @@ export class Background extends GameObject {
 export class Stone extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
-    super(x, y, ground, ["world"])
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
     this.row = 0
     this.col = 1
   }
 }
 
+export class Wall extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 3
+  }
+}
+
+export class Cave extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["cave"]
+    })
+    this.row = 1
+    this.col = 2
+  }
+}
+
+export class FallingStone extends Stone {
+  constructor(x, y) {
+    super(x, y)
+    this.handlers = new HandlerManager([
+      new GravityHandler({
+        maxGravity: 3,
+        gravityForce: 1
+      }),
+      new CollisionHandler()
+    ])
+  }
+  
+}
+
 export class Tree extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
-    super(x, y, ground, ["forest"])
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["forest"]
+    })
     this.row = 1
     this.col = 1
   }
@@ -74,7 +162,11 @@ export class Tree extends GameObject {
 export class Mushroom extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
-    super(x, y, ground, ["pickups"])
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
     this.row = 0
     this.col = 2
   }
@@ -83,65 +175,47 @@ export class Mushroom extends GameObject {
 
 
 class AnimatedGameObject extends GameObject {
-  constructor(x, y, sheet, layers) {
-    super(x, y, sheet, layers)
+  constructor(x, y, options) {
+    super(x, y, options)
     this.frameCounter = 0
     this.dx = 0
     this.dy = 0
   }
 
   update() {
+    super.update()
     this.x = this.x + this.dx
     this.y = this.y + this.dy
-
-    // Only run the animation if the object moved
-    if (this.dx != 0 || this.dy != 0) {
-      this.frameCounter++
-      if (this.frameCounter >= 15) {
-        this.col++
-        if (this.col >= 2) {
-          this.col = 0
-        }
-        this.frameCounter = 0
-      }
-    }
-
     this.dx = 0
     this.dy = 0
   }
 }
 
+
 export class Player extends AnimatedGameObject {
   constructor(x, y) {
     const img = document.querySelector("#character")
-    super(x, y, img, ["world", "forest", "pickups"])
+    super(x, y, {
+      sheet: img,
+      layer: "player",
+      collisionTags: ["world", "pickups", "cave", "forest"]
+    })
     this.row = 0
     this.col = 1
-    this.speed = 3 / this.tileSize
-    this.eventHandler = new EventHandler()
-
-    this.addEventListener('collision', (e) => {
-      this.handleCollision(e.detail)
-    })
+    this.speed = 3
+    this.handlers = new HandlerManager([
+      new EventHandler(),
+      new CollisionHandler(),
+      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
+    ])
   }
 
-  handleCollision(collidingObject) {
-    if (collidingObject.layers.includes("world") || collidingObject.layers.includes("forest")) {
-      const pen = calculatePenetration(this, collidingObject)
-      if (Math.abs(pen.x) <= Math.abs(pen.y) ) {
-        this.x = this.x - pen.x
-      } else {
-        this.y = this.y - pen.y
-      }
-    }
-    if (collidingObject.layers.includes("pickups")) {
-      collidingObject.destroy()
-    }
+  jump() {
+    this.handlers.get(GravityHandler).jump(this)
   }
 
   update() {
     super.update()
-    this.eventHandler._handleEvents(this)
   }
 
   handle(ev) {
@@ -149,7 +223,9 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space" ) {Game.map =  new Map ("maps/maparena.txt") }
+    if (ev === "Space") { 
+      Game.loadMap("maps/maparena.txt")
+    }
   }
 
   move(direction) {

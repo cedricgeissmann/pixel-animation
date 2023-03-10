@@ -1,16 +1,19 @@
-import { Player } from "./game_objects.js"
 import Map from "./map.js"
 import CollisionDetector from "./collision_detector.js"
 import Camera from "./camera.js"
+import TileRegistry from "./tile_registry.js"
 
 
-
+/**
+ * Diese Klasse enthält die globalen Variablen für das Spiel,
+ * sowie das GameLoop, welches das Spiel zeichnen soll.
+ */
 export default class Game {
 
-  static CD = new CollisionDetector()
-  static map = new Map("maps/map.txt")
-  
-  
+  static map = null;
+  static player = null;
+  static running = false;
+
   constructor() {
     this.tileSize = 32
     this.canvas = document.querySelector("#canvas")
@@ -19,24 +22,65 @@ export default class Game {
     this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
-    this.player = new Player(4, 5)
+    Game.loadMap("maps/map-01.txt")
+
     this.camera = new Camera(this)
 
-    this.camera.moveToPoint(-1, 2, this.player.tileSize, 60)
+    Game.running = false
+    window.requestAnimationFrame(this.gameLoop.bind(this))
   }
 
+  /**
+   * Startet das Spiel.
+   * 
+   * Das Spiel wird gestartet indem die Animationsschleife
+   * des Spiels aufgerufen wird.
+   */
+  static start() {
+    Game.running = true
+  }
+
+  /**
+   * Pausiert das Spiel.
+   * 
+   * Die Animationsschleife des Spiels wird unterbrochen,
+   * dadurch wird das Spiel pausiert.
+   * 
+   * Um das Spiel weiterlaufen zu lassen, muss die Methode 
+   * `start()` aufgerufen werden.
+   */
+  static pause() {
+    Game.running = false
+  }
+
+  static loadMap(mapfile) {
+      TileRegistry.clear()
+      CollisionDetector.clear()
+      Game.player = null
+      Game.map = new Map(mapfile)
+
+  }
+
+  /**
+   * Berechnet jeweils das nächste Frame für das Spiel.
+   * Die Positionen der Spiel-Objekte werden neu berechnet,
+   * die Kamera wird korrekt ausgerichtet und die 
+   * Spiel-Objekte werden neu gezeichnet.
+   */
   gameLoop() {
     
     this.camera.clearScreen()
     this.camera.nextFrame()
 
-    this.player.update()
-    Game.CD.checkCollision("all")
+    TileRegistry.updateAllTiles()
+    CollisionDetector.checkCollision("all")
 
-    this.camera.centerObject(this.player)
-    //this.camera.offset = {x: -1, y: 0}
+    this.camera.centerObject(Game.player)
 
-    Game.map.drawMap(this.ctx)
-    this.player.draw(this.ctx)
+    TileRegistry.drawAllTiles(this.ctx)
+
+    if (Game.running === true) {
+      window.requestAnimationFrame(this.gameLoop.bind(this))
+    }
   }
 }
