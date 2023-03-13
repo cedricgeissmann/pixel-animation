@@ -8,3 +8,4 @@ function animationLoop() {
 
 let game = new Game()
 window.requestAnimationFrame(animationLoop)
+animation:jump 2s  infinite;
