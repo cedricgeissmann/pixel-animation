@@ -1,37 +1,36 @@
-import { Background, Baumstumpf, Flower, Hoehle, Pilz, Stone, Tree, Wand } from "./game_objects.js"
+import Game from "./game.js"
+import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave } from "./game_objects.js"
 
-
+/**
+ * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
+ * an den Stellen die in der Karte angegeben sind.
+ */
 export default class Map {
   constructor(mapFile) {
-    this.tiles = []
     this._readMapFile(mapFile)
   }
 
+  /**
+   * Erstelle neue Spiel-Objekte an den jeweiligen Stellen.
+   * @param {number} x Die x-Koordinate, an der die Spiel-Objekte erstellt werden.
+   * @param {number} y Die y-Koordinate, an der die Spiel-Objekte erstellt werden.
+   * @param {string} tileType Der Buchstabe an der Stelle in der Karte.
+   */
   addTilesToMap(x, y, tileType) {
-    // TODO:
-    // Implementiere das erstellen von neuen Kartenkacheln hier
-    // x und y sind die Positionen in der Kartendatei
-    // tileType ist der Buchstabe der an dieser Stelle in der Kartendatei steht
-    // this.tiles ist eine noch leere Liste, welche alle neuen Kacheln aufnimmt
-
-    // Die Hintergrundkachel wird immer hinzugefügt!!! Andere Kacheln können dann
-    // darauf plaziert werden.
-    this.tiles.push( new Background(x, y) )
-    if ( tileType === "s" ) { this.tiles.push( new Stone(x, y)) }
-    else if (tileType === "t" ) { this.tiles.push(new Tree(x, y)) }
-    else if ( tileType === "b") {this.tiles.push(new Baumstumpf(x, y))}
-    else if ( tileType === "h") {this.tiles.push(new Hoehle(x, y))}
-    else if ( tileType === "p") {this.tiles.push(new Pilz(x, y))}
-    else if ( tileType === "w") {this.tiles.push(new Wand(x, y))}
-    else if ( tileType === "f") {this.tiles.push(new Flower(x, y))}
+    new Background(x, y)
+    if ( tileType === "s" ) { new Stone(x, y) }
+    if ( tileType === "S" ) { new FallingStone(x, y) }
+    if ( tileType === "t" ) { new Tree(x, y) }
+    if ( tileType === "p" ) { new Mushroom(x, y) }
+    if ( tileType === "w" ) { new Wall(x, y) }
+    if ( tileType === "h" ) { new Cave(x, y) }
+    if ( tileType === "P" ) { Game.player = new Player(x, y)}
+    if ( tileType === "Q" ) { Game.player2 = new Player(x, y)}
   }
 
-  drawMap(ctx) {
-    for (let i = 0; i < this.tiles.length; i++) {
-      this.tiles[i].draw(ctx)
-    }
-  }
-
+  /**
+   * Liest die Karte aus der Datei und ruft die Erstellung der Spiel-Objekte auf.
+   */
   _readMapFile(filename) {
     fetch(filename)
       .then((res) => res.text())
