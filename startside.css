@@ -6,3 +6,25 @@ body{
 h1{
     color: rgb(41, 75, 44);
 }
+
+.box {
+    text-align: center;
+    position: center;
+    border: 4px solid rgb(0, 0, 0);
+    margin: 10px auto;
+    padding: 0px;
+    width: 15cm;
+    
+
+}
+
+.box > h2 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 1em;
+}
+
+#start-game {
+    font-size: 1.5em;
+    color: pink;
+}
