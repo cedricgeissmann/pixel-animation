@@ -24,7 +24,7 @@ export default class CollosionDetector {
     }
 
     hitboxOverlapping(h1, h2) {
-        // TODO: Implementiere Kollisionserkennung
+    
         return false
     }
     
@@ -33,7 +33,7 @@ export default class CollosionDetector {
 export function calculatePenetration(tile, other) {
     const h1 = new Hitbox(tile);
     const h2 = new Hitbox(other);
-    // only on the x-Axis
+    
     let c1 = h1.getCenter()
     let c2 = h2.getCenter()
 

@@ -80,7 +80,7 @@ export class Player extends GameObject {
   handleCollision(e) {
     console.log("collision")
     const pen = calculatePenetration(this, e.detail)
-    // TODO: implementiere Kollisionsauflösung
+    
   }
 
   update() {
@@ -89,7 +89,6 @@ export class Player extends GameObject {
 
   handle(ev) {
     if (ev === "KeyW") { this.move("up") }
-    if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
   }
@@ -98,9 +97,6 @@ export class Player extends GameObject {
     if (direction === "up") {
       this.y = this.y - this.speed
       this.row = 3
-    } else if (direction === "down") {
-      this.y = this.y + this.speed
-      this.row = 0
     } else if (direction === "left") {
       this.x = this.x - this.speed
       this.row = 1

@@ -8,6 +8,7 @@ export default class Game {
 
   static CD = new CollosionDetector()
   static map = new Map("maps/map.txt")
+  
 
   constructor() {
     this.tileSize = 32
