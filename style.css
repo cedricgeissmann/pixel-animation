@@ -7,5 +7,7 @@ body {
 
 canvas {
     background-image: url("res/Hintergrund\ Fertig.png");
-    width: min(100px, 100px);
+    width: 1536px;
+    height: 256px;
+    
 }
