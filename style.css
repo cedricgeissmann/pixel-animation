@@ -6,6 +6,6 @@ body {
 }
 
 canvas {
-    background-color: white;
-    width: min(70vh, 100vw);
+    background-image: url("res/Hintergrund\ Fertig.png");
+    width: min(100px, 100px);
 }
