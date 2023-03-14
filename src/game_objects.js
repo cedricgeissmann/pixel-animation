@@ -304,13 +304,13 @@ actionCastfireball() {
 }
 }
 
-
-let currency = 0
+currency = 0
  export function Geldverdienen() {
   //if(player rennt über Pilze, dann currency++)
+  
   if (collidingObject.collisionTags.includes("pickups")) {
     collidingObject.destroy()
     currency++
   }
-  print(currency)
+  console.log(currency)
  }
