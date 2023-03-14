@@ -9,5 +9,6 @@ canvas {
     background-image: url("res/Hintergrund\ Fertig.png");
     width: 1536px;
     height: 256px;
+    image-rendering: pixelated;
     
 }
