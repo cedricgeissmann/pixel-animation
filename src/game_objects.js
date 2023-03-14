@@ -1,9 +1,7 @@
-import EventHandler, {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
+import {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
-import Game from "./game.js"
-
 
 /**
  * Dies ist die Basisklasse für alle Spiel-Objekte.
@@ -192,7 +190,6 @@ export class Player extends AnimatedGameObject {
     this.col = 0
     this.speed = 3
     this.handlers = new HandlerManager([
-      new EventHandler(),
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 30, numberOfFrames: 4})
     ])
