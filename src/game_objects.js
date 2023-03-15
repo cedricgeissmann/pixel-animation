@@ -304,7 +304,7 @@ actionCastfireball() {
 }
 }
 
-currency = 0
+
  export function Geldverdienen() {
   //if(player rennt über Pilze, dann currency++)
   
