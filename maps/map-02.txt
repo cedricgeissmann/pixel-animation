@@ -3,7 +3,7 @@ s....sPs..
 s..s.s.s..
 s..s.s.s..
 s..s.s.s.p
-s..s.s.s..
+s..s.s.s.s..
 s..s.s.s..
 spps.s.s.p
 spps.s.spp
