@@ -69,7 +69,7 @@ export class GameObject {
 
 export class Background extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#ground")
+    const ground = document.querySelector("#hinter")
     super(x, y, {
       sheet: ground,
       layer: "background",
