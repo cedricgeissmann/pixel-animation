@@ -17,7 +17,6 @@ export default class Map {
    * @param {string} tileType Der Buchstabe an der Stelle in der Karte.
    */
   addTilesToMap(x, y, tileType) {
-    new Background(x, y)
     if ( tileType === "s" ) { new Stone(x, y) }
     if ( tileType === "S" ) { new FallingStone(x, y) }
     if ( tileType === "t" ) { new Tree(x, y) }
