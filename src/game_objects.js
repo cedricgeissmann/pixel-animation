@@ -123,6 +123,7 @@ export class Palme extends GameObject {
   }
 }
 
+
 export class Strand extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco4")
@@ -160,6 +161,57 @@ export class Tree1 extends GameObject {
     this.tileSize = 64
     this.row = 0
     this.col = 1
+  }
+  draw(ctx) {
+    ctx.drawImage(
+      this.sheet,
+      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize + 32,
+      this.x, this.y, this.tileSize + 20, this.tileSize + 32
+    )
+  }
+}
+
+export class Tree2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.tileSize = 64
+    this.row = 0
+    this.col = 3
+  }
+
+  draw(ctx) {
+    ctx.drawImage(
+      this.sheet,
+      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize + 32,
+      this.x, this.y, this.tileSize + 32, this.tileSize + 32
+    )
+  }
+}
+
+export class Tree3 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.tileSize = 64
+    this.row = 0
+    this.col = 2
+  }
+
+  draw(ctx) {
+    ctx.drawImage(
+      this.sheet,
+      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize + 32,
+      this.x, this.y, this.tileSize + 20, this.tileSize + 32
+    )
   }
 }
 
