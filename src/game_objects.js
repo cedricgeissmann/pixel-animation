@@ -102,8 +102,8 @@ export class Wall extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 1
-    this.col = 3
+    this.row = 0
+    this.col = 0
   }
 }
 
@@ -191,7 +191,7 @@ export class Player extends AnimatedGameObject {
     this.speed = 3
     this.handlers = new HandlerManager([
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 18, numberOfFrames: 4})
+      new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4})
       
     ])
     new GravityHandler({

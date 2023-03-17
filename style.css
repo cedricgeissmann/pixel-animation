@@ -2,11 +2,11 @@ body {
     padding: 0;
     margin: 0;
     text-align: center;
-    background-color: antiquewhite;
+    background-color: grey;
 }
 
 canvas {
-    background-image: url("res/Hintergrund\ Fertig.png");
+    background-image: url("res/BG.png");
     width: 1536px;
     height: 256px;
     image-rendering: pixelated;
