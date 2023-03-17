@@ -97,6 +97,19 @@ export class Erde extends GameObject {
   }
 }
 
+export class Sand extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco4")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: []
+    })
+    this.row = 0
+    this.col = 8
+  }
+}
+
 export class Tree1 extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco2")
