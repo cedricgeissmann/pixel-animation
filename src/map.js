@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Sbackground } from "./game_objects.js"
+import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Sbackground, Hecke } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -7,6 +7,7 @@ import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Sb
  */
 export default class Map {
   constructor(mapFile) {
+    this.mapfile = mapFile
     this._readMapFile(mapFile)
   }
 
@@ -17,7 +18,11 @@ export default class Map {
    * @param {string} tileType Der Buchstabe an der Stelle in der Karte.
    */
   addTilesToMap(x, y, tileType) {
-    new Background(x, y)
+    if (this.mapfile === "maps/maparena.txt") {
+      new Sbackground(x, y)
+    } else {
+      new Background(x, y)
+    }
     if ( tileType === "s" ) { new Stone(x, y) }
     if ( tileType === "S" ) { new FallingStone(x, y) }
     if ( tileType === "t" ) { new Tree(x, y) }
