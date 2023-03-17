@@ -191,14 +191,14 @@ export class Player extends AnimatedGameObject {
     this.speed = 3
     this.handlers = new HandlerManager([
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4})
+      new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
+      new GravityHandler({
+        maxGravity: 3,
+        gravityForce: 1,
+        jumpForce: -20,
+      })
       
     ])
-    new GravityHandler({
-      maxGravity: 3,
-      gravityForce: 1,
-      jumpForce: 2,
-    })
   }
 
   jump() {
@@ -212,7 +212,7 @@ export class Player extends AnimatedGameObject {
   handle(ev) {
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space") { this.jump ("jump")
+    if (ev === "Space") { this.jump()
 
     }
   }
@@ -228,6 +228,7 @@ export class Player extends AnimatedGameObject {
     if (direction === "jump") {
       this.jumpForce = 2
       this.row = 2
+      
     }
 
   }
