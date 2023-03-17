@@ -21,6 +21,12 @@ export class GameObject extends EventTarget {
       this.x * this.tileSize, this.y * this.tileSize, this.tileSize, this.tileSize
     )
   }
+
+  destroy() {
+    findAndRemoveFromList(Game.map.tiles, this)
+    findAndRemoveFromList(Game.CD.layers["world"], this)
+  }
+
 }
 
 export class Background extends GameObject {
@@ -74,10 +80,8 @@ export class Shells extends GameObject {
       this.col = 3
       Game.CD.layers["forest"].push(this)
     }
-}
   
-  destroy() ;{
-    {
+  destroy() {
     findAndRemoveFromList(Game.map.tiles, this)
     findAndRemoveFromList(Game.CD.layers["forest"], this)
   }
