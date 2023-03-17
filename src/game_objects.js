@@ -176,9 +176,38 @@ export class Mushroom extends GameObject {
   }
 }
 
+export class Mushroompurple extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 2
+    this.col = 0
+  }
+}
+
+
+
 export class Cavefloor extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#Stonefloor")
+    const ground = document.querySelector("#Deco4")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+
+    this.row = 2
+    this.col = 1
+  }
+}
+
+export class Bodenhöhle extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco4")
     super(x, y, {
       sheet: ground,
       layer: "background",
@@ -186,9 +215,50 @@ export class Cavefloor extends GameObject {
     })
 
     this.row = 0
+    this.col = 1
+  }
+}
+
+export class Caveentrance extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#InsideCave")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: ["cave"]
+    })
+    this.row = 0
     this.col = 0
   }
 }
+
+export class Cavewall extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#InsideCave")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 1
+  }
+}
+
+
+export class StoneGrey extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#InsideCave")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 2
+  }
+}
+
 
 
 
