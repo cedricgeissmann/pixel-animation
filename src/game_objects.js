@@ -116,7 +116,7 @@ export class Strand extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: []
+      collisionTags: ["world"]
     })
     this.row = 6
     this.col = 6
@@ -129,7 +129,7 @@ export class Strand2 extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: []
+      collisionTags: ["world"]
     })
     this.row = 7
     this.col = 6
@@ -156,7 +156,7 @@ export class Busch1 extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: []
+      collisionTags: ["world"]
     })
     this.row = 7
     this.col = 0
@@ -169,7 +169,7 @@ export class Busch2 extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: []
+      collisionTags: ["world"]
     })
     this.row = 7
     this.col = 1
@@ -194,7 +194,7 @@ export class Sbackground extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "background",
-      collisionTags: []
+      collisionTags: ["world"]
     })
     this.row = 4
     this.col = 12
