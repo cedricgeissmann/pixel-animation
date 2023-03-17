@@ -73,14 +73,14 @@ export class GameObject {
 
 export class Background1 extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#Steinboden")
+    const ground = document.querySelector("#Deco4")
     super(x, y, {
       sheet: ground,
       layer: "background",
       collisionTags: []
     })
-    this.row = 5
-    this.col = 14
+    this.row = 0
+    this.col = 3
   }
 }
 
