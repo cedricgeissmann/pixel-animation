@@ -192,7 +192,11 @@ export class Player extends AnimatedGameObject {
     this.speed = 3
     this.handlers = new HandlerManager([
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
+      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3}),
+      new GravityHandler({ 
+        jumpForce: -10,
+        maxGravity: 5,
+        gravityForce: 0.9 }),
     ])
   }
 
@@ -205,13 +209,7 @@ export class Player extends AnimatedGameObject {
   }
 
   move(direction) {
-    if (direction === "up") {
-      this.dy = this.dy + (-1) * this.speed
-      this.row = 3
-    } else if (direction === "down") {
-      this.dy = this.dy + (1) * this.speed
-      this.row = 0
-    } else if (direction === "left") {
+     if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
       this.row = 1
       Camera.shiftBackground(1)
