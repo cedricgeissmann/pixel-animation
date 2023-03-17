@@ -1,4 +1,4 @@
-import { Background, Stone, Tree } from "./game_objects.js"
+import { Background,Sand,Water, Air } from "./game_objects.js"
 
 
 export default class Map {
@@ -10,8 +10,10 @@ export default class Map {
   addTilesToMap(x, y, tileType) {
   
     this.tiles.push( new Background(x, y) )
-    if ( tileType === "s" ) { this.tiles.push( new Stone(x, y)) }
-    if ( tileType === "t" ) { this.tiles.push( new Tree(x, y)) }
+    if ( tileType === "b" ) { this.tiles.push( new Background(x, y)) }
+    if ( tileType === "s" ) { this.tiles.push( new Sand(x, y)) }
+    if ( tileType === "w" ) { this.tiles.push( new Water(x, y)) } 
+    if ( tileType === "a" ) { this.tiles.push( new Air(x, y)) }
   }
 
   drawMap(ctx) {

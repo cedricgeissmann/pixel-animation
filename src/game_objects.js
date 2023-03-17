@@ -32,7 +32,16 @@ export class Background extends GameObject {
   }
 }
 
-export class Stone extends GameObject {
+export class Sand extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, ground)
+    this.row = 0
+    this.col = 0
+  }
+}
+
+export class Water extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
     super(x, y, ground)
@@ -47,16 +56,28 @@ export class Stone extends GameObject {
   }
 }
 
-export class Tree extends GameObject {
+export class Air extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
     super(x, y, ground)
-    this.row = 1
-    this.col = 1
+    this.row = 0
+    this.col = 2
     Game.CD.layers["forest"].push(this)
   }
+}
   
-  destroy() {
+export class Shells extends GameObject {
+    constructor(x, y) {
+      const ground = document.querySelector("#ground")
+      super(x, y, ground)
+      this.row = 0
+      this.col = 3
+      Game.CD.layers["forest"].push(this)
+    }
+}
+  
+  destroy() ;{
+    {
     findAndRemoveFromList(Game.map.tiles, this)
     findAndRemoveFromList(Game.CD.layers["forest"], this)
   }
