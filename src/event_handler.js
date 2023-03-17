@@ -66,6 +66,7 @@ export class CollisionHandler {
       collidingObject.destroy()
     }
     
+    
     if (collidingObject.collisionTags.includes("cave")) {
       if(Game.worldNumber === 1){
         Game.loadMap("maps/map-02.txt")

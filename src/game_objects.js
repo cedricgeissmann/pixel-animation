@@ -213,10 +213,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    
-    if (ev === "Space") { 
-      Game.loadMap("maps/map-02.txt")
-    }
+
   }
 
   move(direction) {
@@ -232,6 +229,8 @@ export class Player extends AnimatedGameObject {
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
       this.row = 2
+    } else if (direction === "attack"){
+      actionAttack()
     }
   }
 }
@@ -250,59 +249,27 @@ constructor(name, hp, dmg) {
         watchElement(this)
 }
 
-actionAttack() {
-  if (this.target == null) {
-      errorLog("Es ist kein Ziel definiert.")
-  }
-  let doDmg = this.statsDmg
-
-  if(this.weapon) {
-      doDmg = doDmg + this.weapon.dmg
-      if(this.weapon.type === "axe") {
-          doDmg = doDmg * 2
-      }
-      if(this.weapon.type === "sword") {
-          doDmg = doDmg * 1.5
-      }
-      if(this.armor.type === "Helmet") {
-          doDmg = doDmg * 0.5
-      }
-      if(this.armor.type === "Foot-Armor") {
-          doDmg = doDmg * 0.75
-      }
-      if(this.armor.type === "Chest-Armor") {
-          doDmg = doDmg *0.25
-      }
-
-  }
-  this.target.takeDamage(doDmg)
 }
 
-actionHeal() {
+
+export function actionHeal() {
   this.statsHp = this.statsHp + 100
 }
+export function actionAttack() {
+this.statsHp = 100
+console.log(currency)
+}
 
-
-actionDie() {
+export function actionDie() {
   this.statsHp = 0
 }
 
-takeDamage(dmg) {
+export function takeDamage(dmg) {
   let takeDmg = dmg
   this.statsHp = this.statsHp - takeDmg
 }
 
-actionCastfireball() {
-  if(this.statsMana >= 90){
-  this.takeDamage(20)
-  this.target.takeDamage(50)
-  this.statsMana -= 90
-  }
-  else {
-      this.takeDamage(10)
-  }
-}
-}
+
 
 
  export function Geldverdienen() {
@@ -315,3 +282,76 @@ actionCastfireball() {
   }
   console.log(currency)
  }
+
+ export class HealthBar {
+  constructor() {
+    this.healthPoints = document.querySelector('.health-points');
+    this.health = 100;
+    this.updateHealthPoints();
+  }
+
+  attack() {
+    this.health -= 10;
+    this.updateHealthPoints();
+  }
+
+  heal() {
+    this.health += 10;
+    this.updateHealthPoints();
+  }
+
+  updateHealthPoints() {
+    this.healthPoints.textContent = this.health.toString();
+  }
+}
+
+export const healthBar = new HealthBar();
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'e') {
+    healthBar.attack();
+  } else if (event.key === 'h') {
+    healthBar.heal();
+  }
+});
+
+
+export class MoneySystem {
+  constructor(initialMoney) {
+    this.money = initialMoney;
+    this.moneyElement = document.querySelector('.money-amount');
+    this.updateMoney();
+  }
+
+  updateMoney() {
+    this.moneyElement.textContent = this.money;
+  }
+
+  decreaseMoney(amount) {
+    this.money -= amount;
+    this.updateMoney();
+  }
+
+  increaseMoney(amount) {
+    this.money += amount;
+    this.updateMoney();
+  }
+
+  makeMoney(collidingObject) {
+    if (collidingObject.collisionTags.includes("pickups")) {
+      this.increaseMoney(10);
+    }
+    else if(collidingObject.collisionTags.includes("forest")){
+      if(event.key = "f") {
+       countdownDuration = 3
+        if(countdownDuration <= 0) {
+          collidingObject.destroy()
+        }
+      }
+
+    }
+  }
+}
+
+export const moneySystem = new MoneySystem(0);
+
