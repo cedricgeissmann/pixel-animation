@@ -311,6 +311,7 @@ actionCastfireball() {
   if (collidingObject.collisionTags.includes("pickups")) {
     collidingObject.destroy()
     currency++
+    print(currency)
   }
   console.log(currency)
  }
