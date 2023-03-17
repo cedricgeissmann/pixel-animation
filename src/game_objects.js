@@ -89,7 +89,7 @@ export class Erde extends GameObject {
     const ground = document.querySelector("#Deco4")
     super(x, y, {
       sheet: ground,
-      layer: "world",
+      layer: "background",
       collisionTags: []
     })
     this.row = 0
@@ -202,7 +202,7 @@ export class Strand extends GameObject {
     const ground = document.querySelector("#Deco4")
     super(x, y, {
       sheet: ground,
-      layer: "world",
+      layer: "background",
       collisionTags: ["world"]
     })
     this.row = 6
