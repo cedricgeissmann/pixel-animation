@@ -74,7 +74,11 @@ export class GameObject {
 export class Background1 extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Steinboden")
-    super(x, y, ground, [])
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
     this.row = 5
     this.col = 14
   }
@@ -83,7 +87,12 @@ export class Background1 extends GameObject {
 export class Tree1 extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco2")
-    super(x, y, ground, ["world"])
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.tileSize = 64
     this.row = 0
     this.col = 1
   }
@@ -92,7 +101,11 @@ export class Tree1 extends GameObject {
 export class Busch1 extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco2")
-    super(x, y, ground, ["world"])
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: []
+    })
     this.row = 7
     this.col = 0
   }
@@ -101,7 +114,11 @@ export class Busch1 extends GameObject {
 export class Busch2 extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco2")
-    super(x, y, ground, ["world"])
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: []
+    })
     this.row = 7
     this.col = 1
   }
@@ -110,7 +127,11 @@ export class Busch2 extends GameObject {
 export class Zaun extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco2")
-    super(x, y, ground, ["world"])
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
     this.row = 15
     this.col = 0
   }
