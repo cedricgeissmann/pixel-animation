@@ -232,7 +232,7 @@ export class Player extends AnimatedGameObject {
     super(x, y, {
       sheet: img,
       layer: "player",
-      collisionTags: ["world", "pickups", "cave", "forest"]
+      collisionTags: ["world", "pickups", "cave", "forest", "background"]
     })
     this.row = 0
     this.col = 1
@@ -286,4 +286,35 @@ export class Player extends AnimatedGameObject {
     }
 }
 
+}
+
+export class Player2 extends Player {
+  constructor(x, y) {
+    super(x, y)
+    this.row = 0
+    this.col = 1
+  }
+  handle(ev) {
+    if (ev === "ArrowUp") { this.move("up") }
+    else if (ev === "ArrowDown") { this.move("down") }
+    else if (ev === "ArrowRight") { this.move("right")}
+    else if (ev === "ArrowLeft") { this.move("left")}
+  }
+
+  move(direction) {
+    if (direction === "up") {
+      this.dy = this.dy + (-1) * this.speed
+      this.row = 3
+    } else if (direction === "down") {
+      this.dy = this.dy + (1) * this.speed
+      this.row = 0
+    } else if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed
+      this.row = 1
+    } else if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed
+      this.row = 2
+    }
+    
+  }
 }

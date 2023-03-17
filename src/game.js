@@ -84,7 +84,7 @@ export default class Game {
     TileRegistry.updateAllTiles()
     CollisionDetector.checkCollision("all")
 
-    this.camera.centerObject(Game.player)
+    //this.camera.centerObject(Game.player)
 
     TileRegistry.drawAllTiles(this.ctx)
 
