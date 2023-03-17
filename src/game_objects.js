@@ -158,7 +158,7 @@ export class Player extends AnimatedGameObject {
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 3
+      this.row = 2
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
       this.row = 0
