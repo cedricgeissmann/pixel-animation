@@ -97,7 +97,7 @@ export class Erde extends GameObject {
   }
 }
 
-export class Sand extends GameObject {
+export class Wasser extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco4")
     super(x, y, {
@@ -105,8 +105,34 @@ export class Sand extends GameObject {
       layer: "world",
       collisionTags: []
     })
-    this.row = 0
-    this.col = 8
+    this.row = 4
+    this.col = 3
+  }
+}
+
+export class Strand extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco4")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: []
+    })
+    this.row = 6
+    this.col = 6
+  }
+}
+
+export class Strand2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco4")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: []
+    })
+    this.row = 7
+    this.col = 6
   }
 }
 
