@@ -110,7 +110,33 @@ export class Wasser extends GameObject {
   }
 }
 
-export class Palme extends GameObject {
+export class kleinebüsche extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco3")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 10
+    this.col = 4
+  }
+}
+
+export class Roterpilz extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco3")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 10
+    this.col = 3
+  }
+}
+
+export class Roteblume extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco3")
     super(x, y, {
@@ -119,8 +145,55 @@ export class Palme extends GameObject {
       collisionTags: ["world"]
     })
     this.row = 11
-    this.col = 8
+    this.col = 3
   }
+}
+
+export class Blume extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco3")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 2
+    this.col = 4
+  }
+}
+
+export class Blume2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 7
+    this.col = 3
+  }
+}
+
+export class Palme extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco3")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.tileSize = 25
+    this.row = 14
+    this.col = 10
+  }
+  draw(ctx) {
+    ctx.drawImage(
+      this.sheet,
+      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize + 32,
+      this.x, this.y, this.tileSize + 20, this.tileSize + 100
+    )
+}
 }
 
 
