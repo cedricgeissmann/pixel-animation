@@ -176,6 +176,20 @@ export class Mushroom extends GameObject {
   }
 }
 
+export class Cavefloor extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Stonefloor")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+
+    this.row = 0
+    this.col = 0
+  }
+}
+
 
 
 
@@ -206,6 +220,7 @@ export class Player extends AnimatedGameObject {
       layer: "player",
       collisionTags: ["world", "pickups", "cave", "forest"]
     })
+    this.tileSize = 32
     this.row = 0
     this.col = 1
     this.speed = 3
@@ -237,16 +252,16 @@ export class Player extends AnimatedGameObject {
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 3
+      this.row = 2
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
       this.row = 0
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 1
+      this.row = 3
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 2
+      this.row = 1
     }
   }
 }
