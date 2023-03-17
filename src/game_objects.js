@@ -103,10 +103,23 @@ export class Wasser extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: []
+      collisionTags: ["world"]
     })
     this.row = 4
     this.col = 3
+  }
+}
+
+export class Palme extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco3")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 11
+    this.col = 8
   }
 }
 
