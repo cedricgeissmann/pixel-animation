@@ -112,8 +112,15 @@ export class CollisionHandler {
       }
     }
 
+
+    //gameObject -> spieler
+    //collidingObject -> background
+
+
+
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
-    if (collidingObject.collisionTags.includes("backgound")) {S
+    if (collidingObject.collisionTags.includes("backgound")) {
+      console.log("collision")
       collidingObject.destroy()
     }
 
