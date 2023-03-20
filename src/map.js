@@ -1,3 +1,4 @@
+import Game from "./game.js"
 import { Background,Sand,Water, Air, Player } from "./game_objects.js"
 
 
