@@ -21,7 +21,7 @@ export default class Game {
     this.tileSize = 32
     this.canvas = document.querySelector("#canvas")
     this.canvas.width = 10 * this.tileSize
-    this.canvas.height = 15 * this.tileSize
+    this.canvas.height = 10 * this.tileSize
     this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
