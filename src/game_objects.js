@@ -253,9 +253,11 @@ export class Player extends AnimatedGameObject {
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
       this.row = 0
+      this.col = 1
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
       this.row = 0
+      this.col = 0
     }
   }
 }
@@ -283,9 +285,11 @@ export class Player2 extends Player {
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
       this.row = 1
+      this.col = 1
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
       this.row = 1
+      this.col = 0
     }
   }
 }
