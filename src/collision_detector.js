@@ -52,7 +52,7 @@ export default class CollisionDetector {
      * mit welchem anderen Objekt es zusammen eine Kollision hat.
      * Gibt es eine Kollision, wird `false` zurückgegeben.
      */
-    static detectCollisionsInLayer(currentLayer){
+    static detectCollisionsInLayer(Backgroundgreen){
         currentLayer.forEach(tile => {
             const h1 = new Hitbox(tile);
             currentLayer.forEach(other => {
