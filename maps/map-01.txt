@@ -5,7 +5,7 @@ s.s.............s.......s.....s.s.......s
 tss.sssss.sssssss.sss.sss.sss.s.s.sssssss
 s...s.....s.......s.........s.s...s...s.s
 sssss.sssss.sss.sss.sss.sssss.sssss.s.s.s
-s.....s.....s.s.s.s.s.s.s.....s.M...s.s.s
+s.....s.....s.s.s.s.s.s.s.....s.....s.s.s
 tssssss.sssss.sss.s.s.sss.s.sss.sssssss.s
 s...s.........s.s...s.s...s.s.s.......s.s
 s.s.s.sssss.sss.s.sss.sss.s.s.sssss.sss.s
@@ -17,6 +17,6 @@ s.s...s.s.s.....s.s.s.......s.s.s.....s.s
 s.s.sss.s.s.sss.s.s.sss.sssss.s.s.sss.s.s
 s...s...s.....s.s.s...s.s.....s.s.s...s.s
 sssssss.s.sssssss.sss.s.s.sssss.s.sssss.s
-s.....................s...s.............s
+s.....................s...s............Ms
 ssssssssssssssssssssssssssssssssssssssshs
 
