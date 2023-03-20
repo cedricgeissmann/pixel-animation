@@ -67,7 +67,7 @@ export class GameObject {
 
 }
 
-export class Background extends GameObject {
+export class Backgroundgreen extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#hinter")
     super(x, y, {
@@ -81,10 +81,34 @@ export class Background extends GameObject {
   }
 }
 
+export class Backgroundmixed extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#hinter")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
 
-  
+    this.row = 0
+    this.col = 1
+  }
+}
 
-  
+export class Backgroundred extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#hinter")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+
+    this.row = 0
+    this.col = 2
+  }
+}
+
   
   
 export class Baumstumpf extends GameObject {

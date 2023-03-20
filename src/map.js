@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave } from "./game_objects.js"
+import { Backgroundgreen,Backgroundmixed, Backgroundred, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -17,7 +17,7 @@ export default class Map {
    * @param {string} tileType Der Buchstabe an der Stelle in der Karte.
    */
   addTilesToMap(x, y, tileType) {
-    new Background(x, y)
+    new Backgroundgreen(x, y)
     if ( tileType === "s" ) { new Stone(x, y) }
     if ( tileType === "S" ) { new FallingStone(x, y) }
     if ( tileType === "t" ) { new Tree(x, y) }
@@ -26,6 +26,11 @@ export default class Map {
     if ( tileType === "h" ) { new Cave(x, y) }
     if ( tileType === "P" ) { Game.player = new Player(x, y)}
     if ( tileType === "Q" ) { Game.player2 = new Player(x, y)}
+
+    if ( tileType === "g" ) { new Backgroundgreen(x, y) }
+    if ( tileType === "m" ) { new Backgroundmixed(x, y) }
+    if ( tileType === "r" ) { new Backgroundred(x, y) }
+  
     
   }
 
