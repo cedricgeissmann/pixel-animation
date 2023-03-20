@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player } from "./game_objects.js"
+import { Flower, Mushroom, Player } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -115,6 +115,20 @@ export class CollisionHandler {
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
+      if (collidingObject instanceof Flower) {
+        gameObject.speed = 6
+        setInterval(function() {
+          gameObject.speed = 3
+        }, 3000)
+
+      }
+      else if (collidingObject instanceof Mushroom) {
+        gameObject.speed = 1
+        setInterval(function() {
+          gameObject.speed = 3
+        }, 3000)
+
+      }
     }
 
     if (collidingObject.collisionTags.includes("cave")) {
