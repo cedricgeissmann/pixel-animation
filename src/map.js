@@ -27,7 +27,8 @@ export default class Map {
     if ( tileType === "M" ) { Game.player2 = new Player2(x, y)}
     if ( tileType === "f" ) { new Flower(x, y) }
     if ( tileType === "k" ) { new Trunk(x, y) }
-    if ( tileType === "h" ) { new Hole(x, y) }
+    if ( tileType === "h" ) { new Hole(x, y, 1) }
+    if ( tileType === "H" ) { new Hole(x, y, 2) }
   }
 
   /**
