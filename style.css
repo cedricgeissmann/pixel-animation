@@ -6,6 +6,6 @@ body {
 }
 
 canvas {
-    background-color: white;
+    background-image: url("https://th.bing.com/th/id/OIP.qRoH1tI69y7P9KWGAkhdeQHaGk?pid=ImgDet&rs=1");
     width: min(70vh, 100vw);
 }
