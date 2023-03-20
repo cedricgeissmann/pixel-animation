@@ -53,6 +53,7 @@ export class Tree extends GameObject {
     super(x, y, ground)
     this.row = 1
     this.col = 1
+    Game.CD.layers["world"].push(this)
     Game.CD.layers["forest"].push(this)
   }
   
@@ -71,6 +72,7 @@ export class Player extends GameObject {
     this.speed = 3 / this.tileSize
     this.eventHandler = new EventHandler()
     Game.CD.layers["world"].push(this)
+    Game.CD.layers["forest"].push(this)
 
     this.addEventListener('collision', (e) => {
       this.handleCollision(e)
@@ -80,7 +82,12 @@ export class Player extends GameObject {
   handleCollision(e) {
     console.log("collision")
     const pen = calculatePenetration(this, e.detail)
-    // TODO: implementiere Kollisionsauflösung
+    if (Math.abs(pen.x) < Math.abs(pen.y)){
+    this.x = this.x - pen.x
+    } 
+    else {
+    this.y = this.y - pen.y
+    }
   }
 
   update() {
