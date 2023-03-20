@@ -120,14 +120,13 @@ export class CollisionHandler {
         setInterval(function() {
           gameObject.speed = 3
         }, 3000)
-
       }
+      
       else if (collidingObject instanceof Mushroom) {
         gameObject.speed = 1
         setInterval(function() {
           gameObject.speed = 3
         }, 3000)
-
       }
     }
 
