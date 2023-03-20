@@ -18,11 +18,11 @@ export default class Map {
    */
   addTilesToMap(x, y, tileType) {
   
-    this.tiles.push( new Background(x, y) )
-    if ( tileType === "b" ) { this.tiles.push( new Background(x, y)) }
-    if ( tileType === "s" ) { this.tiles.push( new Sand(x, y)) }
-    if ( tileType === "w" ) { this.tiles.push( new Water(x, y)) } 
-    if ( tileType === "a" ) { this.tiles.push( new Air(x, y)) }
+    
+    if ( tileType === "b" ) {  new Background(x, y) }
+    if ( tileType === "s" ) {  new Sand(x, y) }
+    if ( tileType === "w" ) {  new Water(x, y) } 
+    if ( tileType === "a" ) {  new Air(x, y) }
     if ( tileType === "P" ) { Game.player = new Player(x, y)}
     if ( tileType === "Q" ) { Game.player2 = new Player(x, y)}
   }

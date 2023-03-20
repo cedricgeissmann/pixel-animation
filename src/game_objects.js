@@ -85,7 +85,11 @@ export class Background extends GameObject {
 export class Sand extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
-    super(x, y, ground)
+     super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
     this.row = 0
     this.col = 0
   }
@@ -130,19 +134,7 @@ export class Cave extends GameObject {
   }
 }
 
-export class FallingStone extends Stone {
-  constructor(x, y) {
-    super(x, y)
-    this.handlers = new HandlerManager([
-      new GravityHandler({
-        maxGravity: 3,
-        gravityForce: 1
-      }),
-      new CollisionHandler()
-    ])
-  }
-  
-}
+
 
 export class Air extends GameObject {
   constructor(x, y) {
