@@ -1,0 +1,50 @@
+╭─━━━━━━━━━━━━─╮
+ gamedescription
+╰─━━━━━━━━━━━━─╯
+
+Our game is a rpg game based on the 
+pokemon game series and the associated
+game princips. In our interests it should
+contain the following aspects:
+
+─────game-aspects─────
+-free overworld movement 
+and environment changes
+
+-fight sequences
+
+-story based excercise
+and npc interaction
+
+-commentaries
+
+-leveling system and experience
+
+  ─────storyline─────
+Overall our rpg game is devided
+into three different parts which
+are all presented by a specific 
+island and asscociated fights. 
+That means if the player was
+able to complete every 
+single island he wins the game.
+
+The story should be like this, 
+that all of these three islands 
+are suffering from a dangerous 
+slime invasion and the char has to
+rescue the citiziens from the slimes by
+fighting against them.
+
+He beginns in his own villige and moves to
+the other islands by boat. He interacts
+with different citiziens and the game action 
+is supported by helpful commentaries.
+
+During the game he gains experience and 
+rises in level what influences his strength. 
+
+The slimes get stronger from island to 
+island what leads to the point that the char 
+first has to fight against the weaker ones 
+and is able to move on after.
