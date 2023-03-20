@@ -174,15 +174,16 @@ export class Trunk extends GameObject {
 }
 
 export class Hole extends GameObject {
-  constructor(x, y) {
+  constructor(x, y, forPlayer) {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["world"]
+      collisionTags: ["cave"]
     })
     this.row = 1
     this.col = 2
+    this.forPlayer = forPlayer
   }
 }
 

@@ -131,7 +131,13 @@ export class CollisionHandler {
     }
 
     if (collidingObject.collisionTags.includes("cave")) {
-      Game.loadMap("maps/map-02.txt")
+      if (collidingObject.forPlayer === 1 && gameObject instanceof Player) {
+        Game.loadMap("maps/map-02.txt")
+      }
+      else if (collidingObject.forPlayer === 2 && gameObject instanceof Player2) {
+        Game.loadMap("maps/map-02.txt")
+      }
+      
     }
   }
 }
