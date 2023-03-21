@@ -175,25 +175,32 @@ export class Blume2 extends GameObject {
   }
 }
 
-export class Palme extends GameObject {
+export class Bank1 extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#Deco3")
+    const ground = document.querySelector("#Deco2")
     super(x, y, {
       sheet: ground,
       layer: "world",
       collisionTags: ["world"]
     })
-    this.tileSize = 25
-    this.row = 14
-    this.col = 10
+    this.row = 15
+    this.col = 4
   }
-  draw(ctx) {
-    ctx.drawImage(
-      this.sheet,
-      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize + 32,
-      this.x, this.y, this.tileSize + 20, this.tileSize + 100
-    )
+  
 }
+
+export class Bank2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 15
+    this.col = 5
+  }
+  
 }
 
 
