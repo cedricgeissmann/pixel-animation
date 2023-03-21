@@ -175,6 +175,19 @@ export class Mushroom extends GameObject {
     this.col = 2
   }
 }
+export class Hedges extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Hedges")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["forest"]
+    })
+    this.tileSize = 32 
+    this.row = 0
+    this.col = 2
+  }
+}
 
 
 
