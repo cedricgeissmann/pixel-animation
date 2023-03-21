@@ -252,33 +252,12 @@ constructor(name, hp, dmg) {
 }
 
 
-export function actionHeal() {
-  this.statsHp = this.statsHp + 100
-}
-export function actionAttack() {
-this.statsHp = 100
-console.log(currency)
-}
-
-export function actionDie() {
-  this.statsHp = 0
-}
-
-export function takeDamage(dmg) {
-  let takeDmg = dmg
-  this.statsHp = this.statsHp - takeDmg
-}
-
-
-
 
  export function Geldverdienen() {
   //if(player rennt über Pilze, dann currency++)
   
   if (collidingObject.collisionTags.includes("pickups")) {
-    collidingObject.destroy()
-    currency++
-    print(currency)
+    increaseMoney()
   }
   console.log(currency)
  }
