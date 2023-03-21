@@ -1,8 +1,7 @@
-import EventHandler, {AnimationHandler, CollisionHandler, HandlerManager} from "./event_handler.js"
+import EventHandler, {AnimationHandler, CollisionHandler, HandlerManager, } from "./event_handler.js"
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
-import Game from "./game.js"
 
 
 /**
@@ -218,6 +217,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "ArrowLeft"){ this.move("left") }
     if (ev === "ArrowRight"){ this.move("right") }
 
+
   }
 
   move(direction) {
@@ -256,36 +256,8 @@ constructor(name, hp, dmg) {
 }
 
 
-export function actionHeal() {
-  this.statsHp = this.statsHp + 100
-}
-export function actionAttack() {
-this.statsHp = 100
-console.log(currency)
-}
-
-export function actionDie() {
-  this.statsHp = 0
-}
-
-export function takeDamage(dmg) {
-  let takeDmg = dmg
-  this.statsHp = this.statsHp - takeDmg
-}
 
 
-
-
- export function Geldverdienen() {
-  //if(player rennt über Pilze, dann currency++)
-  
-  if (collidingObject.collisionTags.includes("pickups")) {
-    collidingObject.destroy()
-    currency++
-    print(currency)
-  }
-  console.log(currency)
- }
 
  export class HealthBar {
   constructor() {
@@ -340,21 +312,25 @@ export class MoneySystem {
     this.money += amount;
     this.updateMoney();
   }
-
-  makeMoney(collidingObject) {
+  
+   makeMoney(collidingObject, event) {
     if (collidingObject.collisionTags.includes("pickups")) {
       this.increaseMoney(10);
     }
-    else if(collidingObject.collisionTags.includes("forest")){
-      if(event.key = "f") {
-       countdownDuration = 3
-        if(countdownDuration <= 0) {
-          collidingObject.destroy()
+    else if (collidingObject.collisionTags.includes("forest") && event.key === "f") {
+      let countdownDuration = 3;
+      const countdownInterval = setInterval(() => {
+        countdownDuration--;
+        if (countdownDuration <= 0) {
+          clearInterval(countdownInterval);
+          collidingObject.destroy();
+          this.increaseMoney(20);
+          this.updateMoney(); // update displayed money
         }
-      }
-
+      }, 1000);
     }
   }
+  
 }
 
 export const moneySystem = new MoneySystem(0);
