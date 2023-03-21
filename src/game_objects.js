@@ -279,6 +279,8 @@ constructor(name, hp, dmg) {
   updateHealthPoints() {
     this.healthPoints.textContent = this.health.toString();
   }
+
+  
 }
 
 export const healthBar = new HealthBar();
