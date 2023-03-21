@@ -203,6 +203,58 @@ export class Bank2 extends GameObject {
   
 }
 
+export class Brunnen1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 3
+    this.col = 6
+  }
+}
+
+export class Brunnen2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 3
+    this.col = 7
+  }
+}
+
+export class Brunnen3 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 4
+    this.col = 6
+  }
+}
+
+export class Brunnen4 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 4
+    this.col = 7
+  }
+}
+
 
 export class Strand extends GameObject {
   constructor(x, y) {
