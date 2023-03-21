@@ -2,6 +2,7 @@ import Map from "./map.js"
 import CollisionDetector from "./collision_detector.js"
 import Camera from "./camera.js"
 import TileRegistry from "./tile_registry.js"
+import { MoneySystem } from "./game_objects.js";
 
 
 /**
@@ -12,6 +13,8 @@ export default class Game {
 
   static map = null;
   static player = null;
+  static money = null;
+  static healthpoints = null;
   static running = false;
   static worldNumber = 1
 
@@ -22,6 +25,8 @@ export default class Game {
     this.canvas.height = 15 * this.tileSize
     this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
+
+    Game.money = new MoneySystem(100)
 
     Game.loadMap("maps/map-01.txt")
 

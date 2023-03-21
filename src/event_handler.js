@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player } from "./game_objects.js"
+import { Player  } from "./game_objects.js"
 import Game from "./game.js"
 
 export default class EventHandler {
@@ -63,7 +63,8 @@ export class CollisionHandler {
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     if (collidingObject.collisionTags.includes("pickups")) {
-      collidingObject.destroy()
+     collidingObject.destroy()
+     Game.money.increaseMoney(10)
     }
     
     

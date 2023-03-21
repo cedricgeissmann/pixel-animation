@@ -1,8 +1,7 @@
-import EventHandler, {AnimationHandler, CollisionHandler, HandlerManager} from "./event_handler.js"
+import EventHandler, {AnimationHandler, CollisionHandler, HandlerManager, } from "./event_handler.js"
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
-import Game from "./game.js"
 
 
 /**
@@ -213,7 +212,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-        if (ev === "ArrowUp"){ this.move("up") }
+    if (ev === "ArrowUp"){ this.move("up") }
     if (ev === "ArrowDown"){ this.move("down") }
     if (ev === "ArrowLeft"){ this.move("left") }
     if (ev === "ArrowRight"){ this.move("right") }
@@ -258,14 +257,7 @@ constructor(name, hp, dmg) {
 
 
 
- export function Geldverdienen() {
-  //if(player rennt über Pilze, dann currency++)
-  
-  if (collidingObject.collisionTags.includes("pickups")) {
-    increaseMoney()
-  }
-  console.log(currency)
- }
+
 
  export class HealthBar {
   constructor() {
@@ -320,21 +312,25 @@ export class MoneySystem {
     this.money += amount;
     this.updateMoney();
   }
-
-  makeMoney(collidingObject) {
+  
+   makeMoney(collidingObject, event) {
     if (collidingObject.collisionTags.includes("pickups")) {
       this.increaseMoney(10);
     }
-    else if(collidingObject.collisionTags.includes("forest")){
-      if(event.key = "f") {
-       countdownDuration = 3
-        if(countdownDuration <= 0) {
-          collidingObject.destroy()
+    else if (collidingObject.collisionTags.includes("forest") && event.key === "f") {
+      let countdownDuration = 3;
+      const countdownInterval = setInterval(() => {
+        countdownDuration--;
+        if (countdownDuration <= 0) {
+          clearInterval(countdownInterval);
+          collidingObject.destroy();
+          this.increaseMoney(20);
+          this.updateMoney(); // update displayed money
         }
-      }
-
+      }, 1000);
     }
   }
+  
 }
 
 export const moneySystem = new MoneySystem(0);
