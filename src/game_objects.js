@@ -142,6 +142,11 @@ export class Player extends AnimatedGameObject {
 
   update() {
     super.update()
+    if (this.y > 30) {
+      this.y = 4 
+      this.x = 4
+    } 
+    // This.y ist die y Koordinate. Wenn diese beim Fallen über 30 geht, dann soll der Spieler wieder bei den Koordinaten (4/4) respawnen
     this.y = this.y + this.gravity
     this.gravity = Math.min(this.gravity + 0.02, this.max_gravity)
     this.eventHandler._handleEvents(this)
