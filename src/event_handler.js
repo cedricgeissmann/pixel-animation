@@ -103,7 +103,11 @@ export class CollisionHandler {
           collidingObject.destroy()
            Game.updateCupcake(1)
           }
-
+    
+          if (collidingObject.collisionTags.includes("pickups")) {
+            collidingObject.destroy()
+             Game.updateLachssushi(1)
+            }
        
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
