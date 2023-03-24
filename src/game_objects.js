@@ -360,6 +360,18 @@ export class Busch1 extends GameObject {
   }
 }
 
+export class Lblume extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco1")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 4
+    this.col = 5
+  }
+}
 export class Busch2 extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco2")
