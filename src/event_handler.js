@@ -123,11 +123,20 @@ export class CollisionHandler {
       console.log("collision")
       collidingObject.destroy()
     }
+     if (collidingObject.collisionTags.includes("pickups")) {
+      collidingObject.destroy()
+      if (collidingObject instanceof Flower) {
+     
+      
+    
+      
+     }
 
     if (collidingObject.collisionTags.includes("cave")) {
       Game.loadMap("maps/map-richtig.txt")
     }
   }
+}
 }
 
 export class AnimationHandler {
@@ -152,3 +161,4 @@ export class AnimationHandler {
 
   }
 }
+

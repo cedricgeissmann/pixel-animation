@@ -114,40 +114,38 @@ export class Backgroundred extends GameObject {
   
 export class Baumstumpf extends GameObject {
     constructor(x, y) {
-      super(x, y, ground)
+      super(x, y, {
+        sheet: ground,
+        layer: "world",
+        collisionTags: ["world"]
+      })
       this.col = 0
       this.row = 1
     }
   }
   
-export class Hoehle extends GameObject {
-    constructor(x, y) {
-      super(x, y, ground)
-      this.col = 2
-      this.row = 1
-    }
-  }
+
   
 export class Pilz extends GameObject {
     constructor(x, y) {
-      super(x, y, ground)
+      super(x, y, {
+        sheet: ground,
+        layer: "background",
+        collisionTags: ["pickups"]
+      })
       this.col = 2
       this.row = 0
     }
   }
   
-  
-export class  Wand extends GameObject {
-    constructor(x, y) {
-      super(x, y, ground)
-      this.col = 3
-      this.row = 1
-    }
-  }
-  
+    
 export class Flower extends GameObject {
     constructor(x, y) {
-      super(x, y, ground)
+      super(x, y, {
+        sheet: ground,
+        layer: "background",
+        collisionTags: ["pickups"]
+      })
       this.col = 3
       this.row = 0
     }
@@ -193,19 +191,6 @@ export class Cave extends GameObject {
   }
 }
 
-export class FallingStone extends Stone {
-  constructor(x, y) {
-    super(x, y)
-    this.handlers = new HandlerManager([
-      new GravityHandler({
-        maxGravity: 3,
-        gravityForce: 1
-      }),
-      new CollisionHandler()
-    ])
-  }
-  
-}
 
 export class Tree extends GameObject {
   constructor(x, y) {
