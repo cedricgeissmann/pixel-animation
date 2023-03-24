@@ -1,16 +1,41 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player } from "./game_objects.js"
+import { Flower, Mushroom, Player, Player2 } from "./game_objects.js"
+import Game from "./game.js"
+import config from "./config.js"
 
-export default class EventHandler {
+
+export default class InputHandler {
+
+  static events = new Set()
+  static commands = []
+
   constructor() {
-    this.events = new Set()
     // Setup Eventlisteners
-    window.onkeydown = (ev) => {this.events.add(ev.code)}
-    window.onkeyup = (ev) => {this.events.delete(ev.code)}
+    window.onkeydown = (ev) => {InputHandler.events.add(ev.code)}
+    window.onkeyup = (ev) => {InputHandler.events.delete(ev.code)}
+    Object.entries(config["keys"]).forEach(([key, callback]) => {
+      new Command(key, callback)
+    })
   }
 
-  _handleEvents(gameObject) {
-    this.events.forEach((ev) => gameObject.handle(ev))
+  static handleAllEvents() {
+    InputHandler.events.forEach((ev) => {
+      InputHandler.commands.forEach(command => {
+        if (command.key === ev) {
+          command.callback()
+        }
+      })
+    })
+    
+  }
+}
+
+
+class Command {
+  constructor(key, callback) {
+    this.key = key
+    this.callback = callback
+    InputHandler.commands.push(this)
   }
 }
 
@@ -77,16 +102,61 @@ export class CollisionHandler {
         gameObject.x = gameObject.x - pen.x
       } else {
         gameObject.y = gameObject.y - pen.y
-        if (gameObject.handlers.get(GravityHandler).gravity >= 0) {
-          gameObject.isStanding = true
+        const gravityHandler = gameObject.handlers.get(GravityHandler)
+        if (gravityHandler != null) {
+          if (gravityHandler.gravity >= 0) {
+            gameObject.isStanding = true
+          }
+          gravityHandler.gravity = 0
         }
-        gameObject.handlers.get(GravityHandler).gravity = 0
       }
     }
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
+      if (collidingObject instanceof Flower) {
+        gameObject.speed = 6
+        setInterval(function() {
+          gameObject.speed = 3
+        }, 2000)
+      }
+      
+      else if (collidingObject instanceof Mushroom) {
+        gameObject.speed = 1
+        setInterval(function() {
+          gameObject.speed = 3
+        }, 2000)
+      }
+    }
+
+    if (collidingObject.collisionTags.includes("cave")) {
+      console.log(collidingObject)
+      if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 1) {
+        Game.punkteSpieler1 += 1
+        const elem = document.querySelector("#spielstand")
+        elem.textContent = Game.punkteSpieler1 + " - " + Game.punkteSpieler2
+        elem.style.display = "flex"
+        console.log(Game.punkteSpieler1 + " - " + Game.punkteSpieler2)
+        setTimeout(function() {
+          elem.style.display = "none"
+          Game.loadMap("maps/map-02.txt")
+}, 2000)
+        
+        
+      }
+      else if (collidingObject.forPlayer === 1 && gameObject.playerNumber === 2) {
+        Game.punkteSpieler1 += 1
+        const elem = document.querySelector("#spielstand")
+        elem.textContent = Game.punkteSpieler1 + " - " + Game.punkteSpieler2
+        elem.style.display = "flex"
+        console.log(Game.punkteSpieler1 + " - " + Game.punkteSpieler2)
+        setTimeout(function() {
+          elem.style.display = "none"
+          Game.loadMap("maps/map-02.txt")
+}, 2000)
+      }
+      
     }
   }
 }

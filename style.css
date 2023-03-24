@@ -3,13 +3,29 @@ body {
     margin: 0;
     text-align: center;
     background-color: rgb(24, 49, 26);
+    position: relative;
 }
 
 canvas {
     background-color: white;
-    height: min(90vh, 100vw);
+    width: 100vw;
 }
 
 h1 {
     color: rgb(163, 243, 168);
+}
+
+
+#spielstand {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(24, 49, 26);
+    color: rgb(163, 243, 168);
+    font-size: 4.5em;
+    
+
 }

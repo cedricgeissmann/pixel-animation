@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel Animation</title>
-
-    <link rel="stylesheet" href="style.css">
-    <script src="src/script.js" type="module" defer></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="startside.css">
+    
 </head>
 <body>
     <h1>Game Ursina</h1>
-    <canvas id="canvas"></canvas>
-    <div style="display:none;">
-        <img id="character" src="res/chars.png"/>
-        <img id="ground" src="res/ground.png"/>
+    <a id="start-game" href="game.html">Spiel starten</a>
+    
+    <div class="box">
+        <h2>Bei unserem Spiel handelt es sich um ein Labyrinthspiel. Man spielt es gegen eine andere Person. Der orange Spieler wird mit den Pfeilen gesteuert und der blaue Spieler wird mit den Buchstaben W, A, S und D gesteuert. <br> Das Ziel, des Spieles ist, schneller als der Gegenspieler im Ziel zu sein. Das Ziel, des orangen Spieler ist die Starthöle des blauen Spieler und umgekehrt. <br> Wenn man in einen Pilz reinfährt, wird man für drei Sekunden langsamer. Wenn man in die Blumen reinfährt, wird man für drei Sekunden schneller. In die Steine und die Bäume kann man nicht reinfahren. <br> ACHTUNG: <br> Man muss sehr genau steuern, damit man in die Lücken reinfahren kann.</h2>
     </div>
+    
+    <div class="2players">
+        <img id="blauer-player" src="res/bluep.png">
+        <img id="oranger-player" src="res/orangep.png">
+    </div>
+
 </body>
 </html>

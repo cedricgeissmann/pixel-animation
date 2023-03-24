@@ -14,7 +14,17 @@ export default class CollisionDetector {
         world: [],
         forest: [],
         pickups: [],
+        cave: [],
 
+    }
+
+    static clear() {
+      CollisionDetector.layers = {
+        world: [],
+        forest: [],
+        pickups: [],
+        cave: [],
+      }
     }
 
     /**

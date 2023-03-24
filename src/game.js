@@ -2,6 +2,7 @@ import Map from "./map.js"
 import CollisionDetector from "./collision_detector.js"
 import Camera from "./camera.js"
 import TileRegistry from "./tile_registry.js"
+import EventHandler from "./event_handler.js"
 
 
 /**
@@ -10,20 +11,30 @@ import TileRegistry from "./tile_registry.js"
  */
 export default class Game {
 
-  static map = new Map("maps/map.txt")
+  static map = null;
   static player = null;
+  static punkteSpieler1 = 0;
+  static punkteSpieler2 = 0;
+  static player2 = null;
+  static running = false;
+  static currentFrame = 0;
 
   constructor() {
     this.tileSize = 32
     this.canvas = document.querySelector("#canvas")
-    this.canvas.width = 11 * this.tileSize
-    this.canvas.height = 10 * this.tileSize
+    this.canvas.width = 41 * this.tileSize
+    this.canvas.height = 21 * this.tileSize
     this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
+    new EventHandler()
+
+    Game.loadMap("maps/map-01.txt")
+
     this.camera = new Camera(this)
 
-    this.running = false
+    Game.running = false
+    window.requestAnimationFrame(this.gameLoop.bind(this))
   }
 
   /**
@@ -32,9 +43,8 @@ export default class Game {
    * Das Spiel wird gestartet indem die Animationsschleife
    * des Spiels aufgerufen wird.
    */
-  start() {
-    this.running = true
-    window.requestAnimationFrame(this.gameLoop.bind(this))
+  static start() {
+    Game.running = true
   }
 
   /**
@@ -46,8 +56,16 @@ export default class Game {
    * Um das Spiel weiterlaufen zu lassen, muss die Methode 
    * `start()` aufgerufen werden.
    */
-  pause() {
-    this.running = false
+  static pause() {
+    Game.running = false
+  }
+
+  static loadMap(mapfile) {
+      TileRegistry.clear()
+      CollisionDetector.clear()
+      Game.player = null
+      Game.map = new Map(mapfile)
+
   }
 
   /**
@@ -57,9 +75,13 @@ export default class Game {
    * Spiel-Objekte werden neu gezeichnet.
    */
   gameLoop() {
+
+    Game.currentFrame++
     
     this.camera.clearScreen()
     this.camera.nextFrame()
+
+    EventHandler.handleAllEvents()
 
     TileRegistry.updateAllTiles()
     CollisionDetector.checkCollision("all")
@@ -69,7 +91,7 @@ export default class Game {
 
     TileRegistry.drawAllTiles(this.ctx)
 
-    if (this.running = true) {
+    if (Game.running === true) {
       window.requestAnimationFrame(this.gameLoop.bind(this))
     }
   }

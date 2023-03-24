@@ -1,8 +1,7 @@
-import EventHandler, {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
+import {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
-
 
 /**
  * Dies ist die Basisklasse für alle Spiel-Objekte.
@@ -95,6 +94,19 @@ export class Stone extends GameObject {
   }
 }
 
+export class Cave extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["cave"]
+    })
+    this.row = 1
+    this.col = 2
+  }
+}
+
 export class FallingStone extends Stone {
   constructor(x, y) {
     super(x, y)
@@ -115,7 +127,7 @@ export class Tree extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["forest"]
+      collisionTags: ["world"]
     })
     this.row = 1
     this.col = 1
@@ -154,7 +166,7 @@ export class Trunk extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "item",
-      collisionTags: ["pickups"]
+      collisionTags: []
     })
     this.row = 1
     this.col = 0
@@ -162,15 +174,16 @@ export class Trunk extends GameObject {
 }
 
 export class Hole extends GameObject {
-  constructor(x, y) {
+  constructor(x, y, forPlayer) {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["forest"]
+      collisionTags: ["cave"]
     })
     this.row = 1
     this.col = 2
+    this.forPlayer = forPlayer
   }
 }
 
@@ -180,7 +193,7 @@ export class Wall extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["forest"]
+      collisionTags: ["world"]
     })
     this.row = 1
     this.col = 3
@@ -212,19 +225,15 @@ export class Player extends AnimatedGameObject {
     super(x, y, {
       sheet: img,
       layer: "player",
-      collisionTags: ["world", "pickups"]
+      collisionTags: ["world", "pickups", "cave", "forest"]
     })
     this.row = 0
     this.col = 1
     this.speed = 3
+    this.playerNumber = 1
     this.handlers = new HandlerManager([
-      new EventHandler(),
-      new GravityHandler({ 
-        jumpForce: -10,
-        maxGravity: 5,
-        gravityForce: 1 }),
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
+      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 2})
     ])
   }
 
@@ -236,27 +245,54 @@ export class Player extends AnimatedGameObject {
     super.update()
   }
 
-  handle(ev) {
-    if (ev === "KeyW") { this.move("up") }
-    if (ev === "KeyS") { this.move("down") }
-    if (ev === "KeyA") { this.move("left") }
-    if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space") { this.jump() }
-  }
-
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 3
+      this.row = 0
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
       this.row = 0
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 1
+      this.row = 0
+      this.col = 1
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 2
+      this.row = 0
+      this.col = 0
+    }
+  }
+}
+
+export class Player2 extends Player {
+  constructor(x, y) {
+    super(x, y)
+    this.row = 1
+    this.col = 0
+    this.playerNumber = 2
+  }
+  handle(ev) {
+    if (ev === "ArrowUp") { this.move("up") }
+    if (ev === "ArrowDown") { this.move("down") }
+    if (ev === "ArrowLeft") { this.move("left") }
+    if (ev === "ArrowRight") { this.move("right") }
+  }
+
+  move(direction) {
+    if (direction === "up") {
+      this.dy = this.dy + (-1) * this.speed
+      this.row = 1
+    } else if (direction === "down") {
+      this.dy = this.dy + (1) * this.speed
+      this.row = 1
+    } else if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed
+      this.row = 1
+      this.col = 1
+    } else if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed
+      this.row = 1
+      this.col = 0
     }
   }
 }
