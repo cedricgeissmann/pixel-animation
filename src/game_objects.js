@@ -487,6 +487,45 @@ export class Essen1 extends GameObject {
       collisionTags: ["pickups"]
     })
     this.row = 0
+    this.col = 3
+  }
+}
+
+export class Essen2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Essen")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 5
+    this.col = 5
+  }
+}
+
+export class Essen3 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Essen")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 5
+    this.col = 1
+  }
+}
+
+export class Essen4 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Essen")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 5
     this.col = 2
   }
 }
