@@ -61,11 +61,7 @@ export default class Game {
 
   }
 
-static updateMushroom(value) 
-{ const elem = document.querySelector("#mushroom-counter")
- let count = parseInt (elem.textContent)
-  elem.textContent = count + value
- }
+
  static updateApfel(value) 
 { const elem = document.querySelector("#apfel-counter")
  let count = parseInt (elem.textContent)
