@@ -66,6 +66,11 @@ static updateMushroom(value)
  let count = parseInt (elem.textContent)
   elem.textContent = count + value
  }
+ static updateApfel(value) 
+{ const elem = document.querySelector("#apfel-counter")
+ let count = parseInt (elem.textContent)
+  elem.textContent = count + value
+ }
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
    * Die Positionen der Spiel-Objekte werden neu berechnet,
