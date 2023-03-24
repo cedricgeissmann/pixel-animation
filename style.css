@@ -9,3 +9,16 @@ canvas {
     background-color: white;
     width: min(70vh, 100vw);
 }
+.container {
+    width: 100vw;
+    background-color: lightgrey;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
