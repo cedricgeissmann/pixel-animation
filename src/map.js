@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background, Mushroom, Player, Stone, Tree, Wall, Cave, Sbackground, Cavefloor, Mushroompurple, Caveentrance, Cavewall, StoneGrey, Lapislazuli, Ruby, Crown } from "./game_objects.js"
+import { Background, Mushroom, Player, Stone, Tree, Wall, Cave, Sbackground, Cavefloor, Mushroompurple, Caveentrance, Cavewall, StoneGrey, Lapislazuli, Ruby, Crown, Waterhole } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -31,6 +31,7 @@ export default class Map {
     if ( tileType === "L" ) { new Lapislazuli(x, y)}
     if ( tileType === "R" ) { new Ruby(x, y)}
     if ( tileType === "O" ) { new Crown(x, y)}
+    if ( tileType === "A" ) { new Waterhole(x, y)}
 
   }
 

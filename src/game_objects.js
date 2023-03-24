@@ -110,6 +110,19 @@ export class Stone extends GameObject {
   }
 }
 
+export class Waterhole extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Waterhole")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 0
+  }
+}
+
 export class Wall extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
