@@ -365,8 +365,8 @@ export class Lblume extends GameObject {
     const ground = document.querySelector("#Deco1")
     super(x, y, {
       sheet: ground,
-      layer: "world",
-      collisionTags: ["world"]
+      layer: "item",
+      collisionTags: ["pickups"]
     })
     this.row = 4
     this.col = 5
