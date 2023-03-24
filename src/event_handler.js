@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Flower, Mushroom, Player } from "./game_objects.js"
+import { Flower, Mushroom, Player, Player2 } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -131,10 +131,11 @@ export class CollisionHandler {
     }
 
     if (collidingObject.collisionTags.includes("cave")) {
-      if (collidingObject.forPlayer === 1 && gameObject instanceof Player) {
+      console.log(collidingObject)
+      if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 1) {
         Game.loadMap("maps/map-02.txt")
       }
-      else if (collidingObject.forPlayer === 2 && gameObject instanceof Player2) {
+      else if (collidingObject.forPlayer === 1 && gameObject.playerNumber === 2) {
         Game.loadMap("maps/map-02.txt")
       }
       
