@@ -134,9 +134,18 @@ export class CollisionHandler {
       console.log(collidingObject)
       if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 1) {
         Game.loadMap("maps/map-02.txt")
+        
       }
       else if (collidingObject.forPlayer === 1 && gameObject.playerNumber === 2) {
-        Game.loadMap("maps/map-02.txt")
+        Game.punkteSpieler1 += 1
+        const elem = document.querySelector("#spielstand")
+        elem.textContent = Game.punkteSpieler1 + " - " + Game.punkteSpieler2
+        elem.style.display = "flex"
+        console.log(Game.punkteSpieler1 + " - " + Game.punkteSpieler2)
+        setTimeout(function() {
+          elem.style.display = "none"
+          Game.loadMap("maps/map-02.txt")
+}, 2000)
       }
       
     }
