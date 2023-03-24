@@ -66,6 +66,19 @@ export class CollisionHandler {
      collidingObject.destroy()
      Game.money.increaseMoney(10)
     }
+
+    if (collidingObject.collisionTags.includes("forest") && event.key === "f") {
+      let countdownDuration = 3;
+      const countdownInterval = setInterval(() => {
+        countdownDuration--;
+        if (countdownDuration <= 0) {
+          clearInterval(countdownInterval);
+          collidingObject.destroy();
+          Game.money.increaseMoney(20);
+          this.updateMoney(); 
+        }
+      }, 1000);
+    }
     
     
     if (collidingObject.collisionTags.includes("cave")) {

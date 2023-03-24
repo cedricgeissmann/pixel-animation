@@ -140,7 +140,7 @@ export class Tree extends GameObject {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
-      layer: "world",
+      layer: "forest",
       collisionTags: ["world"]
     })
     this.row = 1
@@ -207,11 +207,24 @@ export class Player extends AnimatedGameObject {
     super.update()
   }
 
+  cutTree() {
+    TileRegistry.layers["forest"].forEach((tree) => {
+      console.log(tree)
+      console.log(tree.x, tree.y, this.x, this.y)
+      if(this.x && this.y === tree.x && tree.y +1 )
+      {
+        tree.destroy()
+      }
+      
+    })
+  }
+
   handle(ev) {
     if (ev === "KeyW") { this.move("up") }
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
+    if (ev === "KeyF") { this.cutTree() }
     if (ev === "ArrowUp"){ this.move("up") }
     if (ev === "ArrowDown"){ this.move("down") }
     if (ev === "ArrowLeft"){ this.move("left") }
@@ -315,23 +328,6 @@ export class MoneySystem {
     this.updateMoney();
   }
   
-   makeMoney(collidingObject, event) {
-    if (collidingObject.collisionTags.includes("pickups")) {
-      this.increaseMoney(10);
-    }
-    else if (collidingObject.collisionTags.includes("forest") && event.key === "f") {
-      let countdownDuration = 3;
-      const countdownInterval = setInterval(() => {
-        countdownDuration--;
-        if (countdownDuration <= 0) {
-          clearInterval(countdownInterval);
-          collidingObject.destroy();
-          this.increaseMoney(20);
-          this.updateMoney(); // update displayed money
-        }
-      }, 1000);
-    }
-  }
   
 }
 
