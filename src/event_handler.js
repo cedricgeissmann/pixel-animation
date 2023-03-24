@@ -123,8 +123,13 @@ export class CollisionHandler {
      if (collidingObject.collisionTags.includes("pickups")) {
               collidingObject.destroy()
                Game.updateKristall(1)
-                
               }
+
+     if (collidingObject.collisionTags.includes("pickups")) {
+             collidingObject.destroy()
+             Game.updateBlume(1)
+               }
+
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
     }
