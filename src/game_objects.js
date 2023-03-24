@@ -473,6 +473,19 @@ export class Mushroom extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
+    this.row = 4
+    this.col = 4
+  }
+}
+
+export class Essen1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Essen")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
     this.row = 0
     this.col = 2
   }
