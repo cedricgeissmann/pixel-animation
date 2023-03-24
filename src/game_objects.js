@@ -74,7 +74,7 @@ export class Backgroundgreen extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "background",
-      collisionTags: []
+      collisionTags: ["background"]
     })
 
     this.row = 0
