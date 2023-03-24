@@ -13,6 +13,8 @@ export default class Game {
 
   static map = null;
   static player = null;
+  static punkteSpieler1 = 0;
+  static punkteSpieler2 = 0;
   static player2 = null;
   static running = false;
   static currentFrame = 0;
