@@ -20,6 +20,7 @@ export default class Map {
   addTilesToMap(x, y, tileType) {
     if (this.mapfile === "maps/maparena.txt") {
       new Sbackground(x, y)
+      
     }
     new Background1(x, y)
     if ( tileType === "s" ) { new Stone(x, y) }
