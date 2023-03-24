@@ -230,6 +230,7 @@ export class Player extends AnimatedGameObject {
     this.row = 0
     this.col = 1
     this.speed = 3
+    this.playerNumber = 1
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 2})
@@ -268,6 +269,7 @@ export class Player2 extends Player {
     super(x, y)
     this.row = 1
     this.col = 0
+    this.playerNumber = 2
   }
   handle(ev) {
     if (ev === "ArrowUp") { this.move("up") }
