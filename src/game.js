@@ -82,6 +82,11 @@ static updateMushroom(value)
    let count = parseInt (elem.textContent)
     elem.textContent = count + value
    }
+   static updateGelbsushi(value) 
+  { const elem = document.querySelector("#gelbsushi-counter")
+   let count = parseInt (elem.textContent)
+    elem.textContent = count + value
+   }
   
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
