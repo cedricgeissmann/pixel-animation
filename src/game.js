@@ -67,6 +67,7 @@ export default class Game {
  let count = parseInt (elem.textContent)
   elem.textContent = count + value
  }
+
  static updateCupcake(value) 
  { const elem = document.querySelector("#cupcake-counter")
   let count = parseInt (elem.textContent)
@@ -78,12 +79,30 @@ export default class Game {
    let count = parseInt (elem.textContent)
     elem.textContent = count + value
    }
+
    static updateGelbsushi(value) 
   { const elem = document.querySelector("#gelbsushi-counter")
    let count = parseInt (elem.textContent)
     elem.textContent = count + value
    }
-  
+
+   static updatePilz(value) 
+  { const elem = document.querySelector("#pilz-counter")
+   let count = parseInt (elem.textContent)
+    elem.textContent = count + value
+   }
+
+   static updateRubin(value) 
+   { const elem = document.querySelector("#rubin-counter")
+    let count = parseInt (elem.textContent)
+     elem.textContent = count + value
+    }
+
+    static updateKristall(value) 
+   { const elem = document.querySelector("#kristall-counter")
+    let count = parseInt (elem.textContent)
+     elem.textContent = count + value
+    }
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
    * Die Positionen der Spiel-Objekte werden neu berechnet,
