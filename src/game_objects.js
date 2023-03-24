@@ -43,12 +43,12 @@ export class Background extends GameObject {
   }
 }
 
-export class Stone extends GameObject {
+export class Stone1 extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#ground")
+    const ground = document.querySelector("#Stein")
     super(x, y, ground, ["world"])
     this.row = 0
-    this.col = 1
+    this.col = 0
   }
 }
 
@@ -66,7 +66,7 @@ export class Mushroom extends GameObject {
     const ground = document.querySelector("#ground")
     super(x, y, ground, ["pickups"])
     this.row = 0
-    this.col = 2
+    this.col = 0
   }
 }
 
@@ -153,7 +153,6 @@ export class Player extends AnimatedGameObject {
   }
 
   handle(ev) {
-    if (ev === "KeyW") { this.move("up") }
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
@@ -176,3 +175,5 @@ export class Player extends AnimatedGameObject {
     }
   }
 }
+
+
