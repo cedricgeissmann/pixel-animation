@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player } from "./game_objects.js"
+import { Enemy, Player } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -119,6 +119,10 @@ export class CollisionHandler {
 
     if (collidingObject.collisionTags.includes("cave")) {
       Game.loadMap("maps/map-02.txt")
+    }
+    if (collidingObject instanceof Enemy) {
+      
+      //Game.loadMap("maps/map-02.txt")
     }
   }
 }
