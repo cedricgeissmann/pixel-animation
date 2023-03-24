@@ -110,7 +110,21 @@ export class CollisionHandler {
               collidingObject.destroy()
                Game.updateGelbsushi(1)
               }
-       
+
+    if (collidingObject.collisionTags.includes("pickups")) {
+              collidingObject.destroy()
+               Game.updatePilz(1)
+                }
+
+     if (collidingObject.collisionTags.includes("pickups")) {
+              collidingObject.destroy()
+               Game.updateRubin(1)
+                }
+     if (collidingObject.collisionTags.includes("pickups")) {
+              collidingObject.destroy()
+               Game.updateKristall(1)
+                
+              }
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
     }
