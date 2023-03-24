@@ -89,10 +89,27 @@ export class CollisionHandler {
     }
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
+    
+
     if (collidingObject.collisionTags.includes("pickups")) {
-       collidingObject.destroy()
-        Game.updateMushroom(1)
-       }
+        collidingObject.destroy()
+         Game.updateApfel(1)
+        }
+
+    if (collidingObject.collisionTags.includes("pickups")) {
+          collidingObject.destroy()
+           Game.updateCupcake(1)
+          }
+    
+    if (collidingObject.collisionTags.includes("pickups")) {
+            collidingObject.destroy()
+             Game.updateLachssushi(1)
+            }
+    
+    if (collidingObject.collisionTags.includes("pickups")) {
+              collidingObject.destroy()
+               Game.updateGelbsushi(1)
+              }
        
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()

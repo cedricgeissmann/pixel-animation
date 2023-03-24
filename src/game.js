@@ -61,11 +61,29 @@ export default class Game {
 
   }
 
-static updateMushroom(value) 
-{ const elem = document.querySelector("#mushroom-counter")
+
+ static updateApfel(value) 
+{ const elem = document.querySelector("#apfel-counter")
  let count = parseInt (elem.textContent)
   elem.textContent = count + value
  }
+ static updateCupcake(value) 
+ { const elem = document.querySelector("#cupcake-counter")
+  let count = parseInt (elem.textContent)
+   elem.textContent = count + value
+  }
+
+  static updateLachssushi(value) 
+  { const elem = document.querySelector("#lachssushi-counter")
+   let count = parseInt (elem.textContent)
+    elem.textContent = count + value
+   }
+   static updateGelbsushi(value) 
+  { const elem = document.querySelector("#gelbsushi-counter")
+   let count = parseInt (elem.textContent)
+    elem.textContent = count + value
+   }
+  
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
    * Die Positionen der Spiel-Objekte werden neu berechnet,
