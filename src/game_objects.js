@@ -163,6 +163,19 @@ export class Tree extends GameObject {
   }
 }
 
+export class Crown extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySeector("#Crown")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags:[]
+    })
+    this.row = 0
+    this.col = 0
+  }
+}
+
 export class Mushroom extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -186,6 +199,32 @@ export class Mushroompurple extends GameObject {
     })
     this.row = 2
     this.col = 0
+  }
+}
+
+export class Lapislazuli extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Crystals")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 0
+    this.col = 0
+  }
+}
+
+export class Ruby extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Crystals")
+    super(x, y, {
+      sheet: ground,
+      layer: "item",
+      collisionTags: ["pickups"]
+    })
+    this.row = 0
+    this.col = 1
   }
 }
 
