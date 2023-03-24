@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Mushroom, Player, Stone, Tree, Wall, Cave, Sbackground, Tree1, Background1, Zaun, Busch2, Busch1, Wasser, Strand, Strand2, Tree2, Tree3, Blume, Blume2, kleinebüsche, Roteblume, Roterpilz, Erde, Bank1, Bank2, Brunnen1, Brunnen2, Brunnen3, Brunnen4, Essen1, Essen2, Essen3, Essen4, Hedges } from "./game_objects.js"
+import { Mushroom, Player, Stone, Tree, Wall, Cave, Sbackground, Tree1, Background1, Zaun, Busch2, Busch1, Wasser, Strand, Strand2, Tree2, Tree3, Blume, Blume2, kleinebüsche, Roteblume, Roterpilz, Erde, Bank1, Bank2, Brunnen1, Brunnen2, Brunnen3, Brunnen4, Essen1, Essen2, Essen3, Essen4, Hedges, Cavefloor, Mushroompurple, Caveentrance, Cavewall, StoneGrey, Lapislazuli, Ruby, Crown } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -55,6 +55,14 @@ export default class Map {
     if ( tileType === "B" ) { new Busch1(x, y) }
     if ( tileType === "Z" ) { new Zaun(x, y) }
     if ( tileType === "b" ) { new Busch2(x, y) }
+    if ( tileType === "M" ) { new Mushroompurple(x, y)}
+    if ( tileType === "D" ) { new Caveentrance(x, y)}
+    if ( tileType === "Y" ) { new Cavewall(x, y)}
+    if ( tileType === "G" ) { new StoneGrey(x, y)}
+    if ( tileType === "i" ) { new Lapislazuli(x, y)}
+    if ( tileType === "j" ) { new Ruby(x, y)}
+    if ( tileType === "O" ) { new Crown(x, y)}
+
   }
 
   /**
