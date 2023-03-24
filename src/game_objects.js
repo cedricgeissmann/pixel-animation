@@ -391,7 +391,7 @@ export class Sbackground extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "background",
-      collisionTags: ["world"]
+      collisionTags: []
     })
     this.row = 4
     this.col = 12
