@@ -62,6 +62,7 @@ export default class Map {
     if ( tileType === "i" ) { new Lapislazuli(x, y)}
     if ( tileType === "j" ) { new Ruby(x, y)}
     if ( tileType === "O" ) { new Crown(x, y)}
+    if ( tileType === "A" ) { new Waterhole(x, y)}
 
   }
 
