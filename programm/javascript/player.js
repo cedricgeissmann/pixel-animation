@@ -1,3 +1,5 @@
+import background from "./script.js"
+
 const playerImage = new Image()
 playerImage.src = "./res/player/ACharDown.png"
 
