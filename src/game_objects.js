@@ -248,13 +248,14 @@ export class Player extends AnimatedGameObject {
 
   looseHP(amount) {
     this.hp = this.hp - amount
-    console.log (this.hp)
+    const hpElem = document.querySelector("#HP")
+    hpElem.textContent = this.hp
   }
 
   getHP(amount) {
     this.hp = this.hp + amount
-    console.log (this.hp)
-    
+    const hpElem = document.querySelector("#HP")
+    hpElem.textContent = this.hp
   }
 
   handle(ev) {
@@ -307,9 +308,23 @@ export class Player extends AnimatedGameObject {
 export class Player2 extends Player {
   constructor(x, y) {
     super(x, y)
+    this.hp2 = 100
     this.row = 0
     this.col = 1
   }
+
+  looseHP(amount) {
+    this.hp = this.hp - amount
+    const hpElem = document.querySelector("#HP2")
+    hpElem.textContent = this.hp
+  }
+
+  getHP(amount) {
+    this.hp = this.hp + amount
+    const hpElem = document.querySelector("#HP2")
+    hpElem.textContent = this.hp
+  }
+
   handle(ev) {
     if (ev === "ArrowUp") { this.move("up") }
     else if (ev === "ArrowDown") { this.move("down") }

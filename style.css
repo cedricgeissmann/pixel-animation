@@ -15,5 +15,15 @@ canvas {
     position: absolute;
     top: 100px;
     left: 100px;
-    border: 2px solid rgb(204, 43, 43);
+    border: 2px solid rgb(113, 173, 44);
+    width: 30px;
+    height: 40px;
 }
+
+.status2 {
+    position: absolute;
+    top: 100px;
+    left: 600px;
+    border: 2px solid rgb(1, 40, 56);
+    width: 30px;
+    height: 40px;}
