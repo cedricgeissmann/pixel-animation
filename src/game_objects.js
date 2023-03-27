@@ -87,11 +87,11 @@ export class Sand extends GameObject {
     const ground = document.querySelector("#ground")
      super(x, y, {
       sheet: ground,
-      layer: "background",
-      collisionTags: []
+      layer: "world",
+      collisionTags: ["world"]
     })
-    this.row = 0
-    this.col = 0
+    this.row = 3.6
+    this.col = 3
   }
 }
 
