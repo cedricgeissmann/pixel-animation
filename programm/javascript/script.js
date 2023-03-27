@@ -1,5 +1,5 @@
-const canvas = document.querySelector("#map")
-const c = canvas.getContext("2d")
+export const canvas = document.querySelector("#map")
+export const c = canvas.getContext("2d")
 
 canvas.width = 1024
 canvas.height = 576
@@ -9,8 +9,8 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 
 
 
-const image = new Image()
-//image.src = "current map file"
+export const image = new Image()
+image.src ="../res/maps/map2zoom.png"
 
 
 class Sprite {
