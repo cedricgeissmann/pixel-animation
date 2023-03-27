@@ -3,7 +3,7 @@ body {
     margin: 0;
     text-align: center;
     background-color: antiquewhite;
-    position: fixed;
+    position: relative;
 }
 
 canvas {
@@ -13,17 +13,20 @@ canvas {
 
 .status {
     position: absolute;
-    top: 100px;
-    left: 100px;
-    border: 2px solid rgb(113, 173, 44);
-    width: 30px;
-    height: 40px;
+    top: 0 px;
+    left: 10px;
+    border: 5px solid green;
+    background-color: green;
+    width: 110px;
+    height: 70px;
 }
 
 .status2 {
     position: absolute;
-    top: 100px;
-    left: 600px;
-    border: 2px solid rgb(1, 40, 56);
-    width: 30px;
-    height: 40px;}
+    top: 0 px;  
+    right: 10px;
+    border: 5px solid burlywood;
+    width: 110px;
+    height:70px;
+    background-color: burlywood;
+}
