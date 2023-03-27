@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player } from "./game_objects.js"
+import { Flower, Mushroom, Player } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -125,11 +125,11 @@ export class CollisionHandler {
     }
      if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
+      if (collidingObject instanceof Mushroom) {
+     Game.player.looseHP (20)}
+
       if (collidingObject instanceof Flower) {
-     
-      
-    
-      
+      Game.player.getHP (20) 
      }
 
     if (collidingObject.collisionTags.includes("cave")) {

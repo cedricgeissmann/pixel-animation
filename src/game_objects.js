@@ -126,17 +126,7 @@ export class Baumstumpf extends GameObject {
   
 
   
-export class Pilz extends GameObject {
-    constructor(x, y) {
-      super(x, y, {
-        sheet: ground,
-        layer: "background",
-        collisionTags: ["pickups"]
-      })
-      this.col = 2
-      this.row = 0
-    }
-  }
+
   
     
 export class Flower extends GameObject {
@@ -244,6 +234,7 @@ export class Player extends AnimatedGameObject {
       layer: "player",
       collisionTags: ["world", "pickups", "cave", "forest", "background"]
     })
+    this.hp = 100
     this.row = 0
     this.col = 1
     this.speed = 3
@@ -251,6 +242,19 @@ export class Player extends AnimatedGameObject {
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
+    
+    
+  }
+
+  looseHP(amount) {
+    this.hp = this.hp - amount
+    console.log (this.hp)
+  }
+
+  getHP(amount) {
+    this.hp = this.hp + amount
+    console.log (this.hp)
+    
   }
 
   handle(ev) {
