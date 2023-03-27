@@ -8,6 +8,18 @@ import { Background, FallingStone, Flower, Hole, Mushroom, Player, Player2, Ston
 export default class Map {
   constructor(mapFile) {
     this._readMapFile(mapFile)
+    if (mapFile === "maps/map-01.txt") {
+      Game.level = 1
+    }
+    if (mapFile === "maps/map-02.txt") {
+      Game.level = 2
+    }
+    if (mapFile === "maps/map-03.txt") {
+      Game.level = 3
+    }
+    if (mapFile === "maps/map-04.txt") {
+      Game.level = 4
+    }
   }
 
   /**
