@@ -123,20 +123,30 @@ export class CollisionHandler {
       console.log("collision")
       collidingObject.destroy()
     }
+
      if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
       if (collidingObject instanceof Mushroom) {
-     Game.player.looseHP (20)}
+        if (gameObject === Game.player) {
+          Game.player.looseHP (20)
+        } else if (gameObject === Game.player2) {
+          Game.player2.looseHP (20)
+        }
+      }
 
       if (collidingObject instanceof Flower) {
-      Game.player.getHP (20) 
+        if (gameObject === Game.player) {
+          Game.player.getHP(20)
+        } else if (gameObject === Game.player2) {
+          Game.player2.getHP(20)
+        }
      }
 
     if (collidingObject.collisionTags.includes("cave")) {
       Game.loadMap("maps/map-richtig.txt")
     }
   }
-}
+  }
 }
 
 export class AnimationHandler {

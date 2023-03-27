@@ -308,20 +308,20 @@ export class Player extends AnimatedGameObject {
 export class Player2 extends Player {
   constructor(x, y) {
     super(x, y)
-    this.hp2 = 100
+    this.hp = 100
     this.row = 0
     this.col = 1
   }
 
   looseHP(amount) {
     this.hp = this.hp - amount
-    const hpElem = document.querySelector("#HP2")
+    const hpElem = document.querySelector("#player2-HP")
     hpElem.textContent = this.hp
   }
 
   getHP(amount) {
     this.hp = this.hp + amount
-    const hpElem = document.querySelector("#HP2")
+    const hpElem = document.querySelector("#player2-HP")
     hpElem.textContent = this.hp
   }
 
