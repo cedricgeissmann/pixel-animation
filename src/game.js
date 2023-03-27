@@ -18,6 +18,7 @@ export default class Game {
   static player2 = null;
   static running = false;
   static currentFrame = 0;
+  static level = 1;
 
   constructor() {
     this.tileSize = 32

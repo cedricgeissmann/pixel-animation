@@ -153,7 +153,16 @@ export class CollisionHandler {
         console.log(Game.punkteSpieler1 + " - " + Game.punkteSpieler2)
         setTimeout(function() {
           elem.style.display = "none"
-          Game.loadMap("maps/map-02.txt")
+          if (Game.level === 1){
+            Game.loadMap("maps/map-02.txt")
+          }
+          if (Game.level === 2){
+            Game.loadMap("maps/map-03.txt")
+          }
+          if (Game.level === 3){
+            Game.loadMap("maps/map-04.txt")
+          }
+        
 }, 2000)
       }
       
