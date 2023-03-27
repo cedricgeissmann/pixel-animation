@@ -3,11 +3,11 @@ body {
     margin: 0;
     text-align: center;
     background-color: antiquewhite;
-    position: fixed;
+    position: relative;
 }
 
 canvas {
-    height: 90vw;
+    height: 85vh;
     
 }
 
