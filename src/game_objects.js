@@ -97,6 +97,19 @@ export class Erde extends GameObject {
   }
 }
 
+export class Background2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Deco4")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+    this.row = 3
+    this.col = 0
+  }
+}
+
 export class Wasser extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco4")
@@ -412,7 +425,7 @@ export class Stone extends GameObject {
   }
 }
 
-export class Waterhole extends GameObject {
+export class Water extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Waterhole")
     super(x, y, {
