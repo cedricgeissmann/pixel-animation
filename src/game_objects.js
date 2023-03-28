@@ -95,20 +95,6 @@ export class Stone extends GameObject {
   }
 }
 
-export class NPC extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#SSI")
-    super(x, y, {
-      sheet: ground,
-      layer: "world",
-      collisionTags: ["world"]
-    })
-    this.row = 2
-    this.col = 1
-  }
-}
-
-
 export class Wall extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
