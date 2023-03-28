@@ -118,7 +118,7 @@ export class CollisionHandler {
     }
 
     if (collidingObject.collisionTags.includes("cave")) {
-      Game.loadMap("maps/map-02.txt")
+      Game.loadMap("maps/map-01.txt")
     }
     if (collidingObject instanceof Enemy) {
       

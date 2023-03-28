@@ -96,6 +96,20 @@ export class Stone extends GameObject {
   }
 }
 
+export class NPC extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#SSI")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 2
+    this.col = 1
+  }
+}
+
+
 export class Wall extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -198,7 +212,7 @@ export class Player extends AnimatedGameObject {
       new GravityHandler({
         maxGravity: 3,
         gravityForce: 1,
-        jumpForce: -20,
+        jumpForce: -13,
       })
       
     ])
@@ -207,6 +221,8 @@ export class Player extends AnimatedGameObject {
 
   jump() {
     this.handlers.get(GravityHandler).jump(this)
+    this.row = 2
+    this.col = 1
   }
 
   update() {
@@ -217,6 +233,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
     if (ev === "Space") { this.jump()
+
 
     }
   }
@@ -240,21 +257,20 @@ export class Player extends AnimatedGameObject {
 
 
 
-
 export class Enemy extends AnimatedGameObject {
   constructor(x, y) {
     const png = document.querySelector("#character")
     super(x, y, {
       sheet: png,
       layer: "player",
-      strenght:10, 
+      strenght: 10, 
       health: 100, 
     
       collisionTags: ["world", "pickups", "cave", "forest"]
     })
     this.row = 0
     this.col = 0
-    this.speed = 3
+    this.speed = 0.9
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
@@ -267,8 +283,9 @@ export class Enemy extends AnimatedGameObject {
   }
 
   update() {
-    super.update()
+    super.update();
     if (Game.player.x < this.x) {
+<<<<<<< HEAD
       this.move("left")
     if (Game.player.x > this.x) {
       this.move("right")
@@ -279,22 +296,20 @@ export class Enemy extends AnimatedGameObject {
       this.dx = this.dx + (1) * this.speed
       this.row = 2
       Camera.shiftBackground(-1)
+=======
+      this.move("left");
+    } else if (Game.player.x > this.x) {
+      this.move("right");
+>>>>>>> bd4327b9982fcbb9fe19527e92ac0bab69bf1a92
     }
   }
-
+  
   move(direction) {
     if (direction === "right") {
-      this.dx = this.dx + (1) * this.speed
-      this.row = 0
+      this.dx = this.dx + (1) * this.speed;
+      this.row = 0;
     } else if (direction === "left") {
-      this.dx = this.dx + (-1) * this.speed
-      this.row = 8
+      this.dx = this.dx + (-1) * this.speed;
+      this.row = 8;
     }
-    if (direction === "jump") {
-      this.jumpForce = 2
-      this.row = 2
-      
-    }
-
-  }
-}
+  }}
