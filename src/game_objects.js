@@ -484,7 +484,20 @@ export class Crown extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags:[]
+      collisionTags:["pickups"]
+    })
+    this.row = 0
+    this.col = 0
+  }
+}
+
+export class Cowwhite extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySeector("#Cow-white")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags:["pickups"]
     })
     this.row = 0
     this.col = 0
