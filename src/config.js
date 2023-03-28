@@ -7,6 +7,7 @@ const config = {
     "KeyS": function() { Game.player.move("down")},
     "KeyD": function() { Game.player.move("right")},
     "Space": function() { Game.player.jump()},
+    "KeyZ": function() {Game.player.move()},
     "ArrowUp": function() { Game.player2.move("up")},
     "ArrowLeft": function() { Game.player2.move("left")},
     "ArrowDown": function() { Game.player2.move("down")},
