@@ -19,7 +19,7 @@ export default class Map {
    */
   addTilesToMap(x, y, tileType) {
     if (this.mapfile === "maps/maparena.txt") {
-      new Sbackground(x, y)
+      new Background1(x, y)
       
     } else if (this.mapfile === "maps/map-01.txt") {
       new Background1(x, y)
