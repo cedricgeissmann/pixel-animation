@@ -254,17 +254,10 @@ export class Player extends AnimatedGameObject {
 
 export class playerattributes extends Player {
 constructor(name, hp, dmg) {
-  this.name = name
-
-        this.statsHp = 20 + hp
-        this.statsArmor = 8     
-        this.statsDmg = 4 + dmg
-        this.statsMana = 100
-        
-        this.target = null
-        
-        watchElement(this)
+      
 }
+//Klasse mit Spielerattributen soll die Klasse PLayer erweitern mit einem Konstruktor, welcher name,hp und dmg enthaltet
+
 
 }
 
@@ -279,24 +272,45 @@ constructor(name, hp, dmg) {
     this.updateHealthPoints();
   }
 
+  //eine neue Klasse mit einem Konstruktor
+  /*Die Gesundheitspunkte seien gleich verbunden mit dem index.html 
+  /* Die Gesundheitspunkte seien gleich 100
+  /*die Gesundheitspunkte sollen neu geladen werden
+  */
+
   attack() {
     this.health -= 10;
     this.updateHealthPoints();
   }
+
+//funktion angreifen
+/*Die Gesundheitspunkte sollen um -10 verringert werden
+/* Die Gesundheitspunkte sollen neu geladen werden
+*/
 
   heal() {
     this.health += 10;
     this.updateHealthPoints();
   }
 
+  //funktion heilen
+  /*Die Gesundheitspunkte sollen um 10 erhöht werden
+  /* Die Gesundheitspunkte sollen neu geladen werden
+  */
+
   updateHealthPoints() {
     this.healthPoints.textContent = this.health.toString();
   }
+  //funktion die Gesundheitspunkte sollen neu geladen werden
+  /*Die Gesundheitspunkte mit dem Text inhalt, sollen gleich this.health
+  */
 
   
 }
 
 export const healthBar = new HealthBar();
+
+//Die Variabel healthbar soll gleich eine neue Healthbar sein
 
 document.addEventListener('keydown', event => {
   if (event.key === 'e') {
@@ -306,6 +320,11 @@ document.addEventListener('keydown', event => {
   }
 });
 
+//füge eine neue Eventliste hinzu, welche beim Drücken einer Taste ein event ausführen soll
+/*wenn Die gedrückte Taste "e" ist, soll es die Aktion attack auf die healthbar ausführen
+/* Sonst wenn Die gedrückte Taste "q" ist, soll es die Aktion heilen auf die healthbar ausführen
+*/
+
 
 export class MoneySystem {
   constructor(initialMoney) {
@@ -313,23 +332,38 @@ export class MoneySystem {
     this.moneyElement = document.querySelector('.money-amount');
     this.updateMoney();
   }
+  //constructor mit dem Inhalt initialMoney
+  /* neue Variabel this.money sei der INhalt des Konstruktors
+  /*this.moneyElement sei gleich money-amount mit einem querySelector um es mit index.html zu verbinden
+  /*funktion updateMoney soll aufgerufen werden
+  */
 
   updateMoney() {
     this.moneyElement.textContent = this.money;
   }
+  //funktion updateMoney, das Geld soll neu geladen werden
+  /*this.moneyElement.textContent sei gleich this.money von oben
+  */
 
   decreaseMoney(amount) {
     this.money -= amount;
     this.updateMoney();
   }
+  //funktion geld verringern mit dem Inhalt amount, welches die Menge des Geldes zeigen soll
+  /* this.money soll verringert werden mit der eingegebenen Menge
+  /* Die Anzeige soll wieder neu geladen werden
+  */
 
   increaseMoney(amount) {
     this.money += amount;
     this.updateMoney();
   }
-  
+  //fuktion geld erhöhen mit dem Inhalt amount, welches die Menge des Geldes zeigen soll
+  /* this.money soll erhöht werden mit der eingegebenen Menge
+  /* Die Anzeige soll wieder neu geladen werden
+  */
   
 }
 
 export const moneySystem = new MoneySystem(0);
-
+//Die neue variabel moneySystem soll ein neues Geldsystem mit der Menge null sein
