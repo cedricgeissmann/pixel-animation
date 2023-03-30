@@ -7,6 +7,7 @@ export default class TileRegistry {
       item: [],
       world: [],
       player: [],
+      forest: [],
     }
 
   /**
@@ -39,6 +40,7 @@ export default class TileRegistry {
       item: [],
       player: [],
       world: [],
+      forest: []
     }
   }
 
