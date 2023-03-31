@@ -6,8 +6,13 @@ import { Mushroom, Player, Stone, Tree, Wall, Cave, Sbackground, Tree1, Backgrou
  * an den Stellen die in der Karte angegeben sind.
  */
 export default class Map {
+  static width = 0
+  static height = 0
+
   constructor(mapFile) {
     this.mapfile = mapFile
+    Map.width = 0
+    Map.height = 0
     this._readMapFile(mapFile)
   }
 
@@ -50,6 +55,7 @@ export default class Map {
     if ( tileType === "v" ) { new Strand2(x, y) }
     if ( tileType === "V" ) { new Strand(x, y) }
     if ( tileType === "W" ) { new Wasser(x, y) }
+    if ( tileType === "s" ) { new Stone(x, y) }
     if ( tileType === "t" ) { new Tree(x, y) }
     if ( tileType === "p" ) { new Mushroom(x, y) }
     if ( tileType === "w" ) { new Wall(x, y) }
@@ -69,6 +75,7 @@ export default class Map {
     if ( tileType === "O" ) { new Crown(x, y)}
     if ( tileType === "Q" ) { new Water(x, y)}
 
+    if ( tileType === "Q" ) { Game.player2 = new Player(x, y)}
   }
 
   /**
@@ -83,6 +90,8 @@ export default class Map {
           let row = rows[y].split("")
           for (let x = 0; x < row.length; x++) {
             this.addTilesToMap(x, y, row[x])
+            Map.width = Math.max(Map.width, x)
+            Map.height = Math.max(Map.height, y)
           }
         }
       })
