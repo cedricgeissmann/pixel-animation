@@ -14,6 +14,8 @@ export default class Game {
   static player = null;
   static running = false;
 
+  static allApples = false
+
   constructor() {
     this.tileSize = 32
     this.canvas = document.querySelector("#canvas")
@@ -61,17 +63,30 @@ export default class Game {
 
   }
 
+  static checkNewMap() {
+    if (Game.allApples === true &&
+      Game.allCupcake === true &&
+      true) {
+        Game.loadMap("maps/maparena.txt")
+      }
+  }
 
  static updateApfel(value) 
 { const elem = document.querySelector("#apfel-counter")
  let count = parseInt (elem.textContent)
-  elem.textContent = `${count + value} / 5`
+ count = count + value
+  elem.textContent = `${count} / 5`
+  if (count >= 5) { Game.allApples = true}
+  Game.checkNewMap()
  }
 
  static updateCupcake(value) 
  { const elem = document.querySelector("#cupcake-counter")
   let count = parseInt (elem.textContent)
-   elem.textContent = `${count + value} / 5`
+  count = count + value
+  elem.textContent = `${count} / 5`
+  if (count >= 5) { Game.allCupcake = true}
+  Game.checkNewMap()
   }
 
   static updateLachssushi(value) 
