@@ -19,7 +19,7 @@ export default class Map {
   addTilesToMap(x, y, tileType) {
   
     
-    if ( tileType === "b" ) {  new Background(x, y) }
+    if ( tileType === "b" ) {  new Water(x, y) }
     if ( tileType === "s" ) {  new Sand(x, y) }
     if ( tileType === "w" ) {  new Water(x, y) } 
     if ( tileType === "a" ) {  new Air(x, y) }
