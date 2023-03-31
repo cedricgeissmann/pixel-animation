@@ -121,6 +121,7 @@ export class CollisionHandler {
       Game.loadMap("maps/map-01.txt")
     }
     if (collidingObject instanceof Enemy) {
+      Game.loadMap("maps/map-01.txt")
       
       //Game.loadMap("maps/map-02.txt")
     }

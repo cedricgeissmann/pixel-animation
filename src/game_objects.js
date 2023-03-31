@@ -198,7 +198,7 @@ export class Player extends AnimatedGameObject {
       new GravityHandler({
         maxGravity: 3,
         gravityForce: 1,
-        jumpForce: -13,
+        jumpForce: -16,
       })
       
     ])
@@ -249,13 +249,9 @@ export class Enemy extends AnimatedGameObject {
     super(x, y, {
       sheet: png,
       layer: "player",
-      strenght: 10, 
-      health: 100, 
-    
-      collisionTags: ["world", "pickups", "cave", "forest"]
+      collisionTags: ["world", "enemy"]
     })
     this.row = 0
-    this.col = 0
     this.speed = 0.9
     this.handlers = new HandlerManager([
       new CollisionHandler(),
@@ -271,22 +267,10 @@ export class Enemy extends AnimatedGameObject {
   update() {
     super.update();
     if (Game.player.x < this.x) {
-<<<<<<< HEAD
       this.move("left")
+    }
     if (Game.player.x > this.x) {
       this.move("right")
-      }
-      this.row = 1
-      Camera.shiftBackground(1)
-    } else if (direction === "right") {
-      this.dx = this.dx + (1) * this.speed
-      this.row = 2
-      Camera.shiftBackground(-1)
-=======
-      this.move("left");
-    } else if (Game.player.x > this.x) {
-      this.move("right");
->>>>>>> bd4327b9982fcbb9fe19527e92ac0bab69bf1a92
     }
   }
   
@@ -298,4 +282,5 @@ export class Enemy extends AnimatedGameObject {
       this.dx = this.dx + (-1) * this.speed;
       this.row = 8;
     }
-  }}
+  }
+}
