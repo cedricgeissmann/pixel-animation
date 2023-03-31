@@ -185,10 +185,10 @@ export class Shells extends GameObject {
       })
       this.row = 0
       this.col = 3
-      addCollision(this, {collisionTags: []})
+      addCollision(this, {collisionTags: ["forest"]})
 
     
-  }
+  } 
 }
 
 export class Mushroom extends GameObject {
@@ -229,13 +229,12 @@ export class Player extends AnimatedGameObject {
       sheet: img,
       layer: "player",
     })
-    this.tileSize = 64
     this.row = 0
     this.col = 1
     this.speed = 3
     
 
-    addGravity(this, {maxGravity: 3, gravityForce: 1})
+    addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
