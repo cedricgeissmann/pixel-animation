@@ -10,6 +10,7 @@ const config = {
     "KeyJ": function() { Game.player2.move("left")},
     "KeyK": function() { Game.player2.move("down")},
     "KeyL": function() { Game.player2.move("right")},
+    "Space": function() { Game.player2.attack()}
   }
 }
 

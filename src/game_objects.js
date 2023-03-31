@@ -3,6 +3,7 @@ import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
 import Camera from "./camera.js"
+import Game from "./game.js"
 
 /**
  * Dies ist die Basisklasse für alle Spiel-Objekte.
@@ -347,5 +348,9 @@ export class Player2 extends Player {
       this.row = 2
     }
     
+  }
+
+  attack() {
+    console.log(Game.player.x, Game.player2.x)
   }
 }
