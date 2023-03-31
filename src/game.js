@@ -103,6 +103,12 @@ export default class Game {
     let count = parseInt (elem.textContent)
      elem.textContent = count + value
     }
+
+    static updateBlume(value) 
+    { const elem = document.querySelector("#blume-counter")
+     let count = parseInt (elem.textContent)
+      elem.textContent = count + value
+     }
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
    * Die Positionen der Spiel-Objekte werden neu berechnet,
