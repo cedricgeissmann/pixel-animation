@@ -14,7 +14,6 @@ export default class Game {
   static map = null;
   static player = null;
   static money = null;
-  static healthpoints = null;
   static running = false;
   static worldNumber = 1
 
@@ -90,3 +89,4 @@ export default class Game {
     }
   }
 }
+
