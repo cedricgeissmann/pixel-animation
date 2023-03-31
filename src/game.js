@@ -65,49 +65,49 @@ export default class Game {
  static updateApfel(value) 
 { const elem = document.querySelector("#apfel-counter")
  let count = parseInt (elem.textContent)
-  elem.textContent = count + value
+  elem.textContent = `${count + value} / 5`
  }
 
  static updateCupcake(value) 
  { const elem = document.querySelector("#cupcake-counter")
   let count = parseInt (elem.textContent)
-   elem.textContent = count + value
+   elem.textContent = `${count + value} / 5`
   }
 
   static updateLachssushi(value) 
   { const elem = document.querySelector("#lachssushi-counter")
    let count = parseInt (elem.textContent)
-    elem.textContent = count + value
+    elem.textContent = `${count + value} / 2`
    }
 
    static updateGelbsushi(value) 
   { const elem = document.querySelector("#gelbsushi-counter")
    let count = parseInt (elem.textContent)
-    elem.textContent = count + value
+    elem.textContent = `${count + value} / 2`
    }
 
    static updatePilz(value) 
   { const elem = document.querySelector("#pilz-counter")
    let count = parseInt (elem.textContent)
-    elem.textContent = count + value
+    elem.textContent = `${count + value} / 5`
    }
 
    static updateRubin(value) 
    { const elem = document.querySelector("#rubin-counter")
     let count = parseInt (elem.textContent)
-     elem.textContent = count + value
+     elem.textContent = `${count + value} / 5`
     }
 
     static updateKristall(value) 
    { const elem = document.querySelector("#kristall-counter")
     let count = parseInt (elem.textContent)
-     elem.textContent = count + value
+     elem.textContent = `${count + value} / 5`
     }
 
     static updateBlume(value) 
     { const elem = document.querySelector("#blume-counter")
      let count = parseInt (elem.textContent)
-      elem.textContent = count + value
+      elem.textContent = `${count + value} / 10`
      }
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.

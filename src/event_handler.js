@@ -1,6 +1,7 @@
 import { calculatePenetration } from "./collision_detector.js"
 import { Player } from "./game_objects.js"
 import Game from "./game.js"
+import { Apfel, Cupcake, Lachssushi, Gelbsushi, Pilz, Lapislazuli, Ruby, Lblume } from "./game_objects.js"
 
 export default class EventHandler {
   constructor() {
@@ -93,46 +94,32 @@ export class CollisionHandler {
 
     if (collidingObject.collisionTags.includes("pickups")) {
         collidingObject.destroy()
+        if (collidingObject instanceof Apfel) {
          Game.updateApfel(1)
+        } else if (collidingObject instanceof Cupcake) {
+          Game.updateCupcake(1)
         }
+        else if (collidingObject instanceof Lachssushi) {
+          Game.updateLachssushi(1)
+        }
+        else if (collidingObject instanceof Gelbsushi) {
+          Game.updateGelbsushi(1)
+        }
+        else if (collidingObject instanceof Pilz) {
+          Game.updatePilz(1)
+        }
+        else if (collidingObject instanceof Ruby) {
+          Game.updateRubin(1)
+        }
+        else if (collidingObject instanceof Lapislazuli) {
+          Game.updateKristall(1)
+        }
+        else if (collidingObject instanceof Lblume) {
+          Game.updateBlume(1)
+        }
+      }
 
-    if (collidingObject.collisionTags.includes("pickups")) {
-          collidingObject.destroy()
-           Game.updateCupcake(1)
-          }
     
-    if (collidingObject.collisionTags.includes("pickups")) {
-            collidingObject.destroy()
-             Game.updateLachssushi(1)
-            }
-    
-    if (collidingObject.collisionTags.includes("pickups")) {
-              collidingObject.destroy()
-               Game.updateGelbsushi(1)
-              }
-
-    if (collidingObject.collisionTags.includes("pickups")) {
-              collidingObject.destroy()
-               Game.updatePilz(1)
-                }
-
-     if (collidingObject.collisionTags.includes("pickups")) {
-              collidingObject.destroy()
-               Game.updateRubin(1)
-                }
-     if (collidingObject.collisionTags.includes("pickups")) {
-              collidingObject.destroy()
-               Game.updateKristall(1)
-              }
-
-     if (collidingObject.collisionTags.includes("pickups")) {
-             collidingObject.destroy()
-             Game.updateBlume(1)
-               }
-
-    if (collidingObject.collisionTags.includes("pickups")) {
-      collidingObject.destroy()
-    }
 
     if (collidingObject.collisionTags.includes("cave")) {
       Game.loadMap("maps/map-02.txt")

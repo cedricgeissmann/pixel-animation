@@ -516,7 +516,7 @@ export class Cowwhite extends GameObject {
   }
 }
 
-export class Mushroom extends GameObject {
+export class Pilz extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
     super(x, y, {
@@ -529,7 +529,7 @@ export class Mushroom extends GameObject {
   }
 }
 
-export class Essen1 extends GameObject {
+export class Apfel extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Essen")
     super(x, y, {
@@ -542,7 +542,7 @@ export class Essen1 extends GameObject {
   }
 }
 
-export class Essen2 extends GameObject {
+export class Cupcake extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Essen")
     super(x, y, {
@@ -555,7 +555,7 @@ export class Essen2 extends GameObject {
   }
 }
 
-export class Essen3 extends GameObject {
+export class Lachssushi extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Essen")
     super(x, y, {
@@ -568,7 +568,7 @@ export class Essen3 extends GameObject {
   }
 }
 
-export class Essen4 extends GameObject {
+export class Gelbsushi extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Essen")
     super(x, y, {
