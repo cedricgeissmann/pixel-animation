@@ -204,6 +204,7 @@ export class Player extends AnimatedGameObject {
       layer: "player",
       collisionTags: ["world", "pickups", "cave", "forest"]
     })
+    this.tileSize = 64
     this.row = 0
     this.col = 1
     this.speed = 3
