@@ -7,7 +7,7 @@ body {
 
 canvas {
     background-color: white;
-    width: min(70vh, 100vw);
+    width: min(60vh, 200vw);
 }
 .container {
     width: 100vw;
