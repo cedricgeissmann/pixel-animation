@@ -152,6 +152,7 @@ export class CollisionHandler {
         }
       }
     }
+  
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     
@@ -208,10 +209,10 @@ export class CollisionHandler {
     if (matchCollisionTags(collidingObject, ["pickups"])) {
       collidingObject.destroy()
     }
-  }
-}
+    }
 
-function matchCollisionTags(collidingObject, tags) {
+
+ function matchCollisionTags(collidingObject, tags) {
   const colHandler = collidingObject.handlers.get(CollisionHandler)
   if (colHandler != null) {
     for (let tag of tags) {
@@ -230,6 +231,7 @@ export class AnimationHandler {
     this.numberOfFrames = options.numberOfFrames
   }
 
+
   _handleEvents(gameObject) {
     // Only run the animation if the object moved
     if (gameObject.dx != 0 || gameObject.dy != 0) {
@@ -242,6 +244,5 @@ export class AnimationHandler {
         this.frameCounter = 0
       }
     }
-
   }
 }
