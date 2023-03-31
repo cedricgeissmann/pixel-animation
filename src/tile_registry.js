@@ -4,6 +4,7 @@
 export default class TileRegistry {
   static layers = {
       background: [],
+      worldBack: [],
       item: [],
       world: [],
       player: [],
@@ -36,6 +37,7 @@ export default class TileRegistry {
   static clear() {
     TileRegistry.layers = {
       background: [],
+      worldBack: [],
       item: [],
       player: [],
       world: [],

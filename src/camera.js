@@ -3,7 +3,7 @@ export default class Camera {
     this.game = game
     this.offset = offset
     this.interpolate = {x: 0, y: 0}
-    this.framesMoved = 0
+    this.framesMoved = 30
   }
 
   /**
