@@ -410,19 +410,6 @@ export class Zaun extends GameObject {
     this.col = 0
   }
 }
-export class Sbackground extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#Steinboden")
-    super(x, y, {
-      sheet: ground,
-      layer: "background",
-      collisionTags: []
-    })
-    this.row = 4
-    this.col = 12
-
-  }
-}
 
 export class Stone extends GameObject {
   constructor(x, y) {
