@@ -503,18 +503,7 @@ export class Crown extends GameObject {
   }
 }
 
-export class Cowwhite extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySeector("#Cow-white")
-    super(x, y, {
-      sheet: ground,
-      layer: "world",
-      collisionTags:["pickups"]
-    })
-    this.row = 0
-    this.col = 0
-  }
-}
+
 
 export class Pilz extends GameObject {
   constructor(x, y) {
@@ -702,7 +691,19 @@ export class StoneGrey extends GameObject {
     this.col = 2
   }
 }
-
+export class Cowwhite extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySeector("#Cowwhite")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags:["world"]
+    })
+    this.tileSize = 32
+    this.row = 2
+    this.col = 3
+  }
+}
 
 
 
