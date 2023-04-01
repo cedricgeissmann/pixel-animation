@@ -109,11 +109,12 @@ export default class Game {
    Game.checkNewMap()
    }
 
-   static updatePilz(value) 
-  { const elem = document.querySelector("#pilz-counter")
+   static updateMushroompurple(value) 
+  { const elem = document.querySelector("#mushroompurple-counter")
    let count = parseInt (elem.textContent)
    elem.textContent = `${count + value} / 5`
   }
+  
    static updateRubin(value) 
    { const elem = document.querySelector("#rubin-counter")
     let count = parseInt (elem.textContent)
