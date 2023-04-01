@@ -69,7 +69,8 @@ export default class Game {
         Game.allLachssushi === true &&
         Game.allGelbsushi === true &&
         Game.allKristall === true &&
-        Game.allRubin === true) {
+        Game.allRubin === true &&
+        Game.allMushroompurple === true && true) {
         Game.loadMap("maps/maparena.txt")
       }
   }
@@ -112,9 +113,13 @@ export default class Game {
    static updateMushroompurple(value) 
   { const elem = document.querySelector("#mushroompurple-counter")
    let count = parseInt (elem.textContent)
-   elem.textContent = `${count + value} / 5`
-  }
-  
+   count = count + value
+   elem.textContent = `${count} / 5`
+   if (count >= 5) { Game.allMushroompurple = true}
+   Game.checkNewMap()
+   }
+
+
    static updateRubin(value) 
    { const elem = document.querySelector("#rubin-counter")
     let count = parseInt (elem.textContent)
