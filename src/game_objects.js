@@ -693,15 +693,15 @@ export class StoneGrey extends GameObject {
 }
 export class Cowwhite extends GameObject {
   constructor(x, y) {
-    const ground = document.querySeector("#Cowwhite")
+    const ground = document.querySelector("#Cowwhite")
     super(x, y, {
       sheet: ground,
       layer: "world",
       collisionTags:["world"]
     })
     this.tileSize = 32
-    this.row = 2
-    this.col = 3
+    this.row = 0  
+    this.col = 2
   }
 }
 
