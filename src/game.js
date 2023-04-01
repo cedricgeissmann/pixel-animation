@@ -64,9 +64,12 @@ export default class Game {
   }
 
   static checkNewMap() {
-    if (Game.allApples === true &&
-      Game.allCupcake === true &&
-      true) {
+    if (Game.allApfel === true &&
+        Game.allCupcake === true &&
+        Game.allLachssushi === true &&
+        Game.allGelbsushi === true &&
+        Game.allKristall === true &&
+        Game.allRubin === true) {
         Game.loadMap("maps/maparena.txt")
       }
   }
@@ -75,8 +78,8 @@ export default class Game {
 { const elem = document.querySelector("#apfel-counter")
  let count = parseInt (elem.textContent)
  count = count + value
-  elem.textContent = `${count} / 5`
-  if (count >= 5) { Game.allApples = true}
+  elem.textContent = `${count} / 6`
+  if (count >= 6) { Game.allApfel = true}
   Game.checkNewMap()
  }
 
@@ -84,40 +87,50 @@ export default class Game {
  { const elem = document.querySelector("#cupcake-counter")
   let count = parseInt (elem.textContent)
   count = count + value
-  elem.textContent = `${count} / 5`
-  if (count >= 5) { Game.allCupcake = true}
+  elem.textContent = `${count} / 4`
+  if (count >= 4) { Game.allCupcake = true}
   Game.checkNewMap()
   }
 
   static updateLachssushi(value) 
   { const elem = document.querySelector("#lachssushi-counter")
    let count = parseInt (elem.textContent)
-    elem.textContent = `${count + value} / 2`
-   }
-
+   count = count + value
+  elem.textContent = `${count} / 2`
+  if (count >= 2) { Game.allLachssushi = true}
+  Game.checkNewMap()
+  }
    static updateGelbsushi(value) 
   { const elem = document.querySelector("#gelbsushi-counter")
    let count = parseInt (elem.textContent)
-    elem.textContent = `${count + value} / 2`
+   count = count + value
+   elem.textContent = `${count} / 2`
+   if (count >= 3) { Game.allGelbsushi = true}
+   Game.checkNewMap()
    }
 
    static updatePilz(value) 
   { const elem = document.querySelector("#pilz-counter")
    let count = parseInt (elem.textContent)
-    elem.textContent = `${count + value} / 5`
-   }
-
+   elem.textContent = `${count + value} / 5`
+  }
    static updateRubin(value) 
    { const elem = document.querySelector("#rubin-counter")
     let count = parseInt (elem.textContent)
-     elem.textContent = `${count + value} / 5`
-    }
+    count = count + value
+  elem.textContent = `${count} / 3`
+  if (count >= 3) { Game.allRubin = true}
+  Game.checkNewMap()
+  }
 
     static updateKristall(value) 
    { const elem = document.querySelector("#kristall-counter")
     let count = parseInt (elem.textContent)
-     elem.textContent = `${count + value} / 5`
-    }
+    count = count + value
+  elem.textContent = `${count} / 2`
+  if (count >= 2) { Game.allKristall = true}
+  Game.checkNewMap()
+  }
 
     static updateBlume(value) 
     { const elem = document.querySelector("#blume-counter")
