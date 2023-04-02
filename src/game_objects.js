@@ -492,7 +492,7 @@ export class Tree extends GameObject {
 
 export class Crown extends GameObject {
   constructor(x, y) {
-    const ground = document.querySeector("#Crown")
+    const ground = document.querySelector("#Crown")
     super(x, y, {
       sheet: ground,
       layer: "world",
@@ -704,6 +704,7 @@ export class Cowwhite extends GameObject {
     this.col = 2
   }
 }
+
 
 
 
