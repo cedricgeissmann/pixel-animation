@@ -1,7 +1,7 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player } from "./game_objects.js"
+import {Player } from "./game_objects.js"
 import Game from "./game.js"
-import { Apfel, Cupcake, Lachssushi, Gelbsushi, Mushroompurple, Lapislazuli, Ruby, Lblume } from "./game_objects.js"
+import { Apfel, Cupcake, Lachssushi, Gelbsushi, Mushroompurple, Lapislazuli, Ruby, Lblume, Crown } from "./game_objects.js"
 
 export default class EventHandler {
   constructor() {
@@ -116,6 +116,9 @@ export class CollisionHandler {
         }
         else if (collidingObject instanceof Lblume) {
           Game.updateBlume(1)
+        }
+        else if (collidingObject instanceof Crown) {
+          Game.updateCrown(1)
         }
       }
 
