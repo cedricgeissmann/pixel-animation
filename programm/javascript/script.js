@@ -41,6 +41,9 @@ image.src = '../res/maps/map2zoom.png'
 const playerImage = new Image()
 playerImage.src = '../res/player/ACharDown.png'
 
+const foregroundImage = new Image()
+foregroundImage.src = '../res/foreground objects/foreground2.png'
+
 
 
 const player = new Sprite({
@@ -62,6 +65,14 @@ const background = new Sprite({
   image: image
 })
 
+const foreground = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: foregroundImage
+})
+
 const keys = {
   w: {
     pressed: false
@@ -77,7 +88,7 @@ const keys = {
   }
 }
 
-const movables = [background, ...boundaries]
+const movables = [background, ...boundaries, foreground]
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
   return (
@@ -94,6 +105,7 @@ function animate() {
     boundary.draw()
   })
   player.draw()
+  foreground.draw()
 
   let moving = true
   if (keys.w.pressed && lastKey === 'w') {
