@@ -240,6 +240,7 @@ export class Player extends AnimatedGameObject {
     this.row = 0
     this.col = 1
     this.speed = 3
+    let doDmg = this.dmg
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
@@ -248,15 +249,23 @@ export class Player extends AnimatedGameObject {
     
   }
   attack(amount) {
-    if (Math.abs(this.x - Game.player.x) < 32) {
-      let doDmg = this.dmg
+    if (Math.abs(Game.player - Game.player2) < 32) {
+      if (Game.player2.hp > 0) {
     this.hp = this.hp - doDmg
     const hpElem = document.querySelector("#HP")
     hpElem.textContent = this.hp
     }
+    if (Game.player.hp <= 0) {
+    Game.player.hp = 0
+    
+  }
+}
+
    
  
   }
+
+
   looseHP(amount) {
     this.hp = this.hp - amount
     const hpElem = document.querySelector("#HP")
