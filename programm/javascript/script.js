@@ -1,4 +1,4 @@
-import {collisions} from "../data/collisions 2.js"
+import {collisions} from "../data/collisions 1.js"
 import {Boundary} from "../javascript/classes.js"
 import {Sprite} from "../javascript/classes.js"
 
@@ -36,7 +36,7 @@ collisionsMap.forEach((row, i) => {
 })
 
 const image = new Image()
-image.src = '../res/maps/map2zoom.png'
+image.src = '../res/maps/mapzoom.png'
 
 const playerDownImage = new Image()
 playerDownImage.src = '../res/player/ACharDown.png'
@@ -48,10 +48,10 @@ const playerLeftImage = new Image()
 playerLeftImage.src = '../res/player/ACharLeft.png'
 
 const playerRightImage = new Image()
-playerRightImage.src = '../res/player/ACgarRight.png'
+playerRightImage.src = '../res/player/ACharRight.png'
 
 const foregroundImage = new Image()
-foregroundImage.src = '../res/foreground objects/foreground2.png'
+foregroundImage.src = '../res/foreground objects/foreground.png'
 
 
 
