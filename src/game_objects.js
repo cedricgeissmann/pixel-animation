@@ -306,17 +306,6 @@ export class Player extends AnimatedGameObject {
 
 }
 
-var element = document.querySelector('div');
-element.classList.add('new-class');
-
-var healthBar = document.querySelector('.health');
-var healthText = document.querySelector('.health-text');
-var currentHealth = 80; // Set to your current health value
-
-healthBar.style.width = currentHealth + '%';
-healthText.textContent = currentHealth;
-
-
 
 export class Player2 extends Player {
   constructor(x, y) {
