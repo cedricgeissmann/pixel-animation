@@ -15,48 +15,20 @@ canvas {
 }
 
 .health-bar {
+    position: relative;
     width: 200px;
     height: 20px;
-    background-color: #ddd;
+    background-color: lightgoldenrodyellow;
     border-radius: 10px;
-    overflow: hidden;
   }
   
-  .health {
-    width: 100%;
-    height: 100%;
-    background-color: #ff0000;
-    border-radius: 10px;
-    transition: width 0.2s ease-in-out;
-  }
-  
-  .health-text {
-    position: absolute;
+  .health-bar2 {
+    position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    line-height: 20px;
-    color: #fff;
+    right: 0;
+    width: 200px;
+    height: 20px;
+    background-color: lightcyan;
+    border-radius: 10px;
   }
-
-.status {
-    position: absolute;
-    top: 0 px;
-    left: 10px;
-    border: 5px solid green;
-    background-color: green;
-    width: 110px;
-    height: 70px;
-}
-
-.status2 {
-    position: absolute;
-    top: 0 px;  
-    right: 10px;
-    border: 5px solid burlywood;
-    width: 110px;
-    height:70px;
-    background-color: burlywood;
-}
+  
