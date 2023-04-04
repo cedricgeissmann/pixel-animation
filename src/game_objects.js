@@ -235,6 +235,7 @@ export class Player extends AnimatedGameObject {
       collisionTags: ["world", "pickups", "cave", "forest", "background"]
     })
     this.hp = 100
+    this.dmg = 10
     this.row = 0
     this.col = 1
     this.speed = 3
@@ -245,7 +246,16 @@ export class Player extends AnimatedGameObject {
     
     
   }
-
+  attack(amount) {
+    if (Math.abs(this.x - Game.player.x) < 32) {
+      let doDmg = this.dmg
+    this.hp = this.hp - doDmg
+    const hpElem = document.querySelector("#HP")
+    hpElem.textContent = this.hp
+    }
+   
+ 
+  }
   looseHP(amount) {
     this.hp = this.hp - amount
     const hpElem = document.querySelector("#HP")
@@ -311,6 +321,18 @@ export class Player2 extends Player {
     this.hp = 100
     this.row = 0
     this.col = 1
+    this.dmg = 10
+  }
+
+  attack(amount) {
+    if (Math.abs(this.x - Game.player.x) < 32) {
+    let doDmg = this.dmg
+    this.hp = this.hp - doDmg
+    const hpElem = document.querySelector("#player2-HP")
+    hpElem.textContent = this.hp
+    }
+   
+ 
   }
 
   looseHP(amount) {
@@ -349,3 +371,4 @@ export class Player2 extends Player {
     
   }
 }
+
