@@ -384,5 +384,6 @@ export class Player2 extends Player {
 
   attack() {
     console.log(Game.player.x, Game.player2.x)
+    console.log(Game.player.y, Game.player2.y)
   }
 }
