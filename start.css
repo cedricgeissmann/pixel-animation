@@ -1,5 +1,58 @@
-body {
-   text-align: center;
-    background-color: antiquewhite;
-    
+
+body{
+min-height: 90vh;
+min-width: 90vw;
+padding: 0;
+margin: 0;
+font-family: 'Poppins', sans-serif;
+background: linear-gradient(to bottom right, rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
+background: -webkit-linear-gradient(left,  rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
+background: -moz-linear-gradient(left,  rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
 }
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+header .logo{
+   color: black;
+   font-weight: 700;
+   text-decoration: none;
+   font-size: 2em;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li{
+    list-style: none;
+    margin-left: 20px;
+
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: black;
+    border-radius:20px;
+}
+
+header ul li a:hover
+{
+    background: white;
+    color: black;
+}
+
