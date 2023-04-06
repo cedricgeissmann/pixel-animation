@@ -155,7 +155,7 @@ const battle = {
 }
 
 function animate() {
-  window.requestAnimationFrame(animate)
+  const animationId = window.requestAnimationFrame(animate)
   background.draw()
   boundaries.forEach((boundary) => {
     boundary.draw()
@@ -174,6 +174,7 @@ function animate() {
   let moving = true
   player.moving = false
 
+  
   if (battle.initiated) return
 
   
@@ -188,7 +189,25 @@ function animate() {
       rectangle2: battle1zone
     })){
       console.log('activate battle')
+      window.cancelAnimationFrame(animationId)
         battle.initiated = true
+
+        gsap.to('#overlappingDiv', {
+          opacity: 1,
+          repeat: 3,
+          yoyo: true,
+          duration: 0.4,
+          onComplete() {
+            gsap.to('#overlappingDiv', {
+              opacity: 1,
+              duration: 0.4
+            })
+
+            // activate a new animation loop
+            animateBattle()
+          }
+        })
+
         break
     }}}
 
@@ -303,6 +322,11 @@ function animate() {
   }
 }
 animate()
+
+function animateBattle() {
+  window.requestAnimationFrame(animateBattle)
+  console.log('animating battle')
+}
 
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
