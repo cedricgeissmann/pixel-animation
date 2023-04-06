@@ -1,4 +1,5 @@
 import {collisions} from "../data/collisions 1.js"
+import {collisionsB1} from "../data/battlezones/map 1/battlezone 1.js"
 import {Boundary} from "../javascript/classes.js"
 import {Sprite} from "../javascript/classes.js"
 
@@ -12,6 +13,11 @@ canvas.height = 576
 const collisionsMap = []
 for (let i = 0; i < collisions.length; i += 70) {
   collisionsMap.push(collisions.slice(i, 70 + i))
+}
+
+const battlezones1Map = []
+for (let i = 0; i < collisionsB1.length; i += 70) {
+  battlezones1Map.push(collisionsB1.slice(i, 70 + i))
 }
 
 
@@ -35,6 +41,30 @@ collisionsMap.forEach((row, i) => {
   })
 })
 
+
+const battle1zones = []
+
+battlezones1Map.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 1025)
+      battle1zones.push(
+        new Boundary({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          }
+        })
+      )
+  })
+})
+
+console.log (battle1zones)
+
+
+
+
+
+
 const image = new Image()
 image.src = '../res/maps/mapzoom.png'
 
@@ -52,6 +82,8 @@ playerRightImage.src = '../res/player/ACharRight.png'
 
 const foregroundImage = new Image()
 foregroundImage.src = '../res/foreground objects/foreground.png'
+
+
 
 
 
@@ -89,6 +121,9 @@ const foreground = new Sprite({
   image: foregroundImage
 })
 
+
+
+
 const keys = {
   w: {
     pressed: false
@@ -104,7 +139,7 @@ const keys = {
   }
 }
 
-const movables = [background, ...boundaries, foreground]
+const movables = [background, ...boundaries, foreground, ...battle1zones,]
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
   return (
@@ -114,17 +149,49 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
     rectangle1.position.y + rectangle1.height >= rectangle2.position.y
   )
 }
+
+const battle = {
+  initiated: false
+}
+
 function animate() {
   window.requestAnimationFrame(animate)
   background.draw()
   boundaries.forEach((boundary) => {
     boundary.draw()
   })
+  battle1zones.forEach((boundary) => {
+    boundary.draw()
+  })
+
+  
+  
   player.draw()
   foreground.draw()
+  
+  
 
   let moving = true
   player.moving = false
+
+  if (battle.initiated) return
+
+  
+  if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+  for (let i = 0; i < battle1zones.length; i++) {
+
+  const battle1zone = battle1zones[i]
+
+  if (
+    rectangularCollision({
+      rectangle1: player,
+      rectangle2: battle1zone
+    })){
+      console.log('activate battle')
+        battle.initiated = true
+        break
+    }}}
+
   if (keys.w.pressed && lastKey === 'w') {
     player.moving = true
     player.image = player.sprites.up
