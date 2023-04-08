@@ -144,8 +144,8 @@ export class CollisionHandler {
 
     if (collidingObject.collisionTags.includes("cave")) {
       console.log(collidingObject)
-      if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 2) {
-        Game.loadMap ("maps/map-02.txt")
+      if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 1) {
+        Game.loadMap ("neueWelt")
       }
     }
   }
