@@ -143,7 +143,10 @@ export class CollisionHandler {
      }
 
     if (collidingObject.collisionTags.includes("cave")) {
-      Game.loadMap("maps/map-richtig.txt")
+      console.log(collidingObject)
+      if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 2) {
+        Game.loadMap ("maps/map-02.txt")
+      }
     }
   }
   }
