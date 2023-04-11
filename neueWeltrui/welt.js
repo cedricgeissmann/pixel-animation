@@ -7,7 +7,7 @@ const canvasHeight = parseInt(canvasStyles.height, 10);
 
 c.fillRect(0, 0, canvasWidth, canvasHeight);
 
-const gravity = 0.2
+const gravity = 0.9
 
 class Box {                         //creating a class called Box
     constructor({position, velocity}){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
@@ -76,6 +76,14 @@ const keys = {                              //defines object calls "keys"
 
     w: {
         pressed: false
+    },
+
+    ArrowLeft: {
+        pressed: false
+    },
+
+    ArrowRight: {
+        pressed: false
     }
 }
 
@@ -91,11 +99,22 @@ function animate(){                         //create animate function
     console.log("hallo")                    //"hallo" appears in console
 
     player.velocity.x = 0
+    enemy.velocity.x = 0
 
-    if(keys.a.pressed && lastKey === "a"){                     // if key a is pressed, velocity = -1
-        player.velocity.x = -1
-    } else if (keys.d.pressed && lastKey=== "d"){
-        player.velocity.x = 1              //same for d but 1
+    // player movement
+
+    if(keys.a.pressed && player.lastKey === "a"){                     // if key a is pressed, velocity = -1
+        player.velocity.x = -4
+    } else if (keys.d.pressed && player.lastKey=== "d"){
+        player.velocity.x = 4              //same for d but 1
+    }
+
+    //enemy movement
+
+    if(keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft"){                     
+        enemy.velocity.x = -4
+    } else if (keys.ArrowRight.pressed && enemy.lastKey=== "ArrowRight"){
+        enemy.velocity.x = 4             
     }
 }
 
@@ -106,33 +125,33 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
     switch(event.key){
         case "d" :                              // if the key i press is equal to d                
         keys.d.pressed = true                     // then velocity is set to one
-        lastKey = "d"
+        player.lastKey = "d"
         break
         
         case "a" :                              // when a is pressed, player moves left because of -1                    
         keys.a.pressed = true
-        lastKey ="a"                 
+        player.lastKey ="a"                 
         break
 
         case "w" :                                               
-        player.velocity.y = -3              //jumping function: player is set to negative ten -> gravitiy pulls player down to bottom of canvas            
+        player.velocity.y = -10             //jumping function: player is set to negative ten -> gravitiy pulls player down to bottom of canvas            
         break
 
 
-        //KEYS FOR PLAYER 2:
+        //KEYS FOR ENEMY (PLAYER 2) :)
 
         case "ArrowRight" :                                             
-        keys.d.pressed = true                     
+        keys.ArrowRight.pressed = true                     
         enemy.lastKey = "ArrowRight"
         break
         
         case "ArrowLeft" :                                                 
-        keys.a.pressed = true
+        keys.ArrowLeft.pressed = true
         enemy.lastKey ="ArrowLeft"                 
         break
 
         case "ArrowUp" :                                               
-        player.velocity.y = -3              
+        enemy.velocity.y = -10            
         break
     }
     console.log(event.key);
@@ -151,6 +170,20 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
         
         case "w" :                                              
         keys.a.pressed = false                 
+        break
+        
+        //ENEMY KEYS :) (PLAYER 2)
+
+        case "ArrowRight" :                                              
+        keys.ArrowRight.pressed = false                  
+        break    
+        
+        case "ArrowLeft" :                                              
+        keys.ArrowLeft.pressed = false                 
+        break
+        
+        case "ArrowUp" :                                              
+        keys.ArrowUp.pressed = false                 
         break                                  
     }
     console.log(event.key);
