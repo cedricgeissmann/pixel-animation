@@ -154,13 +154,15 @@ export class CollisionHandler {
 
 
 
-        
+        setTimeout(function() {
         Game.loadMap ("maps/karte.txt")
+        }, 2000)
       }
-    }
+      }
   }
   }
-}
+  }
+
 
 export class AnimationHandler {
   constructor(options) {
