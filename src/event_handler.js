@@ -145,23 +145,17 @@ export class CollisionHandler {
     if (collidingObject.collisionTags.includes("cave")) {
       console.log(collidingObject)
       if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 2) {
-        
-
-
-
-
-
-
-
-
+        if (gameObject === Game.player && gameObject === Game.player2){
         setTimeout(function() {
         Game.loadMap ("maps/karte.txt")
         }, 2000)
       }
+    }
       }
+    }
   }
   }
-  }
+  
 
 
 export class AnimationHandler {
