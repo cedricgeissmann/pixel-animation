@@ -3,6 +3,7 @@ import CollisionDetector from "./collision_detector.js"
 import Camera from "./camera.js"
 import TileRegistry from "./tile_registry.js"
 import EventHandler from "./event_handler.js"
+import { Player2 } from "./game_objects.js"
 
 
 /**
@@ -93,3 +94,27 @@ export default class Game {
     }
   }
 }
+
+
+function respawn() {
+  Game.player = respawnPosition.x;
+  Game.player2 = respawnPosition.y;
+
+
+  Game.player.health = max_health;
+  Game.player2.health = max_health;
+}
+
+function checkPlayerStatus() {
+  if (Game.player.isDead || Game.player.isOut) {
+      respawn();
+  }
+}
+
+function checkPlayerStatus2() {
+  if (Game.player2.isDead || Game.player2.isOut) {
+      respawn();
+  }
+}
+
+setInterval(checkPlayerStatus, 1000);

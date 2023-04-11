@@ -145,7 +145,17 @@ export class CollisionHandler {
     if (collidingObject.collisionTags.includes("cave")) {
       console.log(collidingObject)
       if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 2) {
-        Game.loadMap ("world.html")
+        
+
+
+
+
+
+
+
+
+        
+        Game.loadMap ("maps/karte.txt")
       }
     }
   }
