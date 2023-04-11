@@ -111,7 +111,7 @@ function checkPlayerStatus() {
   }
 }
 
-function checkPlayerStatus() {
+function checkPlayerStatus2() {
   if (Game.player2.isDead || Game.player2.isOut) {
       respawn();
   }
