@@ -10,16 +10,33 @@ c.fillRect(0, 0, canvasWidth, canvasHeight);
 const gravity = 0.9
 
 class Box {                         //creating a class called Box
-    constructor({position, velocity}){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
+    constructor({position, velocity, color ="red"}){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
         this.position = position  
         this.velocity = velocity 
+        this.width = 30
         this.height = 50
         this.lastKey
+        this.attackbox = {
+            position: { x: this.position.x, y: this.position.y },
+            width: 50,
+            height: 25
+          }
+          this.color = color
+          this.isAttacking
     }
 
     draw(){                         //draw function, where c.fillRect draws the box on canvas
-        c.fillStyle = "red"
-        c.fillRect(this.position.x, this.position.y, 30, this.height);
+        c.fillStyle = this.color
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+        // attack box
+        c.fillStyle = "green"
+        c.fillRect(
+            this.attackbox.position.x,
+            this.attackbox.position.y,
+            this.attackbox.width,
+            this.attackbox.height
+          );
     }
 
     update (){                     //function for moving objects
@@ -27,9 +44,18 @@ class Box {                         //creating a class called Box
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y        // same as this.position.y = this.position.y + 10
+        this.attackbox.position.x = this.position.x;
+        this.attackbox.position.y = this.position.y;
+      
         if(this.position.y + this.height + this.velocity.y >= canvas.height){
             this.velocity.y = 0                  // prevent box falling down past canvas by comparing the current y position + height and velocity with canvas height
         } else this.velocity.y += gravity       // if object has not reached bottom of canvas -> gravity increased by 0.2                                                      
+    }
+    attack(){
+        this.isAttacking = true 
+        setTimeout(() => {
+            this.isAttacking = false
+        }, 100)
     }
 }
 
@@ -58,7 +84,8 @@ const enemy = new Box({
     velocity: {
         x: 0,
         y: 0
-    }
+    },
+    color: "blue"
 })      
 
 
@@ -116,6 +143,16 @@ function animate(){                         //create animate function
     } else if (keys.ArrowRight.pressed && enemy.lastKey=== "ArrowRight"){
         enemy.velocity.x = 4             
     }
+
+//detect for collision 
+
+if(player.attackbox.position.x + player.attackbox.width >= enemy.position.x
+    && player.attackbox.position <= enemy.position.x + enemy.position,width
+    && player.attackbox.position.y + player.attackbox.height >= enemy.position.y
+    && player.attackbox.position.y <= enemy.position.y + enemy.height ){
+    console.log("go")
+}
+
 }
 
 animate()                                   //starts the animation loop
