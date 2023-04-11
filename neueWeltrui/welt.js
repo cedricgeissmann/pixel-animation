@@ -10,7 +10,7 @@ c.fillRect(0, 0, canvasWidth, canvasHeight);
 const gravity = 0.9
 
 class Box {                         //creating a class called Box
-    constructor({position, velocity, color ="red"}){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
+    constructor({position, velocity, color ="red", offset}){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
         this.position = position  
         this.velocity = velocity 
         this.width = 30
@@ -18,9 +18,13 @@ class Box {                         //creating a class called Box
         this.lastKey
         this.attackbox = {
             position: { x: this.position.x, y: this.position.y },
+            offset: offset, 
+            x: 50, 
+            y: 25,
             width: 50,
             height: 25
-          }
+        };
+       
           this.color = color
           this.isAttacking
     }
@@ -28,23 +32,30 @@ class Box {                         //creating a class called Box
     draw(){                         //draw function, where c.fillRect draws the box on canvas
         c.fillStyle = this.color
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        
+
 
         // attack box
-        c.fillStyle = "green"
-        c.fillRect(
-            this.attackbox.position.x,
-            this.attackbox.position.y,
-            this.attackbox.width,
-            this.attackbox.height
-          );
+        if(this.isAttacking){
+            c.fillStyle = "green"
+            c.fillRect(
+                this.attackbox.position.x,
+                this.attackbox.position.y,
+                this.attackbox.width,
+                this.attackbox.height
+              );
+
+        }
+
     }
 
     update (){                     //function for moving objects
         this.draw()
 
+
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y        // same as this.position.y = this.position.y + 10
-        this.attackbox.position.x = this.position.x;
+        this.attackbox.position.x = this.position.x - this.attackbox.offset.x, 
         this.attackbox.position.y = this.position.y;
       
         if(this.position.y + this.height + this.velocity.y >= canvas.height){
@@ -72,6 +83,8 @@ const player = new Box({
         x: 0,
         y: 10
     }
+
+
 })
 
 
@@ -85,7 +98,11 @@ const enemy = new Box({
         x: 0,
         y: 0
     },
-    color: "blue"
+    color: "blue",
+    offset : {
+        x: -25,
+        y: 0
+    }
 })      
 
 
@@ -123,7 +140,7 @@ function animate(){                         //create animate function
     c.fillRect(0, 0, canvasWidth, canvasHeight)
     player.update()                         //after deleting enemy.draw() and for player i use update because draw function is contained
     enemy.update()
-    console.log("hallo")                    //"hallo" appears in console
+
 
     player.velocity.x = 0
     enemy.velocity.x = 0
@@ -144,16 +161,39 @@ function animate(){                         //create animate function
         enemy.velocity.x = 4             
     }
 
+
+    function rectangularCollision({rectagnle1, rectangle2}){
+    return (
+    player.attackbox.position.x + player.attackbox.width >= rectangle2.position.x
+    && player.attackbox.position <= rectangle2.position.x + rectangle2.position.width
+    && player.attackbox.position.y + player.attackbox.height >= rectangle2.position.y
+    && player.attackbox.position.y <= rectangle2.position.y + rectangle2.height
+    )
+    }
+
 //detect for collision 
 
-if(player.attackbox.position.x + player.attackbox.width >= enemy.position.x
-    && player.attackbox.position <= enemy.position.x + enemy.position,width
-    && player.attackbox.position.y + player.attackbox.height >= enemy.position.y
-    && player.attackbox.position.y <= enemy.position.y + enemy.height ){
+if(rectangularCollision ({
+    rectangle1: player,
+    rectangle2: enemy
+})&&
+     player.isAttacking 
+){
+    player.isAttacking = false
     console.log("go")
 }
 
+if(rectangularCollision ({
+    rectangle1: player,
+    rectangle2: enemy
+})&&
+     enemy.isAttacking 
+){
+    enemy.isAttacking = false
+    console.log("enemy attack succesful")
 }
+
+
 
 animate()                                   //starts the animation loop
 
@@ -174,6 +214,9 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
         player.velocity.y = -10             //jumping function: player is set to negative ten -> gravitiy pulls player down to bottom of canvas            
         break
 
+        case " ": 
+        player.attack()                     // if space key is pressed, player attack
+
 
         //KEYS FOR ENEMY (PLAYER 2) :)
 
@@ -190,6 +233,13 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
         case "ArrowUp" :                                               
         enemy.velocity.y = -10            
         break
+
+
+        case "ArrowDown" :                                               
+        enemy.isAttacking = true          
+        break
+
+
     }
     console.log(event.key);
   });
