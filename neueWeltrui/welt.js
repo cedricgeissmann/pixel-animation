@@ -279,3 +279,4 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
     }
 })
 
+}
