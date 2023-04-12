@@ -18,7 +18,7 @@ class Box {                         //creating a class called Box
         this.lastKey
         this.attackbox = {
             position: { x: this.position.x, y: this.position.y },
-            offset: offset, 
+            offset, 
             x: 50, 
             y: 25,
             width: 50,
@@ -55,7 +55,7 @@ class Box {                         //creating a class called Box
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y        // same as this.position.y = this.position.y + 10
-        this.attackbox.position.x = this.position.x - this.attackbox.offset.x, 
+        this.attackbox.position.x = this.position.x -this.attackbox.offset.x, 
         this.attackbox.position.y = this.position.y;
       
         if(this.position.y + this.height + this.velocity.y >= canvas.height){
@@ -82,6 +82,10 @@ const player = new Box({
     velocity: {
         x: 0,
         y: 10
+    },
+    offset: {
+        x: 0,
+        y:0
     }
 
 
@@ -134,6 +138,16 @@ const keys = {                              //defines object calls "keys"
 let lastKey                                 // making sure that the last key, which is pressed, guides the direction
 
 
+function rectangularCollision({rectangle1, rectangle2}){
+    return (
+      rectangle1.attackbox.position.x + rectangle1.attackbox.width >= rectangle2.position.x
+      && rectangle1.attackbox.position.x <= rectangle2.position.x + rectangle2.width
+      && rectangle1.attackbox.position.y + rectangle1.attackbox.height >= rectangle2.position.y
+      && rectangle1.attackbox.position.y <= rectangle2.position.y + rectangle2.height
+    );
+}
+
+
 function animate(){                         //create animate function
     window.requestAnimationFrame(animate)   //requests the animate function 
     c.fillStyle = "black"
@@ -161,15 +175,6 @@ function animate(){                         //create animate function
         enemy.velocity.x = 4             
     }
 
-
-    function rectangularCollision({rectagnle1, rectangle2}){
-    return (
-    player.attackbox.position.x + player.attackbox.width >= rectangle2.position.x
-    && player.attackbox.position <= rectangle2.position.x + rectangle2.position.width
-    && player.attackbox.position.y + player.attackbox.height >= rectangle2.position.y
-    && player.attackbox.position.y <= rectangle2.position.y + rectangle2.height
-    )
-    }
 
 //detect for collision 
 
@@ -244,7 +249,6 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
     console.log(event.key);
   });
 
-
   window.addEventListener('keyup', (event) => { 
     switch(event.key){
         case "d" :                                              
@@ -273,5 +277,5 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
         keys.ArrowUp.pressed = false                 
         break                                  
     }
-    console.log(event.key);
-  });
+})
+
