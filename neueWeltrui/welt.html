@@ -1,6 +1,40 @@
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+    </style> <!--* means that it effects everythng-->
+</head>
+<body>
+    <!--red container div-->
+    <div style=" position: relative; display: inline-block;"> <!--inline-block= the div is only within canvas and not the whole screen-->
+        <!--smaller red contaier div-->
+        <div style ="
+        position: absolute; 
+        display: flex; 
+        width: 100%; 
+        align-items: center;
+        padding: 20px;"> 
+        <!--absolute means that you the element out of the document flow and when this happens, other elements such as canvas aren't going to be affected by the width or height of that one individual element
+        flex means that every div that is now going to be placed next to each other. center means that the divs are going zp be aligned in the center-->
+       
+        <!--player health-->
+        <div style="background-color: yellow; height: 30px; width: 100%;"></div> 
+        <!--timer-->
+        <div style ="
+        background-color: red; 
+        width:100px; height: 100px; 
+        flex-shrink: 0;
+        "
+        ></div> <!--the element doesn't shrink bcs an other element is bigger--> 
+        <!--enemy health-->
+        <div id= "enemyHealth" style="background-color: yellow; height: 30px; width: 100%;"></div> 
+        </div>
+<canvas></canvas>
+    </div>
 <link rel="stylesheet" href="welt.css">
 <script src="welt.js" defer></script>
 
-<canvas></canvas>
 
+</body>
 
