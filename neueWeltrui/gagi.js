@@ -108,7 +108,7 @@ const enemy = new Box({
 
 
 
-console.log (player)
+
 
 const keys = {                              //defines object calls "keys" 
     a: {
@@ -144,6 +144,36 @@ function rectangularCollision({rectangle1,rectangle2}) {
 }
 
 
+determineWinner({player, enemy, timerId}); {
+    clearTimeout(timerId)
+    document.querySelector("#displayText").style.display = "flex"
+    if(player.health === enemy.health) {
+        document.querySelector("#displayText").innnerHTML = "Tie"
+    } else if (player.health > enemy.health){
+        document.querySelector("#displayText").innerHTML = "Player 1 Wins"
+    } else if (player.health < enemy.health){
+        document.querySelector("#displayText").innerHTML = "Player 2 Wins"
+    }
+}
+
+let timer = 1989
+let timerId
+function decreaseTimer(){
+    timerId = setTimeout(decreaseTimer, 1000)
+    if (timer > 0){
+        timer --
+        document.querySelector("#timer").innerHTML = timer
+    }
+
+    if (timer === 0){
+        determineWinner({player, enemy, timerId})
+
+   
+    }
+    
+}
+
+decreaseTimer()
 
 function animate(){                         //create animate function
     window.requestAnimationFrame(animate)   //requests the animate function 
@@ -188,9 +218,15 @@ function animate(){                         //create animate function
             rectangle1: enemy,
             rectangle2: player
         }) &&
-         player.isAttacking){
+         enemy.isAttacking){
              enemy.isAttacking = false
          console.log("enemy atttttttackkk");
+     }
+
+     //end game based on health
+     if(enemy.health <= 0 || player.health <= 0){
+        determineWinner({player, enemy, timerId})
+         
      }
 }
 
