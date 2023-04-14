@@ -69,6 +69,11 @@ export class GameObject {
 
 }
 
+
+
+
+
+
 export class Backgroundgreen extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#hinter")
@@ -266,17 +271,6 @@ export class Player extends AnimatedGameObject {
   }
 
 
-  looseHP(amount) {
-    this.hp = this.hp - amount
-    const hpElem = document.querySelector("#HP")
-    hpElem.textContent = this.hp
-  }
-
-  getHP(amount) {
-    this.hp = this.hp + amount
-    const hpElem = document.querySelector("#HP")
-    hpElem.textContent = this.hp
-  }
 
   handle(ev) {
     if (ev === "KeyW") { this.move("up") }
