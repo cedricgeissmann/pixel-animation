@@ -162,21 +162,16 @@ function determineWinner({player, enemy, timerId}){
 }
 
 
-let timer = 60
-let timerId 
+let timer = 10
 function decreaseTimer(){
+    setTimeout(decreaseTimer, 1000) //infinite loop for the timer
     if(timer > 0) {
-        timerId = setTimeout(decreaseTimer, 1000) //infinite loop for the timer
         timer--
         document.querySelector("#timer").innerHTML = timer
     }
-
-    if(timer ===0){
-        determineWinner({player, enemy, timerId})
-
 }
 
-}
+
 
 decreaseTimer()
 

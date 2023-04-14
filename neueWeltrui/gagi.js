@@ -10,31 +10,47 @@ c.fillRect(0, 0, canvasWidth, canvasHeight);
 const gravity = 0.9
 
 class Box {                         //creating a class called Box
-    constructor({position, velocity}){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
+    constructor({position, velocity, color = "red", offset}){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
         this.position = position  
         this.velocity = velocity 
+        this.width = 30
         this.height = 50
         this.lastKey
         this.attackBox = {
-            position: this.position, 
-            width: 20,
-            height: 40
+            position: {
+                x: this.position.x,
+                y: this.position.y
+            }, 
+            offset, 
+            width: 50,
+            height: 20,
           };
-               
+        this.color = color
+        this.isAttacking 
     }
 
     draw(){                         //draw function, where c.fillRect draws the box on canvas
-        c.fillStyle = "red"
-        c.fillRect(this.position.x, this.position.y, 30, this.height);
+        c.fillStyle = this.color
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
         
 
 
         //attackBoxzz
+        if(this.isAttacking){
+        c.fillStyle = "green"
+        c.fillRect(
+        this.attackBox.position.x, 
+        this.attackBox.position.y, 
+        this.attackBox.width, 
+        this.attackBox.height);
+        }
 
     }
 
     update (){                     //function for moving objects
         this.draw()
+        this.attackBox.position.x = this.position.x + this.attackBox.offset.x,
+        this.attackBox.position.y = this.position.y 
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y        // same as this.position.y = this.position.y + 10
@@ -42,7 +58,16 @@ class Box {                         //creating a class called Box
             this.velocity.y = 0                  // prevent box falling down past canvas by comparing the current y position + height and velocity with canvas height
         } else this.velocity.y += gravity       // if object has not reached bottom of canvas -> gravity increased by 0.2                                                      
     }
+
+    attack() {                                //creating attack function
+        this.isAttacking = true
+        setTimeout(() => {
+            this.isAttacking = false
+        }, 100)
+    }
+
 }
+
 
 
 
@@ -56,6 +81,10 @@ const player = new Box({
     velocity: {
         x: 0,
         y: 10
+    },
+    offset: {
+        x: 0,
+        y:0
     }
 })
 
@@ -69,6 +98,11 @@ const enemy = new Box({
     velocity: {
         x: 0,
         y: 0
+    },
+    color: "blue",
+    offset: {
+        x: -20,
+        y: 0,
     }
 })      
 
@@ -100,6 +134,16 @@ const keys = {                              //defines object calls "keys"
 
 let lastKey                                 // making sure that the last key, which is pressed, guides the direction
 
+function rectangularCollision({rectangle1,rectangle2}) {
+    return (
+        rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x && 
+        rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width &&
+        rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.position.y&&
+        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
+    )
+}
+
+
 
 function animate(){                         //create animate function
     window.requestAnimationFrame(animate)   //requests the animate function 
@@ -127,12 +171,32 @@ function animate(){                         //create animate function
     } else if (keys.ArrowRight.pressed && enemy.lastKey=== "ArrowRight"){
         enemy.velocity.x = 4             
     }
+
+
+    //detect for collision
+    if(
+       rectangularCollision({
+           rectangle1: player,
+           rectangle2: enemy
+       }) &&
+        player.isAttacking){
+            player.isAttacking = false
+        console.log("go");
+    }
+    if(
+        rectangularCollision({
+            rectangle1: enemy,
+            rectangle2: player
+        }) &&
+         player.isAttacking){
+             enemy.isAttacking = false
+         console.log("enemy atttttttackkk");
+     }
 }
 
 animate()                                   //starts the animation loop
 
 window.addEventListener('keydown', (event) => { // pressing any key and allowing me to see data properties
-    console.log(event)
     switch(event.key){
         case "d" :                              // if the key i press is equal to d                
         keys.d.pressed = true                     // then velocity is set to one
@@ -146,6 +210,10 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
 
         case "w" :                                               
         player.velocity.y = -10             //jumping function: player is set to negative ten -> gravitiy pulls player down to bottom of canvas            
+        break
+
+        case " ":
+        player.attack()
         break
 
 
@@ -164,8 +232,11 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
         case "ArrowUp" :                                               
         enemy.velocity.y = -10            
         break
+
+        case "ArrowDown" :                                               
+        enemy.isAttacking = true        
+        break
     }
-    console.log(event.key);
   });
 
 
@@ -197,5 +268,4 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
         keys.ArrowUp.pressed = false                 
         break                                  
     }
-    console.log(event.key);
   });
