@@ -216,14 +216,11 @@ if(rectangularCollision ({
     document.querySelector("#enemyHealth").style.width = enemy.health + "%" //set health bar equal to the new percentage of health
 }
 
-//end game based on health 
-if(enemy.health <= 0 || player.health <= 0){
-    determineWinner({player, enemy, timerId})
-}
+
 
 if(rectangularCollision ({
-    rectangle1: player,
-    rectangle2: enemy
+    rectangle1: enemy,
+    rectangle2: player
 })&&
      enemy.isAttacking 
 ){
@@ -232,7 +229,10 @@ if(rectangularCollision ({
     document.querySelector("#playerHealth").style.width = player.health + "%" //set health bar equal to the new percentage of health
 }
 
-
+//end game based on health 
+if(enemy.health <= 0 || player.health <= 0){
+    determineWinner({player, enemy, timerId})
+}
 
 animate()                                   //starts the animation loop
 

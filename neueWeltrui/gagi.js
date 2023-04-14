@@ -27,6 +27,7 @@ class Box {                         //creating a class called Box
           };
         this.color = color
         this.isAttacking 
+        this.health = 100
     }
 
     draw(){                         //draw function, where c.fillRect draws the box on canvas
@@ -45,12 +46,13 @@ class Box {                         //creating a class called Box
         this.attackBox.height);
         }
 
+
     }
 
     update (){                     //function for moving objects
         this.draw()
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x,
-        this.attackBox.position.y = this.position.y 
+        this.attackBox.position.y = this.position.y - this.attackBox.offset.y
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y        // same as this.position.y = this.position.y + 10
@@ -143,35 +145,37 @@ function rectangularCollision({rectangle1,rectangle2}) {
     )
 }
 
-
-determineWinner({player, enemy, timerId}); {
+function determineWinner({player, enemy, timerId}) {
     clearTimeout(timerId)
     document.querySelector("#displayText").style.display = "flex"
-    if(player.health === enemy.health) {
-        document.querySelector("#displayText").innnerHTML = "Tie"
+    if(player.health === enemy.health){
+        document.querySelector("#displayText").innerHTML = "Tie"
     } else if (player.health > enemy.health){
         document.querySelector("#displayText").innerHTML = "Player 1 Wins"
     } else if (player.health < enemy.health){
         document.querySelector("#displayText").innerHTML = "Player 2 Wins"
     }
+   
 }
 
-let timer = 1989
+
+let timer = 60
 let timerId
 function decreaseTimer(){
-    timerId = setTimeout(decreaseTimer, 1000)
     if (timer > 0){
+        timerId = setTimeout(decreaseTimer, 1000)
         timer --
         document.querySelector("#timer").innerHTML = timer
     }
 
-    if (timer === 0){
-        determineWinner({player, enemy, timerId})
+    if(timer === 0){
+        determineWinner({player, enemy, timerId})    
 
+    }
    
     }
     
-}
+
 
 decreaseTimer()
 
@@ -211,7 +215,10 @@ function animate(){                         //create animate function
        }) &&
         player.isAttacking){
             player.isAttacking = false
-        console.log("go");
+            enemy.health -= 10 //for each time we hit our enemy we subtract 10 hit points
+            document.querySelector("#enemyHealth").style.width = enemy.health + "%"; //set health bar equal to the new percentage of health
+        }
+        
     }
     if(
         rectangularCollision({
@@ -220,15 +227,16 @@ function animate(){                         //create animate function
         }) &&
          enemy.isAttacking){
              enemy.isAttacking = false
-         console.log("enemy atttttttackkk");
-     }
+             player.health -= 10 //for each time we hit our enemy we subtract 10 hit points
+             document.querySelector("#playerHealth").style.width = player.health + "%"; //set health bar equal to the new percentage of health
+      }
 
      //end game based on health
      if(enemy.health <= 0 || player.health <= 0){
-        determineWinner({player, enemy, timerId})
+        determineWinner({player, enemy, timerId})   
          
      }
-}
+
 
 animate()                                   //starts the animation loop
 
