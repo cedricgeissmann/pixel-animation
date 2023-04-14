@@ -27,6 +27,7 @@ class Box {                         //creating a class called Box
        
           this.color = color
           this.isAttacking
+          this.health = 100
     }
 
     draw(){                         //draw function, where c.fillRect draws the box on canvas
@@ -147,6 +148,37 @@ function rectangularCollision({rectangle1, rectangle2}){
     );
 }
 
+function determineWinner({player, enemy, timerId}){
+    clearTimeout(timerId)
+    document.querySelector("#displayText").style.display = "flex"
+    if(player.health === enemy.health){
+        document.querySelector("#displayText").innerHTML = "Tie"
+    } else if(player.health > enemy.health){
+        document.querySelector("#displayText").innerHTML = "Player 1 Wins"
+    } else if(player.health < enemy.health){
+        document.querySelector("#displayText").innerHTML = "Player 2 Wins"
+    }
+
+}
+
+
+let timer = 60
+let timerId 
+function decreaseTimer(){
+    if(timer > 0) {
+        timerId = setTimeout(decreaseTimer, 1000) //infinite loop for the timer
+        timer--
+        document.querySelector("#timer").innerHTML = timer
+    }
+
+    if(timer ===0){
+        determineWinner({player, enemy, timerId})
+
+}
+
+}
+
+decreaseTimer()
 
 function animate(){                         //create animate function
     window.requestAnimationFrame(animate)   //requests the animate function 
@@ -185,7 +217,13 @@ if(rectangularCollision ({
      player.isAttacking 
 ){
     player.isAttacking = false
-    console.log("go")
+    enemy.health -= 20 //for each time we hit our enemy we subtract 20 hit points
+    document.querySelector("#enemyHealth").style.width = enemy.health + "%" //set health bar equal to the new percentage of health
+}
+
+//end game based on health 
+if(enemy.health <= 0 || player.health <= 0){
+    determineWinner({player, enemy, timerId})
 }
 
 if(rectangularCollision ({
@@ -195,7 +233,8 @@ if(rectangularCollision ({
      enemy.isAttacking 
 ){
     enemy.isAttacking = false
-    console.log("enemy attack succesful")
+    player.health -= 20 //for each time we hit our enemy we subtract 20 hit points
+    document.querySelector("#playerHealth").style.width = player.health + "%" //set health bar equal to the new percentage of health
 }
 
 
@@ -277,6 +316,6 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
         keys.ArrowUp.pressed = false                 
         break                                  
     }
-})
-
+    console.log(event.key);
+  });
 }
