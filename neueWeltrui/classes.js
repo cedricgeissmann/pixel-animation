@@ -1,12 +1,18 @@
 class Box {                         //creating a class called Box
-    constructor({position,  }){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
+    constructor({position, imageSrc }){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
         this.position = position  
         this.width = 30
         this.height = 50
+        this.image = new Image() //creates HTML image in java
+        this.image.src =imageSrc 
  
     }
 
-    draw(){}                         //draw function, where c.fillRect draws the box on canvas
+    draw(){                        //draw function, where c.fillRect draws the box on canvas
+
+    c.drawImage(this.image, this.position.x, this.position.y) //draw out image
+    }
+
 
     update (){                     //function for moving objects
         this.draw()

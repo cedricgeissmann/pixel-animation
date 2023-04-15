@@ -71,7 +71,21 @@ class Box {                         //creating a class called Box
 }
 
 
+const img1 = new Image();
+img1.src = "background_layer_1.png";
 
+const img2 = new Image();
+img2.src = "background_layer_2.png";
+
+const img3 = new Image();
+img3.src = "background_layer_3.png";
+
+img1.onload = () => {
+    ctx.drawImage(img1, 0, 0); // Draw the first image at (0, 0)
+    img2.onload = () => {
+      ctx.drawImage(img2, 50, 50); // Draw the second image at (50, 50)
+    };
+  };
 
 
 
