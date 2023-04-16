@@ -19,6 +19,23 @@ class Box {                         //creating a class called Box
     }
 
 }
+class Sprite {
+    constructor( { position, imagageSrc}) 
+        this.position = position
+        this.width = 50
+        this.height = 150 
+        this.image = new Image()
+        this.image.src = imageSrc
+    
+}
+
+draw () {               //Canvas function to draw
+    c.drawImage (this.image, this position.x, this.position.y)
+}
+
+update() {
+    this.draw()
+}
 
 class Fighter {                         //creating a class called Box
     constructor({position, velocity, color ="red", offset}){          //function called constructor is called when creating a box object "{}" in velocity and position makes that the order doesn't matter
@@ -70,7 +87,7 @@ class Fighter {                         //creating a class called Box
         this.attackbox.position.x = this.position.x -this.attackbox.offset.x, 
         this.attackbox.position.y = this.position.y;
       
-        if(this.position.y + this.height + this.velocity.y >= canvas.height){
+        if(this.position.y + this.height + this.velocity.y >= canvas.height - 97){
             this.velocity.y = 0                  // prevent box falling down past canvas by comparing the current y position + height and velocity with canvas height
         } else this.velocity.y += gravity       // if object has not reached bottom of canvas -> gravity increased by 0.2                                                      
     }
