@@ -1,6 +1,8 @@
 import {c} from "../javascript/script.js"
 
+//important game classes:
 
+//create boundary class
 export class Boundary {
     static width = 48
     static height = 48
@@ -16,6 +18,7 @@ export class Boundary {
     }
   }
 
+  //create sprite class
   export class Sprite {
     constructor({ position, velocity, image, frames = { max: 1 }, sprites }) {
       this.position = position
