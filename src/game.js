@@ -18,7 +18,6 @@ export default class Game {
   static player2 = null;
   static running = false;
   static currentFrame = 0;
-<<<<<<< HEAD
   static level = 1;
 
   constructor() {
@@ -27,18 +26,6 @@ export default class Game {
     this.canvas.width = 41 * this.tileSize
     this.canvas.height = 21 * this.tileSize
     this.ctx = this.canvas.getContext("2d")
-=======
-  static canvas = document.querySelector("#canvas")
-  static tileWidth = 32
-  static tileHeight = 32
-  static instance = null
-
-  constructor() {
-    Game.instance = this
-    Game.canvas.width = 10 * Game.tileWidth
-    Game.canvas.height = 15 * Game.tileHeight
-    this.ctx = Game.canvas.getContext("2d")
->>>>>>> upstream/main
     this.ctx.imageSmoothingEnabled = false
 
     new EventHandler()

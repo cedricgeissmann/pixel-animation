@@ -153,7 +153,6 @@ export class CollisionHandler {
       }
     }
 
-<<<<<<< HEAD
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
@@ -210,10 +209,6 @@ export class CollisionHandler {
 }, 2000)
       }
       
-=======
-    if (matchCollisionTags(collidingObject, ["cave"])) {
-      Game.loadMap("maps/map-02.txt")
->>>>>>> upstream/main
     }
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.

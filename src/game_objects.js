@@ -129,8 +129,6 @@ export class ShootingStone extends GameObject {
   }
 }
 
-<<<<<<< HEAD
-=======
 export class Wall extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -144,7 +142,6 @@ export class Wall extends GameObject {
   }
 }
 
->>>>>>> upstream/main
 export class Cave extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -164,10 +161,7 @@ export class Tree extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-<<<<<<< HEAD
       collisionTags: ["world"]
-=======
->>>>>>> upstream/main
     })
     this.row = 1 * this.tileHeight
     this.col = 1 * this.tileWidth
@@ -272,18 +266,11 @@ export class Player extends AnimatedGameObject {
     this.row = 0 * this.tileHeight
     this.col = 1 * this.tileWidth
     this.speed = 3
-<<<<<<< HEAD
     this.playerNumber = 1
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 2})
     ])
-=======
-
-    //addGravity(this, {maxGravity: 3, gravityForce: 1})
-    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
-    addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
->>>>>>> upstream/main
   }
 
   jump() {
@@ -297,17 +284,12 @@ export class Player extends AnimatedGameObject {
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-<<<<<<< HEAD
       this.row = 0
-=======
-      this.row = 3 * this.tileHeight
->>>>>>> upstream/main
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
       this.row = 0 * this.tileHeight
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-<<<<<<< HEAD
       this.row = 0
       this.col = 1
     } else if (direction === "right") {
@@ -347,14 +329,6 @@ export class Player2 extends Player {
       this.dx = this.dx + (1) * this.speed
       this.row = 1
       this.col = 0
-=======
-      this.row = 1 * this.tileHeight
-      Camera.shiftBackground(1)
-    } else if (direction === "right") {
-      this.dx = this.dx + (1) * this.speed
-      this.row = 2 * this.tileHeight
-      Camera.shiftBackground(-1)
->>>>>>> upstream/main
     }
   }
 }
