@@ -93,8 +93,19 @@ const background = new Sprite ( {
         x: 0,
         y: 0
     }
-    ImageSrc= "C:\Users\saaru\pixel animation\pixel-animation\neueWeltrui\background\layer1.png"
-    
+    ImageSrc = './img/layer1.png'
+
+})
+
+
+const shop = new Sprite ( {
+    postiton: {
+        x: 600,
+        y: 128
+    }
+    ImageSrc = './img/shop.png'
+    scale : 2.75
+    framesMax :6
 })
 
 
@@ -110,6 +121,12 @@ const player = new Box({
     offset: {
         x: 0,
         y:0
+    },
+    ImageSrc = "./img/khjj"
+    framesMax : 8,
+    scale: 2.5
+    offset: {
+        x: 2
     }
 })
 
@@ -168,6 +185,7 @@ function animate(){                         //create animate function
     c.fillStyle = "black"
     c.fillRect(0, 0, canvasWidth, canvasHeight)
     background.update ()
+    shop.update ()
     player.update()                         //after deleting enemy.draw() and for player i use update because draw function is contained
     enemy.update()
     console.log("hallo")                    //"hallo" appears in console
