@@ -229,6 +229,7 @@ export class Player extends AnimatedGameObject {
       sheet: img,
       layer: "player",
     })
+    
     this.row = 0
     this.col = 1
     this.speed = 3
