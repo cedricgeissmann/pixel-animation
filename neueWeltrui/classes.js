@@ -20,7 +20,7 @@ class Box {                         //creating a class called Box
 
 }
 class Sprite {
-    constructor( { position, imagageSrc, scale = 1, framesMax = 1, offset = {  x: 0, y:0}}) 
+    constructor( { position, imagageSrc, scale = 1, framesMax = 1, offset = {  x: 0, y:0}}) {
         this.position = position
         this.width = 50
         this.height = 150 
@@ -36,7 +36,7 @@ class Sprite {
 }
 
 
-draw ();  {              //Canvas function to draw
+draw ()  {              //Canvas function to draw
     c.drawImage (this.image,
                 this.frameCurrent *(this.image.width / this.framesMax),    //X-coordinate
                 0,                                            //y-coordinate
@@ -49,7 +49,7 @@ draw ();  {              //Canvas function to draw
 }
 
 
-update(); {
+update() {
     this.draw()
     this.framesElapsed ++
 
@@ -60,6 +60,7 @@ update(); {
         this.framesCurrent = 0
     }
     
+}
 }
 
 class Fighter extends Sprite{                         //creating a class called Box
