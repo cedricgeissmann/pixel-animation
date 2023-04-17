@@ -92,6 +92,9 @@ playerRightImage.src = '../res/player/ACharRight.png'
 const foregroundImage = new Image()
 foregroundImage.src = '../res/foreground objects/foreground.png'
 
+const SlimeBlue = new Image()
+SlimeBlue.src = '../res/slimes/slime-blue.png'
+
 
 
 
