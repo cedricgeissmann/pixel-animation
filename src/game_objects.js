@@ -252,24 +252,21 @@ export class Player extends AnimatedGameObject {
     ])
     
     
-  }
-  attack(amount) {
-    if (Math.abs(Game.player - Game.player2) < 32) {
-      if (Game.player2.hp > 0) {
-    this.hp = this.hp - doDmg
-    const hpElem = document.querySelector("#HP")
-    hpElem.textContent = this.hp
+    looseHP(amount); {
+      this.hp = this.hp - amount
+      const hpElem = document.querySelector("#HP")
+      hpElem.textContent = this.hp
     }
-    if (Game.player.hp <= 0) {
-    Game.player.hp = 0
-    
-  }
-}
+  
+    getHP(amount); {
+      this.hp = this.hp + amount
+      const hpElem = document.querySelector("#HP")
+      hpElem.textContent = this.hp
+    }
 
-   
- 
-  }
 
+  }
+  
 
 
   handle(ev) {
@@ -329,16 +326,7 @@ export class Player2 extends Player {
     this.dmg = 10
   }
 
-  attack(amount) {
-    if (Math.abs(this.x - Game.player.x) < 32) {
-    let doDmg = this.dmg
-    this.hp = this.hp - doDmg
-    const hpElem = document.querySelector("#player2-HP")
-    hpElem.textContent = this.hp
-    }
-   
  
-  }
 
   looseHP(amount) {
     this.hp = this.hp - amount
