@@ -2,10 +2,87 @@ body {
     padding: 0;
     margin: 0;
     text-align: center;
-    background-color: antiquewhite;
+    background-color: lightcyan;
+}
+#player-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 24pt;
+}
+
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgrey;
+    padding: 20px;
+    width: 40%;
+}
+
+.player p {
+    margin: 0;
+    padding: 0;
+}
+
+#player h2 {
+    color: forestgreen;
+}
+
+#enemy h2 {
+    color: firebrick;
+}
+
+button {
+    font-size: inherit;
+}
+
+#err-msg {
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px;
+    background-color: rgba(255, 0, 0, 0.475);
+    border: 1px solid red;
+
+    font-size: 18pt;
+}
+
+h1 {
+    margin-top: 0;
 }
 
 canvas {
     background-image: url("https://th.bing.com/th/id/R.6282607965ee11532a5b97e7acb614fc?rik=1yBcmZB%2fbHouWA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f6%2fe%2ff%2f172886.jpg&ehk=l%2bcteS6Fu7J0MpZTUXAAlorLoAIx9HPa%2fw%2bxv6AroCE%3d&risl=&pid=ImgRaw&r=0");
-    width: min(70vh, 100vw);
+    width: 80vw;
+   
+}
+
+.paused {
+    box-sizing: border-box;
+    background-color: black;
+    animation: blink 400ms ease-in-out infinite alternate;
+}
+
+main {
+    margin: 10px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+}
+
+@keyframes blink {
+    0% {
+        background-color: antiquewhite;
+    }
+    50% {
+        background-color: rgb(197, 189, 175);
+        
+    }
+    100% {
+        background-color: rgb(142, 136, 125);
+    }
 }

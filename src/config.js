@@ -1,10 +1,10 @@
 import Game from "./game.js"
+import { ShootingStone } from "./game_objects.js"
 
 const config = {
   "keys": {
     "KeyW": function() { Game.player.move("up")},
     "KeyA": function() { Game.player.move("left")},
-    "KeyS": function() { Game.player.move("down")},
     "KeyD": function() { Game.player.move("right")},
     "Space": function() { Game.player.jump()},
     "ArrowUp": function() { Game.player2.move("up")},
