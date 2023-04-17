@@ -24,7 +24,8 @@ export default class Map {
     if ( tileType === "f" ) { new Flower(x, y) }
     if ( tileType === "w" ) { new Wall(x, y) }
     if ( tileType === "h" ) { new Cave(x, y) }
-  
+    if ( tileType === "P" ) { Game.player = new Player(x, y)}
+    if ( tileType === "Q" ) { Game.player2 = new Player2(x, y)}
 
     if ( tileType === "g" ) { new Backgroundgreen(x, y) }
     if ( tileType === "m" ) { new Backgroundmixed(x, y) }
