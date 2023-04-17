@@ -129,18 +129,18 @@ export class ShootingStone extends GameObject {
   }
 }
 
-export class Wall extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#ground")
-    super(x, y, {
-      sheet: ground,
-      layer: "world",
-    })
-    this.row = 1 * this.tileHeight
-    this.col = 3 * this.tileWidth
-    addCollision(this, {collisionTags: ["world"]})
-  }
-}
+//export class Wall extends GameObject {
+  //constructor(x, y) {
+    //const ground = document.querySelector("#ground")
+    //super(x, y, {
+      //sheet: ground,
+      //layer: "world",
+    //})
+    //this.row = 1 * this.tileHeight
+    //this.col = 3 * this.tileWidth
+    //addCollision(this, {collisionTags: ["world"]})
+  //}
+//}
 
 export class Cave extends GameObject {
   constructor(x, y) {
