@@ -148,7 +148,9 @@ export class CollisionHandler {
       else if (collidingObject.forPlayer === 1 && gameObject.playerNumber === 2) {
         Game.punkteSpieler1 += 1
         const elem = document.querySelector("#spielstand")
-        elem.textContent = Game.punkteSpieler1 + " - " + Game.punkteSpieler2
+        document.querySelector("#punkte-s1").textContent = Game.punkteSpieler1
+        document.querySelector("#punkte-s2").textContent = Game.punkteSpieler2
+        document.querySelector("#winner").textContent = "Spieler 2 gewonnen"
         elem.style.display = "flex"
         console.log(Game.punkteSpieler1 + " - " + Game.punkteSpieler2)
         setTimeout(function() {
