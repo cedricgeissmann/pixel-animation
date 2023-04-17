@@ -35,19 +35,21 @@ class Sprite {
     
 }
 
-draw () {               //Canvas function to draw
+
+draw ();  {              //Canvas function to draw
     c.drawImage (this.image,
                 this.frameCurrent *(this.image.width / this.framesMax),    //X-coordinate
                 0,                                            //y-coordinate
                 this.image.width / this.framesMax,       //crop image
                 this.image.height,
-                this position.x - this.offset.x,
+                this.position.x - this.offset.x,
                 this.position.y - this.offset.y, 
                ( this.image.width / this.framesMax )* this.scale, 
                 this.image.height * this.scale)
 }
 
-update() {
+
+update(); {
     this.draw()
     this.framesElapsed ++
 
