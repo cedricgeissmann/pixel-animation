@@ -71,42 +71,10 @@ class Box {                         //creating a class called Box
 }
 
 
-const img1 = new Image();
-img1.src = "background_layer_1.png";
-
-const img2 = new Image();
-img2.src = "background_layer_2.png";
-
-const img3 = new Image();
-img3.src = "background_layer_3.png";
-
-img1.onload = () => {
-    ctx.drawImage(img1, 0, 0); // Draw the first image at (0, 0)
-    img2.onload = () => {
-      ctx.drawImage(img2, 50, 50); // Draw the second image at (50, 50)
-    };
-  };
 
 
-const background = new Sprite ( {
-    postiton: {
-        x: 0,
-        y: 0
-    }
-    ImageSrc = './img/layer1.png'
-
-})
 
 
-const shop = new Sprite ( {
-    postiton: {
-        x: 600,
-        y: 128
-    }
-    ImageSrc = './img/shop.png'
-    scale : 2.75
-    framesMax :6
-})
 
 
 const player = new Box({
@@ -122,13 +90,9 @@ const player = new Box({
         x: 0,
         y:0
     },
-    ImageSrc = "./img/khjj"
-    framesMax : 8,
-    scale: 2.5
-    offset: {
-        x: 2
+
     }
-})
+)
 
 
 
@@ -184,8 +148,6 @@ function animate(){                         //create animate function
     window.requestAnimationFrame(animate)   //requests the animate function 
     c.fillStyle = "black"
     c.fillRect(0, 0, canvasWidth, canvasHeight)
-    background.update ()
-    shop.update ()
     player.update()                         //after deleting enemy.draw() and for player i use update because draw function is contained
     enemy.update()
     console.log("hallo")                    //"hallo" appears in console
