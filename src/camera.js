@@ -70,5 +70,5 @@ export default class Camera {
     }
     this.offset.x += this.interpolate.x
     this.offset.y += this.interpolate.y
-  }
+  } 
 }
