@@ -21,7 +21,7 @@ h1 {
 
 
 #spielstand {
-    display: none;
+    display: flex;
     position: absolute;
     z-index: 10;
     inset: 0;
