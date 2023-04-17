@@ -250,22 +250,22 @@ export class Player extends AnimatedGameObject {
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
+  }
     
-    
-    looseHP(amount); {
+    looseHP(amount) {
       this.hp = this.hp - amount
       const hpElem = document.querySelector("#HP")
       hpElem.textContent = this.hp
     }
   
-    getHP(amount); {
+    getHP(amount) {
       this.hp = this.hp + amount
       const hpElem = document.querySelector("#HP")
       hpElem.textContent = this.hp
     }
 
 
-  }
+  
   
 
 

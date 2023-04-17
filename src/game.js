@@ -17,6 +17,8 @@ export default class Game {
   static player2 = null;
   static running = false;
   static currentFrame = 0;
+  static player1InGoal = false
+  static player2InGoal = false
 
   constructor() {
     this.tileSize = 40

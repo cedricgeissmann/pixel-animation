@@ -142,15 +142,22 @@ export class CollisionHandler {
         }
      }
 
+    }
     if (collidingObject.collisionTags.includes("cave")) {
       console.log(collidingObject)
-        if (gameObject === Game.player && gameObject === Game.player2){
-        setTimeout(function() {
-        Game.loadMap ("maps/karte.txt")
+        if (gameObject === Game.player){
+          Game.player1InGoal = true
+        }
+        if (gameObject === Game.player2){
+          Game.player2InGoal = true
+        }
+        if (Game.player1InGoal === true && Game.player2InGoal === true) {
+          setTimeout(function() {
+            window.location = "neueWeltrui/welt.html"
+          //Game.loadMap ("maps/karte.txt")
         }, 2000)
       }
     }
-      }
     }
   }
   
