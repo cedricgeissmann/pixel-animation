@@ -5,8 +5,38 @@ body {
     background-color: antiquewhite;
 }
 
+h1 {
+    margin-top: 0;
+}
+
 canvas {
-    background-color: white;
+    background-image: url("https://images.unsplash.com/photo-1503435980610-a51f3ddfee50?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
     width: 100%;
     height: 100%;
+
+}
+
+.paused {
+    box-sizing: border-box;
+    background-color: black;
+    animation: blink 400ms ease-in-out infinite alternate;
+}
+
+main {
+    margin: 10px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+}
+
+@keyframes blink {
+    0% {
+        background-color: antiquewhite;
+    }
+    50% {
+        background-color: rgb(197, 189, 175);
+        
+    }
+    100% {
+        background-color: rgb(142, 136, 125);
+    }
 }
