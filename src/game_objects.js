@@ -410,19 +410,6 @@ export class Zaun extends GameObject {
     this.col = 0
   }
 }
-export class Sbackground extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#Steinboden")
-    super(x, y, {
-      sheet: ground,
-      layer: "background",
-      collisionTags: []
-    })
-    this.row = 4
-    this.col = 12
-
-  }
-}
 
 export class Stone extends GameObject {
   constructor(x, y) {
@@ -505,7 +492,7 @@ export class Tree extends GameObject {
 
 export class Crown extends GameObject {
   constructor(x, y) {
-    const ground = document.querySeector("#Crown")
+    const ground = document.querySelector("#Crown")
     super(x, y, {
       sheet: ground,
       layer: "world",
@@ -516,20 +503,9 @@ export class Crown extends GameObject {
   }
 }
 
-export class Cowwhite extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySeector("#Cow-white")
-    super(x, y, {
-      sheet: ground,
-      layer: "world",
-      collisionTags:["pickups"]
-    })
-    this.row = 0
-    this.col = 0
-  }
-}
 
-export class Mushroom extends GameObject {
+
+export class Pilz extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
     super(x, y, {
@@ -542,7 +518,7 @@ export class Mushroom extends GameObject {
   }
 }
 
-export class Essen1 extends GameObject {
+export class Apfel extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Essen")
     super(x, y, {
@@ -555,7 +531,7 @@ export class Essen1 extends GameObject {
   }
 }
 
-export class Essen2 extends GameObject {
+export class Cupcake extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Essen")
     super(x, y, {
@@ -568,7 +544,7 @@ export class Essen2 extends GameObject {
   }
 }
 
-export class Essen3 extends GameObject {
+export class Lachssushi extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Essen")
     super(x, y, {
@@ -581,7 +557,7 @@ export class Essen3 extends GameObject {
   }
 }
 
-export class Essen4 extends GameObject {
+export class Gelbsushi extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Essen")
     super(x, y, {
@@ -712,6 +688,19 @@ export class StoneGrey extends GameObject {
       collisionTags: ["world"]
     })
     this.row = 0
+    this.col = 2
+  }
+}
+export class Cowwhite extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Cowwhite")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags:["world"]
+    })
+    this.tileSize = 32
+    this.row = 0  
     this.col = 2
   }
 }

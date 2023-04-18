@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Mushroom, Player, Stone, Tree, Wall, Cave, Sbackground, Tree1, Background1, Zaun, Busch2, Busch1, Wasser, Strand, Strand2, Tree2, Tree3, Blume, Blume2, kleinebüsche, Roteblume, Roterpilz, Erde, Bank1, Bank2, Brunnen1, Brunnen2, Brunnen3, Brunnen4, Essen1, Essen2, Essen3, Essen4, Hedges, Cavefloor, Mushroompurple, Caveentrance, Cavewall, StoneGrey, Lapislazuli, Ruby, Crown, Lblume, Water, Background2 } from "./game_objects.js"
+import { Cowwhite, Pilz, Player, Stone, Tree, Wall, Cave, Tree1, Background1, Zaun, Busch2, Busch1, Wasser, Strand, Strand2, Tree2, Tree3, Blume, Blume2, kleinebüsche, Roteblume, Roterpilz, Erde, Bank1, Bank2, Brunnen1, Brunnen2, Brunnen3, Brunnen4, Apfel, Cupcake, Lachssushi, Gelbsushi, Hedges, Cavefloor, Mushroompurple, Caveentrance, Cavewall, StoneGrey, Lapislazuli, Ruby, Crown, Lblume, Water, Background2 } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -29,10 +29,10 @@ export default class Map {
     }
     if ( tileType === "s" ) { new Stone(x, y) }
     if ( tileType === "J" ) { new Lblume(x, y) }
-    if ( tileType === "c" ) { new Essen4(x, y) }
-    if ( tileType === "C" ) { new Essen3(x, y) }
-    if ( tileType === "l" ) { new Essen2(x, y) }
-    if ( tileType === "L" ) { new Essen1(x, y) }
+    if ( tileType === "c" ) { new Gelbsushi(x, y) }
+    if ( tileType === "C" ) { new Lachssushi(x, y) }
+    if ( tileType === "l" ) { new Cupcake(x, y) }
+    if ( tileType === "L" ) { new Apfel(x, y) }
     if ( tileType === "N" ) { new Brunnen1(x, y) }
     if ( tileType === "n" ) { new Brunnen2(x, y) }
     if ( tileType === "A" ) { new Brunnen3(x, y) }
@@ -51,7 +51,7 @@ export default class Map {
     if ( tileType === "V" ) { new Strand(x, y) }
     if ( tileType === "W" ) { new Wasser(x, y) }
     if ( tileType === "t" ) { new Tree(x, y) }
-    if ( tileType === "p" ) { new Mushroom(x, y) }
+    if ( tileType === "p" ) { new Pilz(x, y) }
     if ( tileType === "w" ) { new Wall(x, y) }
     if ( tileType === "h" ) { new Cave(x, y) }
     if ( tileType === "e" ) { new Hedges(x, y) }
@@ -68,6 +68,7 @@ export default class Map {
     if ( tileType === "j" ) { new Ruby(x, y)}
     if ( tileType === "O" ) { new Crown(x, y)}
     if ( tileType === "Q" ) { new Water(x, y)}
+    if ( tileType === "U" ) { new Cowwhite(x, y)}
 
   }
 
