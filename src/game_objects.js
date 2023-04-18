@@ -149,6 +149,36 @@ export class Roterpilz extends GameObject {
   }
 }
 
+export class Erdhaufen extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Erdhaufen")
+    super(x, y, {
+      sheet: ground,
+      layer: "worldBack",
+      collisionTags: []
+    })
+    this.tileSize = 64
+    this.row = 0
+    this.col = 0
+  }
+  
+}
+
+export class Erdhaufen2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Erdhaufen")
+    super(x, y, {
+      sheet: ground,
+      layer: "worldBack",
+      collisionTags: []
+    })
+    this.tileSize = 64
+    this.row = 0
+    this.col = 1
+  }
+  
+}
+
 export class Roteblume extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#Deco3")

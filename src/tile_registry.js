@@ -6,8 +6,8 @@ export default class TileRegistry {
       background: [],
       worldBack: [],
       item: [],
-      world: [],
       player: [],
+       world: [],
     }
 
   /**
