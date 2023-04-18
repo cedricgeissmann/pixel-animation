@@ -559,10 +559,10 @@ export class Essen1 extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "item",
-      collisionTags: ["pickups"]
     })
     this.row = 0
     this.col = 3
+    addCollision(this, {collisionTags: ["pickups"]})
   }
 }
 
@@ -680,7 +680,6 @@ export class Bodenhöhle extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "background",
-      collisionTags: []
     })
 
     this.row = 0
@@ -694,10 +693,10 @@ export class Caveentrance extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "background",
-      collisionTags: ["cave"]
     })
     this.row = 0
     this.col = 0
+    addCollision(this, { collisionTags: ["cave"] })
   }
 }
 
@@ -707,10 +706,10 @@ export class Cavewall extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "background",
-      collisionTags: ["world"]
     })
     this.row = 0
     this.col = 1
+    addCollision(this, { collisionTags: ["world"] })
   }
 }
 
@@ -721,10 +720,10 @@ export class StoneGrey extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["world"]
     })
     this.row = 0
     this.col = 2
+    addCollision(this, { collisionTags: ["world"] })
   }
 }
 
@@ -763,7 +762,7 @@ export class Player extends AnimatedGameObject {
     this.col = 1
     this.speed = 3
 
-    addGravity(this, {maxGravity: 3, gravityForce: 1})
+    // addGravity(this, {maxGravity: 3, gravityForce: 1})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }

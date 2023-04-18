@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player } from "./game_objects.js"
+import { Blume, Essen1, Player } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -152,55 +152,14 @@ export class CollisionHandler {
         }
       }
     }
-  
 
-    // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
-    
-
-    if (collidingObject.collisionTags.includes("pickups")) {
-        collidingObject.destroy()
-         Game.updateApfel(1)
-        }
-
-    if (collidingObject.collisionTags.includes("pickups")) {
-          collidingObject.destroy()
-           Game.updateCupcake(1)
-          }
-    
-    if (collidingObject.collisionTags.includes("pickups")) {
-            collidingObject.destroy()
-             Game.updateLachssushi(1)
-            }
-    
-    if (collidingObject.collisionTags.includes("pickups")) {
-              collidingObject.destroy()
-               Game.updateGelbsushi(1)
-              }
-
-    if (collidingObject.collisionTags.includes("pickups")) {
-              collidingObject.destroy()
-               Game.updatePilz(1)
-                }
-
-     if (collidingObject.collisionTags.includes("pickups")) {
-              collidingObject.destroy()
-               Game.updateRubin(1)
-                }
-     if (collidingObject.collisionTags.includes("pickups")) {
-              collidingObject.destroy()
-               Game.updateKristall(1)
-              }
-
-     if (collidingObject.collisionTags.includes("pickups")) {
-             collidingObject.destroy()
-             Game.updateBlume(1)
-               }
-
-    if (collidingObject.collisionTags.includes("pickups")) {
+    if (matchCollisionTags(collidingObject, ["pickups"])) {
+      if (collidingObject instanceof Essen1) {
+        Game.updateApfel(1)
+      }
       collidingObject.destroy()
     }
 
-    if (collidingObject.collisionTags.includes("cave")) {
     if (matchCollisionTags(collidingObject, ["cave"])) {
       Game.loadMap("maps/map-02.txt")
     }
@@ -209,7 +168,8 @@ export class CollisionHandler {
     if (matchCollisionTags(collidingObject, ["pickups"])) {
       collidingObject.destroy()
     }
-    }
+  }
+}
 
 
  function matchCollisionTags(collidingObject, tags) {

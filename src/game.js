@@ -33,8 +33,8 @@ export default class Game {
 
     this.camera = new Camera(this)
 
-    document.querySelector("#game-start").addEventListener("click", () => { Game.start() })
-    document.querySelector("#game-pause").addEventListener("click", () => { Game.pause() })
+    // document.querySelector("#game-start").addEventListener("click", () => { Game.start() })
+    // document.querySelector("#game-pause").addEventListener("click", () => { Game.pause() })
 
     Game.running = false
     window.requestAnimationFrame(this.gameLoop.bind(this))
