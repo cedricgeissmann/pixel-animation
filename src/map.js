@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Cowwhite, Pilz, Player, Stone, Tree, Wall, Cave, Tree1, Background1, Zaun, Busch2, Busch1, Wasser, Strand, Strand2, Tree2, Tree3, Blume, Blume2, kleinebüsche, Roteblume, Roterpilz, Erde, Bank1, Bank2, Brunnen1, Brunnen2, Brunnen3, Brunnen4, Apfel, Cupcake, Lachssushi, Gelbsushi, Hedges, Mushroompurple, Caveentrance, Cavewall, StoneGrey, Lapislazuli, Ruby, Crown, Lblume, Water, Background2,Erdhaufen, Erdhaufen2 } from "./game_objects.js"
+import { Rand, Cowwhite, Pilz, Player, Stone, Tree, Wall, Cave, Tree1, Background1, Zaun, Busch2, Busch1, Wasser, Strand, Strand2, Tree2, Tree3, Blume, Blume2, kleinebüsche, Roteblume, Roterpilz, Erde, Bank1, Bank2, Brunnen1, Brunnen2, Brunnen3, Brunnen4, Apfel, Cupcake, Lachssushi, Gelbsushi, Hedges, Mushroompurple, Caveentrance, Cavewall, StoneGrey, Lapislazuli, Ruby, Crown, Lblume, Water, Background2,Erdhaufen, Erdhaufen2 } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -71,8 +71,11 @@ export default class Map {
     if ( tileType === "U" ) { new Cowwhite(x, y)}
     if ( tileType === "g" ) { new Erdhaufen (x,y)}
     if ( tileType === "H" ) { new Erdhaufen2 (x,y)}
+    if ( tileType === "K" ) { new Rand (x,y)}
 
   }
+ 
+
 
   /**
    * Liest die Karte aus der Datei und ruft die Erstellung der Spiel-Objekte auf.

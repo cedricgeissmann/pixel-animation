@@ -734,6 +734,19 @@ export class Cowwhite extends GameObject {
     this.col = 2
   }
 }
+export class Rand extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Rand")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags:["world"]
+    })
+    this.tileSize = 32
+    this.row = 0  
+    this.col = 0
+  }
+}
 
 
 
