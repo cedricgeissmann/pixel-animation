@@ -91,6 +91,10 @@ export class CollisionHandler {
       }
       
     }
+
+    if(collidingObject.collisionTags.includes("enemy")){
+      Game.health.attack()
+    }
   }
 }
 
