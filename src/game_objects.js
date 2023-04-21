@@ -2,7 +2,8 @@ import {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
-
+import Game from "./game.js"
+import Camera from "./camera.js"
 
 /**
  * Dies ist die Basisklasse für alle Spiel-Objekte.
@@ -190,24 +191,31 @@ export class Player extends AnimatedGameObject {
       sheet: png,
       layer: "player",
       collisionTags: ["world", "pickups", "cave", "forest"]
+      
     })
     this.row = 0
     this.col = 0
-    this.speed = 3
+    this.speed = 3 
+    this.php = 10
+    this.lasthit = 0
+    this.dmg = 5
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
       new GravityHandler({
         maxGravity: 3,
         gravityForce: 1,
-        jumpForce: -10,
+        jumpForce: -16,
       })
       
     ])
   }
 
+
   jump() {
     this.handlers.get(GravityHandler).jump(this)
+    this.row = 2
+    this.col = 1
   }
 
   update() {
@@ -218,6 +226,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
     if (ev === "Space") { this.jump()
+
 
     }
   }
@@ -236,5 +245,51 @@ export class Player extends AnimatedGameObject {
       Camera.shiftBackground(-1)
     }
 
+  }
+}
+
+
+
+export class Enemy extends AnimatedGameObject {
+  constructor(x, y) {
+    const png = document.querySelector("#character")
+    super(x, y, {
+      sheet: png,
+      layer: "player",
+      collisionTags: ["world", "enemy"]
+    })
+    this.row = 0
+    this.speed = 0.9
+    this.ehp = 10
+    this.dmg = 5
+    this.handlers = new HandlerManager([
+      new CollisionHandler(),
+      new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
+      new GravityHandler({
+        maxGravity: 3,
+        gravityForce: 1,
+        jumpForce: -20,
+      })
+])
+  }
+
+  update() {
+    super.update();
+    if (Game.player.x < this.x) {
+      this.move("left")
+    }
+    if (Game.player.x > this.x) {
+      this.move("right")
+    }
+  }
+  
+  move(direction) {
+    if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed;
+      this.row = 0;
+    } else if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed;
+      this.row = 8;
+    }
   }
 }
