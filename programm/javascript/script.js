@@ -121,6 +121,9 @@ SlimeBlueImage.src = '../res/slimes/slime-blue.png'
 const Slime2BlueImage = new Image()
 Slime2BlueImage.src = '../res/slimes/slime-blue.png'
 
+const SlimeGreenImage = new Image()
+SlimeGreenImage.src = '../res/slimes/slime-green.png'
+
 
 
 
