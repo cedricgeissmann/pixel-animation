@@ -169,6 +169,17 @@ const Slime2Blue = new Sprite({
   },
 })
 
+const SlimeGreen = new Sprite({
+  position: {
+    x: 1665,
+    y: 22,
+  },
+  image: SlimeGreenImage,
+  frames: {
+    max: 6
+  },
+})
+
 
 
 //create const background
@@ -207,7 +218,7 @@ const keys = {
 }
 
 //create const movables (all moving elements)
-const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, SlimeBlue, Slime2Blue,]
+const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, SlimeBlue, Slime2Blue, SlimeGreen]
 
 //collision-detector
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -231,6 +242,7 @@ function animate() {
   background.draw()
   SlimeBlue.draw()
   Slime2Blue.draw()
+  SlimeGreen.draw()
   boundaries.forEach((boundary) => {
     boundary.draw()
   })
@@ -249,8 +261,9 @@ function animate() {
 
   let moving = true
   player.moving = false
-  SlimeBlue.moving =true
-  Slime2Blue.moving =true
+  SlimeBlue.moving = true
+  Slime2Blue.moving = true
+  SlimeGreen.moving = true
 
 
   
