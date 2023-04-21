@@ -226,8 +226,8 @@ const Slime2Green = new Sprite({
 
 const SlimePink = new Sprite({
   position: {
-    x: 1665,
-    y: 22,
+    x: 993,
+    y: 310,
   },
   image: SlimePinkImage,
   frames: {
@@ -237,8 +237,8 @@ const SlimePink = new Sprite({
 
 const Slime2Pink = new Sprite({
   position: {
-    x: 705,
-    y: 550,
+    x: 945,
+    y: 22,
   },
   image: Slime2PinkImage,
   frames: {
