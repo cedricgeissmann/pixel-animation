@@ -4,6 +4,7 @@
 import {collisions} from "../data/collisions 1.js"
 import {collisionsB1} from "../data/battlezones/map 1/battlezone 1.js"
 import {collisionsB2} from "../data/battlezones/map 1/battlezone 2.js"
+import {collisionsB3} from "../data/battlezones/map 1/battlezone 3.js"
 import {Boundary} from "../javascript/classes.js"
 import {Sprite} from "../javascript/classes.js"
 
@@ -29,6 +30,11 @@ for (let i = 0; i < collisionsB1.length; i += 70) {
 const battlezones2Map = []
 for (let i = 0; i < collisionsB2.length; i += 70) {
   battlezones2Map.push(collisionsB2.slice(i, 70 + i))
+}
+
+const battlezones3Map = []
+for (let i = 0; i < collisionsB3.length; i += 70) {
+  battlezones3Map.push(collisionsB3.slice(i, 70 + i))
 }
 
 //create const boundaries
@@ -94,6 +100,24 @@ battlezones2Map.forEach((row, i) => {
 
 console.log (battle2zones)
 
+const battle3zones = []
+
+battlezones3Map.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 1025)
+      battle3zones.push(
+        new Boundary({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          }
+        })
+      )
+  })
+})
+
+console.log (battle3zones)
+
 
 
 //image sources
@@ -126,6 +150,12 @@ SlimeGreenImage.src = '../res/slimes/slimes-green.png'
 
 const Slime2GreenImage = new Image()
 Slime2GreenImage.src = '../res/slimes/slimes-green.png'
+
+const SlimePinkImage = new Image()
+SlimePinkImage.src = '../res/slimes/slimes-pink.png'
+
+const Slime2PinkImage = new Image()
+Slime2PinkImage.src = '../res/slimes/slimes-pink.png'
 
 
 
@@ -194,6 +224,28 @@ const Slime2Green = new Sprite({
   },
 })
 
+const SlimePink = new Sprite({
+  position: {
+    x: 1665,
+    y: 22,
+  },
+  image: SlimePinkImage,
+  frames: {
+    max: 6
+  },
+})
+
+const Slime2Pink = new Sprite({
+  position: {
+    x: 705,
+    y: 550,
+  },
+  image: Slime2PinkImage,
+  frames: {
+    max: 6
+  },
+})
+
 //create const background
 const background = new Sprite({
   position: {
@@ -230,7 +282,7 @@ const keys = {
 }
 
 //create const movables (all moving elements)
-const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, SlimeBlue, Slime2Blue, SlimeGreen
+const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, ...battle3zones, SlimeBlue, Slime2Blue, SlimeGreen
 , Slime2Green,]
 
 //collision-detector
@@ -264,6 +316,9 @@ function animate() {
     boundary.draw()
   })
   battle2zones.forEach((boundary) => {
+    boundary.draw()
+  })
+  battle3zones.forEach((boundary) => {
     boundary.draw()
   })
 
@@ -354,6 +409,41 @@ function animate() {
     
             break
         }}}
+
+        if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+          for (let i = 0; i < battle3zones.length; i++) {
+        
+          //create const battle1zone
+          const battle3zone = battle3zones[i]
+        
+          if (
+            rectangularCollision({
+              rectangle1: player,
+              rectangle2: battle3zone
+            })){
+              //battle activation
+              console.log('activate battle')
+              window.cancelAnimationFrame(animationId)
+                battle.initiated = true
+        
+                gsap.to('#overlappingDiv', {
+                  opacity: 1,
+                  repeat: 3,
+                  yoyo: true,
+                  duration: 0.4,
+                  onComplete() {
+                    gsap.to('#overlappingDiv', {
+                      opacity: 1,
+                      duration: 0.4
+                    })
+        
+                    // activate a new animation loop
+                    animateBattle()
+                  }
+                })
+        
+                break
+            }}}
 
 
   //player movement by w,a,s,d
