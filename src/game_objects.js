@@ -192,6 +192,9 @@ export class Player extends AnimatedGameObject {
     this.row = 0
     this.col = 0
     this.speed = 3 
+    this.php = 10
+    this.lasthit = 0
+    this.dmg = 5
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
@@ -253,6 +256,8 @@ export class Enemy extends AnimatedGameObject {
     })
     this.row = 0
     this.speed = 0.9
+    this.ehp = 10
+    this.dmg = 5
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),

@@ -110,22 +110,19 @@ export class CollisionHandler {
           gravityHandler.gravity = 0
         }
       }
+      if (collidingObject instanceof Enemy) {
+        if ( Game.currentFrame - gameObject.lasthit > 60) {
+        gameObject.lasthit = Game.currentFrame;
+        gameObject.php -= 5;
+        console.log(gameObject.php)
+        
+        if (gameObject.php === 0) {
+          Game.loadMap("maps/map-01.txt");
+        }
+      }
+      }
     }
-
-    // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
-    if (collidingObject.collisionTags.includes("pickups")) {
-      collidingObject.destroy()
-    }
-
-    if (collidingObject.collisionTags.includes("cave")) {
-      Game.loadMap("maps/map-01.txt")
-    }
-    if (collidingObject instanceof Enemy) {
-      Game.loadMap("maps/map-01.txt")
-      
-      //Game.loadMap("maps/map-02.txt")
-    }
-  }
+}
 }
 
 export class AnimationHandler {
