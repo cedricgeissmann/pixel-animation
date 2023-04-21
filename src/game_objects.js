@@ -178,13 +178,14 @@ export class Air extends GameObject {
   
 export class Shells extends GameObject {
     constructor(x, y) {
-      const ground = document.querySelector("#ground")
+      const ground = document.querySelector("#objects")
       super(x, y,{
         sheet: ground,
         layer: "world",
       })
-      this.row = 0
-      this.col = 3
+      this.tileSize = 32
+      this.row = 1
+      this.col = 0
       addCollision(this, {collisionTags: ["forest"]})
 
     

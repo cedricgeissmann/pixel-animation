@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background,Sand,Water, Air, Player } from "./game_objects.js"
+import { Background,Sand,Water, Air, Player, Shells } from "./game_objects.js"
 
 
 /**
@@ -24,6 +24,7 @@ export default class Map {
     if ( tileType === "s" ) {  new Sand(x, y) }
     if ( tileType === "w" ) {  new Water(x, y) } 
     if ( tileType === "a" ) {  new Air(x, y) }
+    if ( tileType === "m" ) {  new Shells(x, y) }
     if ( tileType === "P" ) { Game.player = new Player(x, y)}
     if ( tileType === "Q" ) { Game.player2 = new Player(x, y)}
   }
