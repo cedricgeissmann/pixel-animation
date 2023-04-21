@@ -19,9 +19,9 @@ export default class Map {
   addTilesToMap(x, y, tileType) {
     //new Background(x, y)
     if ( tileType === "s" ) { new Stone(x, y) }
-    if ( tileType === "S" ) { new FallingStone(x, y) }
+    if ( tileType === "p" ) { new FallingStone(x, y) }
     if ( tileType === "t" ) { new Tree(x, y) }
-    if ( tileType === "p" ) { new Mushroom(x, y) }
+    if ( tileType === "f" ) { new Mushroom(x, y) }
     if ( tileType === "w" ) { new Wall(x, y) }
     if ( tileType === "h" ) { new Cave(x, y) }
     if ( tileType === "P" ) { Game.player = new Player(x, y)}

@@ -116,7 +116,7 @@ export class Cave extends GameObject {
       layer: "world",
       collisionTags: ["cave"]
     })
-    this.row = 1
+    this.row = 2
     this.col = 2
   }
 }
@@ -131,6 +131,8 @@ export class FallingStone extends Stone {
       }),
       new CollisionHandler()
     ])
+    this.row = 0
+    this.col = 2
   }
   
 }
@@ -141,23 +143,25 @@ export class Tree extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["forest"]
+      collisionTags: ["world"]
     })
-    this.row = 1
-    this.col = 1
+    this.row = 2
+    this.col = 0
+    
   }
 }
+
 
 export class Mushroom extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
-      layer: "item",
-      collisionTags: ["pickups"]
+      layer: "world",
+      collisionTags: ["world"]
     })
-    this.row = 0
-    this.col = 2
+    this.row = 2
+    this.col = 1
   }
 }
 
@@ -196,7 +200,7 @@ export class Player extends AnimatedGameObject {
       new GravityHandler({
         maxGravity: 3,
         gravityForce: 1,
-        jumpForce: -20,
+        jumpForce: -10,
       })
       
     ])
@@ -229,11 +233,7 @@ export class Player extends AnimatedGameObject {
     if (direction === "jump") {
       this.jumpForce = 2
       this.row = 2
-<<<<<<< HEAD
       Camera.shiftBackground(-1)
-=======
-      
->>>>>>> ffa77f445a7e5db9ed74e46bb34081120335d993
     }
 
   }
