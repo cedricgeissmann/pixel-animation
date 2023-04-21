@@ -18,6 +18,7 @@ export default class Map {
    * @param {string} tileType Der Buchstabe an der Stelle in der Karte.
    */
   addTilesToMap(x, y, tileType) {
+    if (tileType === "\r") { return}
     if (this.mapfile === "maps/maparena.txt") {
       new Background1(x, y)
       
