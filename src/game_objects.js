@@ -151,7 +151,20 @@ export class Tree extends GameObject {
     
   }
 }
-
+export class NPC extends GameObject {    
+  constructor(x, y) {
+    const ground = document.querySelector("#NPC-S")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.tileSize = 64
+    this.row = 0
+    this.col = 0
+    
+  }
+}
 
 export class Mushroom extends GameObject {
   constructor(x, y) {
