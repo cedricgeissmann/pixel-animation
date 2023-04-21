@@ -122,7 +122,10 @@ const Slime2BlueImage = new Image()
 Slime2BlueImage.src = '../res/slimes/slime-blue.png'
 
 const SlimeGreenImage = new Image()
-SlimeGreenImage.src = '../res/slimes/slime-green.png'
+SlimeGreenImage.src = '../res/slimes/slimes-green.png'
+
+const Slime2GreenImage = new Image()
+Slime2GreenImage.src = '../res/slimes/slimes-green.png'
 
 
 
@@ -180,7 +183,16 @@ const SlimeGreen = new Sprite({
   },
 })
 
-
+const Slime2Green = new Sprite({
+  position: {
+    x: 705,
+    y: 550,
+  },
+  image: Slime2GreenImage,
+  frames: {
+    max: 6
+  },
+})
 
 //create const background
 const background = new Sprite({
@@ -218,7 +230,8 @@ const keys = {
 }
 
 //create const movables (all moving elements)
-const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, SlimeBlue, Slime2Blue, SlimeGreen]
+const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, SlimeBlue, Slime2Blue, SlimeGreen
+, Slime2Green,]
 
 //collision-detector
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -243,6 +256,7 @@ function animate() {
   SlimeBlue.draw()
   Slime2Blue.draw()
   SlimeGreen.draw()
+  Slime2Green.draw()
   boundaries.forEach((boundary) => {
     boundary.draw()
   })
@@ -264,6 +278,7 @@ function animate() {
   SlimeBlue.moving = true
   Slime2Blue.moving = true
   SlimeGreen.moving = true
+  Slime2Green.moving = true
 
 
   
@@ -304,6 +319,43 @@ function animate() {
 
         break
     }}}
+
+    if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+      for (let i = 0; i < battle2zones.length; i++) {
+    
+      //create const battle1zone
+      const battle2zone = battle2zones[i]
+    
+      if (
+        rectangularCollision({
+          rectangle1: player,
+          rectangle2: battle2zone
+        })){
+          //battle activation
+          console.log('activate battle')
+          window.cancelAnimationFrame(animationId)
+            battle.initiated = true
+    
+            gsap.to('#overlappingDiv', {
+              opacity: 1,
+              repeat: 3,
+              yoyo: true,
+              duration: 0.4,
+              onComplete() {
+                gsap.to('#overlappingDiv', {
+                  opacity: 1,
+                  duration: 0.4
+                })
+    
+                // activate a new animation loop
+                animateBattle()
+              }
+            })
+    
+            break
+        }}}
+
+
   //player movement by w,a,s,d
   if (keys.w.pressed && lastKey === 'w') {
     player.moving = true
