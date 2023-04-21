@@ -283,7 +283,7 @@ const keys = {
 
 //create const movables (all moving elements)
 const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, ...battle3zones, SlimeBlue, Slime2Blue, SlimeGreen
-, Slime2Green,]
+, Slime2Green, SlimePink, Slime2Pink,]
 
 //collision-detector
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -309,6 +309,8 @@ function animate() {
   Slime2Blue.draw()
   SlimeGreen.draw()
   Slime2Green.draw()
+  SlimePink.draw()
+  Slime2Pink.draw()
   boundaries.forEach((boundary) => {
     boundary.draw()
   })
@@ -334,6 +336,8 @@ function animate() {
   Slime2Blue.moving = true
   SlimeGreen.moving = true
   Slime2Green.moving = true
+  SlimePink.moving = true
+  Slime2Pink.moving = true
 
 
   
