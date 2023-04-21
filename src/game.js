@@ -149,6 +149,19 @@ export default class Game {
       let count = parseInt (elem.textContent)
        elem.textContent = `${count + value} / 1`
       }
+    
+  static checkLastMapCondition() {
+    if (parseInt(document.querySelector("#kristall-counter").textContent) >= 2
+      && parseInt(document.querySelector("#rubin-counter").textContent) >= 3
+      && parseInt(document.querySelector("#mushroompurple-counter").textContent) >= 5
+      && parseInt(document.querySelector("#gelbsuhsi-counter").textContent) >= 2
+      && parseInt(document.querySelector("#lachssuchi-counter").textContent) >= 2
+      && parseInt(document.querySelector("#cupcake-counter").textContent) >= 4
+       && parseInt(document.querySelector("#apfel-counter").textContent) >= 6) {
+       Game.loadMap(maparena.txt)
+        }
+      
+      }
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
    * Die Positionen der Spiel-Objekte werden neu berechnet,
