@@ -223,6 +223,12 @@ export class Player extends AnimatedGameObject {
 
   update() {
     super.update()
+    if (this.y > 30) {
+      this.y = 4
+      this.x = 4
+    }
+    
+
   }
 
   move(direction) {
