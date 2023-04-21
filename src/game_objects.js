@@ -192,19 +192,54 @@ export class Shells extends GameObject {
   } 
 }
 
-export class Mushroom extends GameObject {
+export class crown extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#ground")
-    super(x, y, {
+    const ground = document.querySelector("#objects")
+    super(x, y,{
       sheet: ground,
-      layer: "item",
+      layer: "world",
     })
-    this.row = 0
-    this.col = 2
-    addCollision(this, {collisionTags: ["pickups"]})
-  }
+    this.tileSize = 32
+    this.row = 1
+    this.col = 1
+    addCollision(this, {collisionTags: ["forest"]})
+
+  
+} 
 }
 
+export class waterlily extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#objects")
+    super(x, y,{
+      sheet: ground,
+      layer: "world",
+    })
+    this.tileSize = 32
+    this.row = 0
+    this.col = 1
+    addCollision(this, {collisionTags: ["forest"]})
+
+  
+} 
+}
+
+
+export class seastar extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#objects")
+    super(x, y,{
+      sheet: ground,
+      layer: "world",
+    })
+    this.tileSize = 32
+    this.row = 0
+    this.col = 0
+    addCollision(this, {collisionTags: ["forest"]})
+
+  
+} 
+}
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
     super(x, y, options)
