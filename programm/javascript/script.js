@@ -151,6 +151,12 @@ SlimeGreenImage.src = '../res/slimes/slimes-green.png'
 const Slime2GreenImage = new Image()
 Slime2GreenImage.src = '../res/slimes/slimes-green.png'
 
+const SlimePinkImage = new Image()
+SlimePinkImage.src = '../res/slimes/slimes-pink.png'
+
+const Slime2PinkImage = new Image()
+Slime2PinkImage.src = '../res/slimes/slimes-pink.png'
+
 
 
 
@@ -213,6 +219,28 @@ const Slime2Green = new Sprite({
     y: 550,
   },
   image: Slime2GreenImage,
+  frames: {
+    max: 6
+  },
+})
+
+const SlimePink = new Sprite({
+  position: {
+    x: 1665,
+    y: 22,
+  },
+  image: SlimePinkImage,
+  frames: {
+    max: 6
+  },
+})
+
+const Slime2Pink = new Sprite({
+  position: {
+    x: 705,
+    y: 550,
+  },
+  image: Slime2PinkImage,
   frames: {
     max: 6
   },
