@@ -28,8 +28,8 @@ export default class Map {
     if ( tileType === "c" ) {  new crown(x, y) }
     if ( tileType === "f" ) {  new waterlily(x, y) }
     if ( tileType === "e" ) {  new seastar(x, y) }
-    if ( tileType === "P" ) { Game.player = new Player(x, y)}
-    if ( tileType === "Q" ) { Game.player2 = new Player(x, y)}
+    if ( tileType === "A" ) { Game.player = new Player(x, y)}
+    if ( tileType === "F" ) { Game.player2 = new Player(x, y)}
   }
 
   /**
