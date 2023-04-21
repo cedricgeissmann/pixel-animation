@@ -91,9 +91,9 @@ export class GameObject {
 
 export class Background extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#ground")
+    const ground = document.querySelector("boden")
     super(x, y, {
-      sheet: ground,
+      sheet: boden,
       layer: "background",
     })
     this.row = 0 * this.tileHeight
@@ -210,9 +210,9 @@ export class Player extends AnimatedGameObject {
     this.tileHeight = 32
     this.row = 0 * this.tileHeight
     this.col = 1 * this.tileWidth
-    this.speed = 3
+    this.speed = 2
 
-    addGravity(this, {maxGravity: 3, gravityForce: 1, jumpForce: -10})
+    addGravity(this, {maxGravity: 2, gravityForce: 1, jumpForce: -12})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
@@ -220,15 +220,13 @@ export class Player extends AnimatedGameObject {
   jump() {
     this.handlers.get(GravityHandler).jump(this)
   }
-
+//Das ist der Respawn-Punkt. Wenn die y-Koordinate grösser als 700 ist, dann spawn der Charakter bei den angegebenen Punkten.
   update() {
     super.update()
-    if (this.y > 30) {
+    if (this.y > 700) {
       this.y = 4
-      this.x = 4
+      this.x=70
     }
-    
-
   }
 
   move(direction) {
@@ -249,5 +247,5 @@ export class Player extends AnimatedGameObject {
     }
   }
 }
-
+ 
 
