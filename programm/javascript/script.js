@@ -92,6 +92,12 @@ playerRightImage.src = '../res/player/ACharRight.png'
 const foregroundImage = new Image()
 foregroundImage.src = '../res/foreground objects/foreground.png'
 
+const SlimeBlueImage = new Image()
+SlimeBlueImage.src = '../res/slimes/slime-blue.png'
+
+const Slime2BlueImage = new Image()
+Slime2BlueImage.src = '../res/slimes/slime-blue.png'
+
 
 
 
@@ -113,6 +119,31 @@ const player = new Sprite({
   }
 })
 console.log(player)
+
+
+const SlimeBlue = new Sprite({
+  position: {
+    x: 129,
+    y: 214,
+  },
+  image: SlimeBlueImage,
+  frames: {
+    max: 6
+  },
+})
+
+const Slime2Blue = new Sprite({
+  position: {
+    x: 1185,
+    y: 646,
+  },
+  image: Slime2BlueImage,
+  frames: {
+    max: 6
+  },
+})
+
+
 
 //create const background
 const background = new Sprite({
@@ -150,7 +181,7 @@ const keys = {
 }
 
 //create const movables (all moving elements)
-const movables = [background, ...boundaries, foreground, ...battle1zones,]
+const movables = [background, ...boundaries, foreground, ...battle1zones, SlimeBlue, Slime2Blue,]
 
 //collision-detector
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -172,6 +203,8 @@ function animate() {
   const animationId = window.requestAnimationFrame(animate)
 //draw()
   background.draw()
+  SlimeBlue.draw()
+  Slime2Blue.draw()
   boundaries.forEach((boundary) => {
     boundary.draw()
   })
@@ -187,6 +220,9 @@ function animate() {
 
   let moving = true
   player.moving = false
+  SlimeBlue.moving =true
+  Slime2Blue.moving =true
+
 
   
   if (battle.initiated) return
