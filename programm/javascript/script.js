@@ -3,6 +3,7 @@
 //imports
 import {collisions} from "../data/collisions 1.js"
 import {collisionsB1} from "../data/battlezones/map 1/battlezone 1.js"
+import {collisionsB2} from "../data/battlezones/map 1/battlezone 2.js"
 import {Boundary} from "../javascript/classes.js"
 import {Sprite} from "../javascript/classes.js"
 
@@ -23,6 +24,11 @@ for (let i = 0; i < collisions.length; i += 70) {
 const battlezones1Map = []
 for (let i = 0; i < collisionsB1.length; i += 70) {
   battlezones1Map.push(collisionsB1.slice(i, 70 + i))
+}
+
+const battlezones2Map = []
+for (let i = 0; i < collisionsB2.length; i += 70) {
+  battlezones2Map.push(collisionsB2.slice(i, 70 + i))
 }
 
 //create const boundaries
@@ -70,6 +76,23 @@ battlezones1Map.forEach((row, i) => {
 console.log (battle1zones)
 
 
+const battle2zones = []
+
+battlezones2Map.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 1025)
+      battle2zones.push(
+        new Boundary({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          }
+        })
+      )
+  })
+})
+
+console.log (battle2zones)
 
 
 
@@ -181,7 +204,7 @@ const keys = {
 }
 
 //create const movables (all moving elements)
-const movables = [background, ...boundaries, foreground, ...battle1zones, SlimeBlue, Slime2Blue,]
+const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, SlimeBlue, Slime2Blue,]
 
 //collision-detector
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -209,6 +232,9 @@ function animate() {
     boundary.draw()
   })
   battle1zones.forEach((boundary) => {
+    boundary.draw()
+  })
+  battle2zones.forEach((boundary) => {
     boundary.draw()
   })
 
