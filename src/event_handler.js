@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Enemy, Player } from "./game_objects.js"
+import { Enemy, Player,Cave  } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -110,6 +110,7 @@ export class CollisionHandler {
           gravityHandler.gravity = 0
         }
       }
+
       if (collidingObject instanceof Enemy) {
         if ( Game.currentFrame - gameObject.lasthit > 60) {
         gameObject.lasthit = Game.currentFrame;
@@ -122,6 +123,9 @@ export class CollisionHandler {
       }
       }
     }
+    if (collidingObject instanceof Cave ) {
+      Game.loadMap("maps/map-01.txt");
+    } 
 }
 }
 
