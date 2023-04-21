@@ -205,7 +205,7 @@ export class Player extends AnimatedGameObject {
       new GravityHandler({
         maxGravity: 3,
         gravityForce: 1,
-        jumpForce: -16,
+        jumpForce: -13,
       })
       
     ])
