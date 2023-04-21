@@ -205,6 +205,7 @@ function animate() {
 
   let moving = true
   player.moving = false
+  SlimeBlue.moving =true
 
   
   if (battle.initiated) return
