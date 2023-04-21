@@ -1,4 +1,4 @@
-let lastKey                                 // making sure that the last key, which is pressed, guides the direction
+//let lastKey                                 // making sure that the last key, which is pressed, guides the direction
 
 function rectangularCollision({rectangle1,rectangle2}) {
     return (
