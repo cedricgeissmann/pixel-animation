@@ -52,7 +52,8 @@ class Box {                         //creating a class called Box
     update (){                     //function for moving objects
         this.draw()
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x,
-        this.attackBox.position.y = this.position.y - this.attackBox.offset.y
+        this.attackBox.position.y = this.position.y - this.attackBox.offset.y,
+
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y        // same as this.position.y = this.position.y + 10
@@ -61,7 +62,7 @@ class Box {                         //creating a class called Box
         } else this.velocity.y += gravity       // if object has not reached bottom of canvas -> gravity increased by 0.2                                                      
     }
 
-    attack() {                                //creating attack function
+    attack() {                                //creat-ng attack function
         this.isAttacking = true
         setTimeout(() => {
             this.isAttacking = false
@@ -161,10 +162,14 @@ function determineWinner({player, enemy, timerId}){
     document.querySelector("#displayText").style.display = "flex"
     if(player.health === enemy.health){
         document.querySelector("#displayText").innerHTML = "Tie"
+        window.location = "/game.html"
     } else if(player.health > enemy.health){
         document.querySelector("#displayText").innerHTML = "Player 1 Wins"
+        window.location = "/game.html"
     } else if(player.health < enemy.health){
         document.querySelector("#displayText").innerHTML = "Player 2 Wins"
+        window.location = "/game.html"
+
     }
 
 }
@@ -324,3 +329,6 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
         break                                  
     }
   });
+
+  parseInt(localStorage.getItem("hp-spieler-1"))
+  parseInt(localStorage.getItem("hp-spieler-2"))
