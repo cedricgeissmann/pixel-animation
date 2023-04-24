@@ -72,6 +72,7 @@ export default class Game {
       TileRegistry.clear()
       CollisionDetector.clear()
       Game.player = null
+      Game.player2 = null
       Game.map = new Map(mapfile)
 
   }

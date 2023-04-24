@@ -252,6 +252,7 @@ export class Player extends AnimatedGameObject {
     this.col = 1 * this.tileWidth
     this.speed = 3
     this.playerNumber = 1
+    this.inGoal = false
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 2})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
