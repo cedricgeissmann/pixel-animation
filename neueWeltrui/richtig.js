@@ -5,7 +5,7 @@ const canvasStyles = getComputedStyle(canvas);
 const canvasWidth = parseInt(canvasStyles.width, 10);
 const canvasHeight = parseInt(canvasStyles.height, 10);
 
-c.fillRect(0, 0, canvasWidth, canvasHeight);
+c.clearRect(0, 0, canvasWidth, canvasHeight);
 
 const gravity = 0.9
 
@@ -190,8 +190,8 @@ decreaseTimer()
 
 function animate(){                         //create animate function
     window.requestAnimationFrame(animate)   //requests the animate function 
-    c.fillStyle = "black"
-    c.fillRect(0, 0, canvasWidth, canvasHeight)
+    //c.fillStyle = "black"
+    c.clearRect(0, 0, canvasWidth, canvasHeight)
     player.update()                         //after deleting enemy.draw() and for player i use update because draw function is contained
     enemy.update()
     console.log("hallo")                    //"hallo" appears in console
