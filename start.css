@@ -48,3 +48,20 @@ header ul li a.active
     color:gray; 
 
 }
+ 
+  .image {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 500px;
+    height: auto;
+  }
+
+.image2{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: auto; 
+}
+  
