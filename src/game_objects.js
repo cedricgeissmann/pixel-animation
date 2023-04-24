@@ -191,18 +191,7 @@ export class Shells extends GameObject {
   } 
 }
 
-export class Mushroom extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#ground")
-    super(x, y, {
-      sheet: ground,
-      layer: "item",
-    })
-    this.row = 0
-    this.col = 2
-    addCollision(this, {collisionTags: ["pickups"]})
-  }
-}
+
 
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
@@ -223,7 +212,7 @@ class AnimatedGameObject extends GameObject {
 
 
 export class Player extends AnimatedGameObject {
-  constructor(x, y) {
+    constructor(x, y) {
     const img = document.querySelector("#character")
     super(x, y, {
       sheet: img,
@@ -233,28 +222,48 @@ export class Player extends AnimatedGameObject {
     this.row = 0
     this.col = 1
     this.speed = 3
-    
-
-    addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
-    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
-    addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
-  }
-
-  jump() {
-    this.handlers.get(GravityHandler).jump(this)
-  }
-
-
-
-  move(direction) {
-     if (direction === "left") {
-      this.dx = this.dx + (-1) * this.speed
-      this.row = 1
-      Camera.shiftBackground(1)
-    } else if (direction === "right") {
-      this.dx = this.dx + (1) * this.speed
-      this.row = 2
-      Camera.shiftBackground(-1)
-    }
-  }
+    this.id = this.id
+    this.name = this.name
+    this.hp = baseHp
+    this.armor = 8
+    this.dmg = 4
+    this.hp = 100
+    this.target = null
+    this.render()
 }
+}
+
+attack() 
+
+    let doDmg = this.dmg
+
+    if (this.weapon){
+        doDmg = doDmg + this.weapon.dmg
+        if (this.weapon.type ==="axe"){
+            doDmg = doDmg * 2
+        }
+    }
+  
+
+    this.target.takeDamage(doDmg)
+
+heal () 
+{
+this.hp = baseHp + takeDmg
+this.render ()
+}
+takeDamage(dmg) 
+    let  takeDmg = dmg
+takeDmg = takeDmg - this.armor
+if (takeDmg < 10) {
+takeDmg = 10
+}
+
+    this.hp = this.hp - takeDmg
+    this.render()
+
+    const p1 = new Player("#player", "Axolotl", 100)
+    p1.weapon = new Weapon (5,"axe")
+    const enemy = new Player("#enemy", "Fisch",100)
+    p1.target = enemy
+    enemy.target = p1
