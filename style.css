@@ -10,7 +10,7 @@ h1 {
 }
 
 canvas {
-    width: min(70vh, 100vw);
+    height: min(80vh, 100vh);
 }
 
 .paused {
