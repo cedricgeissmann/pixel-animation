@@ -1,12 +1,17 @@
 import Game from "./game.js"
-import { Background, FallingStone, Flower, Hole, Mushroom, Player, Player2, Stone, Tree, Trunk, Wall } from "./game_objects.js"
+import { Background, Flower, Hole, Mushroom, Player, Player2, Stone, Tree, Trunk, Wall } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
  * an den Stellen die in der Karte angegeben sind.
  */
 export default class Map {
+  static width = 0
+  static height = 0
+
   constructor(mapFile) {
+    Map.width = 0
+    Map.height = 0
     this._readMapFile(mapFile)
     if (mapFile === "maps/map-01.txt") {
       Game.level = 1
@@ -31,7 +36,6 @@ export default class Map {
   addTilesToMap(x, y, tileType) {
     new Background(x, y)
     if ( tileType === "s" ) { new Stone(x, y) }
-    if ( tileType === "S" ) { new FallingStone(x, y) }
     if ( tileType === "t" ) { new Tree(x, y) }
     if ( tileType === "p" ) { new Mushroom(x, y) }
     if ( tileType === "w" ) { new Wall(x, y) }
@@ -55,6 +59,8 @@ export default class Map {
           let row = rows[y].split("")
           for (let x = 0; x < row.length; x++) {
             this.addTilesToMap(x, y, row[x])
+            Map.width = Math.max(Map.width, x)
+            Map.height = Math.max(Map.height, y)
           }
         }
       })

@@ -3,6 +3,22 @@ import { Flower, Mushroom, Player, Player2 } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
+export function addGravity(gameObject, gravityOptions) {
+  gameObject.handlers.add(new GravityHandler(gravityOptions))
+}
+
+export function addAnimation(gameObject, animationOptions) {
+  gameObject.handlers.add(new AnimationHandler(animationOptions))
+}
+
+export function addCollision(gameObject, collisionOptions) {
+  gameObject.handlers.add(new CollisionHandler(collisionOptions))
+}
+
+export function addProjectile(gameObject, projectileOptions) {
+  gameObject.handlers.add(new ProjectileHandler(projectileOptions))
+}
+
 
 export default class InputHandler {
 
@@ -14,15 +30,20 @@ export default class InputHandler {
     window.onkeydown = (ev) => {InputHandler.events.add(ev.code)}
     window.onkeyup = (ev) => {InputHandler.events.delete(ev.code)}
     Object.entries(config["keys"]).forEach(([key, callback]) => {
-      new Command(key, callback)
+      if (typeof callback === "function") {
+        new Command(key, callback)
+      } else if (typeof callback === "object") {
+        new Command(key, callback.callback, callback.cooldown)
+      }
     })
   }
 
   static handleAllEvents() {
     InputHandler.events.forEach((ev) => {
       InputHandler.commands.forEach(command => {
-        if (command.key === ev) {
+        if (command.key === ev && command.ready()) {
           command.callback()
+          command.calledOnFrame = Game.currentFrame
         }
       })
     })
@@ -32,10 +53,26 @@ export default class InputHandler {
 
 
 class Command {
-  constructor(key, callback) {
+  constructor(key, callback, cooldown = 0) {
     this.key = key
     this.callback = callback
+    this.cooldown = cooldown
+    this.calledOnFrame = 0
     InputHandler.commands.push(this)
+  }
+
+  ready() {
+    return Game.currentFrame - this.calledOnFrame >= this.cooldown
+  }
+}
+
+export class ProjectileHandler {
+  constructor(options) {
+    this.speed = options.speed || 0
+  }
+
+  _handleEvents(gameObject) {
+    gameObject.x = gameObject.x + this.speed
   }
 }
 
@@ -84,6 +121,10 @@ export class HandlerManager {
 }
 
 export class CollisionHandler {
+  constructor(options = {collisionTags: []}) {
+    this.collisionTags = options.collisionTags
+  }
+
   _handleEvents(gameObject, options) {
     // Es soll nichts passieren wenn kein anderes Objekt gesetzt wird
     if (options == null) return
@@ -96,7 +137,7 @@ export class CollisionHandler {
     // Wenn das andere Objekt aus der Welt oder dem Wald ist,
     // soll eine Überschneidung vermieden werden, indem das
     // Objekt aus dem überschneidenden Objekt herausgedrückt wird.
-    if (collidingObject.collisionTags.includes("world") || collidingObject.collisionTags.includes("forest")) {
+    if (matchCollisionTags(collidingObject, ["world", "forest"])) {
       const pen = calculatePenetration(gameObject, collidingObject)
       if (Math.abs(pen.x) <= Math.abs(pen.y)) {
         gameObject.x = gameObject.x - pen.x
@@ -113,24 +154,22 @@ export class CollisionHandler {
     }
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
-    if (collidingObject.collisionTags.includes("pickups")) {
+    if (matchCollisionTags(collidingObject, ["pickups"])) {
       collidingObject.destroy()
       if (collidingObject instanceof Flower) {
         gameObject.speed = 6
-        setInterval(function() {
+        setInterval(function () {
           gameObject.speed = 3
         }, 2000)
-      }
-      
-      else if (collidingObject instanceof Mushroom) {
+      } else if (collidingObject instanceof Mushroom) {
         gameObject.speed = 1
-        setInterval(function() {
+        setInterval(function () {
           gameObject.speed = 3
         }, 2000)
       }
     }
 
-    if (collidingObject.collisionTags.includes("cave")) {
+    if (matchCollisionTags(collidingObject, ["cave"])) {
       console.log(collidingObject)
       if (collidingObject.forPlayer === 2 && gameObject.playerNumber === 1) {
         Game.punkteSpieler1 += 1
@@ -138,14 +177,11 @@ export class CollisionHandler {
         elem.textContent = Game.punkteSpieler1 + " - " + Game.punkteSpieler2
         elem.style.display = "flex"
         console.log(Game.punkteSpieler1 + " - " + Game.punkteSpieler2)
-        setTimeout(function() {
+        setTimeout(function () {
           elem.style.display = "none"
           Game.loadMap("maps/map-02.txt")
-}, 2000)
-        
-        
-      }
-      else if (collidingObject.forPlayer === 1 && gameObject.playerNumber === 2) {
+        }, 2000)
+      } else if (collidingObject.forPlayer === 1 && gameObject.playerNumber === 2) {
         Game.punkteSpieler1 += 1
         const elem = document.querySelector("#spielstand")
         document.querySelector("#punkte-s1").textContent = Game.punkteSpieler1
@@ -153,23 +189,33 @@ export class CollisionHandler {
         document.querySelector("#winner").textContent = "Spieler 2 gewonnen"
         elem.style.display = "flex"
         console.log(Game.punkteSpieler1 + " - " + Game.punkteSpieler2)
-        setTimeout(function() {
+        setTimeout(function () {
           elem.style.display = "none"
-          if (Game.level === 1){
+          if (Game.level === 1) {
             Game.loadMap("maps/map-02.txt")
           }
-          if (Game.level === 2){
+          if (Game.level === 2) {
             Game.loadMap("maps/map-03.txt")
           }
-          if (Game.level === 3){
+          if (Game.level === 3) {
             Game.loadMap("maps/map-04.txt")
           }
-        
-}, 2000)
+        }, 2000)
       }
-      
     }
   }
+}
+
+function matchCollisionTags(collidingObject, tags) {
+  const colHandler = collidingObject.handlers.get(CollisionHandler)
+  if (colHandler != null) {
+    for (let tag of tags) {
+      if (colHandler.collisionTags.includes(tag) == true) {
+        return true
+      }
+    }
+  }
+  return false
 }
 
 export class AnimationHandler {
@@ -184,8 +230,8 @@ export class AnimationHandler {
     if (gameObject.dx != 0 || gameObject.dy != 0) {
       this.frameCounter++
       if (this.frameCounter >= this.framesPerAnimation) {
-        gameObject.col++
-        if (gameObject.col >= this.numberOfFrames) {
+        gameObject.col += gameObject.tileWidth
+        if (gameObject.col >= this.numberOfFrames * gameObject.tileWidth) {
           gameObject.col = 0
         }
         this.frameCounter = 0
