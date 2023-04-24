@@ -20,12 +20,16 @@ export default class Game {
   static currentFrame = 0;
   static level = 1;
 
+  static canvas = document.querySelector("#canvas")
+  static tileWidth = 32
+  static tileHeight = 32
+  static instance = null
+
   constructor() {
-    this.tileSize = 32
-    this.canvas = document.querySelector("#canvas")
-    this.canvas.width = 41 * this.tileSize
-    this.canvas.height = 21 * this.tileSize
-    this.ctx = this.canvas.getContext("2d")
+    Game.instance = this
+    Game.canvas.width = 41 * Game.tileWidth
+    Game.canvas.height = 21 * Game.tileHeight
+    this.ctx = Game.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
     new EventHandler()
@@ -46,6 +50,8 @@ export default class Game {
    */
   static start() {
     Game.running = true
+    document.querySelector("body").classList.remove("paused")
+    window.requestAnimationFrame(Game.instance.gameLoop.bind(Game.instance))
   }
 
   /**
@@ -58,6 +64,7 @@ export default class Game {
    * `start()` aufgerufen werden.
    */
   static pause() {
+    document.querySelector("body").classList.add("paused")
     Game.running = false
   }
 
@@ -65,6 +72,7 @@ export default class Game {
       TileRegistry.clear()
       CollisionDetector.clear()
       Game.player = null
+      Game.player2 = null
       Game.map = new Map(mapfile)
 
   }
@@ -79,13 +87,14 @@ export default class Game {
 
     Game.currentFrame++
     
+    CollisionDetector.clearXRay()
     this.camera.clearScreen()
     this.camera.nextFrame()
 
     EventHandler.handleAllEvents()
 
     TileRegistry.updateAllTiles()
-    CollisionDetector.checkCollision("all")
+    CollisionDetector.checkCollision()
 
     
     //this.camera.centerObject(Game.player)

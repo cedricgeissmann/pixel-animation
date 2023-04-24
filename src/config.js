@@ -1,4 +1,5 @@
 import Game from "./game.js"
+import { ShootingStone } from "./game_objects.js"
 
 const config = {
   "keys": {
@@ -10,6 +11,10 @@ const config = {
     "ArrowLeft": function() { Game.player2.move("left")},
     "ArrowDown": function() { Game.player2.move("down")},
     "ArrowRight": function() { Game.player2.move("right")},
+    "Space": {
+      callback: function() { new ShootingStone(Game.player.x / Game.tileWidth, Game.player.y / Game.tileHeight)},
+      cooldown: 60 // Add cooldown in frames
+    }
   }
 }
 
