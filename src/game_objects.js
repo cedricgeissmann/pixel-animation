@@ -270,7 +270,7 @@ export class Player extends AnimatedGameObject {
     this.row = 0
     this.col = 1
     this.speed = 3
-    
+    this.tileSize = 64
 
     addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
