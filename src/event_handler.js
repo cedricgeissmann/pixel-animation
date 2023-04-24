@@ -188,8 +188,8 @@ export class AnimationHandler {
     if (gameObject.dx != 0 || gameObject.dy != 0) {
       this.frameCounter++
       if (this.frameCounter >= this.framesPerAnimation) {
-        gameObject.col++
-        if (gameObject.col >= this.numberOfFrames) {
+        gameObject.col += gameObject.tileWidth
+        if (gameObject.col >= this.numberOfFrames * gameObject.tileWidth) {
           gameObject.col = 0
         }
         this.frameCounter = 0

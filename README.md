@@ -7,6 +7,10 @@ Das Spiel kann [hier](https://cedricgeissmann.github.io/pixel-animation) direkt 
 
 # Changes
 
+## v1.12
+
+- Objekte können nun unterschiedliche Höhe und Breite haben. Diese können mit `tileHeight` und `tileWidth` angegeben werden. Kann im `Player` nachgeschaut werden.
+
 ## v1.11
 
 - Es kann nun ein Cooldown bei Aktionen die in `config.js` definiert werden, hinzugefügt werden.
