@@ -1,0 +1,22 @@
+h1 {
+    color: rgb(163, 243, 168);
+    font-size: 40px;
+}
+
+h2 {
+    color:rgb(241, 171, 183);
+    text-decoration: underline;
+    font-size: 25px;
+}
+
+body {
+    padding: 0;
+    margin: 5;
+    background-color: rgb(24, 49, 26);
+    position: relative;
+}
+
+p {
+    color:rgb(143, 216, 148);
+    font-size: 20px;
+}
