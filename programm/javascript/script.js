@@ -368,11 +368,16 @@ function animate() {
           onComplete() {
             gsap.to('#overlappingDiv', {
               opacity: 1,
-              duration: 0.4
+              duration: 0.4,
+              onComplete() {
+                // activate a new animation loop
+                animateBattle()
+                gsap.to('#overlappingDiv', {
+                  opacity: 0,
+                  duration: 0.4
+                })
+              }
             })
-
-            // activate a new animation loop
-            animateBattle()
           }
         })
 
@@ -403,13 +408,18 @@ function animate() {
               onComplete() {
                 gsap.to('#overlappingDiv', {
                   opacity: 1,
-                  duration: 0.4
-                })
-    
+                  duration: 0.4,
+              onComplete() {
                 // activate a new animation loop
                 animateBattle()
+                gsap.to('#overlappingDiv', {
+                  opacity: 0,
+                  duration: 0.4
+                })
               }
-            })
+            })  
+            }
+          })
     
             break
         }}}
@@ -438,11 +448,16 @@ function animate() {
                   onComplete() {
                     gsap.to('#overlappingDiv', {
                       opacity: 1,
-                      duration: 0.4
+                      duration: 0.4,
+                      onComplete() {
+                        // activate a new animation loop
+                        animateBattle()
+                        gsap.to('#overlappingDiv', {
+                          opacity: 0,
+                          duration: 0.4
+                        })
+                      }
                     })
-        
-                    // activate a new animation loop
-                    animateBattle()
                   }
                 })
         
@@ -563,11 +578,23 @@ function animate() {
 }
 //battle-animation
 animate()
+const battleBackgroundImage = new Image()
+battleBackgroundImage.src = '../res/battle/battlebackground.png'
+const battleBackground = new Sprite({
+  position: {
+    x: 0,
+    y: 0
+  },
+  image: battleBackgroundImage
+})
 
 function animateBattle() {
   window.requestAnimationFrame(animateBattle)
   console.log('animating battle')
+  battleBackground.draw()
 }
+
+
 
 //create let lastKey and activate keys by "keydown" event
 let lastKey = ''
