@@ -6,26 +6,24 @@ body{
     background: -moz-linear-gradient(left,  rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
 }
 
-header{
+header {
+    color: black;
     position: absolute;
-    color: #fff;
     top: 0;
     left: 0;
     width: 100%;
     padding: 30px 100px;
+    letter-spacing: 2px;
     justify-content: space-between;
     align-items: center;
-}
-
-header.ELEMENTS{
-    color: #fff;
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
     text-decoration: none;
     font-size: 2em;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-family: "Poppins", sans-serif;
 }
+
+
 
 header ul {
     display: flex;
@@ -41,6 +39,7 @@ header ul li a  {
     text-decoration: none;
     padding: 6px 15px;
     color: #fff;
+    border-radius: 20px;
 }
 header ul li a:hover, 
 header ul li a.active
@@ -49,3 +48,20 @@ header ul li a.active
     color:gray; 
 
 }
+ 
+  .image {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 500px;
+    height: auto;
+  }
+
+.image2{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: auto; 
+}
+  
