@@ -104,6 +104,7 @@ export class Sand extends GameObject {
     })
     this.row = 3.6
     this.col = 3
+    addCollision(this, {collisionTags: ["world"]})
   }
 }
 
@@ -218,7 +219,7 @@ export class waterlily extends GameObject {
     this.tileSize = 32
     this.row = 0
     this.col = 1
-    addCollision(this, {collisionTags: ["forest"]})
+    addCollision(this, {collisionTags: ["pickups"]})
 
   
 } 
@@ -289,6 +290,42 @@ export class Player extends AnimatedGameObject {
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
       this.row = 2
+    }
+  }
+}
+
+
+export class Player2 extends AnimatedGameObject {
+  constructor(x, y) {
+    const img = document.querySelector("#character2")
+    super(x, y, {
+      sheet: img,
+      layer: "player",
+    })
+    
+    this.row = 0
+    this.col = 0
+    this.speed = 3
+    
+
+    addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
+    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
+    addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
+  }
+
+  jump() {
+    this.handlers.get(GravityHandler).jump(this)
+  }
+
+
+
+  move(direction) {
+     if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed
+      this.row = 1
+    } else if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed
+      this.row = 1
     }
   }
 }

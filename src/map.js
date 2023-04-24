@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background,Sand,Water, Air, Player, Shells, crown, waterlily, seastar } from "./game_objects.js"
+import { Background,Sand,Water, Air, Player, Shells, crown, waterlily, seastar, Player2 } from "./game_objects.js"
 
 
 /**
@@ -29,7 +29,7 @@ export default class Map {
     if ( tileType === "f" ) {  new waterlily(x, y) }
     if ( tileType === "e" ) {  new seastar(x, y) }
     if ( tileType === "A" ) { Game.player = new Player(x, y)}
-    if ( tileType === "F" ) { Game.player2 = new Player(x, y)}
+    if ( tileType === "F" ) { Game.player2 = new Player2(x, y)}
   }
 
   /**
