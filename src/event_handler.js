@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player } from "./game_objects.js"
+import { Player, Player2 } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -131,7 +131,7 @@ export class CollisionHandler {
 
     // Wenn das andere Objekt der Spieler ist, soll nicht passieren
     if (options.other instanceof Player) return
-
+    if (options.other instanceof Player2) return
     let collidingObject = options.other
 
     // Wenn das andere Objekt aus der Welt oder dem Wald ist,
