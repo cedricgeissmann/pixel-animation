@@ -6,7 +6,7 @@ body{
     background: -moz-linear-gradient(left,  rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
 }
 
-header{
+header.ELEMENTS{
     position: absolute;
     color: #fff;
     top: 0;
