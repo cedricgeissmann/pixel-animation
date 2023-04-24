@@ -177,7 +177,7 @@ export class CollisionHandler {
           const elem = document.querySelector("#spielstand")
           document.querySelector("#punkte-s1").textContent = Game.punkteSpieler1
           document.querySelector("#punkte-s2").textContent = Game.punkteSpieler2
-          if (Game.level === 2) {
+          if (Game.level === 3) {
             document.querySelector("#winner").textContent = "Spieler 1 gewonnen"
           }
           elem.style.display = "flex"
@@ -186,7 +186,6 @@ export class CollisionHandler {
             if (Game.level === 1) {
               Game.loadMap("maps/map-02.txt")
             } 
-            
             else if (Game.level === 2) {
               Game.loadMap("maps/map-03.txt")
             } 
@@ -200,7 +199,7 @@ export class CollisionHandler {
           const elem = document.querySelector("#spielstand")
           document.querySelector("#punkte-s1").textContent = Game.punkteSpieler1
           document.querySelector("#punkte-s2").textContent = Game.punkteSpieler2
-          if (Game.level === 2) {
+          if (Game.level === 3) {
             document.querySelector("#winner").textContent = "Spieler 2 gewonnen"
           }
           elem.style.display = "flex"
