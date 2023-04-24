@@ -189,7 +189,6 @@ export class Shells extends GameObject {
       this.col = 0
       addCollision(this, {collisionTags: ["pickups"]})
 
-    
   } 
 }
 
@@ -322,10 +321,10 @@ export class Player2 extends AnimatedGameObject {
   move(direction) {
      if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 1
+      //this.row = 1
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 1
+      //this.row = 1
     }
   }
 }
