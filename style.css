@@ -21,7 +21,7 @@ h1 {
 
 
 #spielstand {
-    display: none;
+    display: flex;
     position: absolute;
     z-index: 10;
     inset: 0;
@@ -30,6 +30,15 @@ h1 {
     background-color: rgb(24, 49, 26);
     color: rgb(163, 243, 168);
     font-size: 4.5em;
+    flex-direction: column;
+}
+
+#spielstand span {
+    color: rgb(163, 243, 168);
+}
+
+#winner {
+    margin-top: 20px;
 }
 
 .paused {
