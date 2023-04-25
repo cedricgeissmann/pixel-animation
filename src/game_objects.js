@@ -731,7 +731,7 @@ export class Cowwhite extends GameObject {
     })
     this.tileSize = 32
     this.row = 0  
-    this.col = 2
+    this.col = 0
   }
 }
 export class Rand extends GameObject {
@@ -805,6 +805,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyD") { this.move("right") }
     if (ev === "Space") { 
       Game.loadMap("maps/maparena.txt")
+      /**Game.loadImage("res/Endimage.png")**/
     }
   }
 
