@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Enemy, Player,Cave, NPC, FallingStone  } from "./game_objects.js"
+import { Enemy, Player,Cave, NPC, FallingStone, Nothing  } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -109,7 +109,7 @@ export class CollisionHandler {
           }
           gravityHandler.gravity = 0
         }
-      }
+      }}
 
       if (collidingObject instanceof FallingStone) {
         if (collidingObject.isFalling === false) {
@@ -131,7 +131,13 @@ export class CollisionHandler {
         }
       }
       }
-    }
+
+      if(gameObject instanceof Enemy && collidingObject instanceof Nothing) {
+        gameObject.destroy()
+        collidingObject.destroy()
+        
+      }
+
     if (collidingObject instanceof Cave ) {
       Game.loadMap("maps/map-01.txt");
     } 
