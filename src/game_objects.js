@@ -126,14 +126,12 @@ export class FallingStone extends Stone {
   constructor(x, y) {
     super(x, y)
     this.handlers = new HandlerManager([
-      new GravityHandler({
-        maxGravity: 3,
-        gravityForce: 1
-      }),
+      
       new CollisionHandler()
     ])
-    this.row = 0
-    this.col = 2
+    this.isFalling = false
+    this.row = 2
+    this.col = 0
   }
   
 }

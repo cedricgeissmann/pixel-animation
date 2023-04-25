@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Enemy, Player,Cave, NPC  } from "./game_objects.js"
+import { Enemy, Player,Cave, NPC, FallingStone  } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -109,6 +109,15 @@ export class CollisionHandler {
           }
           gravityHandler.gravity = 0
         }
+      }
+
+      if (collidingObject instanceof FallingStone) {
+        if (collidingObject.isFalling === false) {
+        collidingObject.handlers.add (new GravityHandler({
+          maxGravity: 2,
+          gravityForce: 1
+        }),)
+      }
       }
 
       if (collidingObject instanceof Enemy) {
