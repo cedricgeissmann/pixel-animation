@@ -8,6 +8,7 @@ const config = {
     "KeyD": function() { Game.player.move("right")},
     "Space": function() { Game.player.jump()},
     "KeyZ": function() {Game.player.move()},
+    "KeyE": function() {Game.player.attack()},
   }
 }
 

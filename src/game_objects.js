@@ -138,6 +138,19 @@ export class FallingStone extends Stone {
   
 }
 
+export class Nothing extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 8
+    this.col = 8
+  }
+}
+
 export class Tree extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -206,6 +219,8 @@ export class Player extends AnimatedGameObject {
       collisionTags: ["world", "pickups", "cave", "forest"]
       
     })
+    this.lastattack = 0
+    this.canattack = 0
     this.row = 0
     this.col = 0
     this.speed = 3 
@@ -224,6 +239,20 @@ export class Player extends AnimatedGameObject {
     ])
   }
 
+  attack() {
+    if (Game.currentFrame - this.lastattack > 60) {
+      this.lastattack = Game.currentFrame
+    if (this.row === 0) {
+      let newx = this.x / 32 + 1
+      new Nothing (newx,this.y /32)
+    }
+  }
+
+    /*else if (this.row === 8) {
+      let newx = this.x / 32 - 1
+      this.x = this.x - (1)
+    }*/
+  }
 
   jump() {
     this.handlers.get(GravityHandler).jump(this)
