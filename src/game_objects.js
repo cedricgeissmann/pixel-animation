@@ -251,6 +251,13 @@ export class Player extends AnimatedGameObject {
     ])
   }
 
+
+  suicide() {
+    if("KeyQ") {
+      Game.loadMap("maps/map-01.txt");
+    }
+  }
+
   attack() {
     if (Game.currentFrame - this.lastattack > 60) {
       this.lastattack = Game.currentFrame

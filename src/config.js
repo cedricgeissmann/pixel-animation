@@ -9,6 +9,7 @@ const config = {
     "Space": function() { Game.player && Game.player.jump()},
     "KeyZ": function() {Game.player && Game.player.move()},
     "KeyE": function() {Game.player && Game.player.attack()},
+    "KeyQ": function() {Game.player && Game.player.suicide()},
   }
 }
 
