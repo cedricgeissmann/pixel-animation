@@ -1,3 +1,6 @@
+parseInt(localStorage.getItem("hp-spieler-1"))
+parseInt(localStorage.getItem("hp-spieler-2"))
+
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 const canvasStyles = getComputedStyle(canvas);
@@ -330,5 +333,3 @@ window.addEventListener('keydown', (event) => { // pressing any key and allowing
     }
   });
 
-  parseInt(localStorage.getItem("hp-spieler-1"))
-  parseInt(localStorage.getItem("hp-spieler-2"))

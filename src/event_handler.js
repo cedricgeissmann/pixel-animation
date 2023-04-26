@@ -126,21 +126,24 @@ export class CollisionHandler {
 
      if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
+      setInterval(function() {
       if (collidingObject instanceof Mushroom) {
         if (gameObject === Game.player) {
-          Game.player.looseHP (20)
+          Game.player.loseSpeed (2)
         } else if (gameObject === Game.player2) {
-          Game.player2.looseHP (20)
+          Game.player2.loseSpeed (2)
         }
       }
+    }, 1000 )
 
       if (collidingObject instanceof Flower) {
+        setInterval(function() {
         if (gameObject === Game.player) {
-          Game.player.getHP(20)
+          Game.player.getSpeed(2)
         } else if (gameObject === Game.player2) {
-          Game.player2.getHP(20)
+          Game.player2.getSpeed(2)
         }
-     }
+     },1000 )
 
     }
     if (collidingObject.collisionTags.includes("cave")) {
@@ -160,7 +163,7 @@ export class CollisionHandler {
     }
     }
   }
-  
+}
   
 
 
