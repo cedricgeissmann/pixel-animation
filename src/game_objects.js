@@ -252,8 +252,10 @@ export class Player extends AnimatedGameObject {
 
   jump() {
     this.handlers.get(GravityHandler).jump(this)
-    this.row = 2
-    this.col = 1
+    if (this.row === 0){
+      this.row = 2}
+    else if (this.row === 8) {
+      this.row = 12}
   }
 
   update() {
