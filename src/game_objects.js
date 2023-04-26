@@ -240,16 +240,14 @@ export class Player extends AnimatedGameObject {
   attack() {
     if (Game.currentFrame - this.lastattack > 60) {
       this.lastattack = Game.currentFrame
-    if (this.row === 0) {
-      let newx = this.x / 32 + 1
-      new Nothing (newx,this.y /32)
+      if (this.row === 0) {
+        let newx = this.x / 32 + 1
+        new Nothing(newx, this.y / 32)
+      } else if (this.row === 8) {
+        let newx = this.x / 32 - 1
+        new Nothing(newx, this.y / 32)
+      }
     }
-  }
-
-    /*else if (this.row === 8) {
-      let newx = this.x / 32 - 1
-      this.x = this.x - (1)
-    }*/
   }
 
   jump() {
