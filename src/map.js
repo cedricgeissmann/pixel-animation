@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Enemy, NPC } from "./game_objects.js"
+import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Enemy, NPC, Falldamage } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -27,6 +27,7 @@ export default class Map {
     if ( tileType === "P" ) { Game.player = new Player(x, y)}
     if ( tileType === "E" ) {new Enemy(x, y)}
     if ( tileType === "N" ) {new NPC (x, y)}
+    if ( tileType === "D" ) {new Falldamage (x, y)}
   }
 
   /**

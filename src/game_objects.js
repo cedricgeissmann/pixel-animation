@@ -69,6 +69,20 @@ export class GameObject {
 
 }
 
+export class Falldamage extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["cave"]
+    })
+
+    this.row = 800
+    this.col = 0
+  }
+}
+
 export class Background extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
