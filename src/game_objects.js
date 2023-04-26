@@ -252,16 +252,14 @@ export class Player extends AnimatedGameObject {
     ])
   }
     
-    looseHP(amount) {
-      this.hp = this.hp - amount
-      const hpElem = document.querySelector("#HP")
-      hpElem.textContent = this.hp
+    loseSpeed(amount) {
+      this.speed = this.speed - amount
+      const speedElem = document.querySelector("#SPEED")
     }
   
-    getHP(amount) {
-      this.hp = this.hp + amount
-      const hpElem = document.querySelector("#HP")
-      hpElem.textContent = this.hp
+    getSpeed(amount) {
+      this.speed = this.speed + amount
+      const speedElem = document.querySelector("#SPEED")
     }
 
 
@@ -328,17 +326,17 @@ export class Player2 extends Player {
 
  
 
-  looseHP(amount) {
-    this.hp = this.hp - amount
-    const hpElem = document.querySelector("#player2-HP")
-    hpElem.textContent = this.hp
+  loseSpeed(amount) {
+    this.speed = this.speed - amount
+    const speedElem = document.querySelector("#player2-SPEED")
   }
 
-  getHP(amount) {
-    this.hp = this.hp + amount
-    const hpElem = document.querySelector("#player2-HP")
-    hpElem.textContent = this.hp
+  getSpeed(amount) {
+    this.speed = this.speed + amount
+    const speedElem = document.querySelector("#player2-SPEED")
   }
+
+
 
   handle(ev) {
     if (ev === "ArrowUp") { this.move("up") }
