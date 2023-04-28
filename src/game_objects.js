@@ -2,6 +2,7 @@ import EventHandler, {AnimationHandler, CollisionHandler, HandlerManager, } from
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
+import Game from "./game.js"
 
 
 /**
@@ -252,14 +253,9 @@ export class Player extends AnimatedGameObject {
   }
 }
 
-export class playerattributes extends Player {
-constructor(name, hp, dmg) {
-      
-}
-//Klasse mit Spielerattributen soll die Klasse PLayer erweitern mit einem Konstruktor, welcher name,hp und dmg enthaltet
 
 
-}
+
 
 
 
@@ -365,5 +361,69 @@ export class MoneySystem {
   
 }
 
+
+export class Weapons {
+  constructor(damage, shield){
+    this.damage = 5
+    this.shield = 0
+  } 
+}
+
 export const moneySystem = new MoneySystem(0);
 //Die neue variabel moneySystem soll ein neues Geldsystem mit der Menge null sein
+
+export class Enemy extends AnimatedGameObject {
+  constructor(x, y) {
+    const img = document.querySelector("#character")
+    super(x, y, {
+      sheet: img,
+      layer: "player",
+      collisionTags: ["world", "enemy"]
+    })
+    this.health = 20
+    this.row = 0
+    this.col = 1
+    this.speed = 5
+    this.handlers = new HandlerManager([
+      new EventHandler(),
+      new CollisionHandler(),
+      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
+    ])
+  }
+  update() {
+    
+    super.update();
+    
+    if (Game.player.x < this.x) {
+      
+      this.move("left")
+    }
+    
+    if (Game.player.x > this.x) {
+      
+      this.move("right")
+    }
+    if(Game.player.y > this.y){
+      this.move("down")
+    }
+    if(Game.player.y < this.y) {
+        this.move("up")
+      }
+    }
+    
+    move(dir) {
+    if (dir === "up") {
+      this.dy = this.dy + (-1) * this.speed
+      this.row = 3
+    } else if (dir === "down") {
+      this.dy = this.dy + (1) * this.speed
+      this.row = 0
+    } else if (dir === "left") {
+      this.dx = this.dx + (-1) * this.speed
+      this.row = 1
+    } else if (dir === "right") {
+      this.dx = this.dx + (1) * this.speed
+      this.row = 2
+    }
+  }
+}

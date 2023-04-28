@@ -3,6 +3,8 @@ import CollisionDetector from "./collision_detector.js"
 import Camera from "./camera.js"
 import TileRegistry from "./tile_registry.js"
 import { MoneySystem } from "./game_objects.js";
+import { HealthBar } from "./game_objects.js";
+
 
 
 /**
@@ -13,7 +15,9 @@ export default class Game {
 
   static map = null;
   static player = null;
+  static enemy = null;
   static money = null;
+  static health = null;
   static running = false;
   static worldNumber = 1
 

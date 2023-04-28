@@ -1,6 +1,7 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player  } from "./game_objects.js"
+import { Player,HealthBar } from "./game_objects.js"
 import Game from "./game.js"
+
 
 export default class EventHandler {
   constructor() {
@@ -51,23 +52,22 @@ export class CollisionHandler {
     // Wenn das andere Objekt aus der Welt oder dem Wald ist,
     // soll eine Überschneidung vermieden werden, indem das
     // Objekt aus dem überschneidenden Objekt herausgedrückt wird.
-    if (collidingObject.collisionTags.includes("world") || collidingObject.collisionTags.includes("forest")) {
+    if (collidingObject && (collidingObject.collisionTags.includes("world") || collidingObject.collisionTags.includes("forest"))) {
       const pen = calculatePenetration(gameObject, collidingObject)
       if (Math.abs(pen.x) <= Math.abs(pen.y)) {
         gameObject.x = gameObject.x - pen.x
       } else {
         gameObject.y = gameObject.y - pen.y
-        
       }
     }
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
-    if (collidingObject.collisionTags.includes("pickups")) {
-     collidingObject.destroy()
-     Game.money.increaseMoney(10)
+    if (collidingObject && collidingObject.collisionTags.includes("pickups")) {
+      collidingObject.destroy()
+      Game.money.increaseMoney(10)
     }
 
-    if (collidingObject.collisionTags.includes("forest") && event.key === "f") {
+    if (collidingObject && collidingObject.collisionTags.includes("forest") && event.key === "f") {
       let countdownDuration = 3;
       const countdownInterval = setInterval(() => {
         countdownDuration--;
@@ -75,24 +75,36 @@ export class CollisionHandler {
           clearInterval(countdownInterval);
           collidingObject.destroy();
           Game.money.increaseMoney(20);
-          this.updateMoney(); 
+          this.updateMoney();
         }
       }, 1000);
     }
-    
-    
-    if (collidingObject.collisionTags.includes("cave")) {
-      if(Game.worldNumber === 1){
-        Game.loadMap("maps/map-02.txt")
-        Game.worldNumber = 2
-      } else if(Game.worldNumber === 2) {
-        Game.loadMap("maps/map-01.txt")
-        Game.worldNumber = 1
+
+    if (collidingObject && collidingObject.collisionTags.includes("cave")) {
+      if (Game.worldNumber === 1) {
+        Game.loadMap("maps/map-02.txt");
+        Game.worldNumber = 2;
+      } else if (Game.worldNumber === 2) {
+        Game.loadMap("maps/map-01.txt");
+        Game.worldNumber = 1;
       }
-      
+    }
+
+    if(collidingObject.collisionTags.includes("enemy")){
+      if(Player.health > 30)
+      Game.health.attack(-30)
+      else if(Player.health <= 0 ){
+        console.log("you died")
+        game.running = false
+        let game = new Game()
+        Game.start()
+
+
+      }
     }
   }
 }
+
 
 export class AnimationHandler {
   constructor(options) {
