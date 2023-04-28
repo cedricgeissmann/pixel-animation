@@ -106,7 +106,7 @@ export default class Game {
    let count = parseInt (elem.textContent)
    count = count + value
    elem.textContent = `${count} / 2`
-   if (count >= 3) { Game.allGelbsushi = true}
+   if (count >= 2) { Game.allGelbsushi = true}
    Game.checkNewMap()
    }
 
@@ -114,8 +114,8 @@ export default class Game {
   { const elem = document.querySelector("#mushroompurple-counter")
    let count = parseInt (elem.textContent)
    count = count + value
-   elem.textContent = `${count} / 5`
-   if (count >= 5) { Game.allMushroompurple = true}
+   elem.textContent = `${count} / 6`
+   if (count >= 6) { Game.allMushroompurple = true}
    Game.checkNewMap()
    }
 
@@ -124,8 +124,8 @@ export default class Game {
    { const elem = document.querySelector("#rubin-counter")
     let count = parseInt (elem.textContent)
     count = count + value
-  elem.textContent = `${count} / 3`
-  if (count >= 3) { Game.allRubin = true}
+  elem.textContent = `${count} / 4`
+  if (count >= 4) { Game.allRubin = true}
   Game.checkNewMap()
   }
 
@@ -133,8 +133,8 @@ export default class Game {
    { const elem = document.querySelector("#kristall-counter")
     let count = parseInt (elem.textContent)
     count = count + value
-  elem.textContent = `${count} / 2`
-  if (count >= 2) { Game.allKristall = true}
+  elem.textContent = `${count} / 4`
+  if (count >= 4) { Game.allKristall = true}
   Game.checkNewMap()
   }
 
@@ -151,9 +151,9 @@ export default class Game {
       }
     
   static checkLastMapCondition() {
-    if (parseInt(document.querySelector("#kristall-counter").textContent) >= 2
-      && parseInt(document.querySelector("#rubin-counter").textContent) >= 3
-      && parseInt(document.querySelector("#mushroompurple-counter").textContent) >= 5
+    if (parseInt(document.querySelector("#kristall-counter").textContent) >= 4
+      && parseInt(document.querySelector("#rubin-counter").textContent) >= 4
+      && parseInt(document.querySelector("#mushroompurple-counter").textContent) >= 6
       && parseInt(document.querySelector("#gelbsuhsi-counter").textContent) >= 2
       && parseInt(document.querySelector("#lachssuchi-counter").textContent) >= 2
       && parseInt(document.querySelector("#cupcake-counter").textContent) >= 4
