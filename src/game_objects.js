@@ -239,6 +239,7 @@ export class Player extends AnimatedGameObject {
     this.php = 10
     this.lasthit = 0
     this.dmg = 5
+    this.hascontrols = true
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
@@ -253,12 +254,14 @@ export class Player extends AnimatedGameObject {
 
 
   suicide() {
+    if(this.hascontrols === false) return
     if("KeyQ") {
       Game.loadMap("maps/map-01.txt");
     }
   }
 
   attack() {
+    if(this.hascontrols === false) return
     if (Game.currentFrame - this.lastattack > 60) {
       this.lastattack = Game.currentFrame
       if (this.row === 0) {
@@ -272,6 +275,7 @@ export class Player extends AnimatedGameObject {
   }
 
   jump() {
+    if(this.hascontrols === false) return
     this.handlers.get(GravityHandler).jump(this)
     if (this.row === 0){
       this.row = 2}
@@ -283,16 +287,8 @@ export class Player extends AnimatedGameObject {
     super.update()
   }
 
-  handle(ev) {
-    if (ev === "KeyA") { this.move("left") }
-    if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space") { this.jump()
-
-
-    }
-  }
-
   move(direction) {
+    if(this.hascontrols === false) return
     if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
       this.row = 0
@@ -308,8 +304,6 @@ export class Player extends AnimatedGameObject {
 
   }
 }
-
-
 
 export class Enemy extends AnimatedGameObject {
   constructor(x, y) {
@@ -336,6 +330,8 @@ export class Enemy extends AnimatedGameObject {
 
   update() {
     super.update();
+    const dist = Math.abs(Game.player.x - this.x)
+    if ( dist / 32 > 10) return
     if (Game.player.x < this.x) {
       this.move("left")
     }

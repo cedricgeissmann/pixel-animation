@@ -8,6 +8,7 @@ import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, En
 export default class Map {
   constructor(mapFile) {
     this._readMapFile(mapFile)
+    this.mapfile = mapFile
   }
 
   /**
@@ -43,6 +44,12 @@ export default class Map {
           for (let x = 0; x < row.length; x++) {
             this.addTilesToMap(x, y, row[x])
           }
+        }
+      })
+      .then(() => {
+        if (this.mapfile === "maps/map-02.txt") {
+          Game.currentFrame = 0
+          Game.player.hascontrols = false
         }
       })
   }

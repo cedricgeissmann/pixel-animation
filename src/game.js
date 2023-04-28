@@ -75,6 +75,9 @@ export default class Game {
   gameLoop() {
 
     Game.currentFrame++
+    if (Game.currentFrame > 60 && Game.map.mapfile === "maps/map-02.txt") {
+      Game.player.hascontrols = true
+    }
     
     this.camera.clearScreen()
     this.camera.nextFrame()
