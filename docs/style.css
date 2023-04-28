@@ -3,17 +3,22 @@
 }
 
 h1 {
-    background-color: magenta;
+    background-color: rgb(114, 219, 144);
+
 }
 
 h2 {
-    background-color: magenta;
+    background-color: lightgrey;
+    text-align: center;
 }
 
 body {
     padding: 0;
     margin: 0;
+    text-align: center;
+    background-color: rgb(198, 186, 186);
 }
+
 
 .container {
     width: 100vw;
