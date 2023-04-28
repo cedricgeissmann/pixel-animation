@@ -152,14 +152,14 @@ export class FallingStone extends Stone {
 
 export class Nothing extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#ground")
+    const ground = document.querySelector("#character")
     super(x, y, {
       sheet: ground,
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 8
-    this.col = 8
+    this.row = 14
+    this.col = 2
   }
 }
 
@@ -176,6 +176,21 @@ export class Tree extends GameObject {
     
   }
 }
+
+export class Healthpotion extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#character")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 14
+    this.col = 2
+    
+  }
+}
+
 export class NPC extends GameObject {    
   constructor(x, y) {
     const ground = document.querySelector("#NPC-S")
@@ -275,6 +290,7 @@ export class Player extends AnimatedGameObject {
   }
 
   jump() {
+    console.log(this.php)
     if(this.hascontrols === false) return
     this.handlers.get(GravityHandler).jump(this)
     if (this.row === 0){
