@@ -731,7 +731,7 @@ export class Cowwhite extends GameObject {
     })
     this.tileSize = 32
     this.row = 0  
-    this.col = 2
+    this.col = 0
   }
 }
 export class Rand extends GameObject {
