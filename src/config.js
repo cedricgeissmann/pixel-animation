@@ -18,4 +18,14 @@ const config = {
   }
 }
 
+document.addEventListener("keydown", function(event) {
+  if (event.code === "KeyP") {
+    if (Game.running) {
+      Game.pause();
+    } else {
+      Game.start();
+    }
+  }
+});
+
 export default config;
