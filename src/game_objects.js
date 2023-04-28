@@ -2,6 +2,7 @@ import EventHandler, {AnimationHandler, CollisionHandler, HandlerManager, } from
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
+import Game from "./game.js"
 
 
 /**
@@ -252,14 +253,9 @@ export class Player extends AnimatedGameObject {
   }
 }
 
-export class playerattributes extends Player {
-constructor(name, hp, dmg) {
-      
-}
-//Klasse mit Spielerattributen soll die Klasse PLayer erweitern mit einem Konstruktor, welcher name,hp und dmg enthaltet
 
 
-}
+
 
 
 
@@ -365,6 +361,14 @@ export class MoneySystem {
   
 }
 
+
+export class Weapons {
+  constructor(damage, shield){
+    this.damage = 5
+    this.shield = 0
+  } 
+}
+
 export const moneySystem = new MoneySystem(0);
 //Die neue variabel moneySystem soll ein neues Geldsystem mit der Menge null sein
 
@@ -374,8 +378,9 @@ export class Enemy extends AnimatedGameObject {
     super(x, y, {
       sheet: img,
       layer: "player",
-      collisionTags: ["world,enemy,pickups,forest"]
+      collisionTags: ["world", "enemy"]
     })
+    this.health = 20
     this.row = 0
     this.col = 1
     this.speed = 5
@@ -422,11 +427,3 @@ export class Enemy extends AnimatedGameObject {
     }
   }
 }
-    
-   
-  
-    
-    
-
-
-
