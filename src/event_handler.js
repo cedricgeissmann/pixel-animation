@@ -125,43 +125,50 @@ export class CollisionHandler {
     }
 
      if (collidingObject.collisionTags.includes("pickups")) {
-      collidingObject.destroy()
-      setInterval(function() {
-      if (collidingObject instanceof Mushroom) {
-        if (gameObject === Game.player) {
-          Game.player.loseSpeed (2)
-        } else if (gameObject === Game.player2) {
-          Game.player2.loseSpeed (2)
-        }
-      }
-    }, 1000 )
+       collidingObject.destroy();
+       if (collidingObject instanceof Mushroom) {
+          if (gameObject === Game.player) {
+            Game.player.loseSpeed(2);
+            setTimeout(function() {
+              Game.player.getSpeed(2)
+            }, 1000)
+          } else if (gameObject === Game.player2) {
+            Game.player2.loseSpeed(2);
+            setTimeout(function() {
+              Game.player2.getSpeed(2)
+            }, 1000)
+          }
+       }
 
-      if (collidingObject instanceof Flower) {
-        setInterval(function() {
-        if (gameObject === Game.player) {
-          Game.player.getSpeed(2)
-        } else if (gameObject === Game.player2) {
-          Game.player2.getSpeed(2)
-        }
-     },1000 )
-
-    }
-    if (collidingObject.collisionTags.includes("cave")) {
-      console.log(collidingObject)
-        if (gameObject === Game.player){
-          Game.player1InGoal = true
-        }
-        if (gameObject === Game.player2){
-          Game.player2InGoal = true
-        }
-        if (Game.player1InGoal === true && Game.player2InGoal === true) {
-          setTimeout(function() {
-            window.location = "neueWeltrui/welt.html"
-          //Game.loadMap ("maps/karte.txt")
-        }, 2000)
+       if (collidingObject instanceof Flower) {
+           if (gameObject === Game.player) {
+             Game.player.getSpeed(2);
+             setTimeout(function() {
+              Game.player.loseSpeed(2)
+            }, 1000)
+           } else if (gameObject === Game.player2) {
+             Game.player2.getSpeed(2);
+             setTimeout(function() {
+              Game.player2.getSpeed(2)
+            }, 1000)
+           }
+       }
       }
-    }
-    }
+       if (collidingObject.collisionTags.includes("cave")) {
+         console.log(collidingObject);
+         if (gameObject === Game.player) {
+           Game.player1InGoal = true;
+         }
+         if (gameObject === Game.player2) {
+           Game.player2InGoal = true;
+         }
+         if (Game.player1InGoal === true && Game.player2InGoal === true) {
+           setTimeout(function () {
+             window.location = "neueWeltrui/welt.html";
+             //Game.loadMap ("maps/karte.txt")
+           }, 2000);
+         }
+     }
   }
 }
   
