@@ -28,6 +28,7 @@ export default class Game {
     new EventHandler()
 
     Game.loadMap("maps/map-01.txt")
+    
 
     this.camera = new Camera(this)
 
@@ -75,8 +76,9 @@ export default class Game {
   gameLoop() {
 
     Game.currentFrame++
-    if (Game.currentFrame > 60 && Game.map.mapfile === "maps/map-02.txt") {
+    if (Game.currentFrame > (1 * 60) && Game.map.mapfile === "maps/map-02.txt") {
       Game.player.hascontrols = true
+      document.querySelector("#cutscene-container").style.display = "none"
     }
     
     this.camera.clearScreen()

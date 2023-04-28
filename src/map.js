@@ -50,6 +50,7 @@ export default class Map {
         if (this.mapfile === "maps/map-02.txt") {
           Game.currentFrame = 0
           Game.player.hascontrols = false
+          document.querySelector("#cutscene-container").style.display = "flex"
         }
       })
   }
