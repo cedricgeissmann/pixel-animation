@@ -36,6 +36,14 @@ class Box {                         //creating a class called Box
     draw(){                         //draw function, where c.fillRect draws the box on canvas
         c.fillStyle = this.color
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+        const img = document.querySelector("#croco")
+
+        c.drawImage(
+            img,
+            this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize,
+            this.x, this.y, this.tileSize, this.tileSize
+          )
         
 
 
