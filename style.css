@@ -24,4 +24,15 @@ canvas {
 
     background-color: black;
 }
-    
+
+.box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    z-index: 9999;
+  }
+  
