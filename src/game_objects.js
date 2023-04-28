@@ -286,13 +286,14 @@ export class Player extends AnimatedGameObject {
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
 
-  jump() 
+  jump();{
     this.handlers.get(GravityHandler).jump(this)
+  }
   
 
 
 
-  move(direction) ;{
+  move(direction) 
      if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
       //this.row = 1
@@ -300,8 +301,7 @@ export class Player extends AnimatedGameObject {
       this.dx = this.dx + (1) * this.speed
       //this.row = 2
     }
-  }
-
+  
 
 
 export class Player2 extends AnimatedGameObject {
