@@ -259,6 +259,7 @@ export class Player extends AnimatedGameObject {
   
     getSpeed(amount) {
       this.speed = this.speed + amount
+      console.log(this.speed)
       const speedElem = document.querySelector("#SPEED")
     }
 
