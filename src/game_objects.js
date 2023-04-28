@@ -222,48 +222,17 @@ export class Player extends AnimatedGameObject {
     this.row = 0
     this.col = 1
     this.speed = 3
-    this.id = this.id
-    this.name = this.name
-    this.hp = baseHp
-    this.armor = 8
-    this.dmg = 4
+    this.healamount = 2
     this.hp = 100
-    this.target = null
-    this.render()
+    this.maxHp = this.hp 
+
+    document.querySelector("#hp-player-1").textContent = this.hp
 }
-}
-
-attack() 
-
-    let doDmg = this.dmg
-
-    if (this.weapon){
-        doDmg = doDmg + this.weapon.dmg
-        if (this.weapon.type ==="axe"){
-            doDmg = doDmg * 2
-        }
+  heal() {
+    if (this.hp < (this.maxHp - this.healamount + 50)){
+      this.hp = this.hp + this.healamount
+      document.querySelector("#hp-player-1").textContent = this.hp
     }
-  
+  }
 
-    this.target.takeDamage(doDmg)
-
-heal () 
-{
-this.hp = baseHp + takeDmg
-this.render ()
 }
-takeDamage(dmg) 
-    let  takeDmg = dmg
-takeDmg = takeDmg - this.armor
-if (takeDmg < 10) {
-takeDmg = 10
-}
-
-    this.hp = this.hp - takeDmg
-    this.render()
-
-    const p1 = new Player("#player", "Axolotl", 100)
-    p1.weapon = new Weapon (5,"axe")
-    const enemy = new Player("#enemy", "Fisch",100)
-    p1.target = enemy
-    enemy.target = p1
