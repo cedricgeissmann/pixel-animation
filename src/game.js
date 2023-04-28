@@ -148,7 +148,23 @@ export default class Game {
      { const elem = document.querySelector("#crown-counter")
       let count = parseInt (elem.textContent)
        elem.textContent = `${count + value} / 1`
+       Game.checkMapImage()
       }
+
+static checkMapImage() {
+  if(parseInt(document.querySelector("#crown-counter").textContent) === 1
+    && parseInt(document.querySelector ("#blume-counter").textContent) >= 10){
+      Game.loadImage("res/Endimage.png")
+    }
+    
+}
+
+static loadImage(imgfile) {
+  const imgElem = document.querySelector("#displayImg")
+  imgElem.src = imgfile
+  imgElem.style.display = "flex"
+}
+    
     
   static checkLastMapCondition() {
     if (parseInt(document.querySelector("#kristall-counter").textContent) >= 4
