@@ -104,6 +104,7 @@ export class Sand extends GameObject {
     })
     this.row = 3.6
     this.col = 3
+    addCollision(this, {collisionTags: ["world"]})
   }
 }
 
@@ -178,21 +179,67 @@ export class Air extends GameObject {
   
 export class Shells extends GameObject {
     constructor(x, y) {
-      const ground = document.querySelector("#ground")
+      const ground = document.querySelector("#objects")
       super(x, y,{
         sheet: ground,
         layer: "world",
       })
-      this.row = 0
-      this.col = 3
-      addCollision(this, {collisionTags: ["forest"]})
+      this.tileSize = 32
+      this.row = 1
+      this.col = 0
+      addCollision(this, {collisionTags: ["pickups"]})
 
-    
   } 
 }
 
+export class crown extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#objects")
+    super(x, y,{
+      sheet: ground,
+      layer: "world",
+    })
+    this.tileSize = 32
+    this.row = 1
+    this.col = 1
+    addCollision(this, {collisionTags: ["forest"]})
+
+  
+} 
+}
+
+export class waterlily extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#objects")
+    super(x, y,{
+      sheet: ground,
+      layer: "world",
+    })
+    this.tileSize = 32
+    this.row = 0
+    this.col = 1
+    addCollision(this, {collisionTags: ["pickups"]})
+
+  
+} 
+}
 
 
+export class seastar extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#objects")
+    super(x, y,{
+      sheet: ground,
+      layer: "world",
+    })
+    this.tileSize = 32
+    this.row = 0
+    this.col = 0
+    addCollision(this, {collisionTags: ["forest"]})
+
+  
+} 
+}
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
     super(x, y, options)
@@ -212,7 +259,7 @@ class AnimatedGameObject extends GameObject {
 
 
 export class Player extends AnimatedGameObject {
-    constructor(x, y) {
+    constructor(x, y) }
     const img = document.querySelector("#character")
     super(x, y, {
       sheet: img,
@@ -227,11 +274,67 @@ export class Player extends AnimatedGameObject {
     this.maxHp = this.hp 
 
     document.querySelector("#hp-player-1").textContent = this.hp
-}
-  heal() {
+
+  heal() 
     if (this.hp < (this.maxHp - this.healamount + 50)){
       this.hp = this.hp + this.healamount
       document.querySelector("#hp-player-1").textContent = this.hp
+    this.tileSize = 64
+
+    addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
+    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
+    addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
+  }
+
+  jump() 
+    this.handlers.get(GravityHandler).jump(this)
+  
+
+
+
+  move(direction) ;{
+     if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed
+      //this.row = 1
+    } else if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed
+      //this.row = 2
+    }
+  }
+
+
+
+export class Player2 extends AnimatedGameObject {
+  constructor(x, y) {
+    const img = document.querySelector("#character2")
+    super(x, y, {
+      sheet: img,
+      layer: "player",
+    })
+    
+    this.row = 0
+    this.col = 0
+    this.speed = 3
+    
+
+    addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
+    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
+    addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
+  }
+
+  jump() {
+    this.handlers.get(GravityHandler).jump(this)
+  }
+
+
+
+  move(direction) {
+     if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed
+      //this.row = 1
+    } else if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed
+      //this.row = 1
     }
   }
 
