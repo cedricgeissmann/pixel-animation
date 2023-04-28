@@ -803,9 +803,7 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space") { 
-      Game.loadMap("maps/maparena.txt")
-    }
+    
   }
 
   move(direction) {
