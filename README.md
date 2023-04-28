@@ -25,3 +25,11 @@ Der Code wurde eine wenig umstrukturiert. Dort wo möglich wurden statische Vari
 - `TileRegistry` und `CollisionDetector` haben eine Funktion `clear` erhalten. Damit können alle Tiles gelöscht werden. Dies ist praktisch, wenn Sie eine neue Karte laden.
 
 - Weitere kleine Änderungen die keine grosse Auswirkung haben.
+
+
+
+Frage 1: Ich habe eine Box oben links im Bild erstellt. Im html Code habe ich versucht (Z.22), dass es immer die Leben (this.php)       anzeigt. Das hat aber nicht funktioniert.
+
+Frage 2: Wir haben 3 verschiedene Backgrounds (BG, BG2, BG3). Wie kriegen wir es hin, dass in map-01 es BG anzeigt, in map-02 BG2 und in map-03 BG3 anzeigt?
+
+Frage 3: 
