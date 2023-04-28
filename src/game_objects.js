@@ -202,7 +202,20 @@ export class NPC extends GameObject {
     this.tileSize = 64
     this.row = 0
     this.col = 0
-    
+  }
+}
+
+export class NPC2 extends GameObject {    
+  constructor(x, y) {
+    const ground = document.querySelector("#NPC-S")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.tileSize = 64
+    this.row = 0
+    this.col = 0
   }
 }
 
