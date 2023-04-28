@@ -156,6 +156,7 @@ static checkMapImage() {
     && parseInt(document.querySelector ("#blume-counter").textContent) >= 10){
       Game.loadImage("res/Endimage.png")
     }
+    
 }
 
 static loadImage(imgfile) {
