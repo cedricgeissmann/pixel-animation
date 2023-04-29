@@ -171,31 +171,31 @@ export class CollisionHandler {
       }
 
      if(gameObject instanceof Enemy2 && collidingObject instanceof Nothing) {
-     gameObject.destroy()
-     collidingObject.destroy()
-    }
+       gameObject.destroy()
+       collidingObject.destroy()
+     }
+
+     if (collidingObject instanceof Falldamage ) {
+        Game.loadMap("maps/map-01.txt");
+     }
+
+     if (collidingObject instanceof Cave ) {
+        Game.loadMap("maps/map-01.txt");
+     } 
+
+     if (collidingObject instanceof Healthpotion) {
+       gameObject.php += 5;
+        collidingObject.destroy();
+     }
     
-   if (collidingObject instanceof Falldamage ) {
-     Game.loadMap("maps/map-01.txt");
-    }
 
-    if (collidingObject instanceof Cave ) {
-      Game.loadMap("maps/map-01.txt");
-    } 
+     if (collidingObject instanceof NPC ) {
+        Game.loadMap("maps/map-02.txt");
+     } 
 
-    if (collidingObject instanceof Healthpotion) {
-      gameObject.php += 5;
-      collidingObject.destroy();
-    }
-    
-
-    if (collidingObject instanceof NPC ) {
-      Game.loadMap("maps/map-02.txt");
-    } 
-
-    if (collidingObject instanceof NPC2 ) {
-      Game.loadMap("maps/map-03.txt");
-    } 
+     if (collidingObject instanceof NPC2 ) {
+        Game.loadMap("maps/map-03.txt");
+     } 
   }
 }
 

@@ -78,7 +78,7 @@ export class Falldamage extends GameObject {
       collisionTags: ["cave"]
     })
 
-    this.row = 1
+    this.row = 3
     this.col = 0
   }
 }
