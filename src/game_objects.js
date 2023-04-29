@@ -350,13 +350,14 @@ export class Player extends AnimatedGameObject {
 
 export class Enemy extends AnimatedGameObject {
   constructor(x, y) {
-    const png = document.querySelector("#character")
+    const png = document.querySelector("#Enemy1")
     super(x, y, {
       sheet: png,
       layer: "player",
       collisionTags: ["world", "enemy"]
     })
     this.row = 0
+    this.col = 0
     this.speed = 0.9
     this.ehp = 10
     this.dmg = 5
@@ -387,9 +388,11 @@ export class Enemy extends AnimatedGameObject {
     if (direction === "right") {
       this.dx = this.dx + (1) * this.speed;
       this.row = 0;
+      this.col = 0;
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed;
-      this.row = 8;
+      this.row = 0;
+      this.col = 0;
     }
   }
 }
