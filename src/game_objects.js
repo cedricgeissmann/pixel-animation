@@ -145,8 +145,34 @@ export class Wall extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 0
+    this.row = 1
+    this.col = 1
+  }
+}
+
+export class Orn1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
     this.col = 0
+  }
+}
+
+export class Orn2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 2
   }
 }
 
