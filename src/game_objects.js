@@ -110,6 +110,20 @@ export class Stone extends GameObject {
   }
 }
 
+export class Treppe extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 2
+  }
+}
+
+
 export class Wall extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -152,14 +166,14 @@ export class FallingStone extends Stone {
 
 export class Nothing extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#ground")
+    const ground = document.querySelector("#character")
     super(x, y, {
       sheet: ground,
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 8
-    this.col = 8
+    this.row = 14
+    this.col = 2
   }
 }
 
@@ -176,6 +190,21 @@ export class Tree extends GameObject {
     
   }
 }
+
+export class Healthpotion extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#character")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 14
+    this.col = 2
+    
+  }
+}
+
 export class NPC extends GameObject {    
   constructor(x, y) {
     const ground = document.querySelector("#NPC-S")
@@ -187,7 +216,20 @@ export class NPC extends GameObject {
     this.tileSize = 64
     this.row = 0
     this.col = 0
-    
+  }
+}
+
+export class NPC2 extends GameObject {    
+  constructor(x, y) {
+    const ground = document.querySelector("#NPC-S")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.tileSize = 64
+    this.row = 0
+    this.col = 0
   }
 }
 
@@ -275,6 +317,7 @@ export class Player extends AnimatedGameObject {
   }
 
   jump() {
+    console.log(this.php)
     if(this.hascontrols === false) return
     this.handlers.get(GravityHandler).jump(this)
     if (this.row === 0){
