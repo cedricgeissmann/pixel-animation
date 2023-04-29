@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Enemy, Player,Cave, NPC, FallingStone, Nothing, Falldamage, Healthpotion, NPC2  } from "./game_objects.js"
+import { Enemy, Player,Cave, NPC, FallingStone, Nothing, Falldamage, Healthpotion, NPC2, Enemy2, Boss, FallingStone2  } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -120,7 +120,40 @@ export class CollisionHandler {
       }
       }
 
+      if (collidingObject instanceof FallingStone2) {
+        if (collidingObject.isFalling === false) {
+        collidingObject.handlers.add (new GravityHandler({
+          maxGravity: 2,
+          gravityForce: 1
+        }),)
+      }
+      }
+
       if (collidingObject instanceof Enemy) {
+        if ( Game.currentFrame - gameObject.lasthit > 60) {
+        gameObject.lasthit = Game.currentFrame;
+        gameObject.php -= 5;
+        console.log(gameObject.php)
+        
+        if (gameObject.php === 0) {
+          Game.loadMap("maps/map-01.txt");
+        }
+      }
+      }
+
+      if (collidingObject instanceof Enemy2) {
+        if ( Game.currentFrame - gameObject.lasthit > 60) {
+        gameObject.lasthit = Game.currentFrame;
+        gameObject.php -= 5;
+        console.log(gameObject.php)
+        
+        if (gameObject.php === 0) {
+          Game.loadMap("maps/map-01.txt");
+        }
+      }
+      }
+
+      if (collidingObject instanceof Boss) {
         if ( Game.currentFrame - gameObject.lasthit > 60) {
         gameObject.lasthit = Game.currentFrame;
         gameObject.php -= 5;
@@ -135,8 +168,16 @@ export class CollisionHandler {
       if(gameObject instanceof Enemy && collidingObject instanceof Nothing) {
         gameObject.destroy()
         collidingObject.destroy()
-        
       }
+
+     if(gameObject instanceof Enemy2 && collidingObject instanceof Nothing) {
+     gameObject.destroy()
+     collidingObject.destroy()
+    }
+    
+   if (collidingObject instanceof Falldamage ) {
+     Game.loadMap("maps/map-01.txt");
+    }
 
     if (collidingObject instanceof Cave ) {
       Game.loadMap("maps/map-01.txt");
@@ -154,10 +195,6 @@ export class CollisionHandler {
 
     if (collidingObject instanceof NPC2 ) {
       Game.loadMap("maps/map-03.txt");
-    } 
-
-    if (collidingObject instanceof Falldamage ) {
-      Game.loadMap("maps/map-01.txt");
     } 
   }
 }

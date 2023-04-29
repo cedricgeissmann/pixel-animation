@@ -78,8 +78,21 @@ export class Falldamage extends GameObject {
       collisionTags: ["cave"]
     })
 
-    this.row = 800
+    this.row = 1
     this.col = 0
+  }
+}
+
+export class Cave extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["cave"]
+    })
+    this.row = 2
+    this.col = 2
   }
 }
 
@@ -137,19 +150,6 @@ export class Wall extends GameObject {
   }
 }
 
-export class Cave extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#ground")
-    super(x, y, {
-      sheet: ground,
-      layer: "world",
-      collisionTags: ["cave"]
-    })
-    this.row = 2
-    this.col = 2
-  }
-}
-
 export class FallingStone extends Stone {
   constructor(x, y) {
     super(x, y)
@@ -161,8 +161,21 @@ export class FallingStone extends Stone {
     this.row = 2
     this.col = 0
   }
-  
 }
+
+export class FallingStone2 extends Stone {
+  constructor(x, y) {
+    super(x, y)
+    this.handlers = new HandlerManager([
+      
+      new CollisionHandler()
+    ])
+    this.isFalling = false
+    this.row = 2
+    this.col = 1
+  }
+}
+
 
 export class Nothing extends GameObject {
   constructor(x, y) {
@@ -364,6 +377,102 @@ export class Enemy extends AnimatedGameObject {
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
+      new GravityHandler({
+        maxGravity: 3,
+        gravityForce: 1,
+        jumpForce: -20,
+      })
+])
+  }
+
+  update() {
+    super.update();
+    const dist = Math.abs(Game.player.x - this.x)
+    if ( dist / 32 > 10) return
+    if (Game.player.x < this.x) {
+      this.move("left")
+    }
+    if (Game.player.x > this.x) {
+      this.move("right")
+    }
+  }
+  
+  move(direction) {
+    if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed;
+      this.row = 0;
+      this.col = 0;
+    } else if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed;
+      this.row = 0;
+      this.col = 0;
+    }
+  }
+}
+
+export class Enemy2 extends AnimatedGameObject {
+  constructor(x, y) {
+    const png = document.querySelector("#Enemy2")
+    super(x, y, {
+      sheet: png,
+      layer: "player",
+      collisionTags: ["world", "enemy"]
+    })
+    this.row = 0
+    this.speed = 0.9
+    this.ehp = 10
+    this.dmg = 5
+    this.handlers = new HandlerManager([
+      new CollisionHandler(),
+      new AnimationHandler({ framesPerAnimation: 10, numberOfFrames: 3}),
+      new GravityHandler({
+        maxGravity: 3,
+        gravityForce: 1,
+        jumpForce: -20,
+      })
+])
+  }
+
+  update() {
+    super.update();
+    const dist = Math.abs(Game.player.x - this.x)
+    if ( dist / 32 > 10) return
+    if (Game.player.x < this.x) {
+      this.move("left")
+    }
+    if (Game.player.x > this.x) {
+      this.move("right")
+    }
+  }
+  
+  move(direction) {
+    if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed;
+      this.row = 0;
+    } else if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed;
+      this.row = 1;
+    }
+  }
+}
+
+export class Boss extends AnimatedGameObject {
+  constructor(x, y) {
+    const png = document.querySelector("#Boss")
+    super(x, y, {
+      sheet: png,
+      layer: "player",
+      collisionTags: ["world", "enemy"]
+    })
+    this.tileSize = 128
+    this.row = 0
+    this.col = 0
+    this.speed = 0.3
+    this.ehp = 100
+    this.dmg = 5
+    this.handlers = new HandlerManager([
+      new CollisionHandler(),
+      new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 1}),
       new GravityHandler({
         maxGravity: 3,
         gravityForce: 1,
