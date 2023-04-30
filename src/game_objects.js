@@ -96,6 +96,20 @@ export class Cave extends GameObject {
   }
 }
 
+export class Chruch1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#starting")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.tileSize =
+    this.row = 0
+    this.col = o
+  }
+}
+
 export class Background extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -120,6 +134,45 @@ export class Stone extends GameObject {
     })
     this.row = 0
     this.col = 1
+  }
+}
+
+export class fill1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 3
+    this.col = 1
+  }
+}
+
+export class fill2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 3
+    this.col = 0
+  }
+}
+
+export class fill3 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 3
+    this.col = 2
   }
 }
 
