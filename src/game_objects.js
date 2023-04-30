@@ -561,9 +561,11 @@ export class Enemy2 extends AnimatedGameObject {
   }
 }
 
+
+
 export class Boss extends AnimatedGameObject {
   constructor(x, y) {
-    const png = document.querySelector("#Boss")
+    const png = document.querySelector("#Boss-S")
     super(x, y, {
       sheet: png,
       layer: "player",
@@ -572,7 +574,7 @@ export class Boss extends AnimatedGameObject {
     this.tileSize = 192
     this.row = 0
     this.col = 0
-    this.speed = 0.3
+    this.speed = 0.9
     this.ehp = 100
     this.dmg = 5
     this.handlers = new HandlerManager([

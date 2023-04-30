@@ -36,7 +36,7 @@ export default class Map {
     if ( tileType === "C" ) {new NPC2 (x, y)}
     if ( tileType === "T" ) {new Treppe (x, y)}
     if ( tileType === "2" ) {new Enemy2 (x, y)}
-    if ( tileType === "B" ) {new Boss (x, y)}
+    if ( tileType === "L" ) {new Boss (x, y)}
     if ( tileType === "5" ) {new Kerze (x, y)}
     if ( tileType === "6" ) {new Gelb (x, y)}
     if ( tileType === "7" ) {new fill1 (x, y)}
