@@ -78,7 +78,7 @@ export class Falldamage extends GameObject {
       collisionTags: ["cave"]
     })
 
-    this.row = 3
+    this.row = 10
     this.col = 0
   }
 }
@@ -120,6 +120,19 @@ export class Stone extends GameObject {
     })
     this.row = 0
     this.col = 1
+  }
+}
+
+export class Kerze extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#candles")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+    this.row = 0
+    this.col = 0
   }
 }
 
@@ -197,8 +210,8 @@ export class FallingStone2 extends Stone {
       new CollisionHandler()
     ])
     this.isFalling = false
-    this.row = 2
-    this.col = 1
+    this.row = 1
+    this.col = 3
   }
 }
 
@@ -240,7 +253,6 @@ export class Healthpotion extends GameObject {
     })
     this.row = 14
     this.col = 2
-    
   }
 }
 
@@ -282,6 +294,20 @@ export class Mushroom extends GameObject {
     })
     this.row = 2
     this.col = 1
+  }
+}
+
+export class Gelb extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#gelbBaum")
+    super(x, y, {
+      sheet: ground,
+      layer: "background",
+      collisionTags: []
+    })
+    this.tileSize = 96
+    this.row = 0
+    this.col = 0
   }
 }
 
@@ -490,7 +516,7 @@ export class Boss extends AnimatedGameObject {
       layer: "player",
       collisionTags: ["world", "enemy"]
     })
-    this.tileSize = 128
+    this.tileSize = 192
     this.row = 0
     this.col = 0
     this.speed = 0.3
