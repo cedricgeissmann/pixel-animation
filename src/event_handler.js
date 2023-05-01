@@ -43,7 +43,7 @@ export class GravityHandler {
   constructor(options) {
     this.gravity = 0
     this.maxGravity = options.maxGravity
-    this.jumpForce = options.jumpForce
+    this.jumpForce = options.jumpForce 
     this.gravityForce = options.gravityForce || 0
   }
 
@@ -201,12 +201,9 @@ export class CollisionHandler {
      }
 
      if (collidingObject instanceof Jumppotion) {
-      
-      GravityHandler.jumpForce = -100;
-      
+      gameObject.jumpForce == -20
       collidingObject.destroy();
     }
-    
     
 
      if (collidingObject instanceof NPC ) {

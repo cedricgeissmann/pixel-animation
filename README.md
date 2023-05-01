@@ -28,8 +28,8 @@ Der Code wurde eine wenig umstrukturiert. Dort wo möglich wurden statische Vari
 
 
 
-Frage 1: Wir haben eine Box oben links im Bild erstellt. Im html Code haben wir versucht (Z.22), dass es immer die Leben (this.php)          anzeigt. (Es ist wahrscheinlich schon der richtige Weg). Das hat aber nicht funktioniert. ChatGTP hat ausserdem gesagt, dass man die Box zusätzlich immer noch aktalisieren muss, dass es auch immer die richtigen Anzahl Leben anzeigt. Wie kriegen wir die Leben nun dort hin?
+Frage 1: Wir haben eine Box oben links im Bild erstellt. Im html Code haben wir versucht (Zeile 22), dass es immer die Leben (this.php) anzeigt. Das hat aber nicht funktioniert. ChatGTP hat ausserdem gesagt, dass man die Box zusätzlich immer noch aktalisieren muss, dass es auch immer die richtigen Anzahl Leben anzeigt. Wie kriegen wir die Leben nun dort hin?
 
-Frage 2: Wir haben 3 verschiedene Backgrounds (BG, BG2, BG3). Wie kriegen wir es hin, dass in map-01 es BG anzeigt, in map-02 BG2 und in map-03 BG3 anzeigt?
+Frage 2: Wir haben 3 verschiedene Backgrounds (BG, BG2, BG3). Wie kriegen wir es hin, dass in map-01 es BG anzeigt, in map-02 BG2 und in map-03 BG3 anzeigt? Der Background ist im style.css Zeile 10 festgelegt.
 
-Frage 3: 
+Frage 3: Wir haben eine Jumppotion erstellt (game_object Zeile 312). Bei einer Kollision solle this.jumpForce von -13 auf -20 gehen. Im event_handler (Zeile 203), soll this.jumpForce auf -20 gehen, aber es funktioniert nicht. Wie können wir das Problem lösen? Die Jumppotion ist mit "a" im map festgelegt und hat noch ein komisches Aussehen (gelbe Sichelform)
