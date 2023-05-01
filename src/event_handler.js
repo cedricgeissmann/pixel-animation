@@ -200,7 +200,7 @@ export class CollisionHandler {
         collidingObject.destroy();
      }
 
-     if (collidingObject instanceof Jumppotion) {
+    if (collidingObject instanceof Jumppotion) {
       gameObject.jumpForce == -20
       collidingObject.destroy();
     }

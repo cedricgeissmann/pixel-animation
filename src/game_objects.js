@@ -65,8 +65,6 @@ export class GameObject {
   update(){
     this.handlers && this.handlers.runAll(this)
   }
-
-
 }
 
 export class Falldamage extends GameObject {
@@ -298,27 +296,27 @@ export class Tree extends GameObject {
 
 export class Healthpotion extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#character")
+    const ground = document.querySelector("#heal-Sprite")
     super(x, y, {
       sheet: ground,
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 14
-    this.col = 2
+    this.row = 0
+    this.col = 0
   }
 }
 
 export class Jumppotion extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#character")
+    const ground = document.querySelector("#jump-Sprite")
     super(x, y, {
       sheet: ground,
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 14
-    this.col = 2
+    this.row = 0
+    this.col = 0
   }
 }
 
