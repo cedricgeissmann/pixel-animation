@@ -309,6 +309,20 @@ export class Healthpotion extends GameObject {
   }
 }
 
+export class Jumppotion extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#character")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 14
+    this.col = 2
+  }
+}
+
+
 export class NPC extends GameObject {    
   constructor(x, y) {
     const ground = document.querySelector("#NPC-S")
@@ -406,7 +420,7 @@ export class Player extends AnimatedGameObject {
       new GravityHandler({
         maxGravity: 3,
         gravityForce: 1,
-        jumpForce: -13,
+        jumpForce: -13 ,
       })
       
     ])
@@ -575,7 +589,7 @@ export class Boss extends AnimatedGameObject {
     this.row = 0
     this.col = 0
     this.speed = 0.9
-    this.ehp = 100
+    this.ehp = 20
     this.dmg = 5
     this.handlers = new HandlerManager([
       new CollisionHandler(),
