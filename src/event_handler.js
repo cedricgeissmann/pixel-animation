@@ -196,7 +196,10 @@ export class CollisionHandler {
      }
 
      if (collidingObject instanceof Falldamage ) {
+      gameObject.row == 4
+      setTimeout(function() {
         Game.loadMap("maps/map-01.txt");
+     }, 1000);
      }
 
      if (collidingObject instanceof Cave ) {
