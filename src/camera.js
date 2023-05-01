@@ -23,7 +23,7 @@ export default class Camera {
    */
   centerObject(object) {
     if (object == null) return
-    this.centerCoordinate(object.x + 1536 / 2 - 3 * 32, object.y)
+    this.centerCoordinate(object.x + 512 / 2 - 3 * 32, object.y)
   }
 
   /**

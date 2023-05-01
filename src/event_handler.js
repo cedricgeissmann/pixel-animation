@@ -165,6 +165,14 @@ export class CollisionHandler {
       }
       }
 
+      if(gameObject instanceof Boss && collidingObject instanceof Nothing) {
+        gameObject.ehp -= 5
+        collidingObject.destroy()
+        if (gameObject.ehp === 0) {
+          gameObject.destroy()
+        }
+      }
+
       if (collidingObject instanceof Enemy) {
         if ( Game.currentFrame - gameObject.lasthit > 60) {
         gameObject.lasthit = Game.currentFrame;
