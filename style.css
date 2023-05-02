@@ -8,7 +8,7 @@ body {
 }
 
 canvas {
-    background-image: url("res/BG3.png");
+    background-image: url("res/BG.png");
      width: 512px;
       height: 256px;
       image-rendering: pixelated;
