@@ -174,6 +174,8 @@ export class Erdhaufen extends GameObject {
       layer: "worldBack",
     })
     this.tileSize = 64
+    this.tileHeight = 64
+    this.tileWidth = 64
     this.row = 0 * this.tileHeight
     this.col = 0 * this.tileWidth
   }
@@ -188,6 +190,8 @@ export class Erdhaufen2 extends GameObject {
       layer: "worldBack",
     })
     this.tileSize = 64
+    this.tileHeight = 64
+    this.tileWidth = 64
     this.row = 0 * this.tileHeight
     this.col = 1 * this.tileWidth
   }
@@ -549,8 +553,8 @@ export class Pilz extends GameObject {
       sheet: ground,
       layer: "item",
     })
-    this.row = 4 * this.tileHeight
-    this.col = 4 * this.tileWidth
+    this.row = 2 * this.tileHeight
+    this.col = 0 * this.tileWidth
     addCollision(this, {collisionTags: ["world"]})
   }
 }
@@ -613,7 +617,6 @@ export class Hedges extends GameObject {
       sheet: ground,
       layer: "world",
     })
-    this.tileSize = 32 
     this.row = 0 * this.tileHeight
     this.col = 2 * this.tileWidth
     addCollision(this, {collisionTags: ["forest"]})
@@ -733,7 +736,6 @@ export class Cowwhite extends GameObject {
       sheet: ground,
       layer: "world",
     })
-    this.tileSize = 32
     this.row = 0   * this.tileHeight
     this.col = 0   * this.tileWidth
     addCollision(this, {collisionTags: ["world"]})
@@ -746,7 +748,6 @@ export class Rand extends GameObject {
       sheet: ground,
       layer: "world",
     })
-    this.tileSize = 32
     this.row = 0   * this.tileHeight
     this.col = 0   * this.tileWidth
     addCollision(this, {collisionTags: ["world"]})
@@ -783,9 +784,6 @@ export class Player extends AnimatedGameObject {
       sheet: img,
       layer: "player",
     })
-    this.tileSize = 32
-    this.tileWidth = 32
-    this.tileHeight = 32
     this.row = 0 * this.tileHeight
     this.col = 1 * this.tileWidth
     this.speed = 3
