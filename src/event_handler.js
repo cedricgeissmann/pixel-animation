@@ -188,10 +188,7 @@ export class CollisionHandler {
      }
 
      if (collidingObject instanceof Falldamage ) {
-      gameObject.row == 4
-      setTimeout(function() {
         Game.loadMap("maps/map-01.txt");
-     }, 1000);
      }
 
      if (collidingObject instanceof Cave ) {
@@ -199,8 +196,8 @@ export class CollisionHandler {
      } 
 
      if (collidingObject instanceof Healthpotion) {
-       gameObject.php += 5;
-        collidingObject.destroy();
+      gameObject.gainLife(5)
+      collidingObject.destroy();
      }
 
     if (collidingObject instanceof Jumppotion) {

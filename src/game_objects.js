@@ -524,6 +524,8 @@ class AnimatedGameObject extends GameObject {
 }
 
 
+
+
 export class Player extends AnimatedGameObject {
   constructor(x, y) {
     const png = document.querySelector("#character")
@@ -566,6 +568,11 @@ export class Player extends AnimatedGameObject {
   
   loseLife(value) {
     this.php -= value
+    document.querySelector("#php").textContent = this.php
+  }
+
+  gainLife(value) {
+    this.php += value
     document.querySelector("#php").textContent = this.php
   }
 
