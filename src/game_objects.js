@@ -99,12 +99,12 @@ export class Chruch1 extends GameObject {
     const ground = document.querySelector("#starting")
     super(x, y, {
       sheet: ground,
-      layer: "world",
-      collisionTags: ["world"]
+      layer: "background",
+      collisionTags: []
     })
-    this.tileSize =
+    this.tileSize = 384
     this.row = 0
-    this.col = o
+    this.col = 0
   }
 }
 
@@ -200,6 +200,109 @@ export class Treppe extends GameObject {
   }
 }
 
+export class Boden3 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground2-welt3")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 0
+  }
+}
+
+export class Boden2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground2-welt2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 0
+  }
+}
+
+export class Boden21 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground2-welt2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 1
+  }
+}
+
+export class Boden22 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground2-welt2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 3
+  }
+}
+
+export class Boden23 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground2-welt2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 4
+  }
+}
+
+export class Boden2fill extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground2-welt2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 0
+  }
+}
+
+export class Boden2fill2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground2-welt2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 1
+  }
+}
+
+export class Boden2fill3 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground2-welt2")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 2
+  }
+}
 
 export class Wall extends GameObject {
   constructor(x, y) {
