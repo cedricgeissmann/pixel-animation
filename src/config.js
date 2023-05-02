@@ -13,7 +13,7 @@ const config = {
     "Space": {
       callback: function() {
         Game.player.jump()  
-        // new ShootingStone(Game.player.x / Game.tileWidth, Game.player.y / Game.tileHeight)
+        //new ShootingStone(Game.player.x / Game.tileWidth, Game.player.y / Game.tileHeight)
       },
       //cooldown: 60 // Add cooldown in frames
     }
