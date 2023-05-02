@@ -2,7 +2,9 @@ body {
     padding: 0;
     margin: 0;
     text-align: center;
-    background-color: antiquewhite;
+    background-color: black;
+    
+  
 }
 
 h1 {
@@ -13,6 +15,10 @@ canvas {
     background-image: url("res/boden.png");
     width: 100%;
     height: 100%;
+    background-size: cover;
+    
+
+    
 }
 
 .paused {
@@ -23,7 +29,7 @@ canvas {
 
 main {
     margin: 10px;
-    background-color: antiquewhite;
+    background-color: black;
     border-radius: 5px;
 }
 

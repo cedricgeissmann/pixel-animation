@@ -13,6 +13,7 @@ export default class Map {
     Map.width = 0
     Map.height = 0
     this._readMapFile(mapFile)
+
   }
 
   /**
