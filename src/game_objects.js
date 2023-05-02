@@ -109,7 +109,6 @@ export class Erde extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "background",
-      collisionTags: []
     })
     this.row = 0 * this.tileHeight
     this.col = 4 * this.tileWidth
@@ -350,17 +349,19 @@ export class Tree1 extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["world"]
     })
     this.tileSize = 64
+    this.tileHeight = 64
+    this.tileWidth = 64
     this.row = 0 * this.tileHeight
     this.col = 1 * this.tileWidth
+    addCollision(this, {collisionTags: ["world"]})
   }
   draw(ctx) {
     ctx.drawImage(
       this.sheet,
-      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize + 32,
-      this.x, this.y, this.tileSize + 20, this.tileSize + 32
+      this.col, this.row , this.tileWidth, this.tileHeight + 32,
+      this.x, this.y, this.tileWidth + 32, this.tileHeight + 32
     )
   }
 }
@@ -371,18 +372,20 @@ export class Tree2 extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["world"]
     })
     this.tileSize = 64
+    this.tileHeight = 64
+    this.tileWidth = 64
     this.row = 0 * this.tileHeight
     this.col = 3 * this.tileWidth
+    addCollision(this, {collisionTags: ["world"]})
   }
 
   draw(ctx) {
     ctx.drawImage(
       this.sheet,
-      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize + 32,
-      this.x, this.y, this.tileSize + 32, this.tileSize + 32
+      this.col, this.row , this.tileWidth, this.tileHeight + 32,
+      this.x, this.y, this.tileWidth + 32, this.tileHeight + 32
     )
   }
 }
@@ -393,18 +396,20 @@ export class Tree3 extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["world"]
     })
     this.tileSize = 64
+    this.tileHeight = 64
+    this.tileWidth = 64
     this.row = 0 * this.tileHeight
     this.col = 2 * this.tileWidth
+    addCollision(this, {collisionTags: ["world"]})
   }
 
   draw(ctx) {
     ctx.drawImage(
       this.sheet,
-      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize + 32,
-      this.x, this.y, this.tileSize + 20, this.tileSize + 32
+      this.col, this.row , this.tileWidth, this.tileHeight + 32,
+      this.x, this.y, this.tileWidth + 32, this.tileHeight + 32
     )
   }
 }
