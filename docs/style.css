@@ -1,0 +1,32 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+h1 {
+    background-color: rgb(114, 219, 144);
+
+}
+
+h2 {
+    background-color: lightgrey;
+    text-align: center;
+}
+
+h4 {
+    text-align: left;
+}
+
+ul {
+    text-align: left;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: rgb(198, 186, 186);
+}
+
+
+
+
