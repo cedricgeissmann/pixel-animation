@@ -142,7 +142,7 @@ export class CollisionHandler {
       }
 
       if (collidingObject instanceof Enemy2) {
-          Game.loadMap("maps/map-02.txt");
+          Game.loadMap("maps/map-02-2.txt");
         }
 
       if (collidingObject instanceof Boss) {
