@@ -76,7 +76,7 @@ export default class Game {
   gameLoop() {
 
     Game.currentFrame++
-    if (Game.currentFrame > (1 * 9) && Game.map.mapfile === "maps/map-02.txt") {
+    if (Game.currentFrame > (1 * 900) && Game.map.mapfile === "maps/map-02.txt") {
       Game.player.hascontrols = true
       document.querySelector("#cutscene-container").style.display = "none"
     }

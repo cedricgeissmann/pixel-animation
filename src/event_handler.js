@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Enemy, Player,Cave, NPC, FallingStone, Nothing, Falldamage, Healthpotion, NPC2, Enemy2, Boss, FallingStone2, Jumppotion, NPC3  } from "./game_objects.js"
+import { Enemy, Player,Cave, NPC, FallingStone, Nothing, Falldamage, Healthpotion, NPC2, Enemy2, Boss, FallingStone2, Jumppotion, NPC3 } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -214,9 +214,9 @@ export class CollisionHandler {
         Game.loadMap("maps/map-03.txt");
      } 
 
-     if (collidingObject instanceof NPC3 ) {
-      Game.loadMap("maps/map-04.txt");
-   } 
+   if (gameObject instanceof Player && collidingObject instanceof NPC3) {
+    Game.loadMap("maps/map-04.txt");
+ } 
   }
 }
 

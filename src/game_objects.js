@@ -731,9 +731,10 @@ export class Boss extends AnimatedGameObject {
     this.tileSize = 192
     this.row = 0
     this.col = 0
-    this.speed = 1.25
-    this.ehp = 5
+    this.speed = 1
+    this.ehp = 20
     this.dmg = 5
+    this
     this.handlers = new HandlerManager([
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 1}),
@@ -747,15 +748,15 @@ export class Boss extends AnimatedGameObject {
 
   update() {
     super.update();
-    const dist = Math.abs(Game.player.x - this.x)
-    if ( dist / 32 > 10) return
-    if (Game.player.x < this.x) {
-      this.move("left")
+      if (Game.player.x < this.x) {
+        this.move("left");
+      }
+      else if (Game.player.x > this.x) {
+        this.move("right");
+      }
     }
-    if (Game.player.x > this.x) {
-      this.move("right")
-    }
-  }
+  
+  
   
   move(direction) {
     if (direction === "right") {
