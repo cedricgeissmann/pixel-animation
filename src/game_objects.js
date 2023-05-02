@@ -206,14 +206,14 @@ export class Player extends AnimatedGameObject {
       sheet: img,
       layer: "player",
     })
-    this.tileWidth = 30 
-    this.tileHeight = 55
+    this.tileWidth = 35 
+    this.tileHeight = 58
     this.row = 0 * this.tileHeight
     this.col = 0 * this.tileWidth
     this.speed = 2
 
     addGravity(this, {maxGravity: 2, gravityForce: 1, jumpForce: -12})
-    addAnimation(this, { framesPerAnimation: 40, numberOfFrames: 12})
+    addAnimation(this, { framesPerAnimation: 10, numberOfFrames: 12})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
 
