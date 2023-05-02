@@ -32,7 +32,7 @@ export default class Game {
 
     new EventHandler()
 
-    Game.loadMap("maps/maparena.txt")
+    Game.loadMap("maps/map-01.txt")
 
     this.camera = new Camera(this)
 

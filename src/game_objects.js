@@ -514,7 +514,7 @@ export class Cave extends GameObject {
     })
     this.row = 1 * this.tileHeight
     this.col = 2 * this.tileWidth
-    addCollision(this, {collisionTags: ["world"]})
+    addCollision(this, {collisionTags: ["cave"]})
   }
 }
 
@@ -786,7 +786,7 @@ export class Player extends AnimatedGameObject {
     })
     this.row = 0 * this.tileHeight
     this.col = 1 * this.tileWidth
-    this.speed = 3
+    this.speed = 2
 
     //addGravity(this, {maxGravity: 3, gravityForce: 1})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
