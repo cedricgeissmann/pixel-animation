@@ -1,9 +1,10 @@
-import EventHandler, {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
-import { findAndRemoveFromList } from "./utils.js"
+import {addAnimation, addCollision, addGravity, addProjectile, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
+import { findAndRemoveFromList, pixelToWorld } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
-import CollisionDetector from "./collision_detector.js"
+import { addCollisionEntry} from "./collision_detector.js"
+import Camera from "./camera.js"
 import Game from "./game.js"
-
+import Map from "./map.js"
 
 /**
  * Dies ist die Basisklasse für alle Spiel-Objekte.
@@ -15,20 +16,17 @@ import Game from "./game.js"
  * erhalten bleibt.
  */
 export class GameObject {
-  constructor(x, y, options = {sheet, layer: "background", collisionTags: []}) {
+  constructor(x, y, options = {sheet, layer: "background"}) {
     this.sheet = options.sheet
-    this.tileSize = 32
-    this.x = x * this.tileSize
-    this.y = y * this.tileSize
+    this.tileWidth = 32
+    this.tileHeight = 32
+    this.x = x * this.tileWidth
+    this.y = y * this.tileHeight
     this.col = 0
     this.row = 0
     this.layer = options.layer
     this.handlers = new HandlerManager([])
     TileRegistry.layers[this.layer].push(this)
-    this.collisionTags = options.collisionTags
-    this.collisionTags.forEach(tag => {
-      CollisionDetector.layers[tag].push(this)
-    })
   }
 
   /**
@@ -37,11 +35,16 @@ export class GameObject {
    * @param {CanvasRenderingContext2D} ctx Das Canvas, worauf das Spiel-Objekt gezeichnet werden soll.
    */
   draw(ctx) {
+    // console.log(Game.canvas.width, Game.canvas.height, this.x, this.y)
+    const transform = ctx.getTransform()
+    // console.log(transform.e, transform.f)
+    if (this.x > -(transform.e + this.tileWidth) && this.y > -(transform.f + this.tileHeight) && this.x < Game.canvas.width - transform.e && this.y < Game.canvas.height - transform.f) {
+    // TODO: Change width and height for the origin Point
     ctx.drawImage(
       this.sheet,
-      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize,
-      this.x, this.y, this.tileSize, this.tileSize
-    )
+      this.col, this.row, this.tileWidth, this.tileHeight,
+      this.x, this.y, this.tileWidth, this.tileHeight)
+    }
   }
 
   /**
@@ -49,9 +52,6 @@ export class GameObject {
    */
   destroy() {
     findAndRemoveFromList(TileRegistry.layers[this.layer], this)
-    this.collisionTags.forEach(tag => {
-      findAndRemoveFromList(CollisionDetector.layers[tag], this)
-    })
   }
 
   /**
@@ -64,9 +64,29 @@ export class GameObject {
    */
   update(){
     this.handlers && this.handlers.runAll(this)
+    const colHandler = this.handlers.get(CollisionHandler)
+    if (colHandler == null) return
+    if (colHandler.collisionTags.length > 0){
+      for (let xOffset = 0; xOffset < this.tileWidth / Game.tileWidth; xOffset++) {
+        for (let yOffset = 0; yOffset < this.tileHeight / Game.tileHeight; yOffset++) {
+          const coords = pixelToWorld(this.x, this.y)
+          coords.x += xOffset
+          coords.y += yOffset
+          let index = coords.x + coords.y * (Map.width + 1)
+          addCollisionEntry(index, this)
+          if (coords.overflowX) {
+            addCollisionEntry(index + 1, this)
+          }
+          if (coords.overflowY) {
+            addCollisionEntry(index + Map.width + 1, this)
+          }
+          if (coords.overflowX && coords.overflowY) {
+            addCollisionEntry(index + 1 + Map.width + 1, this)
+          }
+        }
+      }
+    }
   }
-
-
 }
 
 
@@ -77,10 +97,9 @@ export class Background1 extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "background",
-      collisionTags: []
     })
-    this.row = 0
-    this.col = 3
+    this.row = 0 * this.tileHeight
+    this.col = 3 * this.tileWidth
   }
 }
 
@@ -92,8 +111,8 @@ export class Erde extends GameObject {
       layer: "background",
       collisionTags: []
     })
-    this.row = 0
-    this.col = 4
+    this.row = 0 * this.tileHeight
+    this.col = 4 * this.tileWidth
   }
 }
 
@@ -105,8 +124,8 @@ export class Background2 extends GameObject {
       layer: "background",
       collisionTags: []
     })
-    this.row = 3
-    this.col = 0
+    this.row = 3 * this.tileHeight
+    this.col = 0 * this.tileWidth
   }
 }
 
@@ -118,8 +137,8 @@ export class Wasser extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 4
-    this.col = 3
+    this.row = 4 * this.tileHeight
+    this.col = 3 * this.tileWidth
   }
 }
 
@@ -131,8 +150,8 @@ export class kleinebüsche extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 10
-    this.col = 4
+    this.row = 10 * this.tileHeight
+    this.col = 4  * this.tileWidth
   }
 }
 
@@ -144,8 +163,8 @@ export class Roterpilz extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 10
-    this.col = 3
+    this.row = 10 * this.tileHeight
+    this.col = 3  * this.tileWidth
   }
 }
 
@@ -158,8 +177,8 @@ export class Erdhaufen extends GameObject {
       collisionTags: []
     })
     this.tileSize = 64
-    this.row = 0
-    this.col = 0
+    this.row = 0 * this.tileHeight
+    this.col = 0 * this.tileWidth
   }
   
 }
@@ -173,8 +192,8 @@ export class Erdhaufen2 extends GameObject {
       collisionTags: []
     })
     this.tileSize = 64
-    this.row = 0
-    this.col = 1
+    this.row = 0 * this.tileHeight
+    this.col = 1 * this.tileWidth
   }
   
 }
@@ -187,8 +206,8 @@ export class Roteblume extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 11
-    this.col = 3
+    this.row = 11 * this.tileHeight
+    this.col = 3  * this.tileWidth
   }
 }
 
@@ -200,8 +219,8 @@ export class Blume extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 2
-    this.col = 4
+    this.row = 2 * this.tileHeight
+    this.col = 4 * this.tileWidth
   }
 }
 
@@ -213,8 +232,8 @@ export class Blume2 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 7
-    this.col = 3
+    this.row = 7 * this.tileHeight
+    this.col = 3 * this.tileWidth
   }
 }
 
@@ -226,8 +245,8 @@ export class Bank1 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 15
-    this.col = 4
+    this.row = 15 * this.tileHeight
+    this.col = 4  * this.tileWidth
   }
   
 }
@@ -240,8 +259,8 @@ export class Bank2 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 15
-    this.col = 5
+    this.row = 15 * this.tileHeight
+    this.col = 5  * this.tileWidth
   }
   
 }
@@ -254,8 +273,8 @@ export class Brunnen1 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 3
-    this.col = 6
+    this.row = 3 * this.tileHeight
+    this.col = 6 * this.tileWidth
   }
 }
 
@@ -267,8 +286,8 @@ export class Brunnen2 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 3
-    this.col = 7
+    this.row = 3 * this.tileHeight
+    this.col = 7 * this.tileWidth
   }
 }
 
@@ -280,8 +299,8 @@ export class Brunnen3 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 4
-    this.col = 6
+    this.row = 4 * this.tileHeight
+    this.col = 6 * this.tileWidth
   }
 }
 
@@ -293,8 +312,8 @@ export class Brunnen4 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 4
-    this.col = 7
+    this.row = 4 * this.tileHeight
+    this.col = 7 * this.tileWidth
   }
 }
 
@@ -307,8 +326,8 @@ export class Strand extends GameObject {
       layer: "background",
       collisionTags: ["world"]
     })
-    this.row = 6
-    this.col = 6
+    this.row = 6 * this.tileHeight
+    this.col = 6 * this.tileWidth
   }
 }
 
@@ -320,8 +339,8 @@ export class Strand2 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 7
-    this.col = 6
+    this.row = 7 * this.tileHeight
+    this.col = 6 * this.tileWidth
   }
 }
 
@@ -334,8 +353,8 @@ export class Tree1 extends GameObject {
       collisionTags: ["world"]
     })
     this.tileSize = 64
-    this.row = 0
-    this.col = 1
+    this.row = 0 * this.tileHeight
+    this.col = 1 * this.tileWidth
   }
   draw(ctx) {
     ctx.drawImage(
@@ -355,8 +374,8 @@ export class Tree2 extends GameObject {
       collisionTags: ["world"]
     })
     this.tileSize = 64
-    this.row = 0
-    this.col = 3
+    this.row = 0 * this.tileHeight
+    this.col = 3 * this.tileWidth
   }
 
   draw(ctx) {
@@ -377,8 +396,8 @@ export class Tree3 extends GameObject {
       collisionTags: ["world"]
     })
     this.tileSize = 64
-    this.row = 0
-    this.col = 2
+    this.row = 0 * this.tileHeight
+    this.col = 2 * this.tileWidth
   }
 
   draw(ctx) {
@@ -398,8 +417,8 @@ export class Busch1 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 7
-    this.col = 0
+    this.row = 7 * this.tileHeight
+    this.col = 0 * this.tileWidth
   }
 }
 
@@ -411,8 +430,8 @@ export class Lblume extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
-    this.row = 4
-    this.col = 5
+    this.row = 4 * this.tileHeight
+    this.col = 5 * this.tileWidth
   }
 }
 export class Busch2 extends GameObject {
@@ -423,8 +442,8 @@ export class Busch2 extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 7
-    this.col = 1
+    this.row = 7 * this.tileHeight
+    this.col = 1 * this.tileWidth
   }
 }
 
@@ -436,8 +455,8 @@ export class Zaun extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 15
-    this.col = 0
+    this.row = 15 * this.tileHeight
+    this.col = 0  * this.tileWidth
   }
 }
 
@@ -447,10 +466,25 @@ export class Stone extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["world"]
     })
-    this.row = 0
-    this.col = 1
+    this.row = 0 * this.tileHeight
+    this.col = 1 * this.tileWidth
+    addCollision(this, {collisionTags: ["world"]})    
+  }
+}
+
+export class ShootingStone extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+    })
+    this.row = 0 * this.tileHeight
+    this.col = 1 * this.tileWidth
+    addProjectile(this, {
+      speed: 1
+    })
   }
 }
 
@@ -462,8 +496,8 @@ export class Water extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 0
-    this.col = 0
+    this.row = 0 * this.tileHeight
+    this.col = 0 * this.tileWidth
   }
 }
 
@@ -473,10 +507,10 @@ export class Wall extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["world"]
     })
-    this.row = 1
-    this.col = 3
+    this.row = 1 * this.tileHeight
+    this.col = 3 * this.tileWidth
+    addCollision(this, {collisionTags: ["world"]})
   }
 }
 
@@ -486,25 +520,11 @@ export class Cave extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["cave"]
     })
-    this.row = 1
-    this.col = 2
+    this.row = 1 * this.tileHeight
+    this.col = 2 * this.tileWidth
+    addCollision(this, {collisionTags: ["world"]})
   }
-}
-
-export class FallingStone extends Stone {
-  constructor(x, y) {
-    super(x, y)
-    this.handlers = new HandlerManager([
-      new GravityHandler({
-        maxGravity: 3,
-        gravityForce: 1
-      }),
-      new CollisionHandler()
-    ])
-  }
-  
 }
 
 export class Tree extends GameObject {
@@ -513,10 +533,10 @@ export class Tree extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["forest"]
     })
-    this.row = 1
-    this.col = 1
+    this.row = 1 * this.tileHeight
+    this.col = 1 * this.tileWidth
+    addCollision(this, {collisionTags: ["forest"]})
   }
 }
 
@@ -528,8 +548,8 @@ export class Crown extends GameObject {
       layer: "world",
       collisionTags:["pickups"]
     })
-    this.row = 0
-    this.col = 0
+    this.row = 0 * this.tileHeight
+    this.col = 0 * this.tileWidth
   }
 }
 
@@ -541,10 +561,9 @@ export class Pilz extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "item",
-      collisionTags: ["pickups"]
     })
-    this.row = 4
-    this.col = 4
+    this.row = 4 * this.tileHeight
+    this.col = 4 * this.tileWidth
   }
 }
 
@@ -556,8 +575,8 @@ export class Apfel extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
-    this.row = 0
-    this.col = 3
+    this.row = 0 * this.tileHeight
+    this.col = 3 * this.tileWidth
   }
 }
 
@@ -569,8 +588,8 @@ export class Cupcake extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
-    this.row = 5
-    this.col = 5
+    this.row = 5 * this.tileHeight
+    this.col = 5 * this.tileWidth
   }
 }
 
@@ -582,8 +601,8 @@ export class Lachssushi extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
-    this.row = 5
-    this.col = 1
+    this.row = 5 * this.tileHeight
+    this.col = 1 * this.tileWidth
   }
 }
 
@@ -595,8 +614,8 @@ export class Gelbsushi extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
-    this.row = 5
-    this.col = 2
+    this.row = 5 * this.tileHeight
+    this.col = 2 * this.tileWidth
   }
 }
 export class Hedges extends GameObject {
@@ -608,8 +627,8 @@ export class Hedges extends GameObject {
       collisionTags: ["forest"]
     })
     this.tileSize = 32 
-    this.row = 0
-    this.col = 2
+    this.row = 0 * this.tileHeight
+    this.col = 2 * this.tileWidth
   }
 }
 
@@ -621,8 +640,8 @@ export class Mushroompurple extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
-    this.row = 2
-    this.col = 0
+    this.row = 2 * this.tileHeight
+    this.col = 0 * this.tileWidth
   }
 }
 
@@ -634,8 +653,8 @@ export class Lapislazuli extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
-    this.row = 0
-    this.col = 0
+    this.row = 0 * this.tileHeight
+    this.col = 0 * this.tileWidth
   }
 }
 
@@ -647,8 +666,8 @@ export class Ruby extends GameObject {
       layer: "item",
       collisionTags: ["pickups"]
     })
-    this.row = 0
-    this.col = 1
+    this.row = 0 * this.tileHeight
+    this.col = 1 * this.tileWidth
   }
 }
 
@@ -663,8 +682,8 @@ export class Cavefloor extends GameObject {
       collisionTags: []
     })
 
-    this.row = 2
-    this.col = 1
+    this.row = 2 * this.tileHeight
+    this.col = 1 * this.tileWidth
   }
 }
 
@@ -677,8 +696,8 @@ export class Bodenhöhle extends GameObject {
       collisionTags: []
     })
 
-    this.row = 0
-    this.col = 1
+    this.row = 0 * this.tileHeight
+    this.col = 1 * this.tileWidth
   }
 }
 
@@ -690,8 +709,8 @@ export class Caveentrance extends GameObject {
       layer: "background",
       collisionTags: ["cave"]
     })
-    this.row = 0
-    this.col = 0
+    this.row = 0 * this.tileHeight
+    this.col = 0 * this.tileWidth
   }
 }
 
@@ -703,8 +722,8 @@ export class Cavewall extends GameObject {
       layer: "background",
       collisionTags: ["world"]
     })
-    this.row = 0
-    this.col = 1
+    this.row = 0 * this.tileHeight
+    this.col = 1 * this.tileWidth
   }
 }
 
@@ -717,8 +736,8 @@ export class StoneGrey extends GameObject {
       layer: "world",
       collisionTags: ["world"]
     })
-    this.row = 0
-    this.col = 2
+    this.row = 0 * this.tileHeight
+    this.col = 2 * this.tileWidth
   }
 }
 export class Cowwhite extends GameObject {
@@ -730,8 +749,8 @@ export class Cowwhite extends GameObject {
       collisionTags:["world"]
     })
     this.tileSize = 32
-    this.row = 0  
-    this.col = 0
+    this.row = 0   * this.tileHeight
+    this.col = 0   * this.tileWidth
   }
 }
 export class Rand extends GameObject {
@@ -743,8 +762,8 @@ export class Rand extends GameObject {
       collisionTags:["world"]
     })
     this.tileSize = 32
-    this.row = 0  
-    this.col = 0
+    this.row = 0   * this.tileHeight
+    this.col = 0   * this.tileWidth
   }
 }
 
@@ -757,16 +776,16 @@ class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
     super(x, y, options)
     this.frameCounter = 0
-    this.dx = 0
-    this.dy = 0
+    this.dx = 0 * this.tileHeight
+    this.dy = 0 * this.tileWidth
   }
 
   update() {
     super.update()
     this.x = this.x + this.dx
     this.y = this.y + this.dy
-    this.dx = 0
-    this.dy = 0
+    this.dx = 0 * this.tileHeight
+    this.dy = 0 * this.tileWidth
   }
 }
 
@@ -777,17 +796,17 @@ export class Player extends AnimatedGameObject {
     super(x, y, {
       sheet: img,
       layer: "player",
-      collisionTags: ["world", "pickups", "cave", "forest"]
     })
     this.tileSize = 32
-    this.row = 0
-    this.col = 1
+    this.tileWidth = 32
+    this.tileHeight = 32
+    this.row = 0 * this.tileHeight
+    this.col = 1 * this.tileWidth
     this.speed = 3
-    this.handlers = new HandlerManager([
-      new EventHandler(),
-      new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
-    ])
+
+    //addGravity(this, {maxGravity: 3, gravityForce: 1})
+    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
+    addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
 
   jump() {
@@ -798,27 +817,19 @@ export class Player extends AnimatedGameObject {
     super.update()
   }
 
-  handle(ev) {
-    if (ev === "KeyW") { this.move("up") }
-    if (ev === "KeyS") { this.move("down") }
-    if (ev === "KeyA") { this.move("left") }
-    if (ev === "KeyD") { this.move("right") }
-    
-  }
-
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 2
+      this.row = 2 * this.tileHeight
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
-      this.row = 0
+      this.row = 0 * this.tileHeight
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 3
+      this.row = 3 * this.tileHeight
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 1
+      this.row = 1 * this.tileHeight
     }
   }
 }
