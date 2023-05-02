@@ -3,7 +3,6 @@ import { ShootingStone } from "./game_objects.js"
 
 const config = {
   "keys": {
-    "KeyW": function() { Game.player.move("up")},
     "KeyA": function() { Game.player.move("left")},
     "KeyS": function() { Game.player.move("down")},
     "KeyD": function() { Game.player.move("right")},
@@ -13,8 +12,8 @@ const config = {
     "ArrowRight": function() { Game.player2.move("right")},
     "Space": {
       callback: function() {
-        Game.player.jump();
-        // new ShootingStone(Game.player.x / Game.tileWidth, Game.player.y / Game.tileHeight)
+        Game.player.jump()  
+        //new ShootingStone(Game.player.x / Game.tileWidth, Game.player.y / Game.tileHeight)
       },
       //cooldown: 60 // Add cooldown in frames
     }
