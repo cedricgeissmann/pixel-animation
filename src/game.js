@@ -2,6 +2,7 @@ import Map from "./map.js"
 import CollisionDetector from "./collision_detector.js"
 import Camera from "./camera.js"
 import TileRegistry from "./tile_registry.js"
+import EventHandler from "./event_handler.js"
 
 
 /**
@@ -12,19 +13,26 @@ export default class Game {
 
   static map = null;
   static player = null;
+  static player2 = null;
   static running = false;
+  static currentFrame = 0;
+  static canvas = document.querySelector("#canvas")
+  static tileWidth = 32
+  static tileHeight = 32
+  static instance = null
 
   static allApples = false
 
   constructor() {
-    this.tileSize = 32
-    this.canvas = document.querySelector("#canvas")
-    this.canvas.width = 10 * this.tileSize
-    this.canvas.height = 15 * this.tileSize
-    this.ctx = this.canvas.getContext("2d")
+    Game.instance = this
+    Game.canvas.width = 10 * Game.tileWidth
+    Game.canvas.height = 15 * Game.tileHeight
+    this.ctx = Game.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
-    Game.loadMap("maps/map-01.txt")
+    new EventHandler()
+
+    Game.loadMap("maps/maparena.txt")
 
     this.camera = new Camera(this)
 
@@ -40,6 +48,8 @@ export default class Game {
    */
   static start() {
     Game.running = true
+    document.querySelector("body").classList.remove("paused")
+    window.requestAnimationFrame(Game.instance.gameLoop.bind(Game.instance))
   }
 
   /**
@@ -52,6 +62,7 @@ export default class Game {
    * `start()` aufgerufen werden.
    */
   static pause() {
+    document.querySelector("body").classList.add("paused")
     Game.running = false
   }
 
@@ -185,12 +196,17 @@ static loadImage(imgfile) {
    * Spiel-Objekte werden neu gezeichnet.
    */
   gameLoop() {
+
+    Game.currentFrame++
     
+    CollisionDetector.clearXRay()
     this.camera.clearScreen()
     this.camera.nextFrame()
 
+    EventHandler.handleAllEvents()
+
     TileRegistry.updateAllTiles()
-    CollisionDetector.checkCollision("all")
+    CollisionDetector.checkCollision()
 
     this.camera.centerObject(Game.player)
 
