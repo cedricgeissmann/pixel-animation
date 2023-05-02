@@ -206,14 +206,14 @@ export class Player extends AnimatedGameObject {
       sheet: img,
       layer: "player",
     })
-    this.tileWidth = 32
-    this.tileHeight = 32
+    this.tileWidth = 30 
+    this.tileHeight = 55
     this.row = 0 * this.tileHeight
-    this.col = 1 * this.tileWidth
+    this.col = 0 * this.tileWidth
     this.speed = 2
 
     addGravity(this, {maxGravity: 2, gravityForce: 1, jumpForce: -12})
-    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
+    addAnimation(this, { framesPerAnimation: 40, numberOfFrames: 12})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
 
@@ -232,17 +232,17 @@ export class Player extends AnimatedGameObject {
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 2 * this.tileHeight
+      this.row = 0 * this.tileHeight
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
       this.row = 0 * this.tileHeight
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 1 * this.tileHeight
+      this.row = 0 * this.tileHeight
       Camera.shiftBackground(1)
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 2 * this.tileHeight
+      this.row = 0  * this.tileHeight
       Camera.shiftBackground(-1)
     }
   }
