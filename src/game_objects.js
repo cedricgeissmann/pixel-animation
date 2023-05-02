@@ -546,7 +546,7 @@ export class Player extends AnimatedGameObject {
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
       new GravityHandler({
-        maxGravity: 3,
+        maxGravity: 5,
         gravityForce: 1,
         jumpForce: -13 ,
       })
@@ -666,7 +666,7 @@ export class Enemy2 extends AnimatedGameObject {
       collisionTags: ["world", "enemy"]
     })
     this.row = 0
-    this.speed = 0.9
+    this.speed = 1.5
     this.ehp = 10
     this.dmg = 5
     this.handlers = new HandlerManager([
@@ -716,7 +716,7 @@ export class Boss extends AnimatedGameObject {
     this.tileSize = 192
     this.row = 0
     this.col = 0
-    this.speed = 0.9
+    this.speed = 1.25
     this.ehp = 5
     this.dmg = 5
     this.handlers = new HandlerManager([

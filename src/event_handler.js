@@ -142,16 +142,8 @@ export class CollisionHandler {
       }
 
       if (collidingObject instanceof Enemy2) {
-        if ( Game.currentFrame - gameObject.lasthit > 60) {
-        gameObject.lasthit = Game.currentFrame;
-        gameObject.php -= 5;
-        console.log(gameObject.php)
-        
-        if (gameObject.php === 0) {
-          Game.loadMap("maps/map-01.txt");
+          Game.loadMap("maps/map-02.txt");
         }
-      }
-      }
 
       if (collidingObject instanceof Boss) {
         if ( Game.currentFrame - gameObject.lasthit > 60) {
