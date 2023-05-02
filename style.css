@@ -15,13 +15,15 @@ canvas {
     }
 
 #cutscene-container {
+    width: 512px;
+    height: 256px;
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1;
     position: absolute;
     inset: 0;
-
+    image-rendering: pixelated;
     background-color: black;
 }
 
