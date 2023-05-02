@@ -34,4 +34,4 @@ Frage 2: Wir haben 3 verschiedene Backgrounds (BG, BG2, BG3). Wie kriegen wir es
 
 Frage 3: Wir haben eine Jumppotion erstellt (game_object Zeile 312). Bei einer Kollision solle this.jumpForce von -13 auf -20 gehen. Im event_handler (Zeile 203), soll this.jumpForce auf -20 gehen, aber es funktioniert nicht. Wie können wir das Problem lösen? Die Jumppotion ist mit "a" im map festgelegt.
 
-Frage 4: Wir haben eine Sound.mp3 Datei und wollen diese automatisch abspielen. Im index.html Zeile 37 haben wir die Audio abgespielt und geloopt, aber es kommt kein Ton. Auto-Play ist im Browser auch eingestellt. 
+Frage 4: Wir haben eine Sound.mp3 Datei und wollen diese abspielen. Im index.html Zeile 37 haben wir die Audio implementiert. Nun muss noch im script oder so die Datei abgespielt werden. Ab diesem Punkt kommen wir nicht mehr weiter.
