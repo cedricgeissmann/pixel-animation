@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Enemy, NPC, Falldamage, Healthpotion, NPC2, Treppe, Enemy2, Boss, FallingStone2, Orn1, Orn2, Kerze, Gelb, fill1, fill2, fill3, Jumppotion, Boden3, Boden2, Boden21, Boden22, Boden23, Boden2fill, Boden2fill2, Boden2fill3, Chruch1, } from "./game_objects.js"
+import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Enemy, NPC, Falldamage, Healthpotion, NPC2, Treppe, Enemy2, Boss, FallingStone2, Orn1, Orn2, Kerze, Gelb, fill1, fill2, fill3, Jumppotion, Boden3, Boden2, Boden21, Boden22, Boden23, Boden2fill, Boden2fill2, Boden2fill3, Chruch1, Bossblock, } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -52,6 +52,7 @@ export default class Map {
     if ( tileType === "q" ) {new Boden2fill2 (x, y)}
     if ( tileType === "Q" ) {new Boden2fill3 (x, y)}
     if ( tileType === "c" ) {new Chruch1 (x, y)}
+    if ( tileType === "b" ) {new Bossblock (x, y)}
   }
 
   /**

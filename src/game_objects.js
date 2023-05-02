@@ -135,6 +135,19 @@ export class Stone extends GameObject {
   }
 }
 
+export class Bossblock extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#Boss-Block-S")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 0
+  }
+}
+
 export class fill1 extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
