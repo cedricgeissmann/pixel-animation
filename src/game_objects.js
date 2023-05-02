@@ -539,7 +539,7 @@ export class Player extends AnimatedGameObject {
     this.col = 0
     this.speed = 3 
     this.php = 10
-    this.loseLife(0 )
+    this.loseLife(0)
     this.lasthit = 0
     this.dmg = 5
     this.hascontrols = true
@@ -547,7 +547,7 @@ export class Player extends AnimatedGameObject {
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 25, numberOfFrames: 4}),
       new GravityHandler({
-        maxGravity: 5,
+        maxGravity: 3,
         gravityForce: 1,
         jumpForce: -13 ,
       })

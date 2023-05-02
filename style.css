@@ -28,13 +28,20 @@ canvas {
 }
 
 .box {
+    width: 60px;
+    height: 15px;
     position: fixed;
+    font-weight: 1000;
+    border-width: 3px;
+    border-style: double;
+    border-color: black;
+    font-family: "Herculanum";
     top: 0;
     left: 0;
-    background-color: black;
-    color: white;
+    background-color: darkred;
+    color: black;
     padding: 5px;
-    font-size: 12px;
+    font-size: 15px;
     z-index: 9999;
   }
   
