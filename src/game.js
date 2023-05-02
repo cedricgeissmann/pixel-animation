@@ -27,7 +27,7 @@ export default class Game {
     Game.canvas.height = 16 * Game.tileHeight
     this.ctx = Game.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
-
+ 
     new EventHandler()
 
     Game.loadMap("maps/map.txt")
