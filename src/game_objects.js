@@ -539,6 +539,7 @@ export class Player extends AnimatedGameObject {
     this.col = 0
     this.speed = 3 
     this.php = 10
+    this.loseLife(0 )
     this.lasthit = 0
     this.dmg = 5
     this.hascontrols = true
@@ -560,6 +561,12 @@ export class Player extends AnimatedGameObject {
     if("KeyQ") {
       Game.loadMap("maps/map-01.txt");
     }
+  }
+
+  
+  loseLife(value) {
+    this.php -= value
+    document.querySelector("#php").textContent = this.php
   }
 
   attack() {
@@ -643,6 +650,7 @@ export class Enemy extends AnimatedGameObject {
       this.move("right")
     }
   }
+
   
   move(direction) {
     if (direction === "right") {

@@ -8,7 +8,16 @@ import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, En
 export default class Map {
   constructor(mapFile) {
     this._readMapFile(mapFile)
-    this.mapfile = mapFile
+    this.mapfile = mapFile 
+    if( this.mapfile === "maps/map-01.txt") {
+      document.querySelector("#canvas").style.backgroundImage = "url('res/BG.png')"  
+    } else if( this.mapfile === "maps/map-02.txt") {
+      document.querySelector("#canvas").style.backgroundImage = "url('res/BG2.png')"
+    }else if( this.mapfile === "maps/map-03.txt") {
+      document.querySelector("#canvas").style.backgroundImage = "url('res/BG3.png')"
+      document.querySelector("#game-audio").play()
+     } else if( this.mapfile === "maps/map-04.txt") 
+      document.querySelector("#canvas").style.backgroundImage = "url('res/BG4.png')"
   }
 
   /**

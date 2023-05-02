@@ -132,7 +132,7 @@ export class CollisionHandler {
       if (collidingObject instanceof Enemy) {
         if ( Game.currentFrame - gameObject.lasthit > 60) {
         gameObject.lasthit = Game.currentFrame;
-        gameObject.php -= 5;
+        gameObject.loseLife(5)
         console.log(gameObject.php)
         
         if (gameObject.php === 0) {
@@ -148,7 +148,7 @@ export class CollisionHandler {
       if (collidingObject instanceof Boss) {
         if ( Game.currentFrame - gameObject.lasthit > 60) {
         gameObject.lasthit = Game.currentFrame;
-        gameObject.php -= 5;
+        gameObject.loseLife(5)
         console.log(gameObject.php)
         
         if (gameObject.php === 0) {
@@ -168,7 +168,7 @@ export class CollisionHandler {
       if (collidingObject instanceof Enemy) {
         if ( Game.currentFrame - gameObject.lasthit > 60) {
         gameObject.lasthit = Game.currentFrame;
-        gameObject.php -= 5;
+        gameObject.loseLife(5)
         console.log(gameObject.php)
         
         if (gameObject.php === 0) {
@@ -204,7 +204,7 @@ export class CollisionHandler {
      }
 
     if (collidingObject instanceof Jumppotion) {
-      gameObject.jumpForce == -20
+      gameObject.handlers.get(GravityHandler).jumpForce = -20
       collidingObject.destroy();
     }
     
