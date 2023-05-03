@@ -747,16 +747,17 @@ export class Enemy3 extends AnimatedGameObject {
 
   update() {
     super.update();
-    const dist = Math.abs(Game.player.x - this.x)
-    if ( dist / 32 > 10) return
-    if(this.y == Game.player.y) {
-    if (Game.player.x < this.x) {
-      this.move("left")
+    const dist = Math.abs(Game.player.x - this.x);
+    const yDist = Math.abs(Game.player.y - this.y);
+    if (dist / 32 > 10 || yDist > 32) return;
+    if (yDist <= 32) {
+      if (Game.player.x < this.x) {
+        this.move("left");
+      } else if (Game.player.x > this.x) {
+        this.move("right");
+      }
     }
-    if (Game.player.x > this.x) {
-      this.move("right")
-    }
-  }}
+  }
   
   move(direction) {
     if (direction === "right") {
