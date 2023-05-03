@@ -251,7 +251,6 @@ export class Player extends AnimatedGameObject {
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
   }
-
     
     loseSpeed(amount) {
       this.speed = this.speed - amount
@@ -263,6 +262,11 @@ export class Player extends AnimatedGameObject {
       console.log(this.speed)
       const speedElem = document.querySelector("#SPEED")
     }
+
+
+  
+  
+
 
   handle(ev) {
     if (ev === "KeyW") { this.move("up") }
@@ -283,33 +287,21 @@ export class Player extends AnimatedGameObject {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
       this.row = 0
-      this.col = 0
+      this.col = 1
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
-      this.row = 1
+      this.row = 0
       this.col = 0
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 0
+      this.row = 1
       this.col = 1
       Camera.shiftBackground(1)
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 0
+      this.row = 1    
       this.col = 0
       Camera.shiftBackground(-1)
-    }
-    else if (direction === "down") {
-      this.y = this.y + this.speed
-      this.row = 0
-    }
-    else if (direction === "right") {
-      this.x = this.x + this.speed
-      this.row = 2
-    }
-    else if (direction === "left") {
-      this.x = this.x - this.speed
-      this.row = 1
     }
 }
 
@@ -320,8 +312,8 @@ export class Player2 extends Player {
   constructor(x, y) {
     super(x, y)
     this.hp = 100
-    this.row = 0
-    this.col = 1
+    this.row = 1
+    this.col = 3
     this.dmg = 10
   }
 
@@ -349,16 +341,24 @@ export class Player2 extends Player {
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 3
+      this.row = 0
+      this.col = 3 
+
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
       this.row = 0
+      this.col = 2
+
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
       this.row = 1
+      this.col = 3
+
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 2
+      this.row = 1
+      this.col = 2
+
     }
     
   }
