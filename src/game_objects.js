@@ -436,6 +436,18 @@ export class Jumppotion extends GameObject {
   }
 }
 
+export class Borderb extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#character")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 120
+    this.col = 2
+  }
+}
 
 export class NPC extends GameObject {    
   constructor(x, y) {
@@ -522,8 +534,6 @@ class AnimatedGameObject extends GameObject {
     this.dy = 0
   }
 }
-
-
 
 
 export class Player extends AnimatedGameObject {
@@ -749,7 +759,9 @@ export class Enemy3 extends AnimatedGameObject {
     super.update();
     const dist = Math.abs(Game.player.x - this.x);
     const yDist = Math.abs(Game.player.y - this.y);
-    if (dist / 32 > 10 || yDist > 32) return;
+    if (dist / 32 > 10 || yDist > 32) {
+      return;
+    }
     if (yDist <= 32) {
       if (Game.player.x < this.x) {
         this.move("left");
