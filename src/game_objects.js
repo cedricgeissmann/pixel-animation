@@ -722,7 +722,51 @@ export class Enemy2 extends AnimatedGameObject {
   }
 }
 
+export class Enemy3 extends AnimatedGameObject {
+  constructor(x, y) {
+    const png = document.querySelector("#Enemy-3")
+    super(x, y, {
+      sheet: png,
+      layer: "player",
+      collisionTags: ["world", "enemy"]
+    })
+    this.row = 0
+    this.speed = 4
+    this.ehp = 5
+    this.dmg = 5
+    this.handlers = new HandlerManager([
+      new CollisionHandler(),
+      new AnimationHandler({ framesPerAnimation: 10, numberOfFrames: 2}),
+      new GravityHandler({
+        maxGravity: 3,
+        gravityForce: 1,
+        jumpForce: -20,
+      })
+])
+  }
 
+  update() {
+    super.update();
+    const dist = Math.abs(Game.player.x - this.x)
+    if ( dist / 32 > 10) return
+    if (Game.player.x < this.x) {
+      this.move("left")
+    }
+    if (Game.player.x > this.x) {
+      this.move("right")
+    }
+  }
+  
+  move(direction) {
+    if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed;
+      this.row = 1;
+    } else if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed;
+      this.row = 0;
+    }
+  }
+}
 
 export class Boss extends AnimatedGameObject {
   constructor(x, y) {
