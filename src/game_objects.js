@@ -393,6 +393,7 @@ export class Nothing extends GameObject {
     })
     this.row = 14
     this.col = 2
+    document.querySelector("#hitten-e-sound").play()
   }
 }
 
@@ -810,13 +811,14 @@ export class Boss extends AnimatedGameObject {
 
   update() {
     super.update();
-      if (Game.player.x < this.x) {
-        this.move("left");
-      }
-      else if (Game.player.x > this.x) {
-        this.move("right");
-      }
+    const dist = Math.abs(Game.player.x - this.x)
+    if ( dist / 32 > 10) 
+      {this.move("right")}
+
+    if (Game.player.x < this.x) {
+      this.move("left")
     }
+  }
   
   
   

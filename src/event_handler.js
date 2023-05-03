@@ -150,6 +150,7 @@ export class CollisionHandler {
         collidingObject.destroy()
         if (gameObject.ehp === 0) {
           gameObject.destroy()
+          Game.loadMap("maps/map-04.txt")
         }
       }
 
