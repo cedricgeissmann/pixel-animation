@@ -242,8 +242,8 @@ export class Player extends AnimatedGameObject {
     })
     this.hp = 100
     this.dmg = 10
-    this.row = 0
-    this.col = 1
+    this.row = 1
+    this.col = 0
     this.speed = 3
     let doDmg = this.dmg
     this.handlers = new HandlerManager([
@@ -251,6 +251,7 @@ export class Player extends AnimatedGameObject {
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
   }
+
     
     loseSpeed(amount) {
       this.speed = this.speed - amount
@@ -262,11 +263,6 @@ export class Player extends AnimatedGameObject {
       console.log(this.speed)
       const speedElem = document.querySelector("#SPEED")
     }
-
-
-  
-  
-
 
   handle(ev) {
     if (ev === "KeyW") { this.move("up") }
@@ -286,17 +282,21 @@ export class Player extends AnimatedGameObject {
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 3
+      this.row = 0
+      this.col = 0
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
-      this.row = 0
+      this.row = 1
+      this.col = 0
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 1
+      this.row = 0
+      this.col = 1
       Camera.shiftBackground(1)
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 2
+      this.row = 0
+      this.col = 0
       Camera.shiftBackground(-1)
     }
     else if (direction === "down") {
