@@ -129,30 +129,18 @@ export class CollisionHandler {
       }
       }
 
-      if (collidingObject instanceof Enemy) {
-        if ( Game.currentFrame - gameObject.lasthit > 60) {
-        gameObject.lasthit = Game.currentFrame;
-        gameObject.loseLife(5)
-        console.log(gameObject.php)
-        
-        if (gameObject.php === 0) {
-          Game.loadMap("maps/map-01.txt");
-        }
-      }
-      }
-
       if (collidingObject instanceof Enemy2) {
           Game.loadMap("maps/map-02-2.txt");
         }
 
       if (collidingObject instanceof Boss) {
-        if ( Game.currentFrame - gameObject.lasthit > 60) {
+        if ( Game.currentFrame - gameObject.lasthit > 6) {
         gameObject.lasthit = Game.currentFrame;
-        gameObject.loseLife(5)
+        gameObject.loseLife(1)
         console.log(gameObject.php)
         
         if (gameObject.php === 0) {
-          Game.loadMap("maps/map-01.txt");
+          Game.loadMap("maps/map-03.txt");
         }
       }
       }
@@ -166,9 +154,9 @@ export class CollisionHandler {
       }
 
       if (collidingObject instanceof Enemy) {
-        if ( Game.currentFrame - gameObject.lasthit > 60) {
+        if ( Game.currentFrame - gameObject.lasthit > 12) {
         gameObject.lasthit = Game.currentFrame;
-        gameObject.loseLife(5)
+        gameObject.loseLife(1)
         console.log(gameObject.php)
         
         if (gameObject.php === 0) {
@@ -181,11 +169,6 @@ export class CollisionHandler {
         gameObject.destroy()
         collidingObject.destroy()
       }
-
-     if(gameObject instanceof Enemy2 && collidingObject instanceof Nothing) {
-       gameObject.destroy()
-       collidingObject.destroy()
-     }
 
      if (collidingObject instanceof Falldamage ) {
         Game.loadMap("maps/map-01.txt");
