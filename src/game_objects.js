@@ -652,9 +652,13 @@ export class Enemy extends AnimatedGameObject {
     if ( dist / 32 > 10) return
     if (Game.player.x < this.x) {
       this.move("left")
+      this.row = 0
+      this.col = 1
     }
     if (Game.player.x > this.x) {
       this.move("right")
+      this.row = 0
+      this.col = 0
     }
   }
 
