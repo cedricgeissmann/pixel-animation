@@ -318,6 +318,7 @@ export class Player extends AnimatedGameObject {
 
 export class Player2 extends Player {
   constructor(x, y) {
+    const img = document.querySelector("#character")
     super(x, y)
     this.hp = 100
     this.row = 0
@@ -325,7 +326,6 @@ export class Player2 extends Player {
     this.dmg = 10
   }
 
- 
 
   loseSpeed(amount) {
     this.speed = this.speed - amount

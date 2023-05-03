@@ -7,7 +7,7 @@ body{
 }
 
 header {
-    color: black;
+    color: rgb(0, 0, 0);
     position: absolute;
     top: 0;
     left: 0;
@@ -15,12 +15,13 @@ header {
     padding: 50px 15px;
     letter-spacing: 2px;
     justify-content: space-between;
-    align-items: center;
+    align-items: left;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     text-decoration: none;
     font-size: 2em;
     text-transform: uppercase;
+    text-align: center;
 }
 
 
