@@ -388,8 +388,8 @@ export class Nothing extends GameObject {
     const ground = document.querySelector("#character")
     super(x, y, {
       sheet: ground,
-      layer: "world",
-      collisionTags: ["world"]
+      layer: "background",
+      collisionTags: ["enemy"]
     })
     this.row = 14
     this.col = 2
