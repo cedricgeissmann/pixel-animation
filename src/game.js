@@ -103,3 +103,25 @@ export default class Game {
     }
   }
 }
+
+  // Setze die Dauer des Timers in Sekunden
+var duration = 5;
+
+// Startzeit des Timers
+var startTime = Date.now();
+
+// Aktualisiere die verbleibende Zeit alle 1000 Millisekunden
+var timer = setInterval(function() {
+  // Berechne die verbleibende Zeit in Sekunden
+  var secondsRemaining = Math.round((duration - (Date.now() - startTime) / 1000));
+
+  // Überprüfe, ob der Timer abgelaufen ist
+  if (secondsRemaining <= 0) {
+    clearInterval(timer);
+    alert("Deine Zeit ist um, Rupert stirbt...");
+  } else {
+    // Aktualisiere die Anzeige der verbleibenden Zeit
+    document.getElementById("timer").innerHTML = secondsRemaining + " Sekunden verbleibend";
+  }
+}, 1000);
+
