@@ -296,9 +296,9 @@ export class HealthBar {
   }
 
   die(){
-    if(Game.health <= 0){ 
-      Game.stop()
-    }
+      Game.running === false
+      alert("you died")
+    
   }
   
   //funktion die Gesundheitspunkte sollen neu geladen werden

@@ -92,10 +92,14 @@ export class CollisionHandler {
     }
 
     if(collidingObject.collisionTags.includes("enemy")){
+
       Game.health.attack(10)
-      collidingObject.lastHit = Game.currentFrame
+      if(Game.health <= 0){
+
+        Game.health.die()
+      }
+      }
     }
-  }
 }
 
 
