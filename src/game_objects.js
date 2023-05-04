@@ -380,6 +380,8 @@ export class Weapons {
 export const moneySystem = new MoneySystem(0);
 //Die neue variabel moneySystem soll ein neues Geldsystem mit der Menge null sein
 
+
+
 export class Enemy extends AnimatedGameObject {
   constructor(x, y) {
     const img = document.querySelector("#character")
@@ -393,6 +395,8 @@ export class Enemy extends AnimatedGameObject {
     this.col = 1
     this.speed = 5
     this.lastHit = 0
+    this.slowedDown = false  // flag to track if the enemy is slowed down
+    this.slowDownStart = 0   // the frame when the enemy started to slow down
     this.handlers = new HandlerManager([
       new EventHandler(),
       new CollisionHandler(),
@@ -400,31 +404,35 @@ export class Enemy extends AnimatedGameObject {
     ])
   }
   update() {
-    
     super.update();
     
     if (Game.currentFrame - this.lastHit > 30 ){
+      if (this.slowedDown && Game.currentFrame - this.slowDownStart > 60) {
+        // if the enemy has been slowed down for more than 60 frames (1 second),
+        // reset its speed and the slowedDown flag
+        this.speed = 5;
+        this.slowedDown = false;
+      }
     
-    if (Game.player.x < this.x) {
-      
-      this.move("left")
-    }
+      if (Game.player.x < this.x) {
+        this.move("left")
+      }
     
-    if (Game.player.x > this.x) {
-      
-      this.move("right")
-    }
-    if(Game.player.y > this.y){
-      this.move("down")
-    }
-    if(Game.player.y < this.y) {
+      if (Game.player.x > this.x) {
+        this.move("right")
+      }
+    
+      if (Game.player.y > this.y){
+        this.move("down")
+      }
+    
+      if (Game.player.y < this.y) {
         this.move("up")
       }
     }
-      
-    }
-    
-    move(dir) {
+  }
+  
+  move(dir) {
     if (dir === "up") {
       this.dy = this.dy + (-1) * this.speed
       this.row = 3
@@ -437,6 +445,16 @@ export class Enemy extends AnimatedGameObject {
     } else if (dir === "right") {
       this.dx = this.dx + (1) * this.speed
       this.row = 2
+    }
+  }
+  
+  onCollision(other) {
+    if (other instanceof Player) {
+      // if the enemy collides with the player, slow it down and start tracking
+      // the slow down period
+      this.speed = 2;
+      this.slowedDown = true;
+      this.slowDownStart = Game.currentFrame;
     }
   }
 }

@@ -2,7 +2,7 @@ import { calculatePenetration, } from "./collision_detector.js"
 import { Enemy, Player, } from "./game_objects.js"
 import Game from "./game.js"
 
-
+let i = 0
 
 export default class EventHandler {
   constructor() {
@@ -90,17 +90,20 @@ export class CollisionHandler {
         Game.worldNumber = 1;
       }
     }
-
+    
     if(collidingObject.collisionTags.includes("enemy")){
+      for( i= 0; i < 5; i++){
+        Enemy.speed = 2
+      }
+      collidingObject.lastHit = Game.currentFrame
       console.log(Game.health)
-      if(Game.health === 0) {
-        alert("You died")
+      
         Game.health.attack(10)
       }
 
       }
     }
-  }
+  
 
 
 
