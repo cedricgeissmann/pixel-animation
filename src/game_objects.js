@@ -109,7 +109,7 @@ export class Stone1 extends GameObject {
       layer: "world",
     })
     this.row = 0 * this.tileHeight
-    this.col = 1 * this.tileWidth
+    this.col = 0 * this.tileWidth
     addCollision(this, {collisionTags: ["world"]})    
   }
 }
@@ -206,11 +206,13 @@ export class Player extends AnimatedGameObject {
       sheet: img,
       layer: "player",
     })
-    this.tileWidth = 35 
-    this.tileHeight = 58
+    this.tileWidth = 32
+    this.tileHeight = 32
     this.row = 0 * this.tileHeight
     this.col = 0 * this.tileWidth
-    this.speed = 2
+    this.speed = 1.74
+    this.money = 0
+    
 
     addGravity(this, {maxGravity: 2, gravityForce: 0.1, jumpForce: -3})
     addAnimation(this, { framesPerAnimation: 13, numberOfFrames: 3})
@@ -232,20 +234,56 @@ export class Player extends AnimatedGameObject {
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 0 * this.tileHeight
+      this.row = 2 * this.tileHeight
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
-      this.row = 0 * this.tileHeight
+      this.row = 2 * this.tileHeight
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 0 * this.tileHeight
+      this.row = 1 * this.tileHeight
       Camera.shiftBackground(1)
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 0  * this.tileHeight
+      this.row = 2  * this.tileHeight
       Camera.shiftBackground(-1)
     }
   }
+
 }
+
+
+
+export class MoneySystem {
+
+ constructor(initialMoney) {
+ this.money = initialMoney;
+this.moneyElement = document.querySelector('.money-amount');
+ this.updateMoney();
+ }
+
+
+updateMoney() {
+
+this.moneyElement.textContent = this.money;
+
+}
+
+ decreaseMoney(amount) {
+this.money -= amount;
+ this.updateMoney()
+ }
+
+
+increaseMoney(amount) {
+ this.money += amount;
+this.updateMoney();
+ }
+}
+
+
+
+
+
+
  
 

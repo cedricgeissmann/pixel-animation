@@ -14,15 +14,21 @@
     <div>
         <button id="game-pause">Pause</button>
         <button id="game-start">Start</button>
+        <button id="timer">30:00sek</button>
+    
     </div>
     <canvas id="canvas"></canvas>
     <div style="display:none;">
-        <img id="character" src="res/SuperSonic2.webp"/>
+        <img id="character" src="res/chars.png"/>
         <img id="ground" src="res/ground.png"/>
-        <img id="Stein" src="res/Stein.png"/>
+        <img id="Stein" src="res/Rupert.png"/>
         <img id="boden" src="res/boden.png"/>
         
     </div>
+    <div class="money-bar">
+        <span class="money-label">Rupies</span>
+        <span class="money-amount" id="money-amount">0</span>
+        </div>
     </main>
 </body>
 </html>
