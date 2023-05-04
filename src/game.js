@@ -18,6 +18,7 @@ export default class Game {
   static enemy = null;
   static money = null;
   static health = null;
+  static Enemyhealth = null;
   static running = false;
   static worldNumber = 1
   static currentFrame = 0
@@ -99,4 +100,6 @@ export default class Game {
     }
   }
 }
+
+
 

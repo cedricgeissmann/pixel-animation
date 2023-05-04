@@ -2,7 +2,6 @@ import { calculatePenetration, } from "./collision_detector.js"
 import { Enemy, Player, } from "./game_objects.js"
 import Game from "./game.js"
 
-let i = 0
 
 export default class EventHandler {
   constructor() {
@@ -92,15 +91,30 @@ export class CollisionHandler {
     }
     
     if(collidingObject.collisionTags.includes("enemy")){
-
-      Game.health.attack(10)
-      if(Game.health <= 0){
-
-        Game.health.die()
-      }
+        collidingObject.canAttack = false; // Set canAttack to false so the enemy can't attack again immediately
+        if(collidingObject.canAttack = true) {
+          Game.health.attack(5);
+        }
+        if(Game.health.health <= 0){
+          Game.health.die();
+        } else {
+          collidingObject.speed = 2; // Set the speed to 2 immediately
+          setTimeout(function() {
+            collidingObject.speed = 5; // Set the speed back to 5 after 3 seconds
+            collidingObject.canAttack = true; // Set canAttack back to true after 3 seconds so the enemy can attack again
+          }, 3000);
+          collidingObject.canAttack = false
+        }
       }
     }
-}
+    // Rest of the code...
+    
+    // Rest of the code...
+  }
+
+      
+  
+
 
 
 export class AnimationHandler {

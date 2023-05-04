@@ -180,6 +180,14 @@ class AnimatedGameObject extends GameObject {
 }
 
 
+export class Weapons {
+  constructor(weapon,dmg, shield){
+    this.damage = dmg
+    this.shield = shield
+    this.weapon = weapon
+  } 
+}
+
 export class Player extends AnimatedGameObject {
   constructor(x, y) {
     const img = document.querySelector("#character")
@@ -208,24 +216,11 @@ export class Player extends AnimatedGameObject {
     super.update()
   }
 
-  cutTree() {
-    TileRegistry.layers["forest"].forEach((tree) => {
-      console.log(tree)
-      console.log(tree.x, tree.y, this.x, this.y)
-      if(this.x && this.y === tree.x && tree.y +1 )
-      {
-        tree.destroy()
-      }
-      
-    })
-  }
-
   handle(ev) {
     if (ev === "KeyW") { this.move("up") }
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    if (ev === "KeyF") { this.cutTree() }
     if (ev === "ArrowUp"){ this.move("up") }
     if (ev === "ArrowDown"){ this.move("down") }
     if (ev === "ArrowLeft"){ this.move("left") }
@@ -246,83 +241,247 @@ export class Player extends AnimatedGameObject {
       this.row = 1
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 2
-    } else if (direction === "attack"){
-      actionAttack()
-    }
+      this.row = 2}
   }
 }
-
- export class HealthBar {
+export class HealthBar {
   constructor() {
     this.healthPoints = document.querySelector('.health-points');
     this.health = 100;
     this.updateHealthPoints();
-    const PotionCounter = 3
-  }
+    
+    this.potionCounter = document.querySelector('.potion-counter');
+    this.potions = 3;
+    this.updatePotionCounter();
 
-  //eine neue Klasse mit einem Konstruktor
-  /*Die Gesundheitspunkte seien gleich verbunden mit dem index.html 
-  /* Die Gesundheitspunkte seien gleich 100
-  /*die Gesundheitspunkte sollen neu geladen werden
-  */
+    this.HealingCounter = document.querySelector('.healing-counter')
+    this.Healing = 6
+    this.updateHealingCounter()
+    
+    this.SprintsCounter = document.querySelector('.sprints-counter')
+    this.Sprints = 10
+    this.updateSprintsCounter()
+
+  }
 
   attack() {
-    this.health -= 10;
+    this.health -= 5;
     this.updateHealthPoints();
   }
+  sprint() {
+    if(this.Sprints > 0) {
+      this.Sprints -= 1
+      Game.player.speed = 10
+      setTimeout(function() {
+        collidingObject.speed = 5; 
+      }, 4000);
+  
+      this.updateSprintsCounter()
+    }
+  }
+  
+  
 
-//funktion angreifen
-/*Die Gesundheitspunkte sollen um -10 verringert werden
-/* Die Gesundheitspunkte sollen neu geladen werden
-*/
 
   heal() {
-    this.health += 10;
-    this.updateHealthPoints();
+    if(this.Healing > 0 && Game.money.money > 10) {
+      this.health += 10;
+      this.Healing -= 1
+      Game.money.decreaseMoney(5)
+      this.updateHealingCounter()
+      this.updateHealthPoints();
+      Game.money.updateMoney()
+    }
   }
-
-  //funktion heilen
-  /*Die Gesundheitspunkte sollen um 10 erhöht werden
-  /* Die Gesundheitspunkte sollen neu geladen werden
-  */
+  
+  potion() {
+    if (this.potions > 0 && Game.money.money >= 300) {
+      this.health += 50;
+      this.potions -= 1;
+      Game.money.decreaseMoney(300);
+      this.updateHealthPoints();
+      this.updatePotionCounter();
+      Game.money.updateMoney(); // update the money display
+    }
+  }
 
   updateHealthPoints() {
     this.healthPoints.textContent = this.health;
   }
+  
+  updatePotionCounter() {
+    this.potionCounter.textContent = `Potions ${this.potions}`;
+    const potionContainer = document.querySelector('.potion-container');
+    if (this.potions === 0) {
+      potionContainer.style.display = 'none';
+    }
+  }
+  
 
-  potion(){
-    this.health += 50
-    const PotionCounter = PotionCounter - 1
+  updateHealingCounter() {
+    this.HealingCounter.textContent = `Healing ${this.Healing}`;
+    const healingContainer = document.querySelector('.healing-container');
+    if (this.Healing === 0) {
+      healingContainer.style.display = 'none';
+    }
   }
 
-  die(){
-      Game.running === false
-      alert("you died")
+  updateSprintsCounter() {
+    this.SprintsCounter.textContent = `Sprints ${this.Sprints}`;
+    const SprintsContainer = document.querySelector('.sprints-container');
+    if (this.Sprints === 0) {
+      SprintsContainer.style.display = 'none';
+    }
+  }
+  
+
+
+  Gewonnen() {
+    // Stop the game
+    Game.running = false;
+
+    // Turn the screen black
+    document.body.style.backgroundColor = 'black';
+
+    // Create a container for the message
+    const container = document.createElement('div');
+    container.style.border = '4px solid transparent';
+    container.style.borderRadius = '10px';
+    container.style.padding = '20px';
+    container.style.position = 'absolute';
+    container.style.top = '50%';
+    container.style.left = '50%';
+    container.style.transform = 'translate(-50%, -50%)';
+    container.style.animation = 'zoomIn 0.5s';
+    container.style.transition = 'border-color 0.5s ease';
+
+    // Display "You won" message inside the container
+    const message = document.createElement('div');
+    message.textContent = 'You won';
+    message.style.color = 'white';
+    message.style.fontSize = '4rem';
+    message.style.textAlign = 'center';
+    container.appendChild(message);
+
+    // Display "Well done" text beneath the message
+    const restartText = document.createElement('div');
+    restartText.textContent = 'Well done';
+    restartText.style.color = 'white';
+    restartText.style.fontSize = '1.5rem';
+    restartText.style.textAlign = 'center';
+    restartText.style.marginTop = '1rem';
+    container.appendChild(restartText);
+
+    // Add the container to the document body
+    document.body.appendChild(container);
+
+    // Transition the border color to white
+    setTimeout(() => {
+      container.style.borderColor = 'white';
+    }, 250); // half the duration of the animation
+  }
+
+  
+  
+  die() {
+    // Stop the game
+    Game.running = false;
     
+    // Turn the screen black
+    document.body.style.backgroundColor = 'black';
+    
+    // Create a container for the message
+    const container = document.createElement('div');
+    container.style.border = '4px solid transparent';
+    container.style.borderRadius = '10px';
+    container.style.padding = '20px';
+    container.style.position = 'absolute';
+    container.style.top = '50%';
+    container.style.left = '50%';
+    container.style.transform = 'translate(-50%, -50%)';
+    container.style.animation = 'zoomIn 0.5s';
+    container.style.transition = 'border-color 0.5s ease';
+    
+    // Display "You died" message inside the container
+    const message = document.createElement('div');
+    message.textContent = 'You died';
+    message.style.color = 'white';
+    message.style.fontSize = '4rem';
+    message.style.textAlign = 'center';
+    container.appendChild(message);
+    
+    // Display "Press R to restart" text beneath the message
+    const restartText = document.createElement('div');
+    restartText.textContent = 'Press R to restart';
+    restartText.style.color = 'white';
+    restartText.style.fontSize = '1.5rem';
+    restartText.style.textAlign = 'center';
+    restartText.style.marginTop = '1rem';
+    container.appendChild(restartText);
+    
+    // Add the container to the document body
+    document.body.appendChild(container);
+    
+    // Transition the border color to white
+    setTimeout(() => {
+      container.style.borderColor = 'white';
+    }, 250); // half the duration of the animation
   }
-  
-  //funktion die Gesundheitspunkte sollen neu geladen werden
-  /*Die Gesundheitspunkte mit dem Text inhalt, sollen gleich this.health
-  */
-
-  
 }
 
 export const healthBar = new HealthBar();
 
+
 //Die Variabel healthbar soll gleich eine neue Healthbar sein
+let Enemyhealth = 100
+
+export function Enemyattack() {
+  Enemyhealth -= 5
+}
+
+function specialAttack()  {
+  Game.health.attack(10)
+    Enemyhealth -= 40
+    Game.money.decreaseMoney(20)
+    Game.money.updateMoney()
+  }
+
+
+
+
 
 document.addEventListener('keydown', event => {
   if (event.key === 'e') {
-    Game.health.attack();
-  }  if (event.key === 'h') {
+    console.log(Enemyhealth)
+    Enemyattack()
+    if (Enemyhealth <= -5) {
+      Game.health.Gewonnen();
+    }
+  } else if (event.key === 'h') {
     Game.health.heal();
+  } else if (event.key === 'p') {
+    Game.health.potion();
+  } else if (event.key === 'k') {
+    Game.health.die();
+  } else if (event.key === 'r') {
+    location.reload();
+  } else if (event.key === 'q') {
+    specialAttack();
+    if (Enemyhealth <= 0) {
+      Game.health.Gewonnen();
+    }
   }
-  if(event.key === 'p'){
-    Game.health.potion()
-  }
-});
+    else if (event.key === 'f') {
+    Game.speed = 10;
+      setTimeout(function() {
+        Game.speed = 5; 
+      }, 4000);
+    }
+  }); //Sprint versuch, geschwindigkeit höher
+
+
+
+
 
 //füge eine neue Eventliste hinzu, welche beim Drücken einer Taste ein event ausführen soll
 /*wenn Die gedrückte Taste "e" ist, soll es die Aktion attack auf die healthbar ausführen
@@ -370,91 +529,62 @@ export class MoneySystem {
 }
 
 
-export class Weapons {
-  constructor(damage, shield){
-    this.damage = 5
-    this.shield = 0
-  } 
-}
 
-export const moneySystem = new MoneySystem(0);
+
+export const moneySystem = new MoneySystem(300);
 //Die neue variabel moneySystem soll ein neues Geldsystem mit der Menge null sein
-
-
 
 export class Enemy extends AnimatedGameObject {
   constructor(x, y) {
-    const img = document.querySelector("#character")
+    const img = document.querySelector("#character");
     super(x, y, {
       sheet: img,
       layer: "player",
-      collisionTags: ["world", "enemy"]
-    })
-    this.health = 20
-    this.row = 0
-    this.col = 1
-    this.speed = 5
-    this.lastHit = 0
-    this.slowedDown = false  // flag to track if the enemy is slowed down
-    this.slowDownStart = 0   // the frame when the enemy started to slow down
+      collisionTags: ["world", "enemy"],
+    });
+    // Define the Enemy object
+    this.Enemyhealth = 20
+    this.row = 0;
+    this.col = 1;
+    this.speed = 5;
     this.handlers = new HandlerManager([
       new EventHandler(),
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
-    ])
+      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3 }),
+    ]);
   }
+
   update() {
-    super.update();
-    
-    if (Game.currentFrame - this.lastHit > 30 ){
-      if (this.slowedDown && Game.currentFrame - this.slowDownStart > 60) {
-        // if the enemy has been slowed down for more than 60 frames (1 second),
-        // reset its speed and the slowedDown flag
-        this.speed = 5;
-        this.slowedDown = false;
-      }
-    
+    super.update();{
       if (Game.player.x < this.x) {
-        this.move("left")
+        this.move("left");
       }
-    
       if (Game.player.x > this.x) {
-        this.move("right")
+        this.move("right");
       }
-    
-      if (Game.player.y > this.y){
-        this.move("down")
+      if (Game.player.y > this.y) {
+        this.move("down");
       }
-    
       if (Game.player.y < this.y) {
-        this.move("up")
+        this.move("up");
       }
     }
   }
-  
+
   move(dir) {
     if (dir === "up") {
-      this.dy = this.dy + (-1) * this.speed
-      this.row = 3
+      this.dy = this.dy + -1 * this.speed;
+      this.row = 3;
     } else if (dir === "down") {
-      this.dy = this.dy + (1) * this.speed
-      this.row = 0
+      this.dy = this.dy + 1 * this.speed;
+      this.row = 0;
     } else if (dir === "left") {
-      this.dx = this.dx + (-1) * this.speed
-      this.row = 1
+      this.dx = this.dx + -1 * this.speed;
+      this.row = 1;
     } else if (dir === "right") {
-      this.dx = this.dx + (1) * this.speed
-      this.row = 2
-    }
-  }
-  
-  onCollision(other) {
-    if (other instanceof Player) {
-      // if the enemy collides with the player, slow it down and start tracking
-      // the slow down period
-      this.speed = 2;
-      this.slowedDown = true;
-      this.slowDownStart = Game.currentFrame;
+      this.dx = this.dx + 1 * this.speed;
+      this.row = 2;
     }
   }
 }
+
