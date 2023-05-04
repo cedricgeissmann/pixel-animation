@@ -43,5 +43,28 @@ main {
     }
     100% {
         background-color: rgb(142, 136, 125);
-    }
+    }}
+  
+    .money-bar {
+
+position: fixed;
+top: 30px;
+right: 20px;
+    background-color: #83a0c7;
+        border: 3px solid #000;
+        border-radius: 10px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+         }
+        
+        .money-label, .money-amount {
+        
+        font-size: 24px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        }
+        
+    .money-label {
+         margin-right: 10px; 
 }

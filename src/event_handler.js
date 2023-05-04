@@ -160,6 +160,8 @@ export class CollisionHandler {
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     if (matchCollisionTags(collidingObject, ["pickups"])) {
       collidingObject.destroy()
+      Game.player.money += 10
+      document.querySelector("#money-amount").textContent = Game.player.money
     }
   }
 }
