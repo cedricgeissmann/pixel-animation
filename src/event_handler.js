@@ -2,7 +2,7 @@ import { calculatePenetration, } from "./collision_detector.js"
 import { Enemy, Player, } from "./game_objects.js"
 import Game from "./game.js"
 
-
+let i = 0
 
 export default class EventHandler {
   constructor() {
@@ -90,7 +90,7 @@ export class CollisionHandler {
         Game.worldNumber = 1;
       }
     }
-
+    
     if(collidingObject.collisionTags.includes("enemy")){
 
       Game.health.attack(10)
