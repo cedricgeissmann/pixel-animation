@@ -212,7 +212,7 @@ export class Player extends AnimatedGameObject {
     this.col = 0 * this.tileWidth
     this.speed = 2
 
-    addGravity(this, {maxGravity: 2, gravityForce: 1, jumpForce: -12})
+    addGravity(this, {maxGravity: 2, gravityForce: 0.1, jumpForce: -3})
     addAnimation(this, { framesPerAnimation: 40, numberOfFrames: 12})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
