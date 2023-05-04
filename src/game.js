@@ -20,6 +20,7 @@ export default class Game {
   static health = null;
   static running = false;
   static worldNumber = 1
+  static currentFrame = 0
 
   constructor() {
     this.tileSize = 35
@@ -30,6 +31,8 @@ export default class Game {
     this.ctx.imageSmoothingEnabled = false
 
     Game.money = new MoneySystem(100)
+    Game.health = new HealthBar(100)
+
 
     Game.loadMap("maps/map-01.txt")
 
@@ -78,6 +81,9 @@ export default class Game {
    */
   gameLoop() {
     
+
+    Game.currentFrame++
+
     this.camera.clearScreen()
     this.camera.nextFrame()
 

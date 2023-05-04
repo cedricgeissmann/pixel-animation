@@ -1,6 +1,7 @@
-import { calculatePenetration } from "./collision_detector.js"
-import { Player,HealthBar } from "./game_objects.js"
+import { calculatePenetration, } from "./collision_detector.js"
+import { Enemy, Player, } from "./game_objects.js"
 import Game from "./game.js"
+
 
 
 export default class EventHandler {
@@ -91,16 +92,8 @@ export class CollisionHandler {
     }
 
     if(collidingObject.collisionTags.includes("enemy")){
-      if(Player.health > 30)
-      Game.health.attack(-30)
-      else if(Player.health <= 0 ){
-        console.log("you died")
-        game.running = false
-        let game = new Game()
-        Game.start()
-
-
-      }
+      Game.health.attack(10)
+      collidingObject.lastHit = Game.currentFrame
     }
   }
 }

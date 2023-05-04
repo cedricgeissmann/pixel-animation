@@ -4,7 +4,6 @@ import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
 import Game from "./game.js"
 
-
 /**
  * Dies ist die Basisklasse für alle Spiel-Objekte.
  * 
@@ -13,7 +12,7 @@ import Game from "./game.js"
  * überschrieben werden, sollten diese immer zuerst mit `super.function()` 
  * aufgerufen werden, so das die eigentliche Funktionalität der Spiel-Objekte
  * erhalten bleibt.
- */
+*/
 export class GameObject {
   constructor(x, y, options = {sheet, layer: "background", collisionTags: []}) {
     this.sheet = options.sheet
@@ -30,52 +29,52 @@ export class GameObject {
       CollisionDetector.layers[tag].push(this)
     })
   }
-
+  
   /**
    * Zeichnet das Spiel-Objekt auf das Canvas. Das Spiel-Objekt
    * kennt dabei seine Position und welches Bild gezeichnet werden soll.
    * @param {CanvasRenderingContext2D} ctx Das Canvas, worauf das Spiel-Objekt gezeichnet werden soll.
-   */
-  draw(ctx) {
-    ctx.drawImage(
-      this.sheet,
-      this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize,
-      this.x, this.y, this.tileSize, this.tileSize
-    )
+  */
+ draw(ctx) {
+   ctx.drawImage(
+     this.sheet,
+     this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize,
+     this.x, this.y, this.tileSize, this.tileSize
+     )
+    }
+    
+    /**
+     * Zerstört das Spiel-Objekt und entfernt es aus dem Spiel.
+    */
+   destroy() {
+     findAndRemoveFromList(TileRegistry.layers[this.layer], this)
+     this.collisionTags.forEach(tag => {
+       findAndRemoveFromList(CollisionDetector.layers[tag], this)
+      })
+    }
+    
+    /**
+     * Berechne die Position und andere Eigenschaften des 
+     * Spiel-Objekts neu. Wie das gemacht wird, wird in den 
+     * verschieden Handlers angegeben. Ein Spiel-Objekt kann
+     * z.B. einen Gravitations-Handler haben, dieser fügt dann
+     * Gravitation für dieses Spiel-Objekt hinzu und berechnet die 
+     * y-Position des Spiel-Objekts neu.
+    */
+   update(){
+     this.handlers && this.handlers.runAll(this)
+    }
+    
+    
   }
 
-  /**
-   * Zerstört das Spiel-Objekt und entfernt es aus dem Spiel.
-   */
-  destroy() {
-    findAndRemoveFromList(TileRegistry.layers[this.layer], this)
-    this.collisionTags.forEach(tag => {
-      findAndRemoveFromList(CollisionDetector.layers[tag], this)
-    })
-  }
-
-  /**
-   * Berechne die Position und andere Eigenschaften des 
-   * Spiel-Objekts neu. Wie das gemacht wird, wird in den 
-   * verschieden Handlers angegeben. Ein Spiel-Objekt kann
-   * z.B. einen Gravitations-Handler haben, dieser fügt dann
-   * Gravitation für dieses Spiel-Objekt hinzu und berechnet die 
-   * y-Position des Spiel-Objekts neu.
-   */
-  update(){
-    this.handlers && this.handlers.runAll(this)
-  }
-
-
-}
-
-export class Background extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#ground")
-    super(x, y, {
-      sheet: ground,
-      layer: "background",
-      collisionTags: []
+  export class Background extends GameObject {
+    constructor(x, y) {
+      const ground = document.querySelector("#ground")
+      super(x, y, {
+        sheet: ground,
+        layer: "background",
+        collisionTags: []
     })
 
     this.row = 0
@@ -156,7 +155,7 @@ export class Mushroom extends GameObject {
       sheet: ground,
       layer: "item",
       collisionTags: ["pickups"]
-    })
+    })  
     this.row = 0
     this.col = 2
   }
@@ -169,7 +168,7 @@ class AnimatedGameObject extends GameObject {
     this.dx = 0
     this.dy = 0
   }
-
+  
   update() {
     super.update()
     this.x = this.x + this.dx
@@ -197,17 +196,17 @@ export class Player extends AnimatedGameObject {
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
   }
-
   
-
+  
+  
   jump() {
     this.handlers.get(GravityHandler).jump(this)
   }
-
+  
   update() {
     super.update()
   }
-
+  
   cutTree() {
     TileRegistry.layers["forest"].forEach((tree) => {
       console.log(tree)
@@ -219,7 +218,7 @@ export class Player extends AnimatedGameObject {
       
     })
   }
-
+  
   handle(ev) {
     if (ev === "KeyW") { this.move("up") }
     if (ev === "KeyS") { this.move("down") }
@@ -230,10 +229,10 @@ export class Player extends AnimatedGameObject {
     if (ev === "ArrowDown"){ this.move("down") }
     if (ev === "ArrowLeft"){ this.move("left") }
     if (ev === "ArrowRight"){ this.move("right") }
-
-
+    
+    
   }
-
+  
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
@@ -253,21 +252,14 @@ export class Player extends AnimatedGameObject {
   }
 }
 
-
-
-
-
-
-
-
-
- export class HealthBar {
+export class HealthBar {
   constructor() {
     this.healthPoints = document.querySelector('.health-points');
     this.health = 100;
     this.updateHealthPoints();
+    const PotionCounter = 3
   }
-
+  
   //eine neue Klasse mit einem Konstruktor
   /*Die Gesundheitspunkte seien gleich verbunden mit dem index.html 
   /* Die Gesundheitspunkte seien gleich 100
@@ -295,8 +287,20 @@ export class Player extends AnimatedGameObject {
   */
 
   updateHealthPoints() {
-    this.healthPoints.textContent = this.health.toString();
+    this.healthPoints.textContent = this.health;
   }
+
+  potion(){
+    this.health += 50
+    const PotionCounter = PotionCounter - 1
+  }
+
+  die(){
+    if(Game.health <= 0){ 
+      Game.stop()
+    }
+  }
+  
   //funktion die Gesundheitspunkte sollen neu geladen werden
   /*Die Gesundheitspunkte mit dem Text inhalt, sollen gleich this.health
   */
@@ -304,15 +308,17 @@ export class Player extends AnimatedGameObject {
   
 }
 
-export const healthBar = new HealthBar();
 
 //Die Variabel healthbar soll gleich eine neue Healthbar sein
 
 document.addEventListener('keydown', event => {
   if (event.key === 'e') {
-    healthBar.attack();
-  } else if (event.key === 'h') {
-    healthBar.heal();
+    Game.health.attack();
+  }  if (event.key === 'h') {
+    Game.health.heal();
+  }
+  if(event.key === 'p'){
+    Game.health.potion()
   }
 });
 
@@ -384,6 +390,7 @@ export class Enemy extends AnimatedGameObject {
     this.row = 0
     this.col = 1
     this.speed = 5
+    this.lastHit = 0
     this.handlers = new HandlerManager([
       new EventHandler(),
       new CollisionHandler(),
@@ -394,21 +401,25 @@ export class Enemy extends AnimatedGameObject {
     
     super.update();
     
-    if (Game.player.x < this.x) {
+    if (Game.currentFrame - this.lastHit > 30 ){
+
+      if (Game.player.x < this.x) {
+        
+        this.move("left")
+      }
       
-      this.move("left")
-    }
-    
-    if (Game.player.x > this.x) {
-      
-      this.move("right")
-    }
-    if(Game.player.y > this.y){
-      this.move("down")
-    }
-    if(Game.player.y < this.y) {
+      if (Game.player.x > this.x) {
+        
+        this.move("right")
+      }
+      if(Game.player.y > this.y){
+        this.move("down")
+      }
+      if(Game.player.y < this.y) {
         this.move("up")
       }
+    }
+      
     }
     
     move(dir) {
@@ -427,3 +438,4 @@ export class Enemy extends AnimatedGameObject {
     }
   }
 }
+
