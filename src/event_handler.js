@@ -2,78 +2,17 @@ import { calculatePenetration } from "./collision_detector.js"
 import {Player } from "./game_objects.js"
 import Game from "./game.js"
 import { Apfel, Cupcake, Lachssushi, Gelbsushi, Mushroompurple, Lapislazuli, Ruby, Lblume, Crown } from "./game_objects.js"
-import config from "./config.js"
 
-export function addGravity(gameObject, gravityOptions) {
-  gameObject.handlers.add(new GravityHandler(gravityOptions))
-}
-
-export function addAnimation(gameObject, animationOptions) {
-  gameObject.handlers.add(new AnimationHandler(animationOptions))
-}
-
-export function addCollision(gameObject, collisionOptions) {
-  gameObject.handlers.add(new CollisionHandler(collisionOptions))
-}
-
-export function addProjectile(gameObject, projectileOptions) {
-  gameObject.handlers.add(new ProjectileHandler(projectileOptions))
-}
-
-
-export default class InputHandler {
-
-  static events = new Set()
-  static commands = []
-
+export default class EventHandler {
   constructor() {
+    this.events = new Set()
     // Setup Eventlisteners
-    window.onkeydown = (ev) => {InputHandler.events.add(ev.code)}
-    window.onkeyup = (ev) => {InputHandler.events.delete(ev.code)}
-    Object.entries(config["keys"]).forEach(([key, callback]) => {
-      if (typeof callback === "function") {
-        new Command(key, callback)
-      } else if (typeof callback === "object") {
-        new Command(key, callback.callback, callback.cooldown)
-      }
-    })
-  }
-
-  static handleAllEvents() {
-    InputHandler.events.forEach((ev) => {
-      InputHandler.commands.forEach(command => {
-        if (command.key === ev && command.ready()) {
-          command.callback()
-          command.calledOnFrame = Game.currentFrame
-        }
-      })
-    })
-    
-  }
-}
-
-
-class Command {
-  constructor(key, callback, cooldown = 0) {
-    this.key = key
-    this.callback = callback
-    this.cooldown = cooldown
-    this.calledOnFrame = 0
-    InputHandler.commands.push(this)
-  }
-
-  ready() {
-    return Game.currentFrame - this.calledOnFrame >= this.cooldown
-  }
-}
-
-export class ProjectileHandler {
-  constructor(options) {
-    this.speed = options.speed || 0
+    window.onkeydown = (ev) => {this.events.add(ev.code)}
+    window.onkeyup = (ev) => {this.events.delete(ev.code)}
   }
 
   _handleEvents(gameObject) {
-    gameObject.x = gameObject.x + this.speed
+    this.events.forEach((ev) => gameObject.handle(ev))
   }
 }
 
@@ -122,10 +61,6 @@ export class HandlerManager {
 }
 
 export class CollisionHandler {
-  constructor(options = {collisionTags: []}) {
-    this.collisionTags = options.collisionTags
-  }
-
   _handleEvents(gameObject, options) {
     // Es soll nichts passieren wenn kein anderes Objekt gesetzt wird
     if (options == null) return
@@ -138,7 +73,7 @@ export class CollisionHandler {
     // Wenn das andere Objekt aus der Welt oder dem Wald ist,
     // soll eine Überschneidung vermieden werden, indem das
     // Objekt aus dem überschneidenden Objekt herausgedrückt wird.
-    if (matchCollisionTags(collidingObject, ["world", "forest"])) {
+    if (collidingObject.collisionTags.includes("world") || collidingObject.collisionTags.includes("forest")) {
       const pen = calculatePenetration(gameObject, collidingObject)
       if (Math.abs(pen.x) <= Math.abs(pen.y)) {
         gameObject.x = gameObject.x - pen.x
@@ -157,7 +92,7 @@ export class CollisionHandler {
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     
 
-    if (matchCollisionTags(collidingObject, ["pickups"])) {
+    if (collidingObject.collisionTags.includes("pickups")) {
         collidingObject.destroy()
         if (collidingObject instanceof Apfel) {
          Game.updateApfel(1)
@@ -189,7 +124,7 @@ export class CollisionHandler {
 
     
 
-    if (matchCollisionTags(collidingObject, ["cave"])) {
+    if (collidingObject.collisionTags.includes("cave")) {
       if (Game.map.mapfile === "maps/map-01.txt") {
         Game.loadMap("maps/map-02.txt")
       } else if (Game.map.mapfile === "maps/map-02.txt") {
@@ -198,18 +133,6 @@ export class CollisionHandler {
 
     }
   }
-}
-
-function matchCollisionTags(collidingObject, tags) {
-  const colHandler = collidingObject.handlers.get(CollisionHandler)
-  if (colHandler != null) {
-    for (let tag of tags) {
-      if (colHandler.collisionTags.includes(tag) == true) {
-        return true
-      }
-    }
-  }
-  return false
 }
 
 export class AnimationHandler {
@@ -224,8 +147,8 @@ export class AnimationHandler {
     if (gameObject.dx != 0 || gameObject.dy != 0) {
       this.frameCounter++
       if (this.frameCounter >= this.framesPerAnimation) {
-        gameObject.col += gameObject.tileWidth
-        if (gameObject.col >= this.numberOfFrames * gameObject.tileWidth) {
+        gameObject.col++
+        if (gameObject.col >= this.numberOfFrames) {
           gameObject.col = 0
         }
         this.frameCounter = 0
