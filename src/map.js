@@ -6,13 +6,8 @@ import { Rand, Cowwhite, Pilz, Player, Stone, Tree, Wall, Cave, Tree1, Backgroun
  * an den Stellen die in der Karte angegeben sind.
  */
 export default class Map {
-  static width = 0
-  static height = 0
-
   constructor(mapFile) {
     this.mapfile = mapFile
-    Map.width = 0
-    Map.height = 0
     this._readMapFile(mapFile)
   }
 
@@ -95,8 +90,6 @@ export default class Map {
           let row = rows[y].split("")
           for (let x = 0; x < row.length; x++) {
             this.addTilesToMap(x, y, row[x])
-            Map.width = Math.max(Map.width, x)
-            Map.height = Math.max(Map.height, y)
           }
         }
       })
