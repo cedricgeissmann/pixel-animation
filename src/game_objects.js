@@ -585,8 +585,7 @@ export class Player extends AnimatedGameObject {
 
 
   suicide() {
-    if(this.hascontrols === false) return
-    if("KeyQ") {
+    if("KeyL") {
       Game.loadMap("maps/map-01.txt");
     }
   }
