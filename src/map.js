@@ -22,6 +22,8 @@ export default class Map {
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG3.png')"
      } else if( this.mapfile === "maps/map-04.txt") 
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG4.png')"
+      document.querySelector("#game-audio3").pause()
+      document.querySelector("#creditssound").play()
   }
 
   /**
