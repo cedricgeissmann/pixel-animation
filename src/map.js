@@ -13,12 +13,16 @@ export default class Map {
       document.querySelector("#game-audio1").play()
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG.png')"  
     } else if( this.mapfile === "maps/map-02.txt") {
-      document.querySelector("#game-audio1").pause()
       document.querySelector("#game-audio2").play()
+      document.querySelector("#game-audio1").pause()
+      document.querySelector("#canvas").style.backgroundImage = "url('res/BG2.png')"
+    }else if( this.mapfile === "maps/map-02-2.txt") {
+      document.querySelector("#game-audio2").play()
+      document.querySelector("#game-audio1").pause()
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG2.png')"
     }else if( this.mapfile === "maps/map-03.txt") {
-      document.querySelector("#game-audio2").pause()
-      document.querySelector("#game-audio3-0").play()
+     // document.querySelector("#game-audio2").pause()
+     // document.querySelector("#game-audio3-0").play()
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG3.png')"
    } else{
       document.querySelector("#game-audio3-0").pause()
