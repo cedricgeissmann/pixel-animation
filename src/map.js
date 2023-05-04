@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Enemy, NPC, Falldamage, Healthpotion, NPC2, Treppe, Enemy2, Boss, FallingStone2, Orn1, Orn2, Kerze, Gelb, fill1, fill2, fill3, Jumppotion, Boden3, Boden2, Boden21, Boden22, Boden23, Boden2fill, Boden2fill2, Boden2fill3, Chruch1, Bossblock, NPC3, Enemy3, Borderb} from "./game_objects.js"
+import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Enemy, NPC, Falldamage, Healthpotion, NPC2, Treppe, Enemy2, Boss, FallingStone2, Orn1, Orn2, Kerze, Gelb, fill1, fill2, fill3, Jumppotion, Boden3, Boden2, Boden21, Boden22, Boden23, Boden2fill, Boden2fill2, Boden2fill3, Chruch1, Bossblock, NPC3, Enemy3, Borderb, Falldamage2} from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -9,12 +9,16 @@ export default class Map {
   constructor(mapFile) {
     this._readMapFile(mapFile)
     this.mapfile = mapFile 
-    document.querySelector("#game-audio").play()
     if( this.mapfile === "maps/map-01.txt") {
+      document.querySelector("#game-audio1").play()
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG.png')"  
     } else if( this.mapfile === "maps/map-02.txt") {
+      document.querySelector("#game-audio2").play()
+      document.querySelector("#game-audio1").pause()
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG2.png')"
     }else if( this.mapfile === "maps/map-03.txt") {
+      document.querySelector("#game-audio3").play()
+      document.querySelector("#game-audio2").pause()
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG3.png')"
      } else if( this.mapfile === "maps/map-04.txt") 
       document.querySelector("#canvas").style.backgroundImage = "url('res/BG4.png')"
@@ -65,6 +69,7 @@ export default class Map {
     if ( tileType === "S" ) {new NPC3 (x, y)}
     if ( tileType === "0" ) {new Enemy3 (x, y)}
     if ( tileType === "U" ) {new Borderb (x, y)}
+    if ( tileType === "O" ) {new Falldamage2 (x, y)}
   }
 
   /**
