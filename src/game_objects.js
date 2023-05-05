@@ -259,7 +259,7 @@ class AnimatedGameObject extends GameObject {
 
 
 export class Player extends AnimatedGameObject {
-    constructor(x, y) }
+    constructor(x, y) {
     const img = document.querySelector("#character")
     super(x, y, {
       sheet: img,
@@ -275,25 +275,29 @@ export class Player extends AnimatedGameObject {
 
     document.querySelector("#hp-player-1").textContent = this.hp
 
-  heal() 
-    if (this.hp < (this.maxHp - this.healamount + 50)){
-      this.hp = this.hp + this.healamount
-      document.querySelector("#hp-player-1").textContent = this.hp
+
     this.tileSize = 64
 
     addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
-    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
+    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 2})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
 
-  jump();{
+  heal() {
+    if (this.hp < (this.maxHp - this.healamount + 50)){
+      this.hp = this.hp + this.healamount
+      document.querySelector("#hp-player-1").textContent = this.hp
+    }
+  }
+
+  jump(){
     this.handlers.get(GravityHandler).jump(this)
   }
   
 
 
 
-  move(direction) 
+  move(direction) {
      if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
       //this.row = 1
@@ -301,6 +305,8 @@ export class Player extends AnimatedGameObject {
       this.dx = this.dx + (1) * this.speed
       //this.row = 2
     }
+  }
+}
   
 
 
@@ -318,7 +324,7 @@ export class Player2 extends AnimatedGameObject {
     
 
     addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
-    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 3})
+    addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 1})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
 
