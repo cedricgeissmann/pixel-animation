@@ -630,7 +630,9 @@ const EnemySlime = new Sprite({
     max: 6,
     hold: 30
   },
-  animate: true
+  animate: true,
+  animate: true,
+  isEnemy: true
 })
 
 const BattleSlimeImage = new Image()
@@ -657,6 +659,18 @@ function animateBattle() {
 }
 
 animateBattle()
+document.querySelectorAll('button').forEach((button) => {
+  button.addEventListener('click', () => {
+    BattleSlime.attack({
+      attack: {
+        name: 'Tackle',
+        damage: 10,
+        type: 'Normal'
+      },
+      recipient: EnemySlime
+    })
+  })
+})
 
 //animate()
 
