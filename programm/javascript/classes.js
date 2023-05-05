@@ -27,7 +27,6 @@ export class Boundary {
       frames = { max: 1, hold: 10 },
       sprites,
       animate = false,
-      animate = false,
       isEnemy = false
     }) {
       this.position = position
