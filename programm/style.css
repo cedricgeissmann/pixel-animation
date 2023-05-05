@@ -44,6 +44,39 @@ display: flex;
     border-left: 4px black solid;
 }
 
+#slime2 {
+  background-color: white;
+  width: 250px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: 4px black solid;
+  padding: 12px;
+}
+
+#slime1 {
+  background-color: white;
+  width: 250px;
+  position: absolute;
+  top: 330px;
+  right: 50px;
+  border: 4px black solid;
+  padding: 12px;
+}
+
+#health1{
+  height: 5px; background-color: #ccc; margin-top: 10px"
+}
+
+#health2 {
+  height: 5px;
+  background-color: green;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 h1 {
     margin: 0;
   }
