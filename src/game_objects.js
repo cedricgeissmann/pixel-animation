@@ -6,15 +6,7 @@ import Camera from "./camera.js"
 import Game from "./game.js"
 import Map from "./map.js"
 
-/**
- * Dies ist die Basisklasse für alle Spiel-Objekte.
- * 
- * Wenn ein spezialisiertes Spiel-Objekt erzeugt wird, dann soll es 
- * immer diese Klasse erweitern. Wenn die Funktionen von der Basisklasse
- * überschrieben werden, sollten diese immer zuerst mit `super.function()` 
- * aufgerufen werden, so das die eigentliche Funktionalität der Spiel-Objekte
- * erhalten bleibt.
- */
+
 export class GameObject {
   constructor(x, y, options = {sheet, layer: "background"}) {
     this.sheet = options.sheet
