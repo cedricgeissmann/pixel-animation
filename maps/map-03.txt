@@ -5,11 +5,11 @@ s.s.sf.p..s...p.s.....s.s.s...s.p.s.s.s.s
 s.sss.sssss.sss.sssss.s.s.sss.sssssfs.s.s
 s.s...f.p........f........s.s...p...s.s.s
 h.s.sssss.sss.sssssssssss.s.s.sssss.s.s.s
-U.s.s.s.s.s...s..p......s.s...s.p.s...s.s
-sps.s.s.sss.sssssssssssss.sss.sss.s.s.s.s
-s.s.s.s...p.....s...f....s...s.p.sfs.s.ps
-sss.s.s.sss.fsssss.ssssssss.sss.s.s.s.s.s
-sfs...s.sfs...f..s........s...f...s..s..s
+U.s.s.s.s.s...s..p........s...s.p.s...s.s
+sps.s.s.sss.sssssssssssss.sss.sss.s..ss.s
+s.s.s.s...p.....s...f.....s....p..s..s.ps
+sss.s.s.sss.fsssss.ssssssss.sssss.s..s..s
+sfs...s.sfs...f..s........s...f...sf.s..s
 s.sss.s.s.s.s.sssssss.s.sss.ssssssssss.sHs
 s.s...s.spsfs.s.....s.s......f.....p....Ms
 s.s.sss.s.s.s.spsssssss.sssssssss.sssssss
