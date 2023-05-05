@@ -105,7 +105,7 @@ export default class Game {
 }
 
   // Setze die Dauer des Timers in Sekunden
-var duration = 5;
+var duration = 100;
 
 // Startzeit des Timers
 var startTime = Date.now();

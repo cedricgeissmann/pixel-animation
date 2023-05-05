@@ -201,21 +201,21 @@ class AnimatedGameObject extends GameObject {
 
 export class Player extends AnimatedGameObject {
   constructor(x, y) {
-    const img = document.querySelector("#character")
+    const img = document.querySelector("#rot")
     super(x, y, {
       sheet: img,
       layer: "player",
     })
     this.tileWidth = 32
     this.tileHeight = 32
-    this.row = 0 * this.tileHeight
+    this.row = 3 * this.tileHeight
     this.col = 0 * this.tileWidth
     this.speed = 1.74
     this.money = 0
     
 
     addGravity(this, {maxGravity: 2, gravityForce: 0.1, jumpForce: -3})
-    addAnimation(this, { framesPerAnimation: 13, numberOfFrames: 3})
+    addAnimation(this, { framesPerAnimation: 50, numberOfFrames: 2})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
 
@@ -244,7 +244,7 @@ export class Player extends AnimatedGameObject {
       Camera.shiftBackground(1)
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 2  * this.tileHeight
+      this.row = 3  * this.tileHeight
       Camera.shiftBackground(-1)
     }
   }
