@@ -3,20 +3,29 @@ body{
     margin: 0;
     text-align: center;
     position: relative;
-    background: linear-gradient(to bottom right, rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
-    background: -webkit-linear-gradient(left,  rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
-    background: -moz-linear-gradient(left,  rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
-    
-    }
-
-canvas {
-    width: 90vw;
+    background: repeating-linear-gradient(to bottom right, rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
+    background: -webkit-repeating-linear-gradient(left,  rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
+    background: -moz-repeating-linear-gradient(left,  rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191));
     
 }
 
+canvas {
+    margin-top: 20px;
+    width: 85vw;
+}
+
+.gradient {
+    background: repeating-linear-gradient(to bottom right, rgb(170, 170, 218), rgb(185, 221, 185), rgb(243, 213, 191) 50%);
+  }
 
   
-  
+.container {
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-top: 20px;
 
 
-  
+}
+
+

@@ -66,8 +66,7 @@ export default class Game {
       CollisionDetector.clear()
       Game.player = null
       Game.map = new Map(mapfile)
-      localStorage.setItem("hp-spieler-1", 100)
-      localStorage.setItem("hp-spieler-2", 100)
+
       
   }
 

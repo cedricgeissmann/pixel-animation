@@ -149,7 +149,7 @@ export class CollisionHandler {
            } else if (gameObject === Game.player2) {
              Game.player2.getSpeed(2);
              setTimeout(function() {
-              Game.player2.getSpeed(2)
+              Game.player2.loseSpeed(2)
             }, 1000)
            }
        }

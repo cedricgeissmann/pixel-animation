@@ -244,7 +244,7 @@ export class Player extends AnimatedGameObject {
     this.dmg = 10
     this.row = 1
     this.col = 0
-    this.speed = 3
+    this.speed = 5
     let doDmg = this.dmg
     this.handlers = new HandlerManager([
       new CollisionHandler(),
@@ -316,6 +316,7 @@ export class Player2 extends Player {
     this.row = 1
     this.col = 3
     this.dmg = 10
+    this.speed = 5
   }
 
 
