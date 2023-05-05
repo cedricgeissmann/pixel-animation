@@ -194,7 +194,7 @@ export class crown extends GameObject {
     this.tileSize = 32
     this.row = 1
     this.col = 1
-    addCollision(this, {collisionTags: ["forest"]})
+    addCollision(this, {collisionTags: ["pickups"]})
 
   
 } 
