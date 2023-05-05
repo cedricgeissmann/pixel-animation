@@ -25,7 +25,8 @@ export default class Camera {
    */
   centerObject(object) {
     if (object == null) return
-    this.centerCoordinate(object.x, 10 * 32)
+    let posx = (Game.player.x + Game.player2.x) / 2
+    this.centerCoordinate(posx + 20 * 32, 10 * 32)
   }
 
   /**
