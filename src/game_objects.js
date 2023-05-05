@@ -454,7 +454,7 @@ document.addEventListener('keydown', event => {
   if (event.key === 'e') {
     console.log(Enemyhealth)
     Enemyattack()
-    if (Enemyhealth <= -5) {
+    if (Enemyhealth <= -5) {  
       Game.health.Gewonnen();
     }
   } else if (event.key === 'h') {
