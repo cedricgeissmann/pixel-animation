@@ -248,7 +248,7 @@ export class Player extends AnimatedGameObject {
     let doDmg = this.dmg
     this.handlers = new HandlerManager([
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
+      //new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
   }
     
