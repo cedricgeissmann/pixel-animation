@@ -260,7 +260,7 @@ export class Player extends AnimatedGameObject {
     
     this.row = 0
     this.col = 1
-    this.speed = 3
+    this.speed = 5
     this.healamount = 2
     this.hp = 100
     this.maxHp = this.hp 
@@ -312,7 +312,7 @@ export class Player2 extends AnimatedGameObject {
     
     this.row = 0
     this.col = 0
-    this.speed = 3
+    this.speed = 5
     
 
     addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
