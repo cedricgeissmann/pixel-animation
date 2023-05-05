@@ -177,10 +177,10 @@ export class CollisionHandler {
           const elem = document.querySelector("#spielstand")
           document.querySelector("#punkte-s1").textContent = Game.punkteSpieler1
           document.querySelector("#punkte-s2").textContent = Game.punkteSpieler2
-          if (Game.level === 3) {
-            document.querySelector("#winner").textContent = "Spieler 1 gewonnen"
-          }
           elem.style.display = "flex"
+          if (Game.level === 3) {
+            document.querySelector("#winner").textContent = "Spieler 1 hat gewonnen"
+          } else {
           setTimeout(function () {
             elem.style.display = "none"
             if (Game.level === 1) {
@@ -190,6 +190,7 @@ export class CollisionHandler {
               Game.loadMap("maps/map-03.txt")
             } 
           }, 2000) 
+        }
 
         }
       } else if (collidingObject.forPlayer === 1 && gameObject.playerNumber === 2) {
@@ -199,10 +200,10 @@ export class CollisionHandler {
           const elem = document.querySelector("#spielstand")
           document.querySelector("#punkte-s1").textContent = Game.punkteSpieler1
           document.querySelector("#punkte-s2").textContent = Game.punkteSpieler2
-          if (Game.level === 3) {
-            document.querySelector("#winner").textContent = "Spieler 2 gewonnen"
-          }
           elem.style.display = "flex"
+          if (Game.level === 3) {
+            document.querySelector("#winner").textContent = "Spieler 2 hat gewonnen"
+          } else {
           setTimeout(function () {
             elem.style.display = "none"
             if (Game.level === 1) {
@@ -211,6 +212,7 @@ export class CollisionHandler {
               Game.loadMap("maps/map-03.txt")
             } 
           }, 2000)
+        }
         }
       }
     }
