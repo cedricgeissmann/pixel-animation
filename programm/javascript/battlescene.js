@@ -1,6 +1,9 @@
 import {attacks} from "../javascript/attacks.js"
-import {EnemySlimeImage} from "../javascript/script.js"
 import {Sprite} from "../javascript/classes.js"
+import {Monster} from "../javascript/classes.js"
+import {monsters} from "../javascript/monsters.js"
+
+
 
 
 const battleBackgroundImage = new Image()
@@ -13,39 +16,19 @@ const battleBackground = new Sprite({
   image: battleBackgroundImage
 })
 
+const EnemySlime = new Monster(monsters.Slime2)
+const BattleSlime = new Monster(monsters.Slime1)
 
-const EnemySlime = new Sprite({
-  position: {
-    x: 750,
-    y: 50
-  },
-  image: EnemySlimeImage,
-  frames: {
-    max: 6,
-    hold: 30
-  },
-  animate: true,
-  isEnemy: true,
-  name: "slime 2"
+const renderedSprites = [EnemySlime, BattleSlime]
+
+BattleSlime.attacks.forEach((attack) => {
+  const button = document.createElement('button')
+  button.innerHTML = attack.name
+  document.querySelector('#attacksBox').append(button)
+
 })
 
-const BattleSlimeImage = new Image()
-BattleSlimeImage.src = '../res/battle/battleslime-white.png'
-const BattleSlime = new Sprite({
-  position: {
-    x: 250,
-    y: 250
-  },
-  image: BattleSlimeImage,
-  frames: {
-    max: 6,
-    hold: 30
-  },
-  animate: true,
-  name: "slime 1"
-})
 
-const renderedSprites = [BattleSlime, EnemySlime]
 function animateBattle() {
   window.requestAnimationFrame(animateBattle)
   console.log('animating battle')
@@ -71,7 +54,7 @@ document.querySelectorAll('button').forEach((button) => {
 
         queue.push(() => {
         EnemySlime.attack({
-          attack: attacks.Tackle,
+          attack: attacks.Feint,
           recipient: BattleSlime,
           renderedSprites
         })

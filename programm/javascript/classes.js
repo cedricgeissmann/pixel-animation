@@ -1,5 +1,8 @@
 import {c} from "../javascript/script.js"
 
+//related to the attacks
+let movementDistance = 20
+
 //important game classes:
 
 //create boundary class
@@ -27,9 +30,8 @@ export class Boundary {
       frames = { max: 1, hold: 10 },
       sprites,
       animate = false,
-      isEnemy = false,
       rotation = 0,
-      name
+    
     }) {
       this.position = position
       this.image = image
@@ -42,10 +44,7 @@ export class Boundary {
       this.animate = animate
       this.sprites = sprites
       this.opacity = 1
-      this.health = 100
-      this.isEnemy = isEnemy
       this.rotation = rotation
-      this.name = name
     }
   
     draw() {
@@ -85,6 +84,37 @@ export class Boundary {
       else this.frames.val = 0
     }
     }
+  }
+
+  export class Monster extends Sprite {
+    constructor({
+      position,
+      velocity,
+      image,
+      frames = { max: 1, hold: 10 },
+      sprites,
+      animate = false,
+      rotation = 0,
+      isEnemy = false,
+      name,
+      attacks
+    }) {
+      super({
+        position,
+        velocity,
+        image,
+        frames,
+        sprites,
+        animate,
+        rotation
+      })
+      this.health = 100
+      this.isEnemy = isEnemy
+      this.name = name
+      this.attacks = attacks
+    }
+
+
     //attack
     attack({ attack, recipient, renderedSprites }) {
     //dialogue
@@ -148,11 +178,45 @@ export class Boundary {
           break
         case 'Tackle':
           const tl = gsap.timeline()
-  
-      let movementDistance = 20
       if (this.isEnemy) movementDistance = -20
   
       tl.to(this.position, {
+        x: this.position.x - movementDistance
+      })
+        .to(this.position, {
+          x: this.position.x + movementDistance * 2,
+          duration: 0.1,
+          onComplete: () => {
+            // Enemy actually gets hit
+            gsap.to(healthBar, {
+              width: this.health + '%'
+            })
+  
+            gsap.to(recipient.position, {
+              x: recipient.position.x + 10,
+              yoyo: true,
+              repeat: 5,
+              duration: 0.08
+            })
+  
+            gsap.to(recipient, {
+              opacity: 0,
+              repeat: 5,
+              yoyo: true,
+              duration: 0.08
+            })
+          }
+        })
+        .to(this.position, {
+          x: this.position.x
+        })
+        break
+
+        case 'Feint':
+          const t2 = gsap.timeline()
+  if (this.isEnemy) movementDistance = -20
+  
+      t2.to(this.position, {
         x: this.position.x - movementDistance
       })
         .to(this.position, {
