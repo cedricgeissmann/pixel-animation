@@ -8,5 +8,10 @@ export const attacks = {
       name: 'Fireball',
       damage: 25,
       type: 'Fire'
+    },
+    Feint: {
+      name: 'Feint',
+      damage: 20,
+      type: 'Normal'
     }
   }
