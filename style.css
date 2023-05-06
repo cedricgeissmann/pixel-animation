@@ -10,7 +10,9 @@ h1 {
 }
 
 canvas {
-    height: min(80vh, 100vh);
+    width: min(99vw, 100vw);
+    border-radius: 5px;
+
 }
 
 .paused {
@@ -23,6 +25,7 @@ main {
     margin: 10px;
     background-color: grey;
     border-radius: 5px;
+
 }
 
 @keyframes blink {
