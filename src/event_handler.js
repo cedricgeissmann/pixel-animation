@@ -185,12 +185,50 @@ export class AnimationHandler {
 
   _handleEvents(gameObject) {
     // Only run the animation if the object moved
-    if (gameObject.dx != 0 || gameObject.dy != 0) {
+    if (gameObject.dy != 0) {
+      if (gameObject.col >= 2144) {
+        this.frameCounter++
+      if (this.frameCounter >= this.framesPerAnimation) {
+        gameObject.col += gameObject.tileWidth 
+        if (gameObject.col >= this.numberOfFrames * gameObject.tileWidth+2144) {
+          gameObject.col = 2144
+        }
+        this.frameCounter = 0
+      }
+      }
+      else
       this.frameCounter++
       if (this.frameCounter >= this.framesPerAnimation) {
-        gameObject.col += gameObject.tileWidth
-        if (gameObject.col >= this.numberOfFrames * gameObject.tileWidth) {
-          gameObject.col = 0
+        gameObject.col -= gameObject.tileWidth 
+        if (gameObject.col <= 2143 - this.numberOfFrames * gameObject.tileWidth ) {
+          gameObject.col = 2096
+        }
+        this.frameCounter = 0
+      }
+    }
+    
+    else if (gameObject.dx > 0 ) {
+      if (gameObject.col < 2144){
+        gameObject.col = 2144
+      }
+      this.frameCounter++
+      if (this.frameCounter >= this.framesPerAnimation) {
+        gameObject.col += gameObject.tileWidth 
+        if (gameObject.col >= this.numberOfFrames * gameObject.tileWidth+2144) {
+          gameObject.col = 2144
+        }
+        this.frameCounter = 0
+      }
+    }
+    else if (gameObject.dx < 0 || gameObject.dy != 0) {
+      if (gameObject.col > 2144){
+        gameObject.col = 2096
+      }
+      this.frameCounter++
+      if (this.frameCounter >= this.framesPerAnimation) {
+        gameObject.col -= gameObject.tileWidth 
+        if (gameObject.col <= 2143 - this.numberOfFrames * gameObject.tileWidth ) {
+          gameObject.col = 2096
         }
         this.frameCounter = 0
       }
