@@ -149,6 +149,9 @@ SlimePinkImage.src = '../res/slimes/slimes-pink.png'
 const Slime2PinkImage = new Image()
 Slime2PinkImage.src = '../res/slimes/slimes-pink.png'
 
+const Slime3PinkImage = new Image()
+Slime3PinkImage.src = '../res/slimes/slimes-pink.png'
+
 
 
 
@@ -245,6 +248,18 @@ const Slime2Pink = new Sprite({
   },
 })
 
+const Slime3Pink = new Sprite({
+  position: {
+    x: 753,
+    y: -74,
+  },
+  image: Slime3PinkImage,
+  frames: {
+    max: 6,
+    hold: 10
+  },
+})
+
 //create const background
 const background = new Sprite({
   position: {
@@ -282,7 +297,7 @@ const keys = {
 
 //create const movables (all moving elements)
 const movables = [background, ...boundaries, foreground, ...battle1zones, ...battle2zones, ...battle3zones, SlimeBlue, Slime2Blue, SlimeGreen
-, Slime2Green, SlimePink, Slime2Pink,]
+, Slime2Green, SlimePink, Slime2Pink, Slime3Pink ]
 
 //collision-detector
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -310,6 +325,7 @@ function animate() {
   Slime2Green.draw()
   SlimePink.draw()
   Slime2Pink.draw()
+  Slime3Pink.draw()
   boundaries.forEach((boundary) => {
     boundary.draw()
   })
@@ -337,6 +353,7 @@ function animate() {
   Slime2Green.animate = true
   SlimePink.animate = true
   Slime2Pink.animate = true
+  Slime3Pink.animate = true
 
   
 
