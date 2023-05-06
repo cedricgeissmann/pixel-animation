@@ -52,6 +52,14 @@ document.querySelectorAll('button').forEach((button) => {
       
     })
 
+    if (EnemySlime.health <= 0) {
+      queue.push(() => {
+        EnemySlime.faint()
+      })
+    }
+
+    //enemy attacks right here
+
     const randomAttack =
     EnemySlime.attacks[Math.floor(Math.random() * EnemySlime.attacks.length)]
   
@@ -61,6 +69,11 @@ document.querySelectorAll('button').forEach((button) => {
           recipient: BattleSlime,
           renderedSprites
         })
+        if (BattleSlime.health <= 0) {
+          queue.push(() => {
+            BattleSlime.faint()
+          })
+        }
       })
     })
 

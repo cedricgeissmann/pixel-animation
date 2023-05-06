@@ -137,7 +137,7 @@ export class Boundary {
       let rotation = 1
       if (this.isEnemy) rotation = -2.2
   
-      this.health -= attack.damage
+      recipient.health -= attack.damage
 
       switch (attack.name) {
         case 'Fireball':
@@ -164,7 +164,7 @@ export class Boundary {
             onComplete: () => {
               // Enemy actually gets hit
               gsap.to(healthBar, {
-                width: this.health + '%'
+                width: recipient.health + '%'
               })
   
               gsap.to(recipient.position, {
@@ -198,7 +198,7 @@ export class Boundary {
           onComplete: () => {
             // Enemy actually gets hit
             gsap.to(healthBar, {
-              width: this.health + '%'
+              width: recipient.health + '%'
             })
   
             gsap.to(recipient.position, {
@@ -234,7 +234,7 @@ export class Boundary {
           onComplete: () => {
             // Enemy actually gets hit
             gsap.to(healthBar, {
-              width: this.health + '%'
+              width: recipient.health + '%'
             })
   
             gsap.to(recipient.position, {
