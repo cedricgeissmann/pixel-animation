@@ -5,12 +5,8 @@ body {
     background-color: black;
 }
 
-h1 {
-    margin-top: 0;
-}
-
 canvas {
-    margin: 0px;
+    margin-right: 1px;
     width: min(99vw, 100vw);
     border-radius: 5px;
     background-color: aqua;
