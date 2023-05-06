@@ -7,6 +7,7 @@ import {collisionsB2} from "../data/battlezones/map 1/battlezone 2.js"
 import {collisionsB3} from "../data/battlezones/map 1/battlezone 3.js"
 import {Boundary} from "../javascript/classes.js"
 import {Sprite} from "../javascript/classes.js"
+import {attacks} from "../javascript/attacks.js"
 
 
 let im3 = false
@@ -639,8 +640,8 @@ const BattleSlimeImage = new Image()
 BattleSlimeImage.src = '../res/battle/battleslime-white.png'
 const BattleSlime = new Sprite({
   position: {
-    x: 280,
-    y: 300
+    x: 250,
+    y: 250
   },
   image: BattleSlimeImage,
   frames: {
@@ -650,24 +651,24 @@ const BattleSlime = new Sprite({
   animate: true
 })
 
+const renderedSprites = [BattleSlime, EnemySlime]
 function animateBattle() {
   window.requestAnimationFrame(animateBattle)
   console.log('animating battle')
   battleBackground.draw()
-  BattleSlime.draw()
-  EnemySlime.draw()
+  renderedSprites.forEach((sprite) => {
+    sprite.draw()
+  })
 }
 
 animateBattle()
 document.querySelectorAll('button').forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (e) => {
+  const selectedAttack = attacks[e.currentTarget.innerHTML]
     BattleSlime.attack({
-      attack: {
-        name: 'Tackle',
-        damage: 10,
-        type: 'Normal'
-      },
-      recipient: EnemySlime
+      attack: selectedAttack,
+      recipient: EnemySlime,
+      renderedSprites
     })
   })
 })
