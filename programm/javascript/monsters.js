@@ -20,7 +20,7 @@ export const monsters = {
     animate: true,
     isEnemy: true,
     name: "slime 2",
-    attacks: [attacks.Feint]},
+    attacks: [attacks.Feint, attacks.Tackle, attacks.Fireball]},
   
  
     Slime1: {

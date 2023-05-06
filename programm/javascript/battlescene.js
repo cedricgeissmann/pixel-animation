@@ -52,17 +52,12 @@ document.querySelectorAll('button').forEach((button) => {
       
     })
 
-        queue.push(() => {
-        EnemySlime.attack({
-          attack: attacks.Feint,
-          recipient: BattleSlime,
-          renderedSprites
-        })
-      })
+    const randomAttack =
+    EnemySlime.attacks[Math.floor(Math.random() * EnemySlime.attacks.length)]
   
       queue.push(() => {
         EnemySlime.attack({
-          attack: attacks.Fireball,
+          attack: randomAttack,
           recipient: BattleSlime,
           renderedSprites
         })
