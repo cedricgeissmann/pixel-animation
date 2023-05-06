@@ -6,15 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>programming project</title>
     <link rel="stylesheet" href="style.css">
-    <script src="javascript/script.js" defer type="module"></script>
-    <script src="javascript/classes.js" defer type="module"></script>
-    <script src="javascript/attacks.js" defer type="module"></script>
-    <script src="javascript/monsters.js" defer type="module"></script>
-    <script src="javascript/battlescene.js" defer type="module"></script>
-    <script src="data/battlezones/map 1/battlezone 1.js" defer type="module"></script>
-    <script src="data/battlezones/map 1/battlezone 2.js" defer type="module"></script>
-    <script src="data/battlezones/map 1/battlezone 3.js" defer type="module"></script>
-    <script src="data/collisions 2.js" defer type="module"></script>
+    
+    
+  
+    <script src="data/battlezones/map 1/battlezone 1.js" defer></script>
+    <script src="data/battlezones/map 1/battlezone 2.js" ></script>
+    <script src="data/battlezones/map 1/battlezone 3.js" ></script>
+    <script src="data/collisions 1.js" defer ></script>
+    <script src="javascript/attacks.js" defer></script>
+    <script src="javascript/monsters.js" defer></script>
+    <script src="javascript/classes.js" defer></script>
+    <script src="javascript/script.js" defer></script>
+    <script src="javascript/battlescene.js" defer></script>
+
 
 
 
@@ -27,26 +31,21 @@
 </head>
 <body>
   <div style="display: inline-block; position: relative">
-    <div
-      id="overlappingDiv"
-      style="
-        background-color: black;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        opacity: 0;
-        pointer-events: none;
-      "
-  ></div>
+
+
+  <div id="overlappingDiv"></div>
+
+  <canvas></canvas>
+
+  <div id="userInterface">
+
     <!-- Represents health bar of slime 2 -->
-    <div id="slime2"
-  >
+    <div id="slime2">
     <h1 style="font-size: 16px">Slime 2</h1>
     <div style="position: relative">
       <div class="health1"></div>
-      <div id="enemyHealthBar" class="health2"></div>
+      <div id="enemyHealthBar" class="health2">
+      </div>
     </div>
   </div>
 
@@ -55,27 +54,27 @@
     <h1 style="font-size: 16px">Slime 1</h1>
     <div style="position: relative">
       <div class="health1"></div>
-      <div id="playerHealthBar"  class="health2"></div>
+      <div id="playerHealthBar"  class="health2">
+      </div>
     </div>
   </div>
 
-  <canvas></canvas>
-  <div id = "attackbox">
-  <div id = "buttons">
+ 
+  
+<div id = "attackbox">
 
-  </div>
 
 <div 
 id="attacksBox">
 </div>
-
-<div id = "attacktype">
-  <h1 id="attackType" style="font-size: 16px">Attack Type</h1>
-</div>
-
 <div 
 id="dialogueBox">
 sdkfjlsdajl
+</div>
+<div id = "attacktype">
+<h1 id="attackType" style="font-size: 16px">Attack Type</h1>
+</div>
+</div>
 </div>
 
     <script

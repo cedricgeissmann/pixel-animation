@@ -1,18 +1,17 @@
-import {EnemySlimeImage} from "../javascript/script.js"
-import {attacks} from "../javascript/attacks.js"
 
 
-const BattleSlimeImage = new Image()
-BattleSlimeImage.src = '../res/battle/battleslime-white.png'
 
 
-export const monsters = {
+
+const monsters = {
     Slime2: {
     position: {
       x: 750,
       y: 50
     },
-    image: EnemySlimeImage,
+    image: {
+      src: '../res/battle/battleslime-green.png'
+    },
     frames: {
       max: 6,
       hold: 15
@@ -28,7 +27,9 @@ export const monsters = {
       x: 250,
       y: 250
     },
-    image: BattleSlimeImage,
+    image: {
+      src: '../res/battle/battleslime-white.png'
+    },
     frames: {
       max: 6,
       hold: 15
