@@ -359,6 +359,10 @@ function animate() {
       console.log('activate battle')
       window.cancelAnimationFrame(animationId)
 
+      audio.Map.stop()
+      audio.initBattle.play()
+      audio.battle.play()
+
       
       
         battle.initiated = true
@@ -402,6 +406,10 @@ function animate() {
           //battle activation
           console.log('activate battle')
           window.cancelAnimationFrame(animationId)
+
+          audio.Map.stop()
+          audio.initBattle.play()
+          audio.battle.play()
           
             battle.initiated = true
             
@@ -445,6 +453,10 @@ function animate() {
               //battle activation
               console.log('activate battle')
               window.cancelAnimationFrame(animationId)
+
+              audio.Map.stop()
+              audio.initBattle.play()
+              audio.battle.play()
               
                 battle.initiated = true
                 
@@ -632,5 +644,13 @@ window.addEventListener('keyup', (e) => {
     case 'd':
       keys.d.pressed = false
       break
+  }
+})
+
+let clicked = false
+addEventListener('click', () => {
+  if (!clicked) {
+    audio.Map.play()
+    clicked = true
   }
 })
