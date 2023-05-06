@@ -28,7 +28,8 @@ export class Boundary {
       sprites,
       animate = false,
       isEnemy = false,
-      rotation = 0
+      rotation = 0,
+      name
     }) {
       this.position = position
       this.image = image
@@ -44,6 +45,7 @@ export class Boundary {
       this.health = 100
       this.isEnemy = isEnemy
       this.rotation = rotation
+      this.name = name
     }
   
     draw() {
@@ -85,6 +87,11 @@ export class Boundary {
     }
     //attack
     attack({ attack, recipient, renderedSprites }) {
+    //dialogue
+      document.querySelector('#dialogueBox').style.display = 'block'
+    document.querySelector('#dialogueBox').innerHTML =
+      this.name + ' used ' + attack.name
+
       let healthBar = '#enemyHealthBar'
       if (this.isEnemy) healthBar = '#playerHealthBar'
   
