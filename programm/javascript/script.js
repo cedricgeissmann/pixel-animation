@@ -1,22 +1,8 @@
 //Main programming file of the game:
 
-//imports
-import {collisions} from "../data/collisions 1.js"
-import {collisionsB1} from "../data/battlezones/map 1/battlezone 1.js"
-import {collisionsB2} from "../data/battlezones/map 1/battlezone 2.js"
-import {collisionsB3} from "../data/battlezones/map 1/battlezone 3.js"
-import {Boundary} from "../javascript/classes.js"
-import {Sprite} from "../javascript/classes.js"
-
-
-
-let im3 = true
-let im2 = false
-let im1 = false
-
 //create const c
 const canvas = document.querySelector('canvas')
-export const c = canvas.getContext('2d')
+const c = canvas.getContext('2d')
 
 canvas.width = 1024
 canvas.height = 576
@@ -372,7 +358,9 @@ function animate() {
       //battle activation
       console.log('activate battle')
       window.cancelAnimationFrame(animationId)
-        im1 = true
+
+      
+      
         battle.initiated = true
 
         gsap.to('#overlappingDiv', {
@@ -386,6 +374,7 @@ function animate() {
               duration: 0.4,
               onComplete() {
                 // activate a new animation loop
+                initBattle()
                 animateBattle()
                 gsap.to('#overlappingDiv', {
                   opacity: 0,
@@ -413,7 +402,7 @@ function animate() {
           //battle activation
           console.log('activate battle')
           window.cancelAnimationFrame(animationId)
-            im2 = true
+          
             battle.initiated = true
             
     
@@ -428,6 +417,7 @@ function animate() {
                   duration: 0.4,
               onComplete() {
                 // activate a new animation loop
+                initBattle()
                 animateBattle()
                 gsap.to('#overlappingDiv', {
                   opacity: 0,
@@ -455,7 +445,7 @@ function animate() {
               //battle activation
               console.log('activate battle')
               window.cancelAnimationFrame(animationId)
-                im3 = true
+              
                 battle.initiated = true
                 
         
@@ -470,6 +460,7 @@ function animate() {
                       duration: 0.4,
                       onComplete() {
                         // activate a new animation loop
+                        initBattle()
                         animateBattle()
                         gsap.to('#overlappingDiv', {
                           opacity: 0,
@@ -596,16 +587,9 @@ function animate() {
   }
 }
 
-export const EnemySlimeImage = new Image()
-if (im3 === true){
-  EnemySlimeImage.src = '../res/battle/battleslime-green.png'
-}
-if (im2 === true){
-  EnemySlimeImage.src = '../res/battle/battleslime-pink.png'
-}
-if (im1 === true){
-  EnemySlimeImage.src = '../res/battle/battleslime-white.png'
-}
+
+
+
 
 
 //create let lastKey and activate keys by "keydown" event

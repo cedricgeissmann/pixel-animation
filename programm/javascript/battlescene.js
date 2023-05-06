@@ -1,7 +1,4 @@
-import {attacks} from "../javascript/attacks.js"
-import {Sprite} from "../javascript/classes.js"
-import {Monster} from "../javascript/classes.js"
-import {monsters} from "../javascript/monsters.js"
+
 
 
 
@@ -16,10 +13,23 @@ const battleBackground = new Sprite({
   image: battleBackgroundImage
 })
 
-const EnemySlime = new Monster(monsters.Slime2)
-const BattleSlime = new Monster(monsters.Slime1)
+let EnemySlime
+let BattleSlime
+let renderedSprites
+let battleAnimationId
+let queue
 
-const renderedSprites = [EnemySlime, BattleSlime]
+function initBattle() {
+  document.querySelector('#userInterface').style.display = 'block'
+  document.querySelector('#dialogueBox').style.display = 'none'
+  document.querySelector('#enemyHealthBar').style.width = '100%'
+  document.querySelector('#playerHealthBar').style.width = '100%'
+  document.querySelector('#attacksBox').replaceChildren()
+
+ EnemySlime = new Monster(monsters.Slime2)
+  BattleSlime = new Monster(monsters.Slime1)
+  renderedSprites = [EnemySlime, BattleSlime]
+  queue = []
 
 BattleSlime.attacks.forEach((attack) => {
   const button = document.createElement('button')
@@ -28,18 +38,6 @@ BattleSlime.attacks.forEach((attack) => {
 
 })
 
-
-function animateBattle() {
-  window.requestAnimationFrame(animateBattle)
-  console.log('animating battle')
-  battleBackground.draw()
-  renderedSprites.forEach((sprite) => {
-    sprite.draw()
-  })
-}
-
-animateBattle()
-const queue = []
 
 // our event listeners for our buttons (attack)
 document.querySelectorAll('button').forEach((button) => {
@@ -55,6 +53,23 @@ document.querySelectorAll('button').forEach((button) => {
     if (EnemySlime.health <= 0) {
       queue.push(() => {
         EnemySlime.faint()
+      })
+      queue.push(() => {
+        // fade back to black
+        gsap.to('#overlappingDiv', {
+          opacity: 1,
+          onComplete: () => {
+            cancelAnimationFrame(battleAnimationId)
+            animate()
+            document.querySelector('#userInterface').style.display = 'none'
+
+            gsap.to('#overlappingDiv', {
+              opacity: 0
+            })
+
+            battle.initiated = false
+          }
+        })
       })
     }
 
@@ -73,6 +88,23 @@ document.querySelectorAll('button').forEach((button) => {
           queue.push(() => {
             BattleSlime.faint()
           })
+          queue.push(() => {
+            // fade back to black
+            gsap.to('#overlappingDiv', {
+              opacity: 1,
+              onComplete: () => {
+                cancelAnimationFrame(battleAnimationId)
+                animate()
+                document.querySelector('#userInterface').style.display = 'none'
+
+                gsap.to('#overlappingDiv', {
+                  opacity: 0
+                })
+                
+                battle.initiated = false
+              }
+            })
+          })
         }
       })
     })
@@ -84,6 +116,21 @@ document.querySelectorAll('button').forEach((button) => {
     
     })
   })
+}
+  function animateBattle() {
+    battleAnimationId = window.requestAnimationFrame(animateBattle)
+    battleBackground.draw()
+  
+    
+  
+    renderedSprites.forEach((sprite) => {
+      sprite.draw()
+    })
+  }
+  
+  // animate()
+  initBattle()
+  animateBattle()
   
   document.querySelector('#dialogueBox').addEventListener('click', (e) => {
     if (queue.length > 0) {
