@@ -7,10 +7,10 @@ import {collisionsB2} from "../data/battlezones/map 1/battlezone 2.js"
 import {collisionsB3} from "../data/battlezones/map 1/battlezone 3.js"
 import {Boundary} from "../javascript/classes.js"
 import {Sprite} from "../javascript/classes.js"
-import {attacks} from "../javascript/attacks.js"
 
 
-let im3 = false
+
+let im3 = true
 let im2 = false
 let im1 = false
 
@@ -595,20 +595,8 @@ function animate() {
       })
   }
 }
-//battle-animation
-//animate()
-const battleBackgroundImage = new Image()
-battleBackgroundImage.src = '../res/battle/battlebackground.png'
-const battleBackground = new Sprite({
-  position: {
-    x: 0,
-    y: 0
-  },
-  image: battleBackgroundImage
-})
 
-
-const EnemySlimeImage = new Image()
+export const EnemySlimeImage = new Image()
 if (im3 === true){
   EnemySlimeImage.src = '../res/battle/battleslime-green.png'
 }
@@ -619,61 +607,6 @@ if (im1 === true){
   EnemySlimeImage.src = '../res/battle/battleslime-white.png'
 }
 
-
-
-const EnemySlime = new Sprite({
-  position: {
-    x: 750,
-    y: 50
-  },
-  image: EnemySlimeImage,
-  frames: {
-    max: 6,
-    hold: 30
-  },
-  animate: true,
-  animate: true,
-  isEnemy: true
-})
-
-const BattleSlimeImage = new Image()
-BattleSlimeImage.src = '../res/battle/battleslime-white.png'
-const BattleSlime = new Sprite({
-  position: {
-    x: 250,
-    y: 250
-  },
-  image: BattleSlimeImage,
-  frames: {
-    max: 6,
-    hold: 30
-  },
-  animate: true
-})
-
-const renderedSprites = [BattleSlime, EnemySlime]
-function animateBattle() {
-  window.requestAnimationFrame(animateBattle)
-  console.log('animating battle')
-  battleBackground.draw()
-  renderedSprites.forEach((sprite) => {
-    sprite.draw()
-  })
-}
-
-animateBattle()
-document.querySelectorAll('button').forEach((button) => {
-  button.addEventListener('click', (e) => {
-  const selectedAttack = attacks[e.currentTarget.innerHTML]
-    BattleSlime.attack({
-      attack: selectedAttack,
-      recipient: EnemySlime,
-      renderedSprites
-    })
-  })
-})
-
-//animate()
 
 //create let lastKey and activate keys by "keydown" event
 let lastKey = ''
