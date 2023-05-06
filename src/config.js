@@ -10,10 +10,7 @@ const config = {
     "ArrowLeft": function() { Game.player2.move("left")},
     "ArrowRight": function() { Game.player2.move("right")},
     "KeyF": function() { Game.player.heal()},
-    "KeyG": function() { Game.player.move("attack")},
     "KeyM": function() { Game.player2.heal()},
-    "KeyN": function() { Game.player2.move("attack")},
-    
   }
 }
 

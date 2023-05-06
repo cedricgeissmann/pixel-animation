@@ -260,7 +260,7 @@ export class Player extends AnimatedGameObject {
     
     this.row = 0
     this.col = 1
-    this.speed = 5
+    this.speed = 3
     this.healamount = 2
     this.hp = 100
     this.maxHp = this.hp 
@@ -312,12 +312,18 @@ export class Player2 extends AnimatedGameObject {
     
     this.row = 0
     this.col = 0
-    this.speed = 5
+    this.speed = 3
     
 
     addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 1})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
+  }
+  heal() {
+    if (this.hp < (this.maxHp - this.healamount + 50)){
+      this.hp = this.hp + this.healamount
+      document.querySelector("#hp-player-1").textContent = this.hp
+    }
   }
 
   jump() {
