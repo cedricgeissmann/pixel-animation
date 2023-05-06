@@ -10,8 +10,10 @@ h1 {
 }
 
 canvas {
+    margin: 0px;
     width: min(99vw, 100vw);
     border-radius: 5px;
+    background-color: aqua;
 
 }
 
