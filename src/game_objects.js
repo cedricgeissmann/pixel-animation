@@ -227,6 +227,7 @@ export class seastar extends GameObject {
     this.tileSize = 32
     this.row = 0
     this.col = 0
+    this.destroy = 4
     addCollision(this, {collisionTags: ["forest"]})
 
   
@@ -264,6 +265,7 @@ export class Player extends AnimatedGameObject {
     this.healamount = 2
     this.hp = 100
     this.maxHp = this.hp 
+  
 
     document.querySelector("#hp-player-1").textContent = this.hp
 
@@ -313,6 +315,10 @@ export class Player2 extends AnimatedGameObject {
     this.row = 0
     this.col = 0
     this.speed = 3
+    this.healamount = 2
+    this.hp = 100
+    this.maxHp = this.hp 
+    
     
 
     addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})

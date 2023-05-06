@@ -1,7 +1,8 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player, Player2 } from "./game_objects.js"
+import { Player, Player2, seastar} from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
+let doDmg = this.hp
 
 export function addGravity(gameObject, gravityOptions) {
   gameObject.handlers.add(new GravityHandler(gravityOptions))
@@ -161,8 +162,28 @@ export class CollisionHandler {
     if (matchCollisionTags(collidingObject, ["pickups"])) {
       collidingObject.destroy()
     }
-  }
-}
+
+    //let hp = this.hp
+
+    //if (matchCollisionTags(collidingObject, ["forest"])) {
+      collidingObject.destroy()
+      //hp = 100 - this.destroy
+      doDmg = doDmg - 4
+      collidingObjects.forest()
+    }
+  }//
+
+  
+
+    
+    //if (_matchCollisionTags(collidingObject, ["forest"])) {
+      //collidingObject.destroy()
+      //  doDmg = doDmg - 4
+    //}
+
+  
+  
+
 
 function matchCollisionTags(collidingObject, tags) {
   const colHandler = collidingObject.handlers.get(CollisionHandler)
