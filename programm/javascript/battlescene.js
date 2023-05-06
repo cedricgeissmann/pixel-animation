@@ -68,6 +68,8 @@ document.querySelectorAll('button').forEach((button) => {
             })
 
             battle.initiated = false
+
+            audio.Map.play()
           }
         })
       })
@@ -102,6 +104,7 @@ document.querySelectorAll('button').forEach((button) => {
                 })
                 
                 battle.initiated = false
+                audio.Map.play()
               }
             })
           })
@@ -128,9 +131,8 @@ document.querySelectorAll('button').forEach((button) => {
     })
   }
   
-  // animate()
-  initBattle()
-  animateBattle()
+ 
+  animate()
   
   document.querySelector('#dialogueBox').addEventListener('click', (e) => {
     if (queue.length > 0) {
