@@ -23,7 +23,7 @@ export default class Game {
 
   constructor() {
     Game.instance = this
-    Game.canvas.width = 10 * Game.tileWidth
+    Game.canvas.width = 30 * Game.tileWidth
     Game.canvas.height = 15 * Game.tileHeight
     this.ctx = Game.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
