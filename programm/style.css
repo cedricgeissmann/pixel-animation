@@ -65,16 +65,19 @@ display: flex;
 }
 
 .health1{
-  height: 5px; background-color: #ccc; margin-top: 10px"
+  height: 5px; width:250px; background-color: #ccc; margin-top: 10px
+  
 }
 
 .health2 {
   height: 5px;
+  width: 250px;
   background-color: green;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  margin-top: 10px
 }
 
 h1 {
