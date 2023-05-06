@@ -27,7 +27,8 @@ export class Boundary {
       frames = { max: 1, hold: 10 },
       sprites,
       animate = false,
-      isEnemy = false
+      isEnemy = false,
+      rotation = 0
     }) {
       this.position = position
       this.image = image
@@ -42,10 +43,20 @@ export class Boundary {
       this.opacity = 1
       this.health = 100
       this.isEnemy = isEnemy
+      this.rotation = rotation
     }
   
     draw() {
       c.save()
+      c.translate(
+        this.position.x + this.width / 2,
+        this.position.y + this.height / 2
+      )
+      c.rotate(this.rotation)
+      c.translate(
+        -this.position.x - this.width / 2,
+        -this.position.y - this.height / 2
+      )
       c.globalAlpha = this.opacity
       c.drawImage(
         this.image,
@@ -73,16 +84,66 @@ export class Boundary {
     }
     }
     //attack
-    attack({ attack, recipient }) {
-      const tl = gsap.timeline()
+    attack({ attack, recipient, renderedSprites }) {
+      let healthBar = '#enemyHealthBar'
+      if (this.isEnemy) healthBar = '#playerHealthBar'
+  
+      let rotation = 1
+      if (this.isEnemy) rotation = -2.2
   
       this.health -= attack.damage
+
+      switch (attack.name) {
+        case 'Fireball':
+          const fireballImage = new Image()
+          fireballImage.src = '../res/battle/fireball.png'
+          const fireball = new Sprite({
+            position: {
+              x: this.position.x,
+              y: this.position.y
+            },
+            image: fireballImage,
+            frames: {
+              max: 4,
+              hold: 10
+            },
+            animate: true,
+            rotation
+          })
+          renderedSprites.splice(1, 0, fireball)
+  
+          gsap.to(fireball.position, {
+            x: recipient.position.x,
+            y: recipient.position.y,
+            onComplete: () => {
+              // Enemy actually gets hit
+              gsap.to(healthBar, {
+                width: this.health + '%'
+              })
+  
+              gsap.to(recipient.position, {
+                x: recipient.position.x + 10,
+                yoyo: true,
+                repeat: 5,
+                duration: 0.08
+              })
+  
+              gsap.to(recipient, {
+                opacity: 0,
+                repeat: 5,
+                yoyo: true,
+                duration: 0.08
+              })
+              renderedSprites.splice(1, 1)
+            }
+          })
+  
+          break
+        case 'Tackle':
+          const tl = gsap.timeline()
   
       let movementDistance = 20
       if (this.isEnemy) movementDistance = -20
-  
-      let healthBar = '#enemyHealthBar'
-      if (this.isEnemy) healthBar = '#playerHealthBar'
   
       tl.to(this.position, {
         x: this.position.x - movementDistance
@@ -114,5 +175,7 @@ export class Boundary {
         .to(this.position, {
           x: this.position.x
         })
+        break
+      }
     }
   }

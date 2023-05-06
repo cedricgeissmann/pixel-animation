@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="javascript/script.js" defer type="module"></script>
     <script src="javascript/classes.js" defer type="module"></script>
+    <script src="javascript/attacks.js" defer type="module"></script>
     <script src="data/battlezones/map 1/battlezone 1.js" defer type="module"></script>
     <script src="data/battlezones/map 1/battlezone 2.js" defer type="module"></script>
     <script src="data/battlezones/map 1/battlezone 3.js" defer type="module"></script>
@@ -42,8 +43,8 @@
   >
     <h1 style="font-size: 16px">Slime 2</h1>
     <div style="position: relative">
-      <div id="health1"></div>
-      <div id="health2"></div>
+      <div class="health1"></div>
+      <div id="playerHealthBar" class="health2"></div>
     </div>
   </div>
 
@@ -51,8 +52,8 @@
   <div id="slime1">
     <h1 style="font-size: 16px">Slime 1</h1>
     <div style="position: relative">
-      <div id="health1"></div>
-      <div id="health2"></div>
+      <div class="health1"></div>
+      <div id="enemyHealthBar" class="health2"></div>
     </div>
   </div>
 
@@ -62,7 +63,7 @@
   <div id = "buttons">
 
     <button>Tackle</button>
-    <button>Attack2</button>
+    <button>Fireball</button>
 
   </div>
 

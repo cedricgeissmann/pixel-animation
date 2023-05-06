@@ -64,11 +64,11 @@ display: flex;
   padding: 12px;
 }
 
-#health1{
+.health1{
   height: 5px; background-color: #ccc; margin-top: 10px"
 }
 
-#health2 {
+.health2 {
   height: 5px;
   background-color: green;
   position: absolute;
