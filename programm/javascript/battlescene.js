@@ -121,7 +121,7 @@ document.querySelectorAll('button').forEach((button) => {
     battleAnimationId = window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
   
-    console.log(battleAnimationId)
+    
   
     renderedSprites.forEach((sprite) => {
       sprite.draw()
