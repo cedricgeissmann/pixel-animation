@@ -185,7 +185,34 @@ export class AnimationHandler {
 
   _handleEvents(gameObject) {
     // Only run the animation if the object moved
+    
+    if(gameObject.dx == 0 && gameObject.dy == 0 ) {
+      gameObject.row = 0
+      if (gameObject.col >= 2144) {
+        this.frameCounter++
+        if (this.frameCounter >= this.framesPerAnimation*2) {
+          gameObject.col += gameObject.tileWidth 
+          if (gameObject.col >= this.numberOfFrames * gameObject.tileWidth+2144) {
+            gameObject.col = 2144
+          }
+          this.frameCounter = 0
+        }
+      }
+      else 
+        this.frameCounter++
+        if (this.frameCounter >= this.framesPerAnimation*2) {
+          gameObject.col -= gameObject.tileWidth 
+          if (gameObject.col <= 2143 - this.numberOfFrames * gameObject.tileWidth) {
+            gameObject.col = 2096
+          }
+          this.frameCounter = 0
+      }
+    }
+//////////////
+  // nach oben oder unten laufen code
+    else 
     if (gameObject.dy != 0) {
+      gameObject.row = 64
       if (gameObject.col >= 2144) {
         this.frameCounter++
       if (this.frameCounter >= this.framesPerAnimation) {
@@ -196,7 +223,7 @@ export class AnimationHandler {
         this.frameCounter = 0
       }
       }
-      else
+      else //falls man nach links zuletzt geschaut hat läuft man nach oben und unten mit dem blick zur gleichen seite
       this.frameCounter++
       if (this.frameCounter >= this.framesPerAnimation) {
         gameObject.col -= gameObject.tileWidth 
@@ -207,7 +234,10 @@ export class AnimationHandler {
       }
     }
     
+    // nach rechts laufen
     else if (gameObject.dx > 0 ) {
+      gameObject.row = 64
+      //damit man sich instant umdreht
       if (gameObject.col < 2144){
         gameObject.col = 2144
       }
@@ -220,7 +250,10 @@ export class AnimationHandler {
         this.frameCounter = 0
       }
     }
+    // nach links laufen
     else if (gameObject.dx < 0 || gameObject.dy != 0) {
+      gameObject.row = 64
+      //damit man sich instant umdreht
       if (gameObject.col > 2144){
         gameObject.col = 2096
       }
@@ -234,5 +267,5 @@ export class AnimationHandler {
       }
     }
 
-  }
+  }  
 }
