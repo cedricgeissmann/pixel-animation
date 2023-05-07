@@ -6,15 +6,7 @@ import Camera from "./camera.js"
 import Game from "./game.js"
 import Map from "./map.js"
 
-/**
- * Dies ist die Basisklasse für alle Spiel-Objekte.
- * 
- * Wenn ein spezialisiertes Spiel-Objekt erzeugt wird, dann soll es 
- * immer diese Klasse erweitern. Wenn die Funktionen von der Basisklasse
- * überschrieben werden, sollten diese immer zuerst mit `super.function()` 
- * aufgerufen werden, so das die eigentliche Funktionalität der Spiel-Objekte
- * erhalten bleibt.
- */
+
 export class GameObject {
   constructor(x, y, options = {sheet, layer: "background"}) {
     this.sheet = options.sheet
@@ -235,6 +227,7 @@ export class seastar extends GameObject {
     this.tileSize = 32
     this.row = 0
     this.col = 0
+    this.destroy = 4
     addCollision(this, {collisionTags: ["forest"]})
 
   
@@ -272,6 +265,7 @@ export class Player extends AnimatedGameObject {
     this.healamount = 2
     this.hp = 100
     this.maxHp = this.hp 
+  
 
     document.querySelector("#hp-player-1").textContent = this.hp
 
@@ -326,6 +320,12 @@ export class Player2 extends AnimatedGameObject {
     addGravity(this, {maxGravity: 3, gravityForce: 0.4 , jumpForce: -10})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 1})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
+  }
+  heal() {
+    if (this.hp < (this.maxHp - this.healamount + 50)){
+      this.hp = this.hp + this.healamount
+      document.querySelector("#hp-player-1").textContent = this.hp
+    }
   }
 
   jump() {
