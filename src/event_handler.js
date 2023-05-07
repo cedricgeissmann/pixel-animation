@@ -8,7 +8,9 @@ export function addGravity(gameObject, gravityOptions) {
 }
 
 export function addAnimation(gameObject, animationOptions) {
-  gameObject.handlers.add(new AnimationHandler(animationOptions))
+  const handler = new AnimationHandler(animationOptions);
+  gameObject.handlers.add(handler);
+  return handler;
 }
 
 export function addCollision(gameObject, collisionOptions) {
@@ -181,13 +183,76 @@ export class AnimationHandler {
     this.frameCounter = 0
     this.framesPerAnimation = options.framesPerAnimation
     this.numberOfFrames = options.numberOfFrames
+    this.playKeyKAnimation = false;
+    this.keyKReleased = true;
+  }
+
+  get isKeyKAnimationPlaying() {
+    return this.playKeyKAnimation;
   }
 
   _handleEvents(gameObject) {
+
     // Only run the animation if the object moved
+
+    ///attack1 (stich) animation wenn K gedrückt wird
+    if(InputHandler.events.has("KeyK") && !this.playKeyKAnimation && this.keyKReleased) {
+      this.playKeyKAnimation = true;
+      this.keyKReleased = false;
+      }
     
+      if (!InputHandler.events.has("KeyK")) {
+      this.keyKReleased = true;
+    }
+    
+    if (this.playKeyKAnimation) {
+      gameObject.row = 4 * 64
+      if (gameObject.col >= 2144) {
+        this.frameCounter++
+        
+
+        if (this.frameCounter >= this.framesPerAnimation) {
+
+          if (gameObject.col >= 2144 && gameObject.col < 2480) { 
+          gameObject.tileWidth = 48
+          gameObject.col += 48
+          }
+
+          if(gameObject.col >= 2480 && gameObject.col < 2864){ 
+            gameObject.tileWidth = 96
+            gameObject.col += 96
+          }
+
+          if(gameObject.col >= 2864 && gameObject.col < 3024){ 
+            gameObject.tileWidth = 80
+            gameObject.col += 80
+          }
+
+          if(gameObject.col >= 3024 && gameObject.col < 3088){ 
+            gameObject.tileWidth = 64
+            gameObject.col += 64
+          }
+
+          if(gameObject.col >= 3088 && gameObject.col < 3184){ 
+            gameObject.tileWidth = 48
+            gameObject.col += 48
+          }
+
+        if (gameObject.col >= 2144+1040) {
+            gameObject.col = 2144
+            this.playKeyKAnimation = false;
+          }
+          
+          this.frameCounter = 0
+        }
+      }
+      
+    }
+  
+    else {
     if(gameObject.dx == 0 && gameObject.dy == 0 ) {
       gameObject.row = 0
+      gameObject.tileWidth = 48
       if (gameObject.col >= 2144) {
         this.frameCounter++
         if (this.frameCounter >= this.framesPerAnimation*2) {
@@ -213,6 +278,7 @@ export class AnimationHandler {
     else 
     if (gameObject.dy != 0) {
       gameObject.row = 64
+      gameObject.tileWidth = 48
       if (gameObject.col >= 2144) {
         this.frameCounter++
       if (this.frameCounter >= this.framesPerAnimation) {
@@ -237,6 +303,7 @@ export class AnimationHandler {
     // nach rechts laufen
     else if (gameObject.dx > 0 ) {
       gameObject.row = 64
+      gameObject.tileWidth = 48
       //damit man sich instant umdreht
       if (gameObject.col < 2144){
         gameObject.col = 2144
@@ -253,6 +320,7 @@ export class AnimationHandler {
     // nach links laufen
     else if (gameObject.dx < 0 || gameObject.dy != 0) {
       gameObject.row = 64
+      gameObject.tileWidth = 48
       //damit man sich instant umdreht
       if (gameObject.col > 2144){
         gameObject.col = 2096
@@ -267,5 +335,6 @@ export class AnimationHandler {
       }
     }
 
-  }  
+    }  
+  }
 }

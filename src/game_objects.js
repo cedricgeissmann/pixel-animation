@@ -213,7 +213,7 @@ export class Player extends AnimatedGameObject {
     this.speed = 3
 
     //addGravity(this, {maxGravity: 3, gravityForce: 1})
-    addAnimation(this, { framesPerAnimation: 5, numberOfFrames: 8})
+    this.animationHandler = addAnimation(this, { framesPerAnimation: 5, numberOfFrames: 8});
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
 
@@ -235,6 +235,9 @@ export class Player extends AnimatedGameObject {
   }
 
   move(direction) {
+    if (this.animationHandler.isKeyKAnimationPlaying) {
+      return;
+    }
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
     } else if (direction === "down") {
