@@ -202,7 +202,7 @@ export class crown extends GameObject {
     this.tileSize = 32
     this.row = 1
     this.col = 1
-    addCollision(this, {collisionTags: ["pickups"]})
+    addCollision(this, {collisionTags: ["pickups", "cave"]})
 
   
 } 
@@ -218,7 +218,7 @@ export class waterlily extends GameObject {
     this.tileSize = 32
     this.row = 0
     this.col = 1
-    addCollision(this, {collisionTags: ["pickups"]})
+    addCollision(this, {collisionTags: ["fast"]})
 
   
 } 
@@ -268,7 +268,7 @@ export class Player extends AnimatedGameObject {
     
     this.row = 0
     this.col = 1
-    this.speed = 5
+    this.speed = 3
     this.healamount = 2
     this.hp = 100
     this.maxHp = this.hp 
@@ -278,7 +278,7 @@ export class Player extends AnimatedGameObject {
 
     this.tileSize = 64
 
-    addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
+    addGravity(this, {maxGravity: 3, gravityForce: 0.4 , jumpForce: -10})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 2})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
@@ -320,10 +320,10 @@ export class Player2 extends AnimatedGameObject {
     
     this.row = 0
     this.col = 0
-    this.speed = 5
+    this.speed = 3
     
 
-    addGravity(this, {maxGravity: 3, gravityForce: 0.3 , jumpForce: -10})
+    addGravity(this, {maxGravity: 3, gravityForce: 0.4 , jumpForce: -10})
     addAnimation(this, { framesPerAnimation: 15, numberOfFrames: 1})
     addCollision(this, { collisionTags: ["world", "pickups", "cave", "forest"] })
   }
