@@ -1,8 +1,8 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Player, Player2, waterlily } from "./game_objects.js"
+import { Player, Player2, waterlily} from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
-let doDmg = this.hp
+
 
 export function addGravity(gameObject, gravityOptions) {
   gameObject.handlers.add(new GravityHandler(gravityOptions))
@@ -157,29 +157,20 @@ export class CollisionHandler {
     if (matchCollisionTags(collidingObject, ["cave"])) {
       load ("res/gameover.png")
     }
+
+
+
     if (matchCollisionTags(collidingObject, ["fast"])) {
       collidingObject.destroy()
       if (collidingObject instanceof waterlily) {
         gameObject.speed = 6 
         setInterval(function () {
-            gameObject.speed = 4
+            gameObject.speed = 3
 
         }, 2000)    
 
       }
     }
-    if (matchCollisionTags(collidingObject, ["fast"])) {
-      collidingObject.destroy()
-      if (collidingObject instanceof waterlily) {
-        gameObject.speed = 6 
-        setInterval(function () {
-            gameObject.speed = 4
-
-        }, 2000)    
-
-      }
-    }
-
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     if (matchCollisionTags(collidingObject, ["pickups"])) {
