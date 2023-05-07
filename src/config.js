@@ -7,10 +7,6 @@ const config = {
     "KeyA": function() { Game.player.move("left")},
     "KeyS": function() { Game.player.move("down")},
     "KeyD": function() { Game.player.move("right")},
-    "Space": {
-      callback: function() { new ShootingStone(Game.player.x / Game.tileWidth, Game.player.y / Game.tileHeight)},
-      cooldown: 60 // Add cooldown in frames
-    }
   }
 }
 
