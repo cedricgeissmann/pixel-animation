@@ -235,9 +235,11 @@ export class Player extends AnimatedGameObject {
   }
 
   move(direction) {
+    //bewegung blockiert solange k-animation läuft
     if (this.animationHandler.isKeyKAnimationPlaying) {
       return;
     }
+    
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
     } else if (direction === "down") {
@@ -252,4 +254,4 @@ export class Player extends AnimatedGameObject {
       Camera.shiftBackground(-1)
     }
   }
-}
+ }

@@ -207,10 +207,10 @@ export class AnimationHandler {
     
     if (this.playKeyKAnimation) {
       gameObject.row = 4 * 64
+      //attacke nach rechts
       if (gameObject.col >= 2144) {
         this.frameCounter++
-        
-
+        //verschiedene tile.width da nicht alle frames gleich breit sind --> dynamische tile.width hinzugefügt
         if (this.frameCounter >= this.framesPerAnimation) {
 
           if (gameObject.col >= 2144 && gameObject.col < 2480) { 
@@ -246,9 +246,48 @@ export class AnimationHandler {
           this.frameCounter = 0
         }
       }
+      //für attacke nach links
+      if (gameObject.col < 2144) {
+        this.frameCounter++
+        
+        if (this.frameCounter >= this.framesPerAnimation) {
+
+          if (gameObject.col <= 2096 && gameObject.col >= 1808+48) { 
+            gameObject.col -= 48
+            gameObject.tileWidth = 48
+          }
+
+          else if(gameObject.col < 1808+48 && gameObject.col >= 1424+48){ 
+            gameObject.col -= 96
+            gameObject.tileWidth = 96
+          }
+
+          else if(gameObject.col < 1424+48 && gameObject.col >= 1264+48 ){ 
+            gameObject.col -= 80
+            gameObject.tileWidth = 80
+          }
+
+          else if(gameObject.col < 1264+48 && gameObject.col >= 1200+48 ){ 
+            gameObject.col -= 64
+            gameObject.tileWidth = 64
+          }
+
+          else if(gameObject.col < 1200+48 && gameObject.col >=1104+48){ 
+            gameObject.col -= 48
+            gameObject.tileWidth = 48
+          }
+
+        if (gameObject.col < 1104+48) {
+            gameObject.col = 2096
+            this.playKeyKAnimation = false;
+          }
+          
+          this.frameCounter = 0
+        }
+      }
       
     }
-  
+    //animationen für idle und run spielen nur ab wenn attacke nicht ausgeführt wird
     else {
     if(gameObject.dx == 0 && gameObject.dy == 0 ) {
       gameObject.row = 0
