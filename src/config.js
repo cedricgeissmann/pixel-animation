@@ -19,15 +19,4 @@ document.addEventListener("keydown", function(event) {
     }
   }
 });
-
-document.addEventListener('DOMContentLoaded', function () {
-  const mainElement = document.getElementById('mainElement');
-
-  document.addEventListener('keydown', function (event) {
-      if (event.key === 'l' || event.key === 'L') {
-          mainElement.classList.toggle('health-low');
-      }
-  });
-});
-
 export default config;

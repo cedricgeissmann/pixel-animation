@@ -185,16 +185,22 @@ export class AnimationHandler {
     this.numberOfFrames = options.numberOfFrames
     this.playKeyKAnimation = false;
     this.keyKReleased = true;
-    this.kAttackMove = 0;
+    this.playKeyJAnimation = false;
+    this.keyJReleased = true;
   }
 
   get isKeyKAnimationPlaying() {
     return this.playKeyKAnimation;
   }
 
+  get isKeyJAnimationPlaying() {
+    return this.playKeyJAnimation;
+  }
+
   _handleEvents(gameObject) {
 
     // Only run the animation if the object moved
+    ////mitte vom sprit sheet is zwischen 2143 und 2144 --> wenn rechte seite erwähnt werden soll +2144 nehmen
 
     ///attack1 (stich) animation wenn K gedrückt wird
     if(InputHandler.events.has("KeyK") && !this.playKeyKAnimation && this.keyKReleased) {
@@ -205,8 +211,20 @@ export class AnimationHandler {
       if (!InputHandler.events.has("KeyK")) {
       this.keyKReleased = true;
     }
+
+
+    if(InputHandler.events.has("KeyJ") && !this.playKeyJAnimation && this.keyJReleased) {
+      this.playKeyJAnimation = true;
+      this.keyJReleased = false;
+      }
     
-    if (this.playKeyKAnimation) {
+      if (!InputHandler.events.has("KeyJ")) {
+      this.keyJReleased = true;
+    }
+
+
+    
+    if (this.playKeyKAnimation && !this.playKeyJAnimation) {
       gameObject.row = 4 * 64
       //attacke nach rechts
       if (gameObject.col >= 2144) {
@@ -288,8 +306,128 @@ export class AnimationHandler {
       }
       
     }
+
+
     //animationen für idle und run spielen nur ab wenn attacke nicht ausgeführt wird
+    
     else {
+
+      //Hier kommt die zweite Attacke die länger dauert (wirbelattacke mit stoss)
+
+    ///attackA animation wenn J gedrückt wird
+    
+    if (this.playKeyJAnimation && !this.playKeyKAnimation) {
+      gameObject.row = 2 * 64
+      //attacke nach rechts
+      if (gameObject.col >= 2144) {
+        this.frameCounter++
+        //verschiedene tile.width da nicht alle frames gleich breit sind --> dynamische tile.width hinzugefügt
+        if (this.frameCounter >= this.framesPerAnimation*20) {
+          //wenn tile.Width 64px sein soll
+          if (gameObject.col >= 2144 && gameObject.col < 2272)  { 
+          gameObject.tileWidth = 64
+          gameObject.col += 64
+          }
+          else if (gameObject.col >= 2352 && gameObject.col < 2480 ) { 
+          gameObject.tileWidth = 64
+          gameObject.col += 64
+          }
+          else if (gameObject.col >= 2560 && gameObject.col < 2624){ 
+          gameObject.tileWidth = 64
+          gameObject.col += 64
+          }
+          else if (gameObject.col >= 3440 && gameObject.col < 3504){ 
+          gameObject.tileWidth = 64
+          gameObject.col += 64
+          }
+          //wenn tile.Width 80px sein soll
+          else if(gameObject.col >= 2272 && gameObject.col < 2352){ 
+            gameObject.tileWidth = 80
+            gameObject.col += 80
+          }
+          else if(gameObject.col >= 2480 && gameObject.col < 2560 ){ 
+            gameObject.tileWidth = 80
+            gameObject.col += 80
+          }
+          else if(gameObject.col >= 2720 && gameObject.col < 2800){ 
+            gameObject.tileWidth = 80
+            gameObject.col += 80
+          }
+          else if(gameObject.col >= 3280 && gameObject.col < 3440){ 
+            gameObject.tileWidth = 80
+            gameObject.col += 80
+          }
+          //wenn tile.Width 96px sein soll
+          else if(gameObject.col >= 2624 && gameObject.col < 2720) { 
+            gameObject.tileWidth = 96
+            gameObject.col += 96
+          }
+          else if(gameObject.col >= 2992 && gameObject.col < 3280 ){ 
+            gameObject.tileWidth = 96
+            gameObject.col += 96
+          }
+          //wenn tile.Width 48px sein soll
+          else if(gameObject.col >= 2800 && gameObject.col < 2992){ 
+            gameObject.tileWidth = 48
+            gameObject.col += 48
+          }
+          else if(gameObject.col >= 3504 && gameObject.col < 3600 ){ 
+            gameObject.tileWidth = 48
+            gameObject.col += 48
+          }
+
+        if (gameObject.col >= 2144+1456) {
+            gameObject.col = 2144
+            this.playKeyJAnimation = false;
+          }
+          
+          this.frameCounter = 0
+        }
+      }
+      //für attacke nach links
+      if (gameObject.col < 2144 && gameObject.row == 2 * 64) {
+        this.frameCounter++
+        
+        if (this.frameCounter >= this.framesPerAnimation) {
+
+          if (gameObject.col <= 2096 && gameObject.col >= 1808+48) { 
+            gameObject.col -= 48
+            gameObject.tileWidth = 48
+          }
+
+          else if(gameObject.col < 1808+48 && gameObject.col >= 1424+48){ 
+            gameObject.col -= 96
+            gameObject.tileWidth = 96
+          }
+
+          else if(gameObject.col < 1424+48 && gameObject.col >= 1264+48 ){ 
+            gameObject.col -= 80
+            gameObject.tileWidth = 80
+          }
+
+          else if(gameObject.col < 1264+48 && gameObject.col >= 1200+48 ){ 
+            gameObject.col -= 64
+            gameObject.tileWidth = 64
+          }
+
+          else if(gameObject.col < 1200+48 && gameObject.col >=1104+48){ 
+            gameObject.col -= 48
+            gameObject.tileWidth = 48
+          }
+
+        if (gameObject.col < 1104+48) {
+            gameObject.col = 2096
+            this.playKeyJAnimation = false;
+          }
+          
+          this.frameCounter = 0
+        }
+      }
+      
+    }
+
+
+    else{
     if(gameObject.dx == 0 && gameObject.dy == 0 ) {
       gameObject.row = 0
       gameObject.tileWidth = 48
@@ -374,7 +512,8 @@ export class AnimationHandler {
         this.frameCounter = 0
       }
     }
-
+    }
     }  
   }
 }
+//animations code unübersichtlich, könnte simpler und effektiver dargestellt werden + problem für linke richtung

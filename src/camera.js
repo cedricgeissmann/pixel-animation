@@ -75,7 +75,12 @@ export default class Camera {
   static shiftBackground(value) {
       const canvasStyle = document.querySelector("#canvas").style
       const bgX = parseInt(canvasStyle.backgroundPositionX) || 0
-      canvasStyle.backgroundPositionX = `${bgX + value}px`
+      canvasStyle.backgroundPositionX = `${bgX + value}py`
+  }
+  static shiftBackground2(value) {
+      const canvasStyle = document.querySelector("#canvas").style
+      const bgY = parseInt(canvasStyle.backgroundPositionX) || 0
+      canvasStyle.backgroundPositionY = `${bgY + value}py`
   }
     
 }

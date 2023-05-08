@@ -239,11 +239,16 @@ export class Player extends AnimatedGameObject {
     if (this.animationHandler.isKeyKAnimationPlaying) {
       return;
     }
+    if (this.animationHandler.isKeyJAnimationPlaying) {
+      return;
+    }
     
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
+      Camera.shiftBackground2(1)
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
+      Camera.shiftBackground2(-1)
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
       this.row = 1 * this.tileHeight

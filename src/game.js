@@ -14,7 +14,7 @@ export default class Game {
   static map = null;
   static player = null;
   static player2 = null;
-  static running = false;
+  static running = true;
   static currentFrame = 0;
   static canvas = document.querySelector("#canvas")
   static tileWidth = 32
@@ -24,7 +24,7 @@ export default class Game {
   constructor() {
     Game.instance = this
     Game.canvas.width = 30 * Game.tileWidth
-    Game.canvas.height = 15 * Game.tileHeight
+    Game.canvas.height = 17 * Game.tileHeight
     this.ctx = Game.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
 
@@ -37,7 +37,7 @@ export default class Game {
     document.querySelector("#game-start").addEventListener("click", () => { Game.start() })
     document.querySelector("#game-pause").addEventListener("click", () => { Game.pause() })
 
-    Game.running = false
+    Game.running = true
     window.requestAnimationFrame(this.gameLoop.bind(this))
   }
 
