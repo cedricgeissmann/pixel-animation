@@ -59,12 +59,12 @@ class Box {                         //creating a class called Box
 
         //attackBoxzz
         if(this.isAttacking){
-        c.fillStyle = "green"
-        c.fillRect(
-        this.attackBox.position.x, 
-        this.attackBox.position.y, 
-        this.attackBox.width, 
-        this.attackBox.height);
+        //c.fillStyle = "green"
+       // c.fillRect(
+       // this.attackBox.position.x, 
+        //this.attackBox.position.y, 
+        //this.attackBox.width, 
+        //this.attackBox.height);
         }
 
 
