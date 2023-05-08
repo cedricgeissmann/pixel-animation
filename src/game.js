@@ -14,7 +14,7 @@ export default class Game {
   static map = null;
   static player = null;
   static player2 = null;
-  static running = true;
+  static running = false;
   static currentFrame = 0;
   static canvas = document.querySelector("#canvas")
   static tileWidth = 32
@@ -37,7 +37,7 @@ export default class Game {
     document.querySelector("#game-start").addEventListener("click", () => { Game.start() })
     document.querySelector("#game-pause").addEventListener("click", () => { Game.pause() })
 
-    Game.running = true
+    Game.running = false
     window.requestAnimationFrame(this.gameLoop.bind(this))
   }
 
