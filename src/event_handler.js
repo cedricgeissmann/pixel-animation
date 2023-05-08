@@ -319,7 +319,7 @@ export class AnimationHandler {
     if (this.playKeyJAnimation && !this.playKeyKAnimation) {
       gameObject.row = 2 * 64
       //attacke nach rechts
-      if (gameObject.col >= 2144) {
+      if (gameObject.col >= 2) {
         this.frameCounter++
         //verschiedene tile.width da nicht alle frames gleich breit sind --> dynamische tile.width hinzugefügt
         if (this.frameCounter >= this.framesPerAnimation*20) {
