@@ -17,7 +17,8 @@ export default class Game {
   static running = false;
   static currentFrame = 0;
   static canvas = document.querySelector("#canvas")
-  static tileSize = 32
+  static tileWidth = 32
+  static tileHeight = 32
   static instance = null
 
   constructor() {

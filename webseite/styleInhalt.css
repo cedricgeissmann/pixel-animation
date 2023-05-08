@@ -1,0 +1,40 @@
+h1{
+    text-align: center;
+}
+
+#navigation{
+    text-align: center;
+}
+
+body{
+    
+    background-image:url("https://i.pinimg.com/originals/cd/1d/10/cd1d10b6d98ddb8fce79fbba10dd5e30.jpg") ;
+    background-size: cover;
+}
+#image1{
+    position: absolute;
+    top: 160px;
+    left: 10px;
+    right: 0px;
+    width: 35%;
+ 
+}
+
+#p2{
+    position: absolute;
+    top: 138px;
+    left: 40%;
+
+}
+
+#p1{
+    position: absolute;
+    left: 20px;
+    color: aliceblue;
+}
+
+#p2{
+    color: aliceblue;
+}
+
+

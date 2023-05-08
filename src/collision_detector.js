@@ -117,7 +117,8 @@ class Hitbox {
     constructor(tile) {
         this.x = tile.x
         this.y = tile.y
-        this.tileSize = tile.tileSize
+        this.tileWidth = tile.tileWidth
+        this.tileHeight = tile.tileHeight
     }
 
     getLeft() {
@@ -127,15 +128,15 @@ class Hitbox {
         return this.y
     }
     getRight() {
-        return this.x + this.tileSize
+        return this.x + this.tileWidth
     }
     getBottom() {
-        return this.y + this.tileSize
+        return this.y + this.tileHeight
     }
     getCenter() {
         return {
-            x: this.x + this.tileSize / 2,
-            y: this.y + this.tileSize / 2,
+            x: this.x + this.tileWidth / 2,
+            y: this.y + this.tileHeight / 2,
         }
     }
 }
