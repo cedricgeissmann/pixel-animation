@@ -9,7 +9,7 @@ canvas {
     margin-right: 1px;
     width: min(99vw, 100vw);
     border-radius: 5px;
-    background-color: aqua;
+    background-color: lightblue;
 
 }
 
@@ -36,5 +36,18 @@ main {
     }
     100% {
         background-color: rgb(142, 136, 125);
+    }
+}
+
+@keyframes health-low {
+    0% {
+        background-color: rgb(237, 153, 153);
+    }
+    50% {
+        background-color: rgb(230, 44, 44);
+        
+    }
+    100% {
+        background-color: rgb(156, 12, 12);
     }
 }

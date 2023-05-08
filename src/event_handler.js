@@ -185,6 +185,7 @@ export class AnimationHandler {
     this.numberOfFrames = options.numberOfFrames
     this.playKeyKAnimation = false;
     this.keyKReleased = true;
+    this.kAttackMove = 0;
   }
 
   get isKeyKAnimationPlaying() {
